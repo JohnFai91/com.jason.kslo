@@ -1,0 +1,49 @@
+<resources>
+    //Fragment names
+    <string name="Dashboard">Dashboard</string>
+    <string name="SchoolWebsite">School Website</string>
+    <string name="Login">Login</string>
+    <string name="About">About</string>
+
+
+    <string name="Coming_Soon">Coming Soon!</string>
+    <string name="Thanks">Thanks for downloading!</string>
+    <string name="Description">A product of a bored teenager in Covid-19~"\n</string>
+    <string name="Notes">"Notes:"\n
+        "Orientation:Landscape (打橫) is recommended"
+    </string>
+    <string name="Disable_default_landscape">"Disable force landscape to freely orientate(自由轉)"</string>
+    <string name="changelog">"Changelog"</string>
+    <string name="View_Pdf">"View Pdf"</string>
+    <string name="Features_title">"Features"</string>
+    <string name="Features">"Display homework"\n
+        "School website integrity"\n
+        "View .pdf files"\n
+        "Intranet integrity"\n
+        "Offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)"
+        "Auto updater"\n
+        "Support for dark theme"\n
+        \n
+        "Future"\n
+        "Improve Intranet UI"\n
+    </string>
+    <string name="Usages">"Only for personal usages"\n</string>
+    <string name="Version" translatable="false">"com.jason.kslo 1.0.4 alpha"</string>
+    <string name="School_Cal">"School Calendar"</string>
+    <string name="Featured_Notice">"Featured Notice"</string>
+    <string name="Half_Day_Schedule">"Half Day Schedule"</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="selectlanguage">Select language</string>
+
+    <string-array name="languages">
+        <item>@string/selectlanguage</item>
+        <item>繁體中文(zh-HK)</item>
+        <item>English(en)</item>
+    </string-array>
+    <string name="app_name" translatable="false">KSLO</string>
+    <string name="Settings">Settings</string>
+
+</resources>

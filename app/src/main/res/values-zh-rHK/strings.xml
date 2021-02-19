@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Dashboard">儀表板</string>
+    <string name="SchoolWebsite">學校網站</string>
+    <string name="Login">登入</string>
+    <string name="About">關於</string>
+    <string name="Coming_Soon">即將到來！</string>
+    <string name="Thanks">多謝使用！</string>
+    <string name="Description">一個青年人悶左既產品</string>
+    <string name="Notes">"注意：建議打橫使用"</string>
+    <string name="Disable_default_landscape">改變強迫性打橫</string>
+    <string name="changelog">程式改變</string>
+    <string name="View_Pdf">觀看 Pdf</string>
+    <string name="Features_title">特色</string>
+    <string name="Features">展示功課"\n"學校網站"\n"觀看 .pdf 檔案"\n"內聯網"\n"下線觀看 pdf(僅限於校歷表、3C半日時間表以及當月通告)"\n"自動更新"\n"黑色主題背景"\n\n"將來："\n"改善內聯網畫面"\n
+			</string>
+    <string name="Usages">只供個人用途</string>
+    <string name="School_Cal">校歷表</string>
+    <string name="Featured_Notice">最新通告</string>
+    <string name="Half_Day_Schedule">半日時間表</string>
+    <string name="next">下一個</string>
+    <string name="previous">上一個</string>
+    <string name="selectlanguage">選擇語言</string>
+    <string name="Settings">設定</string>
+</resources>
