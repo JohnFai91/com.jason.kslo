@@ -22,4 +22,5 @@
     <string name="previous">上一個</string>
     <string name="selectlanguage">選擇語言</string>
     <string name="Settings">設定</string>
+    <string name="SourceCode">原始碼</string>
 </resources>

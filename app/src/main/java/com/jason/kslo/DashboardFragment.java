@@ -54,7 +54,7 @@ public class DashboardFragment<activity> extends Fragment {
                 return false;
             }
         });
-        webView.loadUrl("https://open-web-calendar.herokuapp.com/calendar.html?url=https%3A%2F%2Fhkedcity.instructure.com%2Ffeeds%2Fcalendars%2Fuser_r3rBBJB2zCiooISGiBIEalWRDfnn4xTBdKxgEPr9.ics&title=HKMA%20KS%20Lo%203C&tab=agenda");
+        webView.loadUrl("https://gurl.pro/yksahn");
 
         webView.canGoBack();
         webView.setOnKeyListener(new View.OnKeyListener() {

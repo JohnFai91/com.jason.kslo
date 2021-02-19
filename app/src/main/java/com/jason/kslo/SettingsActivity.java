@@ -47,13 +47,11 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast.makeText(parent.getContext(),
                             "You have selected English", Toast.LENGTH_SHORT)
                             .show();
-                    setLocale("en");
                 }
                 else if (pos == 1) {
                     Toast.makeText(parent.getContext(),
                             "你選擇了繁體中文", Toast.LENGTH_SHORT)
                             .show();
-                    setLocale("zh");
                 }
 
             }

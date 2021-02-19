@@ -13,10 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.View.OnClickListener;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.text.BreakIterator;
+import android.net.Uri;
 import java.util.Locale;
 
 import androidx.core.os.ConfigurationCompat;

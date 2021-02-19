@@ -21,11 +21,12 @@
         "View .pdf files"\n
         "Intranet integrity"\n
         "Offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)"
-        "Auto updater"\n
-        "Support for dark theme"\n
         \n
         "Future"\n
         "Improve Intranet UI"\n
+        "Auto updater"\n
+        "Settings"\n
+        "Support for dark theme"\n
     </string>
     <string name="Usages">"Only for personal usages"\n</string>
     <string name="Version" translatable="false">"com.jason.kslo 1.0.4 alpha"</string>
@@ -45,5 +46,6 @@
     </string-array>
     <string name="app_name" translatable="false">KSLO</string>
     <string name="Settings">Settings</string>
+    <string name="SourceCode">Source code</string>
 
 </resources>

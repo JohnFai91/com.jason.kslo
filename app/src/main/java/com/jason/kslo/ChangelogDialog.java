@@ -18,12 +18,14 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "\n" +
                                         "Future\n" +
                                         "Resolve intranet bad UI\n" +
+                                        "Auto internal updater\n" +
+                                        "Settings\n" +
+                                        "Support for dark theme\n" +
                                         "\n" +
                                         "1.0.4 alpha (Current) (Code update)\n" +
                                         "Resolve internal code warnings\n" +
                                         "Translation for Chinese\n" +
-                                        "Auto internal updater\n" +
-                                        "Support for dark theme\n" +
+                                        "Improve \"About\" UI" +
                                         "\n" +
                                         "1.0.3 alpha (UI update)\n" +
                                         "Improve dashboard performance\n" +
