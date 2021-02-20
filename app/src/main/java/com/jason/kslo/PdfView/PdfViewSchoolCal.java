@@ -1,14 +1,13 @@
-package com.jason.kslo;
+package com.jason.kslo.PdfView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.github.barteksc.pdfviewer.PDFView;
+import com.jason.kslo.R;
 
-import java.io.File;
-
-public class PdfViewFeaturedNotice extends AppCompatActivity {
+public class PdfViewSchoolCal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,12 +16,12 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        setTitle("View Featured Notice");
+        setTitle("View School Calendar");
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
 
-        pdfView.fromAsset("Feb_March_Notice.pdf")
-                .defaultPage(1)
+        pdfView.fromAsset("SchoolCal.pdf")
+                .defaultPage(0)
                 .enableSwipe(true)
                 .load();
     }

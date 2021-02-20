@@ -1,4 +1,4 @@
-package com.jason.kslo;
+package com.jason.kslo.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -26,6 +26,8 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.view.View.OnKeyListener;
 import android.view.KeyEvent;
+import com.jason.kslo.PdfView.PdfView;
+import com.jason.kslo.R;
 
 import java.io.File;
 

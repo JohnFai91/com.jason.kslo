@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import com.jason.kslo.*;
+import com.jason.kslo.Fragment.AboutFragment;
+import com.jason.kslo.Fragment.DashboardFragment;
+import com.jason.kslo.Fragment.LoginFragment;
+import com.jason.kslo.Fragment.SchoolWebsiteFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

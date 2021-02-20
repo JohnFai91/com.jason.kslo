@@ -1,16 +1,11 @@
-package com.jason.kslo;
+package com.jason.kslo.Activity;
 
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.Spinner;
-import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+import com.jason.kslo.R;
 import com.jason.kslo.ui.main.SectionsPagerAdapter;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;

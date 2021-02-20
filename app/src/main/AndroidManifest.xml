@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-            android:name=".MainApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -18,7 +17,7 @@
             android:usesCleartextTraffic="true">
 
         <activity
-                android:name=".MainActivity"
+                android:name="com.jason.kslo.Activity.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
@@ -29,23 +28,23 @@
         </activity>
 
         <activity
-                android:name=".PdfView"
+                android:name="com.jason.kslo.PdfView.PdfView"
                 android:theme="@style/Theme.AppCompat.Light">
         </activity>
 
         <activity
-                android:name=".PdfViewSchoolCal"
+                android:name="com.jason.kslo.PdfView.PdfViewSchoolCal"
                 android:theme="@style/Theme.AppCompat.Light">
         </activity>
 
         <activity
-                android:name=".PdfViewHalfDaySchedule"
+                android:name="com.jason.kslo.PdfView.PdfViewHalfDaySchedule"
                 android:theme="@style/Theme.AppCompat.Light">
         </activity>
 
 
         <activity
-                android:name=".SettingsActivity"
+                android:name="com.jason.kslo.Activity.SettingsActivity"
                 android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -53,7 +52,7 @@
         </activity>
 
         <activity
-                android:name=".PdfViewFeaturedNotice"
+                android:name="com.jason.kslo.PdfView.PdfViewFeaturedNotice"
                 android:theme="@style/Theme.AppCompat.Light">
 
         </activity>

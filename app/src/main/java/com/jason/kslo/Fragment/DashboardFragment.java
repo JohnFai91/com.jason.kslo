@@ -1,4 +1,4 @@
-package com.jason.kslo;
+package com.jason.kslo.Fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,11 +7,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.net.Uri;
+import com.jason.kslo.R;
 
 
 public class DashboardFragment<activity> extends Fragment {
@@ -54,7 +54,7 @@ public class DashboardFragment<activity> extends Fragment {
                 return false;
             }
         });
-        webView.loadUrl("https://gurl.pro/yksahn");
+        webView.loadUrl("https://open-web-calendar.herokuapp.com/calendar.html?url=https://hkedcity.instructure.com/feeds/calendars/user_r3rBBJB2zCiooISGiBIEalWRDfnn4xTBdKxgEPr9.ics&title=HKMA%20KS%20Lo%203C&tab=agenda");
 
         webView.canGoBack();
         webView.setOnKeyListener(new View.OnKeyListener() {

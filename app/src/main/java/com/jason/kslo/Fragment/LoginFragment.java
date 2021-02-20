@@ -1,4 +1,4 @@
-package com.jason.kslo;
+package com.jason.kslo.Fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +7,7 @@ import android.webkit.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import com.jason.kslo.R;
 
 public class LoginFragment<activity> extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;

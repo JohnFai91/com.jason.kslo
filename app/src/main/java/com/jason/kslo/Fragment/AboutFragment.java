@@ -1,10 +1,13 @@
-package com.jason.kslo;
+package com.jason.kslo.Fragment;
 
+import com.jason.kslo.Dialog.ChangelogDialog;
+import com.jason.kslo.PdfView.PdfViewFeaturedNotice;
+import com.jason.kslo.PdfView.PdfViewHalfDaySchedule;
+import com.jason.kslo.PdfView.PdfViewSchoolCal;
+import com.jason.kslo.Activity.SettingsActivity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.View.OnClickListener;
-import android.net.Uri;
+
 import java.util.Locale;
 
 import androidx.core.os.ConfigurationCompat;
+import com.jason.kslo.*;
 
 
 public class AboutFragment extends Fragment {
@@ -30,7 +34,7 @@ public class AboutFragment extends Fragment {
         Locale locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
 
         TextView Locale = view.findViewById(R.id.Locale);
-        Locale.setText(locale.getLanguage());
+        Locale.setText(locale.getDisplayLanguage());
 
         Button ChangeLogbutton = (Button) view.findViewById(R.id.button_ChangeLog);
         ChangeLogbutton.setOnClickListener(new OnClickListener() {

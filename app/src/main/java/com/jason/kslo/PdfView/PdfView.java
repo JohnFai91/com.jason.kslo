@@ -1,12 +1,15 @@
-package com.jason.kslo;
+package com.jason.kslo.PdfView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
 import com.github.barteksc.pdfviewer.PDFView;
+import com.jason.kslo.R;
 
-public class PdfViewHalfDaySchedule extends AppCompatActivity {
+import java.io.File;
+
+public class PdfView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,11 +18,13 @@ public class PdfViewHalfDaySchedule extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        setTitle("View 3C Half Day Schedule");
+        setTitle("View PDF");
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
 
-        pdfView.fromAsset("3C_Schedule_(Half Day).pdf")
+        String filepath = ("/sdcard/Android/data/com.jason.kslo/files/Download/tmp/tmp.pdf");
+        File file = new File(filepath);
+        pdfView.fromFile(file)
                 .defaultPage(0)
                 .enableSwipe(true)
                 .load();

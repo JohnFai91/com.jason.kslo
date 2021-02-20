@@ -1,13 +1,13 @@
-package com.jason.kslo;
+package com.jason.kslo.PdfView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import com.github.barteksc.pdfviewer.PDFView;
-import java.io.File;
+import com.jason.kslo.R;
 
-public class PdfView extends AppCompatActivity {
+public class PdfViewFeaturedNotice extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,14 +16,12 @@ public class PdfView extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        setTitle("View PDF");
+        setTitle("View Featured Notice");
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
 
-        String filepath = ("/sdcard/Android/data/com.jason.kslo/files/Download/tmp/tmp.pdf");
-        File file = new File(filepath);
-        pdfView.fromFile(file)
-                .defaultPage(0)
+        pdfView.fromAsset("Feb_March_Notice.pdf")
+                .defaultPage(1)
                 .enableSwipe(true)
                 .load();
     }

@@ -1,5 +1,5 @@
 <resources>
-    //Fragment names
+    //com.jason.kslo.Fragment names
     <string name="Dashboard">Dashboard</string>
     <string name="SchoolWebsite">School Website</string>
     <string name="Login">Login</string>
@@ -29,7 +29,7 @@
         "Support for dark theme"\n
     </string>
     <string name="Usages">"Only for personal usages"\n</string>
-    <string name="Version" translatable="false">"com.jason.kslo 1.0.4 alpha"</string>
+    <string name="Version" translatable="false">"com.jason.kslo 1.0.5-alpha"</string>
     <string name="School_Cal">"School Calendar"</string>
     <string name="Featured_Notice">"Featured Notice"</string>
     <string name="Half_Day_Schedule">"Half Day Schedule"</string>
@@ -47,5 +47,7 @@
     <string name="app_name" translatable="false">KSLO</string>
     <string name="Settings">Settings</string>
     <string name="SourceCode">Source code</string>
+    <string name="Chinese" translatable="false">中文(zh-HK)</string>
+    <string name="English" translatable="false">English(en)</string>
 
 </resources>
