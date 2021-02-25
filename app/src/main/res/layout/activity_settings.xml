@@ -6,32 +6,81 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/blue_background"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="15dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center">
 
         <TextView
+                android:id="@+id/SelectLanguage"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/selectlanguage"/>
+                android:text="@string/selectlanguage"
+                android:textSize="20sp"/>
 
         <Button
+                android:id="@+id/Chinese"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/SelectLanguage"
                 android:background="@drawable/spinner_background"
                 android:textColor="@android:color/white"
                 android:text="@string/Chinese"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:layout_centerHorizontal="true"/>
+
         <Button
+                android:id="@+id/English"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:layout_height="40dp"
                 android:background="@drawable/spinner_background"
                 android:textColor="@android:color/white"
                 android:text="@string/English"
-                android:textAllCaps="false"/>
-    </LinearLayout>
+                android:textAllCaps="false"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/Chinese"
+                android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/SelectTheme_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/SelectThemeSpinner"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/spinner_background"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_drop"
+                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+    </RelativeLayout>
 </LinearLayout>

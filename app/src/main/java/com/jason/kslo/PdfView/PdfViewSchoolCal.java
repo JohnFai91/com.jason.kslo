@@ -11,12 +11,14 @@ public class PdfViewSchoolCal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        com.jason.kslo.App.updateLanguage(this);
         setContentView(R.layout.activity_pdf_view);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        setTitle("View School Calendar");
+        setTitle(R.string.School_Cal);
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
 
@@ -27,14 +29,10 @@ public class PdfViewSchoolCal extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-
-                // app icon in action bar clicked; goto parent activity.
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {// app icon in action bar clicked; goto parent activity.
+            this.finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,4 +1,6 @@
 # com.jason.kslo
+Please DO NOT contribute to this project unless contacted the author
+====================================================================
 Introduction
 ============
 In the current pandemic, a bored tennager got bored and created this app. This app is for KSLO 3C students to check homework, browse the school website and view notices.

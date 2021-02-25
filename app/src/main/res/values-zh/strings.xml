@@ -12,7 +12,7 @@
     <string name="changelog">程式改變</string>
     <string name="View_Pdf">觀看 Pdf</string>
     <string name="Features_title">特色</string>
-    <string name="Features">展示功課"\n"學校網站"\n"觀看 .pdf 檔案"\n"內聯網"\n"下線觀看 pdf(僅限於校歷表、3C半日時間表以及當月通告)"\n"自動更新"\n"黑色主題背景"\n\n"將來(Beta state)："\n"改善內聯網畫面"\n
+    <string name="Features">展示功課"\n"學校網站"\n"觀看 .pdf 檔案"\n"內聯網"\n"下線觀看 pdf(僅限於校歷表、3C半日時間表以及當月通告)"\n""黑色主題背景"\n\n"將來(Beta state)："\n"改善內聯網畫面"\n自動更新"\n
 			</string>
     <string name="Usages">只供個人用途</string>
     <string name="School_Cal">校歷表</string>

@@ -8,54 +8,50 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+            android:name=".App"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
 
         <activity
                 android:name="com.jason.kslo.Activity.MainActivity"
                 android:label="@string/app_name"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+                android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity
                 android:name="com.jason.kslo.PdfView.PdfView"
-                android:theme="@style/Theme.AppCompat.Light">
-        </activity>
-
-        <activity
-                android:name="com.jason.kslo.PdfView.PdfViewSchoolCal"
-                android:theme="@style/Theme.AppCompat.Light">
-        </activity>
-
-        <activity
-                android:name="com.jason.kslo.PdfView.PdfViewHalfDaySchedule"
-                android:theme="@style/Theme.AppCompat.Light">
-        </activity>
-
-
-        <activity
-                android:name="com.jason.kslo.Activity.SettingsActivity"
-                android:theme="@style/Theme.AppCompat.Light">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
         </activity>
 
         <activity
                 android:name="com.jason.kslo.PdfView.PdfViewFeaturedNotice"
-                android:theme="@style/Theme.AppCompat.Light">
-
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
         </activity>
+
+        <activity
+                android:name="com.jason.kslo.PdfView.PdfViewHalfDaySchedule"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
+        </activity>
+
+        <activity
+                android:name="com.jason.kslo.PdfView.PdfViewSchoolCal"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
+        </activity>
+
+        <activity
+                android:name="com.jason.kslo.Activity.SettingsActivity"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
+        </activity>
+
     </application>
 
 </manifest>

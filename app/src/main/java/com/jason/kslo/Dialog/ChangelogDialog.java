@@ -1,7 +1,6 @@
 package com.jason.kslo.Dialog;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,25 +11,42 @@ public class ChangelogDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Changelog")
-                        .setMessage("Alpha State (Current) (Internal release to 2 people)\n" +
-                                        "\n" +
-                                        "Future\n" +
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+                builder.setTitle("Changelog (Only in English)")
+                        .setMessage(    "Future (Beta State) (Improve UI and performances)\n" +
                                         "Resolve intranet bad UI\n" +
-                                        "Give up webview to improve performance in the following order (Login, School Website, Dashboard)"+
-                                        "\n" +
-                                        "\n" +
-                                        "1.0.5-alpha (Current) (Code update)\n"+
+                                        "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
                                         "Auto internal updater\n" +
-                                        "Settings\n" +
-                                        "Support for dark theme(only for \"About\" and \"Settings\" screens because others use webview, will eventually support all after giving uo webview)\n" +
-                                        "Add \"Splash Screen\" to cover loading time"+
                                         "\n" +
                                         "\n" +
-                                        "1.0.4 alpha (Code update)\n" +
-                                        "Resolve internal code warnings\n" +
-                                        "Translation for Chinese\n" +
+                                        "Alpha State (Current) (2 people in state) (Basic features)\n" +
+                                        "\n" +
+                                        "Features implemented\n" +
+                                        "\n" +
+                                        "i = Implemented, v = Version, r = got replaced by, d = Deprecated\n" + "\n" +
+                                        "Dashboard (i in v.1.0.1 alpha)\n" +
+                                        "Home (i in v.1.0.1 alpha but r \"Login\" and \"School Website\")\n" +
+                                        "Library (i in v.1.0.1 alpha but d in v.1.0.3 alpha)\n" +
+                                        "\"Login\" and \"School website\" (i in v.1.0.3 alpha)\n"+
+                                        "\"About\" (i in v.1.0.3 alpha)\n" +
+                                        "\"View\" Pdf (i in v.1.0.3 alpha)\n" +
+                                        "\"Offline Pdf view\" (i in v.1.0.3 alpha)\n" +
+                                        "\"Settings\" (i in v.1.0.5-alpha)\n" +
+                                        "\"Splash screen\" (i in v.1.0.5-alpha)\n" +
+                                        "Design in \"About\"\n" +
+                                        "Support for Chinese (i in v.1.0.4 alpha)\n" +
+                                        "Support for dark theme (i on v.1.0.5-alpha)\n" +
+                                        "Change language and theme manually (i v.1.0.5-alpha)\n" +
+                                        "\n" +
+                                        "Versions\n" +
+                                        "\n" +
+                                        "1.0.5-alpha (Current) (UI update) (End of alpha state)\n"+
+                                        "Add \"Settings\" for changing between languages and themes\n" +
+                                        "Support for dark theme\n" +
+                                        "Add \"Splash Screen\" to cover loading time\n"+
+                                        "\n" +
+                                        "1.0.4 alpha (UI update)\n" +
+                                        "Add translation for Chinese\n" +
                                         "Improve \"About\" UI" + "\n" +
                                         "\n" +
                                         "1.0.3 alpha (UI update)\n" +
@@ -45,13 +61,11 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "Support orientation\n" +
                                         "Support offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)\n" +
                                         "\n" +
-                                        "1.0.2 alpha (Initial) (UI update)\n" +
-                                        "Resolve javascript website keep popping up (Home, login)"
+                                        "1.0.2 alpha (Initial release and start of alpha state) (Code update)\n" +
+                                        "Resolve javascript website keep popping up (\"Home\", after login)"
                                 )
-                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                            @Override                            public void onClick(DialogInterface dialogInterface, int i) {
+                        .setPositiveButton("ok", (dialogInterface, i) -> {
 
-                            }
                         });
         return builder.create();
     }

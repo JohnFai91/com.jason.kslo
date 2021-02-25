@@ -12,13 +12,16 @@ public class PdfViewHalfDaySchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
+        com.jason.kslo.App.updateLanguage(this);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        setTitle("View 3C Half Day Schedule");
+        setTitle(R.string.Half_Day_Schedule);
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
+
 
         pdfView.fromAsset("3C_Schedule_(Half Day).pdf")
                 .defaultPage(0)
@@ -27,14 +30,10 @@ public class PdfViewHalfDaySchedule extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-
-                // app icon in action bar clicked; goto parent activity.
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {// app icon in action bar clicked; goto parent activity.
+            this.finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
