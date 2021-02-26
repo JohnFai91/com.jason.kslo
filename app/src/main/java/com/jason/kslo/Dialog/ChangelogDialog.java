@@ -13,7 +13,7 @@ public class ChangelogDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setTitle("Changelog (Only in English)")
-                        .setMessage(    "Future (Beta State) (Improve UI and performances)\n" +
+                        .setMessage(    "Future (Beta State) (3 people in state) (Improve UI and performances)\n" +
                                         "Resolve intranet bad UI\n" +
                                         "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
                                         "Auto internal updater\n" +
@@ -21,9 +21,10 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "\n" +
                                         "Alpha State (Current) (2 people in state) (Basic features)\n" +
                                         "\n" +
-                                        "Features implemented\n" +
+                                        "i = Implemented, v = Version, r = got replaced by, d = Deprecated, c = Concept\n" + "\n" +
                                         "\n" +
-                                        "i = Implemented, v = Version, r = got replaced by, d = Deprecated\n" + "\n" +
+                                        "Screens\n" +
+                                        "\n" +
                                         "Dashboard (i in v.1.0.1 alpha)\n" +
                                         "Home (i in v.1.0.1 alpha but r \"Login\" and \"School Website\")\n" +
                                         "Library (i in v.1.0.1 alpha but d in v.1.0.3 alpha)\n" +
@@ -32,8 +33,11 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "\"View\" Pdf (i in v.1.0.3 alpha)\n" +
                                         "\"Offline Pdf view\" (i in v.1.0.3 alpha)\n" +
                                         "\"Settings\" (i in v.1.0.5-alpha)\n" +
-                                        "\"Splash screen\" (i in v.1.0.5-alpha)\n" +
-                                        "Design in \"About\"\n" +
+                                        "\"Splash screen\" (c in v.1.0.5-alpha but d for wasting time by author)\n" +
+                                        "\n" +
+                                        "Features\n" +
+                                        "\n" +
+                                        "Design in \"About\"(i in v.1.0.4 alpha)\n" +
                                         "Support for Chinese (i in v.1.0.4 alpha)\n" +
                                         "Support for dark theme (i on v.1.0.5-alpha)\n" +
                                         "Change language and theme manually (i v.1.0.5-alpha)\n" +
@@ -43,13 +47,13 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "1.0.5-alpha (Current) (UI update) (End of alpha state)\n"+
                                         "Add \"Settings\" for changing between languages and themes\n" +
                                         "Support for dark theme\n" +
-                                        "Add \"Splash Screen\" to cover loading time\n"+
+                                        "Improve pdf viewer by adding a scroll bar and page separator\n" +
                                         "\n" +
                                         "1.0.4 alpha (UI update)\n" +
                                         "Add translation for Chinese\n" +
                                         "Improve \"About\" UI" + "\n" +
                                         "\n" +
-                                        "1.0.3 alpha (UI update)\n" +
+                                        "1.0.3 alpha (UI and code update)\n" +
                                         "Improve dashboard performance\n" +
                                         "Resolve fragments not inflating for larger screens\n" +
                                         "Resolve elements not always blocked\n" +

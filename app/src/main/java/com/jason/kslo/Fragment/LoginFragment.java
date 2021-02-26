@@ -1,12 +1,19 @@
 package com.jason.kslo.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.*;
 import android.webkit.*;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.webkit.WebSettingsCompat;
 import com.jason.kslo.R;
+import android.content.res.Configuration;
+
+import java.util.Objects;
 
 public class LoginFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -24,6 +31,23 @@ public class LoginFragment extends Fragment {
         // Enable Javascript
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+
+        SharedPreferences prefs = Objects.requireNonNull(getContext()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String Theme = prefs.getString("theme", "");
+        switch (Theme) {
+            case "Follow System":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_AUTO);
+                break;
+            case "Day Mode":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_OFF);
+                break;
+            case "Night Mode":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_ON);
+                break;
+        }
 
         // Force links and redirects to open in the WebView instead of in a browser
         webView.setWebViewClient(new WebViewClient() {

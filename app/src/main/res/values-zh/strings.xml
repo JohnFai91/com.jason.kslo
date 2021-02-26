@@ -20,11 +20,14 @@
     <string name="Half_Day_Schedule">半日時間表</string>
     <string name="next">下一個</string>
     <string name="previous">上一個</string>
-    <string name="selectlanguage">選擇語言</string>
+    <string name="selectLanguage">選擇語言</string>
     <string name="Settings">設定</string>
     <string name="SourceCode">原始碼</string>
     <string name="selectTheme">選擇主題</string>
     <string name="LightTheme">白色主題</string>
     <string name="DarkTheme">深色主題</string>
     <string name="SystemDefault">系統設定</string>
+    <string name="Author">由一個好悶既青年開發</string>
+    <string name="Tips">提示：</string>
+    <string name="SelectTheme">選擇背景</string>
 </resources>

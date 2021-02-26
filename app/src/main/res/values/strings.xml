@@ -5,6 +5,8 @@
     <string name="Login">Login</string>
     <string name="About">About</string>
 
+    <style name="NightMode">Night Mode</style>
+    <style name="DayMode">Day Mode</style>
 
     <string name="Coming_Soon">Coming Soon!</string>
     <string name="Thanks">Thanks for downloading!</string>
@@ -16,11 +18,14 @@
     <string name="changelog">"Changelog"</string>
     <string name="View_Pdf">"View Pdf"</string>
     <string name="Features_title">"Features"</string>
-    <string name="Features">"Display homework"\n "School website integrity"\n "View .pdf files"\n "Intranet integrity"\n "Offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)" "Settings"\n "Support for dark theme"\n \n "Future(Beta state)"\n" "Improve Intranet UI"\n "Auto updater"\n
+    <string name="Features">"Display homework"\n "School website integrity"\n "View .pdf files"\n "Intranet integrity"\n
+        "Offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)" "Settings"\n
+        "Support for dark theme"\n \n "Future(Beta state)"\n" "Improve Intranet UI"\n "Auto updater"\n
 
     </string>
     <string name="Usages">"Only for personal usages"\n</string>
     <string name="Version" translatable="false">"com.jason.kslo 1.0.5-alpha"</string>
+    <string name="Author">Made by a bored teenager</string>
     <string name="School_Cal">"School Calendar"</string>
     <string name="Featured_Notice">"Featured Notice"</string>
     <string name="Half_Day_Schedule">"Half Day Schedule"</string>
@@ -28,7 +33,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="selectlanguage">Select language</string>
+    <string name="selectLanguage">Select language</string>
     <string name="selectTheme">Select Theme</string>
     <string name="LightTheme">Light Theme</string>
     <string name="DarkTheme">Dark Theme</string>
@@ -46,5 +51,8 @@
     <string name="Chinese" translatable="false">中文(zh-HK)</string>
     <string name="English" translatable="false">English(en)</string>
     <string name="Language_CHINESE" translatable="false">zh_HK</string>
+    <string name="Tips">Tips:</string>
+    <string name="SelectTheme">Select theme</string>
+    <string name="ic_drop" translatable="false">drop</string>
 
 </resources>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.webkit.DownloadListener;
 import android.widget.Button;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,6 +22,7 @@ import android.webkit.URLUtil;
 import android.os.Environment;
 import android.widget.Toast;
 import android.view.KeyEvent;
+import androidx.webkit.WebSettingsCompat;
 import com.jason.kslo.PdfView.PdfView;
 import com.jason.kslo.R;
 
@@ -53,6 +55,23 @@ public class SchoolWebsiteFragment extends Fragment {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+        SharedPreferences prefs = Objects.requireNonNull(getContext()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String Theme = prefs.getString("theme", "");
+        switch (Theme) {
+            case "Follow System":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_AUTO);
+                break;
+            case "Day Mode":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_OFF);
+                break;
+            case "Night Mode":
+                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_ON);
+                break;
+        }
+
         // Force links and redirects to open in the WebView instead of in a browser
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -81,7 +100,7 @@ public class SchoolWebsiteFragment extends Fragment {
                                             getContext();
                                             DownloadManager dm = (DownloadManager) Objects.requireNonNull(getContext()).getSystemService(Context.DOWNLOAD_SERVICE);
                                             dm.enqueue(request);
-                                            Toast.makeText(getContext().getApplicationContext(), "Downloading...", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), "Downloading...", Toast.LENGTH_SHORT).show();
                                             getContext().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
                                             webView.goBack();
                                         }
@@ -89,7 +108,7 @@ public class SchoolWebsiteFragment extends Fragment {
                                         final BroadcastReceiver onComplete = new BroadcastReceiver() {
                                             @Override
                                             public void onReceive(Context context, Intent intent) {
-                                                Toast.makeText(Objects.requireNonNull(getContext()).getApplicationContext(), "Download Complete, click button on left to view.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(Objects.requireNonNull(getContext()), "Download Complete, click button on left to view.", Toast.LENGTH_SHORT).show();
                                                 button.setVisibility(View.VISIBLE);
 
                                                 button.setOnClickListener(view -> {

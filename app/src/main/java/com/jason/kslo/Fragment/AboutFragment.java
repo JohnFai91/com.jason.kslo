@@ -2,6 +2,8 @@ package com.jason.kslo.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import com.jason.kslo.Dialog.ChangelogDialog;
 import com.jason.kslo.PdfView.PdfViewFeaturedNotice;
 import com.jason.kslo.PdfView.PdfViewHalfDaySchedule;
@@ -34,6 +36,11 @@ public class AboutFragment extends Fragment {
 
         TextView Locale = view.findViewById(R.id.Locale);
         Locale.setText(locale);
+
+        String theme = pref.getString("theme","");
+
+        TextView ThemeText = view.findViewById(R.id.Theme);
+        ThemeText.setText(theme);
 
         Button ChangeLogButton = view.findViewById(R.id.button_ChangeLog);
         ChangeLogButton.setOnClickListener(view1 -> openDialog());

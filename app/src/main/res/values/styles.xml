@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
@@ -11,8 +11,9 @@
         <item name="android:forceDarkAllowed">true</item>
     </style>
 
-    <style name="Theme.AppCompat.DayNight.FullScreen" parent="Theme.AppCompat.DayNight">
+    <style name="Theme.AppCompat.DayNight.FullScreen.Actionbar" parent="Theme.AppCompat.DayNight">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:forceDarkAllowed">true</item>
     </style>
 
     <style
