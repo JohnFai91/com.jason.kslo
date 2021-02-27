@@ -1,0 +1,9 @@
+    {
+        "versionCode": 1,                   //app version code
+        "isForceUpdate": 0,                 //Update?   0：update 1：do not update
+        "preBaselineCode": 0,               //lowest working version
+        "versionName": "1.0.5-alpha",       //app version name
+        "downUrl": "http://xx.apk",         //download adress
+        "md5":"Update to 1.0.5-alpha",                  //md5
+        "updateLog": "1.0.5-alpha (UI update) (End of alpha state), Add 'Settings' for changing between languages and themes, Support for dark themeImprove pdf viewer by adding a scroll bar and page separator"
+    }
