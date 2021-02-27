@@ -9,15 +9,15 @@ android {
             keyPassword 'C7tep123L011ip0p'
         }
     }
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.jason.kslo"
         minSdkVersion 14
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.5-alpha"
+        targetSdkVersion 30
+        versionCode 6
+        versionName "1.0.6-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.sign0
