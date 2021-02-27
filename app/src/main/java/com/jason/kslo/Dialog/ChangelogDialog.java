@@ -13,13 +13,19 @@ public class ChangelogDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                 builder.setTitle("Changelog (Only in English)")
-                        .setMessage(    "Future (Beta State) (3 people in state) (Improve UI and performances)\n" +
+                        .setMessage(    "Future \n" +
                                         "Resolve intranet bad UI\n" +
                                         "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
                                         "Auto internal updater\n" +
                                         "\n" +
+                                        "Beta State (3 people in state) (Improve UI and performances)\n" +
                                         "\n" +
-                                        "Alpha State (Current) (2 people in state) (Basic features)\n" +
+                                        "Versions\n" +
+                                        "\n" +
+                                        "1.0.6-beta (Current) (UI and code update) (Initial of beta state)\n" +
+                                        "Add \"Intro Screen\"\n" +
+                                        "Implement auto internal updater\n" +
+                                        "Resolve set theme misbehaving\n" +
                                         "\n" +
                                         "i = Implemented, v = Version, r = got replaced by, d = Deprecated, c = Concept\n" + "\n" +
                                         "\n" +
@@ -34,6 +40,7 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "\"Offline Pdf view\" (i in v.1.0.3 alpha)\n" +
                                         "\"Settings\" (i in v.1.0.5-alpha)\n" +
                                         "\"Splash screen\" (c in v.1.0.5-alpha but d for wasting time by author)\n" +
+                                        "\"Intro Screen\"(i in v.1.0.6-beta)\n" +
                                         "\n" +
                                         "Features\n" +
                                         "\n" +
@@ -41,6 +48,10 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "Support for Chinese (i in v.1.0.4 alpha)\n" +
                                         "Support for dark theme (i on v.1.0.5-alpha)\n" +
                                         "Change language and theme manually (i v.1.0.5-alpha)\n" +
+                                        "Link to source code (i in v.1.0.6-beta)\n" +
+                                        "Auto internal updater (i in v.1.0.6-beta)" +
+                                        "\n" +
+                                        "Alpha State (2 people in state) (Basic features)\n" +
                                         "\n" +
                                         "Versions\n" +
                                         "\n" +

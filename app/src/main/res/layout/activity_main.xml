@@ -10,7 +10,7 @@
         <com.google.android.material.appbar.AppBarLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:theme="@style/AppTheme"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/view_pager"
                 app:layout_constraintVertical_bias="0.0">

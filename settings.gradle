@@ -1,2 +1,3 @@
+include ':com.jason.kslo.AutoUpdate'
 include ':app'
 rootProject.name = "KSLO"

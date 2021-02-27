@@ -6,7 +6,7 @@
     <string name="About">About</string>
 
 
-    <string name="Coming_Soon">Coming Soon!</string>
+    <string name="Coming_Soon">" "</string>
     <string name="Thanks">Thanks for downloading!</string>
     <string name="Description">A product of a bored teenager in Covid-19~"\n</string>
     <string name="Notes">"Notes:"\n
@@ -15,9 +15,6 @@
     <string name="Disable_default_landscape">"Disable force landscape to freely orientate(自由轉)"</string>
     <string name="changelog">"Changelog"</string>
     <string name="View_Pdf">"View Pdf"</string>
-    <string name="Features_title">"Features"</string>
-    <string name="Features">"Display homework"\n "School website integrity"\n "View .pdf files"\n "Intranet integrity"\n "Offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)" "Settings"\n "Support for dark theme"\n \n "Future(Beta state)"\n" "Improve Intranet UI"\n "Auto updater"\n
-    </string>
     <string name="Usages">"Only for personal usages"</string>
     <string name="School_Cal">"School Calendar"</string>
     <string name="Featured_Notice">"Featured Notice"</string>
@@ -41,7 +38,24 @@
     <string name="Settings">Settings</string>
     <string name="SourceCode">Source code</string>
     <string name="Author">Made by a bored teenager</string>
-    <string name="Tips">Tips:</string>
+    <string name="TipsAndNewInVersion">Tips</string>
     <string name="SelectTheme">Select theme</string>
+    <string name="ShowHomework">Show Homework</string>
+    <string name="GetStarted">Get Started</string>
+    <string name="ViewPdfDesc">View offline pdf and online pdf</string>
+    <string name="Customise">" Customise"</string>
+    <string name="CustomiseDesc">Customize your own theme and language</string>
+    <string name="ReplayIntro">Replay Introduction</string>
+    <string name="DashboardTips">If you cannot see an item in \"Dashboard\", please orientate to landscape(打橫).</string>
+    <string name="android_auto_update_notify_ticker">Found new version, click to update</string>
+    <string name="android_auto_update_notify_content">Found new version, click to update</string>
+    <string name="android_auto_update_dialog_btn_download">Download now</string>
+    <string name="android_auto_update_dialog_btn_cancel">Later</string>
+    <string name="android_auto_update_toast_no_new_update">Already the latest version</string>
+    <string name="android_auto_update_download_progress">Downloading:%1$d%%</string>
+    <string name="android_auto_update_dialog_checking">Checking version</string>
+    <string name="android_auto_update_dialog_title">Found new version</string>
+    <string name="UpdateApp">Update app</string>
+    <string name="CheckForUpdate">Check for update</string>
 
 </resources>

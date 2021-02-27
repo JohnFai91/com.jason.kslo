@@ -11,9 +11,6 @@
     <string name="Disable_default_landscape">改變強迫性打橫</string>
     <string name="changelog">程式改變</string>
     <string name="View_Pdf">觀看 Pdf</string>
-    <string name="Features_title">特色</string>
-    <string name="Features">展示功課"\n"學校網站"\n"觀看 .pdf 檔案"\n"內聯網"\n"下線觀看 pdf(僅限於校歷表、3C半日時間表以及當月通告)"\n"自動更新"\n"黑色主題背景"\n\n"將來(Beta state)："\n"改善內聯網畫面"\n
-			</string>
     <string name="Usages">只供個人用途</string>
     <string name="School_Cal">校歷表</string>
     <string name="Featured_Notice">最新通告</string>
@@ -28,6 +25,23 @@
     <string name="DarkTheme">深色主題</string>
     <string name="SystemDefault">系統設定</string>
     <string name="Author">由一個好悶既青年開發</string>
-    <string name="Tips">提示：</string>
+    <string name="TipsAndNewInVersion">提示</string>
     <string name="SelectTheme">選擇背景</string>
+    <string name="ShowHomework">展示功課</string>
+    <string name="GetStarted">開始</string>
+    <string name="ViewPdfDesc">觀看下線pdf以及上網觀看由學校網站下載的通告</string>
+    <string name="Customise">個人化</string>
+    <string name="CustomiseDesc">設定主題和語言</string>
+    <string name="ReplayIntro">重播介紹</string>
+    <string name="DashboardTips">如果你未能在儀表板上看到某些項目，請打橫使用</string>
+    <string name="android_auto_update_dialog_title">發現新版本</string>
+    <string name="android_auto_update_notify_ticker">發現新版本，點擊更新</string>
+    <string name="android_auto_update_notify_content">發現新版本，點擊更新</string>
+    <string name="android_auto_update_dialog_btn_download">立即下載</string>
+    <string name="android_auto_update_dialog_btn_cancel">稍後再說</string>
+    <string name="android_auto_update_toast_no_new_update">已是最新版本</string>
+    <string name="android_auto_update_download_progress">正在下載:%1$d%%</string>
+    <string name="android_auto_update_dialog_checking">正在檢查版本</string>
+    <string name="UpdateApp">應用更新</string>
+    <string name="CheckForUpdate">檢查版本</string>
 </resources>

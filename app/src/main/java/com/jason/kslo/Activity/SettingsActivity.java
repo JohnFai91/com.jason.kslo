@@ -29,36 +29,31 @@ public class SettingsActivity extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.SelectThemeSpinner);
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String Theme = prefs.getString("theme","");
-        getString(R.string.SystemDefault);
         String Theme1;
         String Theme2;
-        String Theme3 = null;
+        String Theme3;
         switch (Theme) {
-            case "Follow System":
-                Theme = getString(R.string.SystemDefault);
-                Theme1 = getString(R.string.LightTheme);
-                Theme2 = getString(R.string.DarkTheme) ;
-                break;
             case "Day Mode":
                 Theme = getString(R.string.LightTheme);
                 Theme1 = getString(R.string.SystemDefault);
-                Theme2 = getString(R.string.DarkTheme) ;
+                Theme2 = getString(R.string.LightTheme);
+                Theme3 = getString(R.string.DarkTheme) ;
                 break;
             case "Night Mode":
                 Theme = getString(R.string.DarkTheme);
                 Theme1 = getString(R.string.SystemDefault);
-                Theme2 = getString(R.string.LightTheme) ;
+                Theme2 = getString(R.string.LightTheme);
+                Theme3 = getString(R.string.DarkTheme) ;
                 break;
             default:
-                Theme = getString(R.string.selectTheme);
+                Theme = getString(R.string.SystemDefault);
                 Theme1 = getString(R.string.SystemDefault);
                 Theme2 = getString(R.string.LightTheme);
                 Theme3 = getString(R.string.DarkTheme) ;
                 break;
         }
 
-        // Get custom Spinner items.
-        if (Theme.equals(getString(R.string.selectTheme))) {
+
             List<String> categories = new ArrayList<>();
             categories.add(0, Theme);
             categories.add(Theme1);
@@ -72,21 +67,6 @@ public class SettingsActivity extends AppCompatActivity {
             SelectThemeSpinnerItemArrAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner.setAdapter(SelectThemeSpinnerItemArrAdaptor);
-        }
-        else{
-            List<String> categories = new ArrayList<>();
-            categories.add(0, Theme);
-            categories.add(Theme1);
-            categories.add(Theme2);
-
-            // Set Spinner list items in array adapter..
-            ArrayAdapter<String> SelectThemeSpinnerItemArrAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories){
-            };
-
-            SelectThemeSpinnerItemArrAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinner.setAdapter(SelectThemeSpinnerItemArrAdaptor);
-        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

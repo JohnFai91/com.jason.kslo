@@ -36,15 +36,19 @@ public class LoginFragment extends Fragment {
         String Theme = prefs.getString("theme", "");
         switch (Theme) {
             case "Follow System":
-                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_AUTO);
+                switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
+                    case Configuration.UI_MODE_NIGHT_YES:
+                        webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_ON);
+                        break;
+                    case Configuration.UI_MODE_NIGHT_NO:
+                        webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_OFF);
+                        break;
+                }
                 break;
             case "Day Mode":
-                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_NO);
                 webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_OFF);
                 break;
             case "Night Mode":
-                requireContext().getApplicationContext().setTheme(AppCompatDelegate.MODE_NIGHT_YES);
                 webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_ON);
                 break;
         }
