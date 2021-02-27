@@ -1,5 +1,5 @@
 {
-  "url":"https://github.com/JohnFai91/com.jason.kslo/releases/download/v.1.0.5-alpha/1.0.5-alpha.apk",
-  "versionCode":5,
-  "updateMessage":"1. Add 'Settings' for changing between languages and themes\n2. Support for dark theme\n3. Improve pdf viewer by adding a scroll bar and page separator"
+  "url":"https://github.com/JohnFai91/com.jason.kslo/releases/download/v.1.0.6-beta/1.0.6-beta.apk",
+  "versionCode":6,
+  "updateMessage":"1. Add 'Intro' \n2. Implement auto internal updater\n3. Resolve set theme misbehaving"
 }
