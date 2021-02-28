@@ -1,8 +1,8 @@
 package com.jason.kslo.Fragment;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import com.jason.kslo.AutoUpdate.AppUtils;
 import com.jason.kslo.AutoUpdate.UpdateChecker;
 import com.jason.kslo.Dialog.ChangelogDialog;
@@ -96,11 +96,19 @@ public class AboutFragment extends Fragment {
 
         Button CheckForUpdate = view.findViewById(R.id.CheckForUpdate);
         CheckForUpdate.setOnClickListener(view17 -> {
-            UpdateChecker.checkForDialog(getContext());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (!getContext().getPackageManager().canRequestPackageInstalls()){
+                        openDialog();
+                    }
+                    else{
+                        UpdateChecker.checkForDialog(getContext());
+                    }
+                }
         });
 
         return view;
     }
+
     void openDialog(){
         ChangelogDialog changelogDialog = new ChangelogDialog();
             changelogDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "ChangelogDialog");

@@ -123,7 +123,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 break;
             case 3:
                 logo.setImageResource(R.drawable.dashboard_both_horizontal);
-                logo.setMaxWidth(300);
+                logo.setMaxWidth(400);
                 pg1.setImageResource(R.drawable.unselected);
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.unselected);

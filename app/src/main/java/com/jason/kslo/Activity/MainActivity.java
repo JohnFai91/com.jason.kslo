@@ -1,24 +1,18 @@
 package com.jason.kslo.Activity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.jason.kslo.AutoUpdate.UpdateChecker;
-import com.jason.kslo.Dialog.ChangelogDialog;
 import com.jason.kslo.Dialog.InstallUnknownAppsDialog;
-import com.jason.kslo.Intro.SlideActivity;
 import com.jason.kslo.R;
 import com.jason.kslo.ui.main.SectionsPagerAdapter;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
     public static Context contextOfApplication;
-    public String updateURL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
             UpdateChecker.checkForDialog(this);
             com.jason.kslo.App.updateLanguage(this);
-
-        if (!getPackageManager().canRequestPackageInstalls()){
-                openDialog();
-            }
-        else{
-            UpdateChecker.checkForDialog(this);
-        }
+            checkUpdate();
     }
     public static Context getContextOfApplication(){
         return contextOfApplication;
@@ -50,5 +38,15 @@ public class MainActivity extends AppCompatActivity {
     void openDialog(){
         InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
         installUnknownAppsDialog.show(this.getSupportFragmentManager(), "ChangelogDialog");
+    }
+    public void checkUpdate(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (!getPackageManager().canRequestPackageInstalls()){
+                openDialog();
+            }
+            else{
+                UpdateChecker.checkForDialog(this);
+            }
+        }
     }
 }

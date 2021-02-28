@@ -20,6 +20,7 @@ public class App extends Application {
     {
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String Theme = prefs.getString("theme","");
+        String FirstLaunch = prefs.getString("First Launch","");
 
             switch (Theme) {
                 case "Follow System":
@@ -37,6 +38,12 @@ public class App extends Application {
                 }
 
             com.jason.kslo.App.updateLanguage(this);
+
+        if (FirstLaunch.isEmpty()) {
+            Intent intent = new Intent(this, SlideActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
             super.onCreate();
     }
