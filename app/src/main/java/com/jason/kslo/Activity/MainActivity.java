@@ -7,7 +7,9 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.jason.kslo.AutoUpdate.UpdateChecker;
+
 import com.jason.kslo.Dialog.InstallUnknownAppsDialog;
+
 import com.jason.kslo.R;
 import com.jason.kslo.ui.main.SectionsPagerAdapter;
 
@@ -16,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+
+        UpdateChecker.checkForDialog(this);
 
         com.jason.kslo.App.updateLanguage(this);
 

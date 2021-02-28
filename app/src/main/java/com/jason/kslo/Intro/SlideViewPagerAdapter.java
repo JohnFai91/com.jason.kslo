@@ -2,7 +2,9 @@ package com.jason.kslo.Intro;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.content.SharedPreferences;
+
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,9 +62,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
+
             SharedPreferences.Editor editor = ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit();
             editor.putString("First Launch", "false");
             editor.commit();
+
             ctx.startActivity(intent);
         });
 
@@ -123,7 +127,9 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 break;
             case 3:
                 logo.setImageResource(R.drawable.dashboard_both_horizontal);
+
                 logo.setMaxWidth(400);
+
                 pg1.setImageResource(R.drawable.unselected);
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.unselected);

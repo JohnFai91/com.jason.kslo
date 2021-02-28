@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.text.TextUtils;
+
 import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatDelegate;
 import com.jason.kslo.Intro.SlideActivity;
 
@@ -18,8 +20,10 @@ public class App extends Application {
     @Override
     public void onCreate()
     {
+
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String Theme = prefs.getString("theme","");
+
         String FirstLaunch = prefs.getString("First Launch","");
 
             switch (Theme) {
@@ -44,6 +48,31 @@ public class App extends Application {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+
+        String Intro = prefs.getString("slide","");
+
+        if (Intro.equals("false")) {
+            Intent intent = new Intent(getApplicationContext(), SlideActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
+            switch (Theme) {
+                case "Follow System":
+                    setTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    break;
+                case "Day Mode":
+                    setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    break;
+                case "Night Mode":
+                    setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    break;}
+
+            com.jason.kslo.App.updateLanguage(this);
+
 
             super.onCreate();
     }

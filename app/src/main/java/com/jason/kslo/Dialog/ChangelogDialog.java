@@ -17,18 +17,29 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "Resolve intranet bad UI\n" +
                                         "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
                                         "\n" +
+
                                         "Beta State (3 people in state) (Improve UI, features, and performances)\n" +
                                         "\n" +
                                         "Versions\n" +
                                         "1.0.7-beta (UI update)" +
                                         "Improve \"Intro\" UI to fit larger screens" +
-                                        "Improve \"Login\" Screen" +
+                                        "Improve \"Login\" Screen\n" +
                                         "\n" +
                                         "1.0.6-beta (UI and code update) (Initial of beta state)\n" +
                                         "Add \"Intro Screen\"\n" +
                                         "Implement auto internal updater\n" +
                                         "Resolve set theme misbehaving\n" +
                                         "Ask for \"Install Unknown Apps\" permission" +
+
+                                        "Beta State (3 people in state) (Improve UI and performances)\n" +
+                                        "\n" +
+                                        "Versions\n" +
+                                        "\n" +
+                                        "1.0.6-beta (Current) (UI and code update) (Initial of beta state)\n" +
+                                        "Add \"Intro Screen\"\n" +
+                                        "Implement auto internal updater\n" +
+                                        "Resolve set theme misbehaving\n" +
+
                                         "\n" +
                                         "i = Implemented, v = Version, r = got replaced by, d = Deprecated, c = Concept\n" + "\n" +
                                         "\n" +
