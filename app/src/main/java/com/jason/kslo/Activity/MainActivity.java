@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        com.jason.kslo.App.updateLanguage(this);
+
         contextOfApplication = getApplicationContext();
 
         setContentView(R.layout.activity_main);
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     void openDialog(){
         InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
+        installUnknownAppsDialog.setCancelable(false);
         installUnknownAppsDialog.show(this.getSupportFragmentManager(), "ChangelogDialog");
     }
     public void checkUpdate(){

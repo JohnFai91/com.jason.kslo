@@ -6,6 +6,7 @@ import android.os.Build;
 import com.jason.kslo.AutoUpdate.AppUtils;
 import com.jason.kslo.AutoUpdate.UpdateChecker;
 import com.jason.kslo.Dialog.ChangelogDialog;
+import com.jason.kslo.Dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.Intro.SlideActivity;
 import com.jason.kslo.PdfView.PdfViewFeaturedNotice;
 import com.jason.kslo.PdfView.PdfViewHalfDaySchedule;
@@ -110,8 +111,9 @@ public class AboutFragment extends Fragment {
     }
 
     void openDialog(){
-        ChangelogDialog changelogDialog = new ChangelogDialog();
-            changelogDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "ChangelogDialog");
+        InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
+        installUnknownAppsDialog.setCancelable(false);
+            installUnknownAppsDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "InstallUnknownAppsDialog");
     }
 
 }

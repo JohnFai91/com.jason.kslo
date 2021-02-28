@@ -1,14 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        sign0 {
-            storeFile file('C:\\Users\\YO\\Documents\\Jason\\java\\Apps\\KSLO\\key store\\KSLO key.jks')
-            storePassword 'C7tep123L011ip0p'
-            keyAlias 'key0'
-            keyPassword 'C7tep123L011ip0p'
-        }
-    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -20,13 +13,13 @@ android {
         versionName "1.0.6-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.sign0
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
         customDebugType {
-            debuggable true}
+            debuggable true
+        }
 
         release {
             minifyEnabled false
