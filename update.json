@@ -1,5 +1,5 @@
 {
   "url":"https://github.com/JohnFai91/com.jason.kslo/releases/download/v.1.0.6-beta/1.0.6-beta.apk",
-  "versionCode":6,
+  "versionCode":7,
   "updateMessage":"1. Add 'Intro' \n2. Implement auto internal updater\n3. Resolve set theme misbehaving"
 }
