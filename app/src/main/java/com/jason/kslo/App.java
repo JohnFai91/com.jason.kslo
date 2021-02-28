@@ -5,26 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.text.TextUtils;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.jason.kslo.Intro.SlideActivity;
 
 import java.util.Locale;
 
 public class App extends Application {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate()
     {
-
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String Theme = prefs.getString("theme","");
-        String Intro = prefs.getString("slide","");
-
-        if (Intro.equals("false")) {
-            Intent intent = new Intent(getApplicationContext(), SlideActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
 
             switch (Theme) {
                 case "Follow System":
@@ -38,7 +33,8 @@ public class App extends Application {
                 case "Night Mode":
                     setTheme(AppCompatDelegate.MODE_NIGHT_YES);
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    break;}
+                    break;
+                }
 
             com.jason.kslo.App.updateLanguage(this);
 

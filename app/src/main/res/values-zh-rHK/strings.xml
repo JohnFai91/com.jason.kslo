@@ -44,4 +44,6 @@
     <string name="android_auto_update_dialog_checking">正在檢查版本</string>
     <string name="UpdateApp">應用更新</string>
     <string name="CheckForUpdate">檢查版本</string>
+    <string name="Go">去！</string>
+    <string name="AllowPermission">請允許下一版的權限以作日後自動更新</string>
 </resources>

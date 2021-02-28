@@ -21,9 +21,5 @@ public class SlideActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.IntroViewPager);
         Adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(Adapter);
-
-            SharedPreferences.Editor editor = getSharedPreferences("slide",MODE_PRIVATE).edit();
-            editor.putBoolean("slide", true);
-            editor.commit();
     }
 }

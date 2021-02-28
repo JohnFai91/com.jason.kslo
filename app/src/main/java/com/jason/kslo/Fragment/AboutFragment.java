@@ -36,7 +36,7 @@ public class AboutFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
         SharedPreferences pref = Objects.requireNonNull(getContext()).getSharedPreferences("MyPref", MODE_PRIVATE);
-        String locale = pref.getString("lang","zh");
+        String locale = pref.getString("lang","");
 
         TextView Locale = view.findViewById(R.id.Locale);
         Locale.setText(locale);
@@ -45,7 +45,7 @@ public class AboutFragment extends Fragment {
         TextView version = view.findViewById(R.id.Version);
         version.setText(Version);
 
-        String theme = pref.getString("theme","Follow System");
+        String theme = pref.getString("theme","");
 
         TextView ThemeText = view.findViewById(R.id.Theme);
         ThemeText.setText(theme);

@@ -16,13 +16,16 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                         .setMessage(    "Future \n" +
                                         "Resolve intranet bad UI\n" +
                                         "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
-                                        "Auto internal updater\n" +
                                         "\n" +
-                                        "Beta State (3 people in state) (Improve UI and performances)\n" +
+                                        "Beta State (3 people in state) (Improve UI, features, and performances)\n" +
                                         "\n" +
                                         "Versions\n" +
+                                        "1.0.7-beta (current) (UI update)" +
+                                        "Improve \"Intro\" UI to fit larger screens" +
+                                        "Improve \"Login\" Screen"+
+                                        "Ask for \"Install unknown Apps\" permission for the first launch" +
                                         "\n" +
-                                        "1.0.6-beta (Current) (UI and code update) (Initial of beta state)\n" +
+                                        "1.0.6-beta (UI and code update) (Initial of beta state)\n" +
                                         "Add \"Intro Screen\"\n" +
                                         "Implement auto internal updater\n" +
                                         "Resolve set theme misbehaving\n" +
