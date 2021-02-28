@@ -1,5 +1,5 @@
 {
-  "url":"https://github.com/JohnFai91/com.jason.kslo/releases/download/v.1.0.6-beta/1.0.6-beta.apk",
+  "url":"https://github.com/JohnFai91/com.jason.kslo/raw/master/FirstLaunch.apk",
   "versionCode":100,
-  "updateMessage":"1.請允許下一版的權限以作日後自動更新。 \n Please allow the permission on the next page for future auto updates."
+  "updateMessage":"1.請允許下一版的權限以作日後自動更新，如果今次安裝錯誤為正常。 \n Please allow the permission on the next page for future auto updates, if this install failed, it is normal."
 }
