@@ -58,20 +58,33 @@
     <string name="DashboardTips">If you cannot see an item in \"Dashboard\", please orientate to landscape(打橫).
     </string>
 
-        <string name="android_auto_update_dialog_title">Found new version</string>
+    <string name="android_auto_update_dialog_title">Found new version</string>
 
-        <string name="android_auto_update_notify_ticker">Found new version, click to update</string>
-        <string name="android_auto_update_notify_content">Found new version, click to update</string>
+    <string name="android_auto_update_notify_ticker">Found new version, click to update</string>
+    <string name="android_auto_update_notify_content">Found new version, click to update</string>
 
-        <string name="android_auto_update_dialog_btn_download">Download now</string>
-        <string name="android_auto_update_dialog_btn_cancel">Later</string>
+    <string name="android_auto_update_dialog_btn_download">Download now</string>
+    <string name="android_auto_update_dialog_btn_cancel">Later</string>
 
-        <string name="android_auto_update_toast_no_new_update">Already the latest version</string>
+    <string name="android_auto_update_toast_no_new_update">Already the latest version</string>
 
-        <string name="android_auto_update_download_progress">Downloading:%1$d%%</string>
+    <string name="android_auto_update_download_progress">Downloading:%1$d%%</string>
 
-        <string name="android_auto_update_dialog_checking">Checking version</string>
+    <string name="android_auto_update_dialog_checking">Checking version</string>
     <string name="UpdateApp">Update app</string>
     <string name="CheckForUpdate">Check for update</string>
+    <string name="Go">Go!</string>
+    <string name="AllowPermission">Please allow the permission on the next page for future auto updates.</string>
+    <string name="Page1">Page 1</string>
+    <string name="Page2">Page 2</string>
+    <string name="Page3">Page 3</string>
+    <string name="Page4">Page 4</string>
+    <string name="Sample">Sample</string>
+    <string name="Album">Album</string>
+    <string name="TestingFeature">Testing</string>
+    <string name="Pictures">Up to 16 pictures</string>
+    <string name="LatestNews">Latest News</string>
+    <string name="openVideo">Open Video</string>
+    <string name="Downloading">Downloading...</string>
 
 </resources>

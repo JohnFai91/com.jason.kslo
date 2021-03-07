@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/horizontal_recycler"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="225dp"
+                    android:layout_height="150dp"
+                    style="@style/CardView.Light"
+                    app:cardCornerRadius="8dp"
+                    android:layout_marginStart="10dp">
+
+                <ImageView
+                        android:id="@+id/ImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="#88888888"/>
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_gradient"
+                        android:layout_gravity="bottom"/>
+
+
+                <TextView
+                        android:id="@+id/imageCount"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="gravity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:background="@android:color/holo_blue_bright"
+                        android:layout_marginEnd="10dp"/>
+                <TextView
+                        android:id="@+id/imageViewDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="12dp"/>
+
+
+            </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

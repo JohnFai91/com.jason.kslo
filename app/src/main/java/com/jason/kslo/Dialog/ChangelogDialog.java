@@ -15,19 +15,25 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                 builder.setTitle("Changelog (Only in English)")
                         .setMessage(    "Future \n" +
                                         "Resolve intranet bad UI\n" +
-                                        "Give up webview to improve performance in the following order (Login, School Website, Dashboard)\n"+
-                                        "Auto internal updater\n" +
+                                        "Give up webview to improve performance in the following order (School Website, Login, Dashboard)\n"+
                                         "\n" +
-                                        "Beta State (3 people in state) (Improve UI and performances)\n" +
+                                        "Beta State (3 people in state) (Current) (Improve UI, features, and performances)\n" +
                                         "\n" +
                                         "Versions\n" +
+                                        "1.0.7-beta (Current) (UI update)\n" +
+                                        "Improve \"Intro\" UI to fit larger screens\n" +
+                                        "Redesign \"School Website\" (give up webview)\n" +
+                                        "Implement \"Album (limited due to website limitations)\" and \"Latest News\" in \"School Website\"\n" +
+                                        "Clear internal code warnings\n" +
+                                        "Add \"Splash Screen\" to cover blank loading screen\n"+
                                         "\n" +
-                                        "1.0.6-beta (Current) (UI and code update) (Initial of beta state)\n" +
+                                        "1.0.6-beta (UI and code update) (Initial of beta state)\n" +
                                         "Add \"Intro Screen\"\n" +
                                         "Implement auto internal updater\n" +
                                         "Resolve set theme misbehaving\n" +
+                                        "Ask for \"Install Unknown Apps\" permission\n" +
                                         "\n" +
-                                        "i = Implemented, v = Version, r = got replaced by, d = Deprecated, c = Concept\n" + "\n" +
+                                        "i = Implemented, v = Version, r = got replaced by, d = Deprecated, c = Concept, ri = Reimplemented\n" + "\n" +
                                         "\n" +
                                         "Screens\n" +
                                         "\n" +
@@ -40,7 +46,8 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "\"Offline Pdf view\" (i in v.1.0.3 alpha)\n" +
                                         "\"Settings\" (i in v.1.0.5-alpha)\n" +
                                         "\"Splash screen\" (c in v.1.0.5-alpha but d for wasting time by author)\n" +
-                                        "\"Intro Screen\"(i in v.1.0.6-beta)\n" +
+                                        "\"Intro Screen\" (i in v.1.0.6-beta)\n" +
+                                        "\"Splash Screen\" (ri in v.1.0.7-beta to cover Main Activity Loading as author has found a method not to let users wait)\n"+
                                         "\n" +
                                         "Features\n" +
                                         "\n" +
@@ -49,13 +56,14 @@ public class ChangelogDialog extends AppCompatDialogFragment {
                                         "Support for dark theme (i on v.1.0.5-alpha)\n" +
                                         "Change language and theme manually (i v.1.0.5-alpha)\n" +
                                         "Link to source code (i in v.1.0.6-beta)\n" +
-                                        "Auto internal updater (i in v.1.0.6-beta)" +
+                                        "Auto internal updater (i in v.1.0.6-beta)\n" +
+                                        "Redesign in \"School Website\" (give up webview) (i in v.1.0.7-beta)\n" +
                                         "\n" +
                                         "Alpha State (2 people in state) (Basic features)\n" +
                                         "\n" +
                                         "Versions\n" +
                                         "\n" +
-                                        "1.0.5-alpha (Current) (UI update) (End of alpha state)\n"+
+                                        "1.0.5-alpha (UI update) (End of alpha state)\n"+
                                         "Add \"Settings\" for changing between languages and themes\n" +
                                         "Support for dark theme\n" +
                                         "Improve pdf viewer by adding a scroll bar and page separator\n" +

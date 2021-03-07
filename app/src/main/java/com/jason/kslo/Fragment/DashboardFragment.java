@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.Objects;
 
+import static com.jason.kslo.App.updateLanguage;
+
 
 public class DashboardFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -24,7 +26,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        updateLanguage(requireContext());
         final View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
 
@@ -52,8 +54,6 @@ public class DashboardFragment extends Fragment {
                 webSettings.setForceDark(WebSettingsCompat.FORCE_DARK_ON);
                 break;
         }
-        com.jason.kslo.App.updateLanguage(requireContext());
-
         // Enable Javascript
         webSettings.setJavaScriptEnabled(true);
 

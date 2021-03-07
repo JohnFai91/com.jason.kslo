@@ -2,14 +2,12 @@ package com.jason.kslo.Intro;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import com.jason.kslo.Activity.MainActivity;
@@ -38,9 +36,9 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_screen, container, false);
 
-        LinearLayout Background = (LinearLayout) view.findViewById(R.id.SlideScreenBackground);
+        RelativeLayout Background = view.findViewById(R.id.SlideScreenBackground);
 
-        ImageView logo = view.findViewById(R.id.LightDashboard);
+        ImageView logo = view.findViewById(R.id.Photo);
         ImageView pg1 = view.findViewById(R.id.pgNo_1);
         ImageView pg2 = view.findViewById(R.id.pgNo_2);
         ImageView pg3 = view.findViewById(R.id.pgNo_3);
@@ -57,6 +55,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         getStarted.setOnClickListener(v -> {
             Intent intent = new Intent(ctx, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+            SharedPreferences.Editor editor = ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit();
+            editor.putString("slide", "done");
+            editor.commit();
             ctx.startActivity(intent);
         });
 
@@ -117,7 +120,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 break;
             case 3:
                 logo.setImageResource(R.drawable.dashboard_both_horizontal);
-                logo.setMaxWidth(300);
+                logo.setMaxWidth(400);
                 pg1.setImageResource(R.drawable.unselected);
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.unselected);

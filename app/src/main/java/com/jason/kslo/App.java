@@ -15,34 +15,37 @@ public class App extends Application {
     @Override
     public void onCreate()
     {
+        super.onCreate();
 
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String Theme = prefs.getString("theme","");
         String Intro = prefs.getString("slide","");
 
-        if (Intro.equals("false")) {
+        if (Intro.isEmpty()) {
             Intent intent = new Intent(getApplicationContext(), SlideActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
 
-            switch (Theme) {
-                case "Follow System":
-                    setTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    break;
-                case "Day Mode":
-                    setTheme(AppCompatDelegate.MODE_NIGHT_NO);
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    break;
-                case "Night Mode":
-                    setTheme(AppCompatDelegate.MODE_NIGHT_YES);
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    break;}
+        if (Theme.isEmpty()){
+            prefs.edit().putString("theme","Follow System")
+            .apply();
+        }
 
-            com.jason.kslo.App.updateLanguage(this);
+        switch (Theme) {
+            case "Follow System":
+                setTheme(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+            case "Day Mode":
+                setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case "Night Mode":
+                setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;}
 
-            super.onCreate();
     }
 
     public static void updateLanguage(Context ctx)

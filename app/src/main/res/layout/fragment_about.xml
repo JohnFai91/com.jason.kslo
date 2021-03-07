@@ -14,7 +14,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/School_Logo"
                 android:src="@drawable/school_logo"
-                android:contentDescription="@string/schoolLogo"/>
+                android:contentDescription="@string/schoolLogo"
+                android:layout_marginHorizontal="20dp"/>
 
             <Button
                     android:drawableRight="@drawable/ic_open"

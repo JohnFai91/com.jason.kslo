@@ -1,10 +1,15 @@
 package com.jason.kslo.Intro;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import com.jason.kslo.R;
+
+import java.util.Objects;
 
 public class SlideActivity extends AppCompatActivity {
 
@@ -14,16 +19,10 @@ public class SlideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.jason.kslo.App.updateLanguage(this);
-
         setContentView(R.layout.activity_slide_acticity);
 
         viewPager = findViewById(R.id.IntroViewPager);
         Adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(Adapter);
-
-            SharedPreferences.Editor editor = getSharedPreferences("MyPref",MODE_PRIVATE).edit();
-            editor.putString("slide", "true");
-            editor.commit();
     }
 }

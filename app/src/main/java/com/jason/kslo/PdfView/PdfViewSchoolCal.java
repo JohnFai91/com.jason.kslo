@@ -16,8 +16,7 @@ public class PdfViewSchoolCal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.jason.kslo.App.updateLanguage(this);
-        setContentView(R.layout.activity_pdf_view_single_page);
+        setContentView(R.layout.activity_pdf_view);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -26,22 +25,6 @@ public class PdfViewSchoolCal extends AppCompatActivity {
         setTitle(R.string.School_Cal);
 
         PDFView pdfView = findViewById(R.id.ViewPdf);
-
-        SharedPreferences prefs = Objects.requireNonNull(getApplicationContext()).getSharedPreferences("MyPref", MODE_PRIVATE);
-        String Theme = prefs.getString("theme", "");
-        switch (Theme) {
-            case "Follow System":
-                if (getSystemService(Theme) == "Light")
-                    pdfView.setNightMode(false);
-                else if (getSystemService(Theme) == "Dark")
-                    pdfView.setNightMode(true);
-
-            case "Day Mode":
-                pdfView.setNightMode(false);
-
-            case "Night Mode":
-                pdfView.setNightMode(true);
-        }
 
         pdfView.fromAsset("SchoolCal.pdf")
                 .enableSwipe(true)
