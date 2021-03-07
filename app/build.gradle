@@ -2,14 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
 
-    signingConfigs {
-        Default {
-            storeFile file('C:\\Users\\YO\\Documents\\Jason\\java\\Apps\\KSLO\\key store\\KSLO key.jks')
-            storePassword 'C7tep123L011ip0p'
-            keyAlias 'C7tep123L011ip0p'
-            keyPassword 'C7tep123L011ip0p'
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
