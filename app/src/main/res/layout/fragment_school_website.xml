@@ -1,40 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/swipeContainer"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0">
+            <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="@string/LatestNews"
+                    android:id="@+id/latestNewsTitleString"
+                    android:textColor="@android:color/holo_blue_bright"/>
 
-        <WebView
-                android:id="@+id/home_webview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        </WebView>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/LatestNewsRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="210dp"
+                    app:cardCornerRadius="8dp"
+                    android:scrollbars="vertical"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <TextView
+                    android:id="@+id/TitleAlbum"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="170dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="@string/Album"
+                    android:textColor="@android:color/holo_blue_bright"/>
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:id="@+id/Open_pdf"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/View_Pdf"
-            app:backgroundTint="#FFFFFF"
-            app:srcCompat="@android:drawable/ic_menu_view" app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/recyclerView"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    style="@style/CardView.Light"
+                    app:cardCornerRadius="8dp"
+                    android:scrollbars="horizontal"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+</RelativeLayout>

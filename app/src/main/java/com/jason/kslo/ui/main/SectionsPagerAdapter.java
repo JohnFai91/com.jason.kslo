@@ -10,7 +10,7 @@ import com.jason.kslo.*;
 import com.jason.kslo.Fragment.AboutFragment;
 import com.jason.kslo.Fragment.DashboardFragment;
 import com.jason.kslo.Fragment.LoginFragment;
-import com.jason.kslo.Fragment.SchoolWebsiteFragment;
+import com.jason.kslo.ParseContent.Fragment.SchoolWebsiteFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

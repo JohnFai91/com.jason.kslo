@@ -17,18 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.jason.kslo.App.updateLanguage;
+
 
 public class SettingsActivity extends AppCompatActivity {
+    SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        com.jason.kslo.App.updateLanguage(this);
         setContentView(R.layout.activity_settings);
+        updateLanguage(this);
 
         Spinner spinner = findViewById(R.id.SelectThemeSpinner);
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        String Theme = prefs.getString("theme","");
+        pref = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String Theme = pref.getString("theme","");
         String Theme1;
         String Theme2;
         String Theme3;
@@ -54,19 +56,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
 
-            List<String> categories = new ArrayList<>();
-            categories.add(0, Theme);
-            categories.add(Theme1);
-            categories.add(Theme2);
-            categories.add(Theme3);
+        List<String> categories = new ArrayList<>();
+        categories.add(0, Theme);
+        categories.add(Theme1);
+        categories.add(Theme2);
+        categories.add(Theme3);
 
-            // Set Spinner list items in array adapter..
-            ArrayAdapter<String> SelectThemeSpinnerItemArrAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories){
-            };
+        // Set Spinner list items in array adapter..
+        ArrayAdapter<String> SelectThemeSpinnerItemArrAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories){
+        };
 
-            SelectThemeSpinnerItemArrAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SelectThemeSpinnerItemArrAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-            spinner.setAdapter(SelectThemeSpinnerItemArrAdaptor);
+        spinner.setAdapter(SelectThemeSpinnerItemArrAdaptor);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -102,28 +104,26 @@ public class SettingsActivity extends AppCompatActivity {
         change2Eng.setOnClickListener(v -> {
             setLocale("en");
             Toast.makeText(this,"You have selected english",Toast.LENGTH_SHORT)
-            .show();
+                    .show();
 
         });
 
         Button change2Chin =  findViewById(R.id.Chinese);
         change2Chin.setOnClickListener(v -> {
-                setLocale("zh");
+            setLocale("zh");
             Toast.makeText(this,"你選擇了中文",Toast.LENGTH_SHORT)
                     .show();
         });
     }
-        @Override
-        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-            if (item.getItemId() == android.R.id.home) {
-                this.finish();
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
-        public void setLocale(String lang){
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        return super.onOptionsItemSelected(item);
+    }
+    public void setLocale(String lang){
         Editor editor = pref.edit();
 
         editor.putString("lang", lang);  // Saving string
@@ -131,18 +131,12 @@ public class SettingsActivity extends AppCompatActivity {
         // Save the changes in SharedPreferences
         editor.commit(); // commit changes
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPref",MODE_PRIVATE);
-        String locale = (sharedPreferences.getString("lang",""));
-
-        com.jason.kslo.App.updateLanguage(SettingsActivity.this, locale);
-
         finish();
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
         startActivity(intent);
     }
     public void setTheme(String theme) {
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         Editor editor = pref.edit();
 
         editor.putString("theme", theme);  // Saving string

@@ -46,4 +46,15 @@
     <string name="CheckForUpdate">檢查版本</string>
     <string name="Go">去！</string>
     <string name="AllowPermission">請允許下一版的權限以作日後自動更新</string>
+    <string name="Page1">第一版</string>
+    <string name="Page2">第二版</string>
+    <string name="Page3">第三版</string>
+    <string name="Page4">第四版</string>
+    <string name="Sample">樣本</string>
+    <string name="Album">相簿</string>
+    <string name="TestingFeature">測試中</string>
+    <string name="Pictures">最多展示16張</string>
+    <string name="LatestNews">最新消息</string>
+    <string name="openVideo">開啟影片</string>
+    <string name="Downloading">下載中。。。</string>
 </resources>

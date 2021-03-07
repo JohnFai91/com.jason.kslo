@@ -7,10 +7,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import com.jason.kslo.Activity.MainActivity;
@@ -39,9 +36,9 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_screen, container, false);
 
-        LinearLayout Background = (LinearLayout) view.findViewById(R.id.SlideScreenBackground);
+        RelativeLayout Background = view.findViewById(R.id.SlideScreenBackground);
 
-        ImageView logo = view.findViewById(R.id.LightDashboard);
+        ImageView logo = view.findViewById(R.id.Photo);
         ImageView pg1 = view.findViewById(R.id.pgNo_1);
         ImageView pg2 = view.findViewById(R.id.pgNo_2);
         ImageView pg3 = view.findViewById(R.id.pgNo_3);
@@ -61,7 +58,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
 
             SharedPreferences.Editor editor = ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit();
-            editor.putString("First Launch", "false");
+            editor.putString("slide", "done");
             editor.commit();
             ctx.startActivity(intent);
         });

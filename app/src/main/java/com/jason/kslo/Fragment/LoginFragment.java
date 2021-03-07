@@ -15,15 +15,15 @@ import android.content.res.Configuration;
 
 import java.util.Objects;
 
+import static com.jason.kslo.App.updateLanguage;
+
 public class LoginFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        com.jason.kslo.App.updateLanguage(requireContext());
-
+        updateLanguage(requireContext());
         final View v = inflater.inflate(R.layout.fragment_login, container, false);
         final WebView webView = v.findViewById(R.id.login_webview);
         webView.loadUrl("https://www.hkmakslo.edu.hk");
@@ -55,22 +55,22 @@ public class LoginFragment extends Fragment {
 
         // Force links and redirects to open in the WebView instead of in a browser
         webView.setWebViewClient(new WebViewClient() {
-                                        @Override
-                                     public void onPageFinished(WebView view, String url) {
-                                            // hide element by class name
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('widget links')[0].style.display='none'; })()");
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('map')[0].style.display='none'; })()");
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('widget news')[0].style.display='none'; })()");
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('content_wrap')[0].style.display='none'; })()");
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('MainNav_menu')[0].style.display='none'; })()");
-                                            webView.loadUrl("javascript:(function() { " +
-                                                    "document.getElementsByClassName('row row-footer')[0].style.display='none'; })()");
-                                        }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                // hide element by class name
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('widget links')[0].style.display='none'; })()");
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('map')[0].style.display='none'; })()");
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('widget news')[0].style.display='none'; })()");
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('content_wrap')[0].style.display='none'; })()");
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('MainNav_menu')[0].style.display='none'; })()");
+                webView.loadUrl("javascript:(function() { " +
+                        "document.getElementsByClassName('row row-footer')[0].style.display='none'; })()");
+            }
 
 
             @Override
@@ -78,7 +78,7 @@ public class LoginFragment extends Fragment {
                 return url.equals("https://www.hkmakslo.edu.hk/it-school/php/popupMessageBox.php");
             }
 
-});
+        });
 
         swipeRefreshLayout = v.findViewById(R.id.Refresh_login);
         swipeRefreshLayout.setOnRefreshListener(() -> {

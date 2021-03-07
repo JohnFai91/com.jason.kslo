@@ -11,6 +11,10 @@
         <item name="android:forceDarkAllowed">true</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.DayNight.FullScreen">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+    </style>
+
     <style name="Theme.AppCompat.DayNight.FullScreen.Actionbar" parent="Theme.AppCompat.DayNight">
         <item name="android:windowFullscreen">true</item>
         <item name="android:forceDarkAllowed">true</item>
