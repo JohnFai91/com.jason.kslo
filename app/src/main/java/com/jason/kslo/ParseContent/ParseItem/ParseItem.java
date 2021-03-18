@@ -18,6 +18,12 @@ public class ParseItem {
         this.count = count;
     }
 
+    public ParseItem(String imgURL, String title, String detailUrl){
+        this.imgURL = imgURL;
+        this.title = title;
+        this.detailUrl = detailUrl;
+    }
+
     public ParseItem(String imgURL){
         this.imgURL =imgURL;
     }
@@ -68,4 +74,5 @@ public class ParseItem {
     public void setFileName(String file) {
         this.fileName = fileName;
     }
+
 }

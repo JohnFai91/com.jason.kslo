@@ -9,8 +9,8 @@ android {
         applicationId "com.jason.kslo"
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 7
-        versionName "1.0.7-beta"
+        versionCode 8
+        versionName "1.0.8-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true

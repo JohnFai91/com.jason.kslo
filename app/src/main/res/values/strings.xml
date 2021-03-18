@@ -1,5 +1,5 @@
 <resources>
-    //com.jason.kslo.Fragment names
+    //com.jason.kslo.Main.Fragment names
     <string name="Dashboard">Dashboard</string>
     <string name="SchoolWebsite">School Website</string>
     <string name="Login">Login</string>
@@ -44,7 +44,7 @@
     <string name="Chinese" translatable="false">中文(zh-HK)</string>
     <string name="English" translatable="false">English(en)</string>
     <string name="Language_CHINESE" translatable="false">zh_HK</string>
-    <string name="TipsAndNewInVersion">Tips</string>
+    <string name="Tips">Tips</string>
     <string name="SelectTheme">Select theme</string>
     <string name="ic_drop" translatable="false">drop</string>
     <string name="ShowHomework">Show Homework</string>
@@ -85,6 +85,124 @@
     <string name="Pictures">Up to 16 pictures</string>
     <string name="LatestNews">Latest News</string>
     <string name="openVideo">Open Video</string>
-    <string name="Downloading">Downloading...</string>
+    <string name="Downloading">Downloading…</string>
+    <string name="Page5">Page 5</string>
+    <string name="Intranet">Intranet</string>
+    <string name="BorrowedBooks">Borrowed books</string>
+    <string name="version">Version</string>
+    <string name="NewFeatures">New Features</string>
+    <string name="Improvements">Improvements</string>
+
+    <string name="changelogDescLv.1.0.1_alpha">
+        *Leo joined*
+    </string>
+    <string name="changelogDescRv.1.0.1_alpha">
+        Initial release
+    </string>
+
+    <string name="changelogDescLv.1.0.2_alpha">
+        /
+    </string>
+    <string name="changelogDescRv.1.0.2_alpha">
+        "Resolve javascript website keep popping up (\"Home\", after login)\n"\n
+        "Remove unused permissions"\n
+    </string>
+
+    <string name="changelogDescLv.1.0.3_alpha">
+        *Francis joined*\n
+        Implement \"About\" tab\n\n
+        Divide \"Home\" into \"Login\" and \"School Website\" tabs\n\n
+    </string>
+    <string name="changelogDescRv.1.0.3_alpha">
+        Improve dashboard performance\n\n
+        Resolve fragments not inflating for larger screens\n\n
+        Resolve elements not always blocked\n\n
+        Resolve blank documents to be able to be opened\n\n
+        Resolve calendar wrong time problem (new calendar)\n\n
+        Support orientation\n\n
+        Support offline Pdf Viewer (only for School Calendar, 3C Half Day Schedule and The Notice of the month)
+    </string>
+
+    <string name="changelogDescLv.1.0.4_alpha">
+        Add translation for Chinese
+    </string>
+    <string name="changelogDescRv.1.0.4_alpha">
+        Improve \"About\" UI
+    </string>
+
+    <string name="changelogDescLv.1.0.5_alpha">
+        Add \"Settings\" for changing between languages and themes\n\n
+        Support for dark theme
+    </string>
+    <string name="changelogDescRv.1.0.5_alpha">
+        Improve pdf viewer by adding a scroll bar and page separator
+    </string>
+
+    <string name="changelogDescLv.1.0.6_beta">
+        "Add \"Intro Screen\"\n\n"
+        "Implement auto internal updater\n"
+    </string>
+    <string name="changelogDescRv.1.0.6_beta">
+        *Andrew joined*\n
+        "Resolve set theme misbehaving\n\n"
+        "Ask for \"Install Unknown Apps\" permission\n"
+    </string>
+
+    <string name="changelogDescLv.1.0.7_beta">
+        "Implement \"Album (limited due to website limitations)\" and \"Latest News\" in \"School Website\"\n\n"
+        "Add \"Splash Screen\" to cover blank loading screen\n"
+    </string>
+    <string name="changelogDescRv.1.0.7_beta">
+        "Improve \"Intro\" UI to fit larger screens\n\n"
+        "Redesign \"School Website\" (give up webview)\n"
+        "Clear internal code warnings"
+    </string>
+
+    <string name="changelogDescLv.1.0.8_beta">
+        "Implement \"Intranet\", and \"Borrowed Books\" in \"Login\""
+    </string>
+    <string name="changelogDescRv.1.0.8_beta">
+        "Clears cache after each update to save storage space\n\n"
+        "Redesign \"Login\" (give up webview)\n\n"
+        "Improve \"Latest News\" UI\n\n"
+        "Improve \"Changelog\" UI\n\n"
+        "Improve overall performance by separating tasks to a different thread"
+    </string>
+
+    <string name="changelogDescL">
+        /
+    </string>
+    <string name="changelogDescR">
+        /
+    </string>
+
+    <string name="changelogDescLFuture">
+        "Notifications\n\n"
+    </string>
+    <string name="changelogDescRFuture">
+        "Full support for album\n\n"
+        "Resolve \"Dashboard\" bad UI\n\n"
+        "Give up webview to improve performance in the following order (School Website, Login, Dashboard)\n"
+    </string>
+
+    <string name="Future">Future</string>
+    <string name="UpdatedSuccesfully">Updated successfully</string>
+    <string name="ChangeAmountDisplayed">Change amount displayed</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Min">Min:</string>
+    <string name="Max">Max:</string>
+    <string name="Recommended">Recommended:</string>
+    <string name="NumbersMayAffectSpeed">Numbers may affect speed</string>
+    <string name="inputNumbers">Imput numbers</string>
+    <string name="OpenLink">Open link</string>
+    <string name="UnsupportedFile">Unsupported File</string>
+    <string name="HelloWelcomeBack">Hello! Welcome back!</string>
+    <string name="SigninToContinue">Sign in to continue</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="reLogin">Login again</string>
+    <string name="BorrowedDate">Borrowed Date:</string>
+    <string name="DueDate">Due Date:</string>
+    <string name="DaysToDueDate">days</string>
 
 </resources>

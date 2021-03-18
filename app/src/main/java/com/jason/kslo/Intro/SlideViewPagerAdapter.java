@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import com.jason.kslo.Activity.MainActivity;
+import com.jason.kslo.Main.Activity.MainActivity;
+import com.jason.kslo.Main.AutoUpdate.AppUtils;
 import com.jason.kslo.R;
 
 public class SlideViewPagerAdapter extends PagerAdapter {
@@ -22,7 +23,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -43,9 +44,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         ImageView pg2 = view.findViewById(R.id.pgNo_2);
         ImageView pg3 = view.findViewById(R.id.pgNo_3);
         ImageView pg4 = view.findViewById(R.id.pgNo_4);
+        ImageView pg5 = view.findViewById(R.id.pgNo_5);
 
         TextView title = view.findViewById(R.id.SlideTitle);
         TextView desc = view.findViewById(R.id.SlideDesc);
+        TextView newInVersion = view.findViewById(R.id.NewInVersion);
 
         ImageView next = view.findViewById(R.id.next);
         ImageView previous = view.findViewById(R.id.previous);
@@ -75,10 +78,12 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.unselected);
                 pg4.setImageResource(R.drawable.unselected);
+                pg5.setImageResource(R.drawable.unselected);
 
                 title.setText(R.string.Dashboard);
                 desc.setText(R.string.ShowHomework);
                 desc.setTextColor(Color.parseColor("#000000"));
+                newInVersion.setVisibility(View.GONE);
 
                 Background.setBackgroundColor(Color.parseColor("#ffffff"));
 
@@ -92,10 +97,12 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 pg2.setImageResource(R.drawable.selected);
                 pg3.setImageResource(R.drawable.unselected);
                 pg4.setImageResource(R.drawable.unselected);
+                pg5.setImageResource(R.drawable.unselected);
 
                 title.setText(R.string.View_Pdf);
                 desc.setText(R.string.ViewPdfDesc);
                 desc.setTextColor(Color.parseColor("#000000"));
+                newInVersion.setVisibility(View.GONE);
 
                 Background.setBackgroundColor(Color.parseColor("#ffffff"));
 
@@ -108,10 +115,12 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.selected);
                 pg4.setImageResource(R.drawable.unselected);
+                pg5.setImageResource(R.drawable.unselected);
 
                 title.setText(R.string.Customise);
                 desc.setText(R.string.CustomiseDesc);
                 desc.setTextColor(Color.parseColor("#ffffff"));
+                newInVersion.setVisibility(View.GONE);
 
                 Background.setBackgroundColor(Color.parseColor("#000000"));
 
@@ -125,10 +134,34 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 pg2.setImageResource(R.drawable.unselected);
                 pg3.setImageResource(R.drawable.unselected);
                 pg4.setImageResource(R.drawable.selected);
+                pg5.setImageResource(R.drawable.unselected);
 
-                title.setText(R.string.TipsAndNewInVersion);
+                title.setText(R.string.Tips);
                 desc.setText(R.string.DashboardTips);
                 desc.setTextColor(Color.parseColor("#000000"));
+                newInVersion.setVisibility(View.GONE);
+
+                Background.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                previous.setVisibility(View.VISIBLE);
+                next.setVisibility(View.VISIBLE);
+                getStarted.setVisibility(View.GONE);
+                break;
+            case 4:
+                logo.setVisibility(View.GONE);
+
+                pg1.setImageResource(R.drawable.unselected);
+                pg2.setImageResource(R.drawable.unselected);
+                pg3.setImageResource(R.drawable.unselected);
+                pg4.setImageResource(R.drawable.unselected);
+                pg5.setImageResource(R.drawable.selected);
+
+                String newInVersionTitle = ctx.getString(R.string.NewFeatures);
+                title.setText(newInVersionTitle + " (" + AppUtils.getVersionName(ctx.getApplicationContext()) + ")");
+                desc.setVisibility(View.GONE);
+                newInVersion.setVisibility(View.VISIBLE);
+                newInVersion.setText(ctx.getString(R.string.changelogDescLv_1_0_8_beta) +
+                        ctx.getString(R.string.changelogDescRv_1_0_8_beta));
 
                 Background.setBackgroundColor(Color.parseColor("#ffffff"));
 

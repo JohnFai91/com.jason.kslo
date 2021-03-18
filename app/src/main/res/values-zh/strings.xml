@@ -25,7 +25,7 @@
     <string name="DarkTheme">深色主題</string>
     <string name="SystemDefault">系統設定</string>
     <string name="Author">由一個好悶既青年開發</string>
-    <string name="TipsAndNewInVersion">提示</string>
+    <string name="Tips">提示</string>
     <string name="SelectTheme">選擇背景</string>
     <string name="ShowHomework">展示功課</string>
     <string name="GetStarted">開始</string>
@@ -57,4 +57,122 @@
     <string name="LatestNews">最新消息</string>
     <string name="openVideo">開啟影片</string>
     <string name="Downloading">下載中。。。</string>
+    <string name="Page5">第五版</string>
+    <string name="NewFeatures">新功能</string>
+    <string name="Intranet">內聯網</string>
+    <string name="BorrowedBooks">已借圖書</string>
+    <string name="version">版本</string>
+    <string name="Improvements">改善</string>
+
+
+    <string name="changelogDescLv.1.0.1_alpha">
+        *Leo 加入*
+    </string>
+    <string name="changelogDescRv.1.0.1_alpha" >
+        最初版本
+    </string>
+
+    <string name="changelogDescLv.1.0.2_alpha">
+        /
+    </string>
+    <string name="changelogDescRv.1.0.2_alpha">
+        "解決 javascript 網頁不停彈出\n"
+        "刪除無用權限"
+    </string>
+
+    <string name="changelogDescLv.1.0.3_alpha">
+        *Francis 加入*\n
+        "加入「關於」\n"
+        "「主頁」分成「登入」和「學校網站」\n"
+    </string>
+    <string name="changelogDescRv.1.0.3_alpha">
+        "改善「儀表板」\n"
+        "解決畫面不變大\n"
+        "解決某些元素未被封鎖\n"
+        "解決不能開啟空白文件\n"
+        "支持旋轉畫面\n"
+        "下線觀看 PDF (只限校歷表、3C半日時間表及本月通告)"
+    </string>
+
+    <string name="changelogDescLv.1.0.4_alpha">
+        "加入中文翻譯"
+    </string>
+    <string name="changelogDescRv.1.0.4_alpha">
+        "改善「關於」用戶介面"
+    </string>
+
+    <string name="changelogDescLv.1.0.5_alpha">
+        "支持深色主題\n"
+        "加入「設定」以支持手動改變語言和主題"
+    </string>
+    <string name="changelogDescRv.1.0.5_alpha">
+        "改善觀看 PDF 畫面(加入滑輪及頁數間距)"
+    </string>
+
+    <string name="changelogDescLv.1.0.6_beta">
+        *Andrew 加入*\n
+        "加入「介紹」\n"
+        "加入自動更新\n"
+    </string>
+    <string name="changelogDescRv.1.0.6_beta">
+        "解決選擇主題錯誤\n"
+        "詢問「安裝不明的應用程式」權限\n"
+    </string>
+
+    <string name="changelogDescLv.1.0.7_beta">
+        "「學校網站」加入「相簿(因網站限制而提供有限資訊)」和「最新消息」\n"
+        "加入 \"Splash Screen\" 以遮蓋白色加載畫面\n"
+    </string>
+    <string name="changelogDescRv.1.0.7_beta">
+        "改善「介紹」用戶介面\n"
+        "重新設計「學校網站」(放棄 webview)\n"
+        "清除內部警告"
+    </string>
+
+    <string name="changelogDescLv.1.0.8_beta">
+        "「登入」加入「內聯」和「已借圖書」"
+    </string>
+    <string name="changelogDescRv.1.0.8_beta">
+        "清除無用記憶體\n"
+        "重新設計「登入」(放棄 webview)\n"
+        "改善「最新消息」用戶介面\n"
+        "改善「程式改變」用戶介面\n"
+        "改善程式整體性能"
+    </string>
+
+    <string name="changelogDescL">
+        /
+    </string>
+    <string name="changelogDescR">
+        /
+    </string>
+
+    <string name="changelogDescLFuture">
+        "通知\n"
+    </string>
+    <string name="changelogDescRFuture">
+        "完全支持「相簿」\n"
+        "改善「儀錶板」用戶介面\n"
+        "放棄 webview 以順序改善性能 (「學校網站」，「登入」，「儀表板」)\n"
+    </string>
+
+    <string name="Future">將來</string>
+    <string name="UpdatedSuccesfully">成功更新</string>
+    <string name="ChangeAmountDisplayed">改變顯示數量</string>
+    <string name="Cancel">取消</string>
+    <string name="Min">最少:</string>
+    <string name="Max">最多:</string>
+    <string name="Recommended">建議:</string>
+    <string name="NumbersMayAffectSpeed">數字可影響速度</string>
+    <string name="inputNumbers">輸入數字</string>
+    <string name="OpenLink">開啟連結</string>
+    <string name="UnsupportedFile">不支持文件</string>
+    <string name="HelloWelcomeBack">你好！歡迎回來！</string>
+    <string name="SigninToContinue">登入以繼續</string>
+    <string name="Username">用戶名稱</string>
+    <string name="Password">密碼</string>
+    <string name="reLogin">重新登入</string>
+    <string name="BorrowedDate">借閱日期：</string>
+    <string name="DueDate">還書日期：</string>
+    <string name="DaysToDueDate">天後到期</string>
 </resources>

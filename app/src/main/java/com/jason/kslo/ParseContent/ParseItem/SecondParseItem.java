@@ -27,13 +27,8 @@ public class SecondParseItem {
         this.video = video;
     }
 
-    public SecondParseItem(String src, String type){
-        if (type.equals("bulletPoints"))
+    public SecondParseItem(String src){
             this.bulletPoints = src;
-        else {
-            this.fileName = type;
-            this.file = src;
-        }
     }
 
     public String getImgURL(){
@@ -100,4 +95,5 @@ public class SecondParseItem {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
 }

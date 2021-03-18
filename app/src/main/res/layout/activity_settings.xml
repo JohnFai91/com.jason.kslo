@@ -12,7 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/spinner_background"
             android:layout_marginTop="10dp"
             android:paddingHorizontal="15dp"
             android:paddingBottom="10dp"
@@ -25,7 +24,6 @@
                 android:paddingEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:text="@string/selectLanguage"
                 android:textSize="20sp"/>
 
@@ -40,6 +38,11 @@
                 android:text="@string/Chinese"
                 android:textAllCaps="false"
                 android:layout_centerHorizontal="true"/>
+        <View
+                android:layout_marginTop="130dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/holo_blue_bright"/>
 
         <Button
                 android:id="@+id/English"
@@ -65,8 +68,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:layout_gravity="center"
-            android:background="@drawable/spinner_background">
+            android:layout_gravity="center">
 
         <TextView
                 android:textSize="20sp"
@@ -75,10 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/SelectTheme"
-                android:textColor="@android:color/white"
                 android:id="@+id/SelectThemeText"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 tools:ignore="RelativeOverlap"/>
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -100,5 +99,10 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:contentDescription="@string/ic_drop"/>
+            <View
+                    android:layout_marginTop="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/holo_blue_bright"/>
         </RelativeLayout>
 </LinearLayout>

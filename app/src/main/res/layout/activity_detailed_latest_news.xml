@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,15 +30,22 @@
                             android:id="@+id/LatestNewsDetailedText"
                             android:textSize="20sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/LatestNewsDetailedTextTitle"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:padding="10dp"
                         android:layout_marginTop="20sp"
                         android:id="@+id/recyclerViewDetailLatestNews"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/LatestNewsDetailedText"/>
 
+                <ProgressBar
+                        android:id="@+id/detailedLatestNewsProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"/>
                 <Button
                         android:visibility="gone"
                         android:id="@+id/openVideo"
@@ -49,13 +56,15 @@
                         android:background="@drawable/blue_background"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_open"/>
+                        android:drawableEnd="@drawable/ic_open"
+                        android:layout_below="@id/recyclerViewDetailLatestNews"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:paddingHorizontal="10dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/recyclerViewDetailLatestNewsFile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-        </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/openVideo"/>
+        </RelativeLayout>
 </ScrollView>

@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/com.jason.kslo.AutoUpdate" />
+            <option value="$PROJECT_DIR$/com.jason.kslo.Main.AutoUpdate" />
           </set>
         </option>
       </GradleProjectSettings>

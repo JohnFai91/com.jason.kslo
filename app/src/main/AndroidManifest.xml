@@ -16,6 +16,7 @@
     <application
             android:name=".App"
             android:allowBackup="true"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:hardwareAccelerated="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -26,7 +27,9 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="m">
 
-        <activity android:name=".Activity.MainActivity">
+        <activity
+                android:name=".Main.Activity.MainActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,44 +37,57 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".PdfView.PdfView"
+                android:name=".Main.PdfView.DownloadPdfView"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
         </activity>
         <activity
-                android:name=".PdfView.PdfViewFeaturedNotice"
+                android:name=".Main.PdfView.PdfViewFeaturedNotice"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
             <intent-filter>
+                <action android:name="android.intent.category.ALTERNATIVE"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".PdfView.PdfViewHalfDaySchedule"
+                android:name=".Main.PdfView.PdfViewHalfDaySchedule"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.ALTERNATIVE"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".PdfView.PdfViewSchoolCal"
+                android:name=".Main.PdfView.PdfViewSchoolCal"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.ALTERNATIVE"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".Activity.SettingsActivity"
+                android:name=".Main.Activity.SettingsActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.ALTERNATIVE"/>
             </intent-filter>
         </activity>
 
         <service
-                android:name=".AutoUpdate.DownloadService"
+                android:name=".Main.AutoUpdate.DownloadService"
                 android:exported="false"/>
 
         <provider
-                android:name=".AutoUpdate.UpdateApkFileProvider"
+                android:name=".Main.AutoUpdate.UpdateApkFileProvider"
                 android:authorities="${applicationId}.update.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
@@ -82,19 +98,51 @@
 
         <activity
                 android:name=".Intro.SlideActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.ALTERNATIVE"/>
             </intent-filter>
         </activity>
         <activity
-                android:name=".ParseContent.Activity.DetailedImageActivity"
+                android:name=".ParseContent.DefaultParseContent.Activity.DetailedImageActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
         </activity>
         <activity
-                android:name=".ParseContent.Activity.DetailedLatestNewsActivity"
+                android:name=".ParseContent.DefaultParseContent.Activity.DetailedLatestNewsActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
         </activity>
+        <activity
+                android:name=".ParseContent.LoggedInParseContent.Activity.DetailedIntranetActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
+        </activity>
+        <activity
+                android:name=".Main.Changelog.ChangelogActivity"
+                android:configChanges="keyboardHidden|screenSize"
+                android:screenOrientation="userPortrait"
+                android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
+            <intent-filter>
+                <action android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+     <activity
+             android:name=".ParseContent.LoggedInParseContent.Activity.LoginActivity"
+             android:configChanges="keyboard|orientation|screenSize"
+             android:theme="@style/Theme.AppCompat.DayNight.FullScreen.Actionbar">
+        <intent-filter>
+            <category android:name="android.intent.category.ALTERNATIVE"/>
+
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>

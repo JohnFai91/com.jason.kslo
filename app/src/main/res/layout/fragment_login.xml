@@ -1,28 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:id="@+id/Refresh_login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0">
+            <TextView
+                    android:textAllCaps="false"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="@string/Intranet"
+                    android:id="@+id/IntranetTitleString"
+                    android:textColor="@android:color/holo_blue_bright"/>
 
-        <WebView
-                android:id="@+id/login_webview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:usesCleartextTraffic="true">
-        </WebView>
+            <Button
+                    android:layout_marginBottom="5dp"
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:paddingHorizontal="5dp"
+                    android:background="@android:color/holo_purple"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="@string/ChangeAmountDisplayed"
+                    android:id="@+id/ChangeAmount"
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/IntranetRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="180dp"
+                    app:cardCornerRadius="8dp"
+                    android:scrollbars="vertical"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    android:id="@+id/TitleBorrowedBooks"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="130dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="@string/BorrowedBooks"
+                    android:textColor="@android:color/holo_blue_bright"/>
+
+            <Button
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:paddingHorizontal="5dp"
+                    android:background="@android:color/holo_purple"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignBottom="@id/TitleBorrowedBooks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="@string/reLogin"
+                    android:id="@+id/reLoginButton"
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/BorrowedBooksRecyclerView"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    style="@style/CardView.Light"
+                    app:cardCornerRadius="8dp"
+                    android:scrollbars="horizontal"/>
+
+            <ProgressBar
+                    android:id="@+id/loginProgress"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/LoginBackground">
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/blur_background"/>
+                <Button
+                        android:id="@+id/login_button"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:background="@drawable/blue_background"
+                        android:text="@string/Login"/>
+            </RelativeLayout>
+
+</RelativeLayout>

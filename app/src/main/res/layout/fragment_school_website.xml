@@ -21,14 +21,14 @@
                     android:id="@+id/LatestNewsRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="210dp"
+                    android:layout_marginBottom="180dp"
                     app:cardCornerRadius="8dp"
                     android:scrollbars="vertical"/>
 
             <TextView
                     android:id="@+id/TitleAlbum"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="170dp"
+                    android:layout_marginBottom="130dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                     android:id="@+id/recyclerView"
                     android:paddingBottom="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="120dp"
                     style="@style/CardView.Light"
                     app:cardCornerRadius="8dp"
                     android:scrollbars="horizontal"/>
@@ -53,7 +53,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="75dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:layout_height="wrap_content"/>
 
 </RelativeLayout>
