@@ -1,0 +1,3 @@
+//noinspection GroovyAssignabilityCheck
+include ':app'
+rootProject.name = "KSLO"

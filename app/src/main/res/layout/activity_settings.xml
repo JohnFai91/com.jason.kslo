@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="15dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center">
+
+        <TextView
+                android:id="@+id/SelectLanguage"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/selectLanguage"
+                android:textSize="20sp"/>
+
+        <Button
+                android:id="@+id/Chinese"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="10dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/SelectLanguage"
+                android:background="@drawable/blue_background"
+                android:textColor="@android:color/white"
+                android:text="@string/Chinese"
+                android:textAllCaps="false"
+                android:layout_centerHorizontal="true"/>
+        <View
+                android:layout_marginTop="130dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/holo_blue_bright"/>
+
+        <Button
+                android:id="@+id/English"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/blue_background"
+                android:textColor="@android:color/white"
+                android:text="@string/English"
+                android:textAllCaps="false"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/Chinese"
+                android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/SelectTheme_layout"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingHorizontal="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+        <TextView
+                android:textSize="20sp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/SelectTheme"
+                android:id="@+id/SelectThemeText"
+                tools:ignore="RelativeOverlap"/>
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                            android:layout_below="@id/SelectThemeText"
+                            android:id="@+id/SelectThemeSpinner"
+                            android:layout_width="match_parent"
+                            android:paddingHorizontal="10dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/blue_background"/>
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_drop"
+                            android:paddingRight="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingEnd="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/ic_drop"/>
+            <View
+                    android:layout_marginTop="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/holo_blue_bright"/>
+        </RelativeLayout>
+</LinearLayout>
