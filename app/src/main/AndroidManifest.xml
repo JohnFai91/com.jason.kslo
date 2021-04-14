@@ -26,7 +26,8 @@
             android:supportsRtl="true"
             android:theme="@style/SplashScreenTheme"
             android:usesCleartextTraffic="true"
-            tools:targetApi="m">
+            tools:targetApi="m"
+            android:extractNativeLibs="false">
         <activity
                 android:name=".main.activity.MainActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize">
