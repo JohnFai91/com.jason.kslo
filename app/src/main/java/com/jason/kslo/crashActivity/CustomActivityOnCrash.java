@@ -31,6 +31,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import com.jason.kslo.BuildConfig;
 
 import java.io.*;
 import java.lang.ref.WeakReference;
@@ -485,8 +486,7 @@ public final class CustomActivityOnCrash {
     @NonNull
     private static String getVersionName(Context context) {
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionName;
+            return BuildConfig.VERSION_NAME;
         } catch (Exception e) {
             return "Unknown";
         }
