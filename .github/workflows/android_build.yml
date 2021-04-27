@@ -21,7 +21,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v2.0.0
         with:
-          java-version: 8.0.292+10
+          java-version: 8
           distribution: 'adopt'
           
       - name: Make gradlew executable
@@ -29,9 +29,6 @@ jobs:
         
       - name: Run tests with gradle
         run: ./gradlew test
-        
-      - name: Build project with gradle
-        run: ./gradlew assemble
         
       - name: Build with gradle
         run: ./gradlew build
