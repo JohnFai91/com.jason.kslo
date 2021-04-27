@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.jason.kslo.App;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
@@ -46,8 +45,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import static com.jason.kslo.App.updateLanguage;
 
 public class IntranetFragment extends Fragment {
     ParseAdapterForLoginFragment parseAdapterForLoginFragment;

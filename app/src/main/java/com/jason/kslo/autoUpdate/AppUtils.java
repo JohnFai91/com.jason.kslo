@@ -1,8 +1,6 @@
 package com.jason.kslo.autoUpdate;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.util.Log;
 import com.jason.kslo.BuildConfig;
 
 /**
@@ -12,7 +10,6 @@ import com.jason.kslo.BuildConfig;
 
 public class AppUtils {
 
-    @SuppressWarnings("deprecation")
     public static int getVersionCode(Context mContext) {
         if (mContext != null) {
                 return BuildConfig.VERSION_CODE;

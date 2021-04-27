@@ -5,24 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Environment;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import androidx.appcompat.app.AppCompatDelegate;
-import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.intro.SlideActivity;
-import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.changelog.ChangelogActivity;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.Locale;
 
 @SuppressWarnings("unused")

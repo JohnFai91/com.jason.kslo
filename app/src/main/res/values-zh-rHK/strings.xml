@@ -97,7 +97,7 @@
     </string>
 
     <string name="changelogDescLv.1.0.6_beta">
-        *Andrew 加入*
+        "*Andrew 加入*\n"
         "加入「介紹」\n"
         "加入自動更新\n"
     </string>
@@ -128,6 +128,8 @@
     </string>
 
     <string name="changelogDescLv.1.0.9_beta">
+        "*Bosco 加入*\n"
+        "*Michael 加入*\n"
         "書本資料\n"
         "程式停止畫面\n"
         "拉下重新載入\n"
