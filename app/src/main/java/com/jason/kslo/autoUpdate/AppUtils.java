@@ -2,6 +2,8 @@ package com.jason.kslo.autoUpdate;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.Log;
+import com.jason.kslo.BuildConfig;
 
 /**
  * @author feicien (ithcheng@gmail.com)
@@ -13,20 +15,14 @@ public class AppUtils {
     @SuppressWarnings("deprecation")
     public static int getVersionCode(Context mContext) {
         if (mContext != null) {
-            try {
-                return mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionCode;
-            } catch (PackageManager.NameNotFoundException ignored) {
-            }
+                return BuildConfig.VERSION_CODE;
         }
         return 0;
     }
 
     public static String getVersionName(Context mContext) {
         if (mContext != null) {
-            try {
-                return mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName;
-            } catch (PackageManager.NameNotFoundException ignored) {
-            }
+                return BuildConfig.VERSION_NAME;
         }
 
         return "";

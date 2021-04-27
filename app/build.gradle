@@ -12,8 +12,6 @@ android {
         versionCode 10
         versionName '1.1.0-beta'
 
-        multiDexEnabled true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
@@ -69,6 +67,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.android.support:multidex:1.0.3'
     implementation 'net.sf.biweekly:biweekly:0.6.6'
 }

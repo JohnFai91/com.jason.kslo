@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.multidex.BuildConfig;
+import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
 import com.jason.kslo.autoUpdate.UpdateChecker;
