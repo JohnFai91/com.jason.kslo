@@ -149,6 +149,16 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 9){
 
+                    separatorVisibility = "Gone";
+                    version = "1.0.9-beta\n" +
+                            "(Code + " +
+                            "\nUI update)";
+                    descL = getString(R.string.changelogDescLv_1_0_9_beta);
+                    descR = getString(R.string.changelogDescRv_1_0_9_beta);
+
+                }
+                else if (i == 10) {
+
                     separatorVisibility = "Visible";
                     parseItems.add(new ChangelogParseItem("","",
                             getString(R.string.changelogDescStable),separatorVisibility));
@@ -157,16 +167,12 @@ public class ChangelogActivity extends AppCompatActivity {
                     parseItems.add(new ChangelogParseItem("","",
                             getString(R.string.changelogDescBeta),separatorVisibility));
 
-
                     separatorVisibility = "Gone";
-                    version = "1.0.9-beta\n" +
-                            "(Current)\n" +
+                    version = "1.1.0-beta\n" +
                             "(Code + " +
                             "\nUI update)";
-
-                    descL = getString(R.string.changelogDescLv_1_0_9_beta);
-                    descR = getString(R.string.changelogDescRv_1_0_9_beta);
-
+                    descL = getString(R.string.changelogDescLv_1_1_0_beta);
+                    descR = getString(R.string.changelogDescRv_1_1_0_beta);
                 }
                 else if (i == versionCode + 1){
 

@@ -15,7 +15,6 @@
             android:name=".App"
             android:allowBackup="true"
             android:configChanges="keyboardHidden|screenSize"
-            android:extractNativeLibs="false"
             android:fullBackupContent="true"
             android:hardwareAccelerated="true"
             android:icon="@mipmap/ic_launcher"
