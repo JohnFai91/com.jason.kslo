@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDetailedFile;
 import com.jason.kslo.parseContent.parseItem.ParseItem;
-import com.jason.kslo.parseContent.parseItem.SecondParseItem;
 import com.jason.kslo.R;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

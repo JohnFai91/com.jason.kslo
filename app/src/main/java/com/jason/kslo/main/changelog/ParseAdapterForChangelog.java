@@ -112,7 +112,7 @@ public class ParseAdapterForChangelog extends RecyclerView.Adapter<ParseAdapterF
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView version, descL, descR;
-        View separator;
+        final View separator;
         final ImageView arrow;
 
         public ViewHolder(@NonNull View itemView) {

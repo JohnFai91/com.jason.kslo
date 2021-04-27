@@ -115,11 +115,11 @@
     </string>
 
     <string name="changelogDescLv.1.0.6_beta">
+        "*Andrew joined*\n\n"
         "Add \"Intro Screen\"\n\n"
         "Implement auto internal updater\n"
     </string>
     <string name="changelogDescRv.1.0.6_beta">
-        *Andrew joined*\n
         "Resolve set theme misbehaving\n\n"
         "Ask for \"Install Unknown Apps\" permission\n"
     </string>
@@ -146,6 +146,8 @@
     </string>
 
     <string name="changelogDescLv.1.0.9_beta">
+        "*Bosco joined*\n\n"
+        "*Michael joined*\n\n"
         "Add Books' details\n\n"
         "Add \"Crash Screen\"\n\n"
         "Implement pull to refresh\n\n"

@@ -14,14 +14,10 @@ public class loginViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return new IntranetFragment();
-            case 1:
-                return new BorrowedBooksFragment();
-            default:
-                return new IntranetFragment();
+        if (position == 1) {
+            return new BorrowedBooksFragment();
         }
+        return new IntranetFragment();
     }
 
     @Override
