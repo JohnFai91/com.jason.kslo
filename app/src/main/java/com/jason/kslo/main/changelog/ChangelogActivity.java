@@ -19,12 +19,12 @@ public class ChangelogActivity extends AppCompatActivity {
     final ArrayList<ChangelogParseItem> parseItems = new ArrayList<>();
     View stateSeparator;
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changelog);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.changelog);

@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context="com.jason.kslo.main.activity.MainActivity"
+        android:id="@+id/activityMainCoordinator"
         android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:theme="@style/Theme.AppCompat.DayNight.FullScreen"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/view_pager"
-            app:layout_constraintVertical_bias="0.0" android:id="@+id/appBarLayout"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav_main"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="center_horizontal|bottom"
+                app:menu="@menu/bottom_nav"
+                app:labelVisibilityMode="selected"
+                app:itemHorizontalTranslationEnabled="true"
+                android:background="@drawable/bottom_nav_background"
+                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
 
-
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:tabTextColor="@android:color/white"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_marginTop="?attr/actionBarSize"
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/activityMainViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

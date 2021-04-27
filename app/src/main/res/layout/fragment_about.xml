@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
@@ -18,7 +19,6 @@
                 android:layout_marginHorizontal="20dp"/>
 
             <Button
-                    android:drawableRight="@drawable/ic_open"
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:id="@+id/Settings_button"
@@ -28,14 +28,13 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/blue_background"
                     android:textColor="@android:color/white"
-                    android:drawableEnd="@drawable/ic_open"
+                    android:drawableEnd="@drawable/ic_settings"
                     android:paddingEnd="20dp"
                     android:textAllCaps="false">
             </Button>
 
         <Button
                 android:layout_marginTop="10dp"
-                android:drawableRight="@drawable/ic_open"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:id="@+id/CheckForUpdate"
@@ -45,14 +44,13 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/blue_background"
                 android:textColor="@android:color/white"
-                android:drawableEnd="@drawable/ic_open"
+                android:drawableEnd="@drawable/ic_update"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
         </Button>
 
         <Button
                 android:layout_marginTop="10dp"
-                android:drawableRight="@drawable/ic_open"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:id="@+id/Intro_Button"
@@ -62,11 +60,10 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/blue_background"
                 android:textColor="@android:color/white"
-                android:drawableEnd="@drawable/ic_open"
+                android:drawableEnd="@drawable/ic_play"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
         </Button>
-
         <Button
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="10dp"
@@ -78,6 +75,7 @@
                 android:text="@string/CrashApp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/blue_background"
+                android:drawableEnd="@drawable/ic_error"
                 android:textColor="@android:color/white"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
@@ -92,9 +90,7 @@
                 android:gravity="center_horizontal"
                 android:textAllCaps="false">
         </TextView>
-
-            <Button
-                    android:drawableRight="@drawable/ic_open"
+        <Button
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:layout_width="180dp"
@@ -104,14 +100,12 @@
                     android:id="@+id/Half_Day_Schedule"
                     android:background="@drawable/spinner_background"
                     android:textColor="@android:color/white"
-                    android:drawableEnd="@drawable/ic_open"
+                    android:drawableEnd="@drawable/ic_schedule"
                     android:paddingEnd="20dp"
                     android:textAllCaps="false">
             </Button>
 
             <Button
-                    android:drawableRight="@drawable/ic_open"
-                    android:paddingRight="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="180dp"
@@ -123,13 +117,12 @@
                     android:textColor="@android:color/white"
                     android:paddingEnd="20dp"
                     android:paddingStart="20dp"
-                    android:drawableEnd="@drawable/ic_open"
-                    android:textAllCaps="false">
+                    android:drawableEnd="@drawable/ic_calendar"
+                    android:textAllCaps="false" tools:ignore="RtlHardcoded">
             </Button>
 
             <Button
                     android:layout_marginBottom="30dp"
-                    android:drawableRight="@drawable/ic_open"
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:layout_width="180dp"
@@ -139,7 +132,7 @@
                     android:id="@+id/Featured_Notice"
                     android:background="@drawable/spinner_background"
                     android:textColor="@android:color/white"
-                    android:drawableEnd="@drawable/ic_open"
+                    android:drawableEnd="@drawable/ic_attachment"
                     android:textAllCaps="false">
             </Button>
 
@@ -162,12 +155,11 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/blue_background"
                     android:textColor="@android:color/white"
-                    android:drawableRight="@drawable/ic_open"
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:paddingEnd="20dp"
                     android:paddingStart="20dp"
-                    android:drawableEnd="@drawable/ic_open"
+                    android:drawableEnd="@drawable/ic_change"
                     android:textAllCaps="false">
             </Button>
 
@@ -180,12 +172,11 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/blue_background"
                 android:textColor="@android:color/white"
-                android:drawableRight="@drawable/ic_open"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
-                android:drawableEnd="@drawable/ic_open"
+                android:drawableEnd="@drawable/ic_source"
                 android:textAllCaps="false">
         </Button>
 
@@ -221,8 +212,9 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
-                android:textAllCaps="false">
+                android:textAllCaps="false"
+                android:layout_marginBottom="10dp">
         </TextView>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

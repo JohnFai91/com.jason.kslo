@@ -1,5 +1,6 @@
 package com.jason.kslo.intro;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +32,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -62,7 +64,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
 
             SharedPreferences.Editor editor = ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit();
             editor.putString("slide", "done");
-            editor.commit();
+            editor.apply();
             ctx.startActivity(intent);
         });
 
@@ -122,13 +124,13 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 desc.setTextColor(Color.parseColor("#ffffff"));
                 newInVersion.setVisibility(View.GONE);
 
-                Background.setBackgroundColor(Color.parseColor("#000000"));
+                Background.setBackgroundColor(Color.parseColor("#ffffff"));
 
                 previous.setVisibility(View.VISIBLE);
                 getStarted.setVisibility(View.GONE);
                 break;
             case 3:
-                logo.setImageResource(R.drawable.dashboard_both_horizontal);
+                logo.setImageResource(R.drawable.welcome_screen);
                 logo.setMaxWidth(400);
                 pg1.setImageResource(R.drawable.unselected);
                 pg2.setImageResource(R.drawable.unselected);
@@ -136,8 +138,8 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 pg4.setImageResource(R.drawable.selected);
                 pg5.setImageResource(R.drawable.unselected);
 
-                title.setText(R.string.Tips);
-                desc.setText(R.string.DashboardTips);
+                title.setText(R.string.Thanks);
+                desc.setText(R.string.WelcomeMessage);
                 desc.setTextColor(Color.parseColor("#000000"));
                 newInVersion.setVisibility(View.GONE);
 
@@ -160,8 +162,8 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 title.setText(newInVersionTitle + " (" + AppUtils.getVersionName(ctx.getApplicationContext()) + ")");
                 desc.setVisibility(View.GONE);
                 newInVersion.setVisibility(View.VISIBLE);
-                newInVersion.setText(ctx.getString(R.string.changelogDescLv_1_0_8_beta) +
-                        ctx.getString(R.string.changelogDescRv_1_0_8_beta));
+                newInVersion.setText(ctx.getString(R.string.changelogDescLv_1_1_0_beta) +
+                        ctx.getString(R.string.changelogDescRv_1_1_0_beta));
 
                 Background.setBackgroundColor(Color.parseColor("#ffffff"));
 

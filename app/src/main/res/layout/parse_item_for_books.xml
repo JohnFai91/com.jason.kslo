@@ -4,18 +4,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp">
 
             <androidx.cardview.widget.CardView
                     android:id="@+id/horizontalBooksCardView"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="112dp"
                     app:cardCornerRadius="8dp"
-                    android:layout_marginStart="10dp">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp">
 
                 <ImageView
                         android:id="@+id/BookImage"
@@ -31,9 +28,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="top"
-                        android:layout_marginLeft="90dp"
                         android:layout_marginStart="90dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginTop="10dp"/>
 
@@ -43,9 +38,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginLeft="90dp"
                         android:layout_marginStart="90dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="24dp"
                         android:textSize="12sp"/>
@@ -56,9 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:textSize="12sp"
-                        android:layout_marginLeft="90dp"
                         android:layout_marginStart="90dp"
-                        android:layout_marginRight="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="12dp"/>
 

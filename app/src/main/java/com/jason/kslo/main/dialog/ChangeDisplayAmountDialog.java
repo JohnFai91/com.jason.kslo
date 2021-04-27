@@ -49,7 +49,7 @@ public class ChangeDisplayAmountDialog extends AppCompatDialogFragment {
         try {
             listener = (ChangeDisplayAmountListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() +
+            throw new ClassCastException(context +
                     "Must implement ChangeDisplayAmountDialog");
         }
     }

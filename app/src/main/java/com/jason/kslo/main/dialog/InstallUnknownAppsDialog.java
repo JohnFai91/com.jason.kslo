@@ -22,7 +22,11 @@ public class InstallUnknownAppsDialog extends AppCompatDialogFragment {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.Go), (dialogInterface, i) -> {
                     Context getContext = MainActivity.getContextOfApplication();
-                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:com.jason.kslo"));
+                    Intent intent = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        intent = new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:com.jason.kslo"));
+                    }
+                    assert intent != null;
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getContext.startActivity(intent);
                 });

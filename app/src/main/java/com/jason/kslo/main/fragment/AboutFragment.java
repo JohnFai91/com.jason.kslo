@@ -1,28 +1,29 @@
 package com.jason.kslo.main.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
-import com.jason.kslo.autoUpdate.AppUtils;
-import com.jason.kslo.autoUpdate.UpdateChecker;
-import com.jason.kslo.main.changelog.ChangelogActivity;
-import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
-import com.jason.kslo.intro.SlideActivity;
-import com.jason.kslo.main.pdfView.PdfViewFeaturedNotice;
-import com.jason.kslo.main.pdfView.PdfViewHalfDaySchedule;
-import com.jason.kslo.main.pdfView.PdfViewSchoolCal;
-import com.jason.kslo.main.activity.SettingsActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.jason.kslo.*;
+import androidx.multidex.BuildConfig;
+import com.jason.kslo.R;
+import com.jason.kslo.autoUpdate.AppUtils;
+import com.jason.kslo.autoUpdate.UpdateChecker;
+import com.jason.kslo.intro.SlideActivity;
+import com.jason.kslo.main.activity.SettingsActivity;
+import com.jason.kslo.main.changelog.ChangelogActivity;
+import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
+import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
+import com.jason.kslo.main.pdfView.PdfViewHalfDaySchedule;
+import com.jason.kslo.main.pdfView.PdfViewSchoolCal;
 
 import java.util.Objects;
 
@@ -34,7 +35,7 @@ public class AboutFragment extends Fragment {
     View view;
     SharedPreferences pref;
     String locale,theme,versionVar;
-    TextView version,Locale,ThemeText;
+    TextView version,Locale,ThemeText,desc;
     Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp;
 
     @Nullable
@@ -45,7 +46,7 @@ public class AboutFragment extends Fragment {
             pref = Objects.requireNonNull(getContext()).getSharedPreferences("MyPref", MODE_PRIVATE);
             locale = pref.getString("lang","");
             theme = pref.getString("theme","");
-            versionVar = "com.jason.kslo " + AppUtils.getVersionName(getContext());
+            versionVar = BuildConfig.APPLICATION_ID + " " + AppUtils.getVersionName(getContext());
 
             Locale = view.findViewById(R.id.Locale);
             ThemeText = view.findViewById(R.id.Theme);
@@ -59,6 +60,7 @@ public class AboutFragment extends Fragment {
             SourceCode = view.findViewById(R.id.button_SourceCode);
             CheckForUpdate = view.findViewById(R.id.CheckForUpdate);
             CrashApp = view.findViewById(R.id.CrashApp);
+            desc = view.findViewById(R.id.description);
 
             Content content = new Content();
             content.run();

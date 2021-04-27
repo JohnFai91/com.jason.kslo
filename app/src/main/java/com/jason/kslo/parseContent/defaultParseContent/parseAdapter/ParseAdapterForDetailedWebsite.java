@@ -1,10 +1,6 @@
 package com.jason.kslo.parseContent.defaultParseContent.parseAdapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +13,6 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ParseAdapterForDetailedWebsite extends RecyclerView.Adapter<ParseAdapterForDetailedWebsite.ViewHolder> {

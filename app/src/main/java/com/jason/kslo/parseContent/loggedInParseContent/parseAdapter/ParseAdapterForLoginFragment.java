@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.activity.DetailedIntranetActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.parseItem.LoginParseItem;
-import com.jason.kslo.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,6 +46,12 @@ public class ParseAdapterForLoginFragment extends RecyclerView.Adapter<ParseAdap
         holder.title.setText(parseItem.getTitle());
         holder.sender.setText(parseItem.getSender());
         holder.date.setText(parseItem.getDate());
+
+        if (parseItem.getFilePresent().equals("true")) {
+            holder.file.setVisibility(View.VISIBLE);
+        } else {
+            holder.file.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -56,27 +63,29 @@ public class ParseAdapterForLoginFragment extends RecyclerView.Adapter<ParseAdap
         final TextView title;
         final TextView date;
         final TextView sender;
+        final ImageView file;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.intranetTitle);
             date = itemView.findViewById(R.id.intranetDate);
             sender = itemView.findViewById(R.id.intranetSender);
+            file = itemView.findViewById(R.id.attachmentIndicator);
+
             itemView.setOnClickListener(this);
         }
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
             LoginParseItem parseItem = parseItems.get(position);
-
-            Intent intent = new Intent(MainActivity.getContextOfApplication(), DetailedIntranetActivity.class);
-            intent.putExtra("title",parseItem.getTitle());
-            intent.putExtra("sender",parseItem.getSender());
-            intent.putExtra("time",parseItem.getDate());
-            intent.putExtra("detailUrl",parseItem.getDetailUrl());
-            intent.putExtra("cookies", (Serializable) parseItem.getCookies());
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            MainActivity.getContextOfApplication().startActivity(intent);
+                Intent intent = new Intent(MainActivity.getContextOfApplication(), DetailedIntranetActivity.class);
+                intent.putExtra("title", parseItem.getTitle());
+                intent.putExtra("sender", parseItem.getSender());
+                intent.putExtra("time", parseItem.getDate());
+                intent.putExtra("detailUrl", parseItem.getDetailUrl());
+                intent.putExtra("cookies", (Serializable) parseItem.getCookies());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity.getContextOfApplication().startActivity(intent);
         }
     }
 }

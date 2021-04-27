@@ -31,12 +31,12 @@ public class DetailedImageActivity extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_image);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

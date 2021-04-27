@@ -5,7 +5,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RelativeLayout
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20sp">
@@ -46,25 +47,20 @@
                                 android:layout_alignParentBottom="true"
                                 android:textIsSelectable="true"/>
             </RelativeLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                        android:padding="10dp"
-                        android:layout_marginTop="20sp"
-                        android:id="@+id/recyclerViewDetailIntranet"
+                <TextView
+                        android:textSize="18sp"
+                        android:layout_margin="10dp"
+                        android:id="@+id/detailedIntranetText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/detailedIntranetHeader"
-                        app:fastScrollEnabled="true"
-                        app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
-                        app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
-                        app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
-                        app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
+                        android:textIsSelectable="true"/>
 
                 <ProgressBar
                         android:id="@+id/detailedIntranetProgressBar"
                         android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"/>
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                     android:paddingHorizontal="10dp"
@@ -72,11 +68,10 @@
                     android:id="@+id/recyclerViewDetailIntranetFile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/recyclerViewDetailIntranet"
                     app:fastScrollEnabled="true"
                     app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
                     app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
                     app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
                     app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
-        </RelativeLayout>
+        </LinearLayout>
 </ScrollView>

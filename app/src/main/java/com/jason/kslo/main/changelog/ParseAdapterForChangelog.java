@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.R;
-import com.jason.kslo.main.activity.MainActivity;
 
 import java.util.ArrayList;
 

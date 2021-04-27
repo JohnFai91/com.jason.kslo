@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_school_website"
+        android:icon="@drawable/tab_school"
+        android:title="@string/SchoolWebsite"/>
+    <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/tab_dashboard"
+            android:title="@string/Dashboard"/>
+    <item
+        android:id="@+id/nav_login"
+        android:icon="@drawable/tab_login"
+        android:title="@string/Login"/>
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/tab_about"
+        android:title="@string/About"/>
+</menu>

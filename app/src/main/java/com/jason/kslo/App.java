@@ -5,17 +5,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
+import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatDelegate;
+import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.intro.SlideActivity;
+import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.changelog.ChangelogActivity;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Locale;
 
 @SuppressWarnings("unused")
 public class App extends Application {
+
     @Override
     public void onCreate()
     {
@@ -27,6 +39,15 @@ public class App extends Application {
         String version = prefs.getString("version","");
         String Theme = prefs.getString("theme","");
         String Intro = prefs.getString("slide","");
+        String readMail = prefs.getString("ReadMail","");
+        String downloadAgainQuery = prefs.getString("DownloadAgainQuery","");
+
+        if (readMail.isEmpty()) {
+            prefs.edit().putString("ReadMail","true").apply();
+        }
+        if (downloadAgainQuery.isEmpty()) {
+            prefs.edit().putString("DownloadAgainQuery","true").apply();
+        }
 
         if (TextUtils.isEmpty(Theme)){
             prefs.edit().putString("theme","Follow System")
@@ -71,6 +92,7 @@ public class App extends Application {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
         }
+        updateLanguage(getApplicationContext());
     }
 
     @SuppressWarnings("deprecation")

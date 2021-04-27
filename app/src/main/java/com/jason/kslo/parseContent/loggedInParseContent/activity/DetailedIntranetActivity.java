@@ -2,12 +2,12 @@ package com.jason.kslo.parseContent.loggedInParseContent.activity;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -15,11 +15,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.jason.kslo.parseContent.loggedInParseContent.parseItem.LoginParseItem;
-import com.jason.kslo.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForDetailedIntranetActivity;
+import com.jason.kslo.R;
+import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
 import com.jason.kslo.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForDetailedIntranetFile;
 import com.jason.kslo.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
-import com.jason.kslo.R;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -31,25 +31,19 @@ import java.util.Map;
 import static com.jason.kslo.App.updateLanguage;
 
 public class DetailedIntranetActivity extends AppCompatActivity {
-    private ParseAdapterForDetailedIntranetActivity adapter;
     private ParseAdapterForDetailedIntranetFile fileAdapter;
-    private final ArrayList<LoginParseItem> loginParseItems = new ArrayList<>();
     private final ArrayList<SecondLoginParseItem> secondLoginParseItems = new ArrayList<>();
 
-    @SuppressWarnings("unused")
-    String title, text;
-    @SuppressWarnings("unused")
-    TextView textView, titleTextView;
+    String text, firstP, lastP;
+    TextView textView;
     Document doc, fileDoc;
-    @SuppressWarnings("unused")
-    Button openLink;
-    RecyclerView recyclerView, IntranetRecyclerFile;
+    RecyclerView IntranetRecyclerFile;
     String detailUrl;
     Map<String,String> Cookies;
 
     ProgressBar progressBar;
 
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings({"deprecation","ConstantConditions"})
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +52,6 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_intranet);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -81,41 +74,56 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         Content content = new Content();
         content.execute();
     }
-    @SuppressWarnings({"deprecation", "unchecked"})
+    @SuppressWarnings({"deprecation"})
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
         @SuppressWarnings("deprecation")
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            textView = findViewById(R.id.detailedIntranetText);
+
             progressBar = findViewById(R.id.detailedIntranetProgressBar);
             progressBar.setVisibility(View.VISIBLE);
 
-            recyclerView = findViewById(R.id.recyclerViewDetailIntranet);
             IntranetRecyclerFile = findViewById(R.id.recyclerViewDetailIntranetFile);
 
-            LinearLayoutManager layoutVerticalManager
-                    = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-            recyclerView.setLayoutManager(layoutVerticalManager);
+            new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 
             LinearLayoutManager fileLayoutVerticalManager
                     = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
             IntranetRecyclerFile.setLayoutManager(fileLayoutVerticalManager);
 
-            adapter = new ParseAdapterForDetailedIntranetActivity(loginParseItems, getApplicationContext());
-            recyclerView.setAdapter(adapter);
-
             fileAdapter = new ParseAdapterForDetailedIntranetFile(secondLoginParseItems, getApplicationContext());
             IntranetRecyclerFile.setAdapter(fileAdapter);
 
             detailUrl = getIntent().getStringExtra("detailUrl");
-            Cookies = (Map<String, String>) getIntent().getSerializableExtra("cookies");
+            Cookies = IntranetFragment.getCookies();
         }
 
 
         @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
+            if (getSharedPreferences("MyPref",MODE_PRIVATE).getString("ReadMail","").equals("true")) {
+                try {
+                    Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/readmail.php3")
+                            .cookies(Cookies)
+                            .method(Connection.Method.POST)
+                            .data("folder", "inbox")
+                            .data("order_by", "date")
+                            .data("warned", "")
+                            .data("formaction", "")
+                            .data("sorting_method", "desc")
+                            .data("mail_id", detailUrl)
+                            .data("postURL", "index.php3?&folder=inbox&page=")
+                            .data("isMoveMail", "1")
+                            .post();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             parseDetailedIntranet(detailUrl);
             parseDetailedFileIntranet(detailUrl);
             return null;
@@ -126,8 +134,18 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
 
+            if (text.contains("<script language=\"javascript\">&nbsp;")) {
+                text = text.replace(text.substring(text.indexOf("<script language=\"javascript\">&nbsp;")), "");
+            }
+            Log.d("Intranet", "parseDetailedIntranet: " + " Text: " + text);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                textView.setText(Html.fromHtml(text,0));
+            } else {
+                textView.setText(Html.fromHtml(text));
+            }
+
             fileAdapter.notifyDataSetChanged();
-            adapter.notifyDataSetChanged();
             progressBar.setVisibility(View.GONE);
         }
     }
@@ -140,6 +158,7 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("LongLogTag")
     private void parseDetailedFileIntranet(String mailId) {
         try{
             fileDoc = Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/mailattach.php?mail_id=" + mailId + "&encode=utf-8&1616736986")
@@ -162,7 +181,7 @@ public class DetailedIntranetActivity extends AppCompatActivity {
                 fileUrl = "https://www.hkmakslo.edu.hk/it-school/php/intra/" + fileUrl;
 
                 secondLoginParseItems.add(new SecondLoginParseItem(fileName, fileUrl, Cookies));
-                Log.d("parseDetailedFileIntranet", "File: " + fileName + " File Url: " + fileUrl);
+                Log.d("DetailedFileIntranet", "Text: " + text +"File: " + fileName + " File Url: " + fileUrl);
             }
 
         } catch (IOException e) {
@@ -175,45 +194,22 @@ public class DetailedIntranetActivity extends AppCompatActivity {
                 .cookies(Cookies)
                 .get();
 
-            Elements h1 = doc.select("h1");
+        text = doc.html();
 
-            int size = h1.size();
+        Elements p = doc.select("p");
 
-            if (size >= 1){
-                for (int i = 0; i < size; i++) {
-                    String finalH1 = doc
-                            .select("h1")
-                            .eq(i)
-                            .text();
-                    Log.d("h1", "Content: " + finalH1);
-                    loginParseItems.add(new LoginParseItem(finalH1));
-                }
-            }
-            Elements finalP = doc.select("p");
+        int pSize = p.size();
+        firstP = p.eq(0).html();
 
-            size = finalP.size();
 
-                for (int i = 0; i < size; i++) {
-                    String finalStringP = finalP
-                            .eq(i)
-                            .text();
-
-                    loginParseItems.add(new LoginParseItem(finalStringP));
-                    Log.d("parseDetailedIntranet", "Content: " + finalStringP);
-            }
-
-            Elements ol = doc.select("ol");
-            Elements li = ol.select("li");
-            int liSize = li.size();
-
-            for (int b = 0; b < liSize; b++) {
-                String finalLi = li
-                        .eq(b)
-                        .text();
-
-                loginParseItems.add(new LoginParseItem(finalLi));
-                Log.d("parseDetailedIntranet", "Content: " + finalLi);
-            }
+        text = text.substring(text.indexOf(firstP));
+        if (text.contains("document.onclick =")) {
+            String finalDel = text.substring(text.indexOf("document.onclick ="));
+            text = text.replace(finalDel, "");
+        }
+        if (text.contains("<!--")) {
+            text = "";
+        }
 
         } catch (IOException e) {
             e.printStackTrace();

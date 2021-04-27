@@ -1,0 +1,93 @@
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/loginRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/RelativeLayoutLogin">
+
+                <TextView
+                        android:layout_marginStart="10dp"
+                        android:layout_alignParentTop="true"
+                        android:id="@+id/IntranetPageText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/red"
+                        android:text="@string/DaysToDueDate"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:paddingHorizontal="5dp"
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/IntranetRecycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="8dp"
+                            app:fastScrollEnabled="true"
+                            app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                            app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                            app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                            app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
+
+                    <ProgressBar
+                            android:layout_margin="16dp"
+                            android:id="@+id/IntranetProgressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignBottom="@id/IntranetRecycler"/>
+
+                <TextView
+                        android:id="@+id/reachedBottomIntranet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/red"
+                        android:text="@string/End"
+                        android:layout_alignParentBottom="true"
+                        android:background="?android:attr/windowBackground"/>
+
+
+                <ProgressBar
+                    android:id="@+id/loginProgress"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/LoginBackground">
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/blur_background"/>
+                        <Button
+                                android:id="@+id/login_button"
+                                android:layout_centerInParent="true"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_marginHorizontal="20dp"
+                                android:background="@drawable/blue_background"
+                                android:text="@string/Login"/>
+                    </RelativeLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/goToTopIntranet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="60dp"
+                        android:layout_marginEnd="15dp"
+                        app:srcCompat="@drawable/ic_up"
+                        android:contentDescription="@string/Up"
+                        tools:ignore="RelativeOverlap"/>
+            </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

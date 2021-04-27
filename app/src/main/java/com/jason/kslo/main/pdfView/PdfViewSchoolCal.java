@@ -11,12 +11,12 @@ import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 public class PdfViewSchoolCal extends AppCompatActivity {
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         setTitle(R.string.School_Cal);

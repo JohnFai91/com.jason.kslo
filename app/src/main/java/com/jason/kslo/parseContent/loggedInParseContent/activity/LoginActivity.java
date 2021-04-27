@@ -23,15 +23,14 @@ public class LoginActivity extends AppCompatActivity {
     String Username, Password;
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         updateLanguage(this);
 
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Widget_AppCompat_ActionBar);
         setContentView(R.layout.activity_login);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         setTitle(R.string.Login);
@@ -62,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 pref.edit().putString("Password",Password).apply();
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                finish();
                 startActivity(intent);
             });
         }

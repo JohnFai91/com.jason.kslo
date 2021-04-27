@@ -11,17 +11,18 @@ public class LoginParseItem {
     private String sender;
     private Map<String,String> cookies;
     private String content;
+    private String filePresent;
 
     @SuppressWarnings("unused")
     public LoginParseItem(){
     }
 
-    public LoginParseItem(String title, String sender, String date, String detailUrl, Map<String,String>Cookies) {
+    public LoginParseItem(String title, String sender, String date, String detailUrl, String filePresent) {
         this.title = title;
         this.sender = sender;
         this. date = date;
         this.detailUrl = detailUrl;
-        this.cookies = Cookies;
+        this.filePresent = filePresent;
     }
 
     public LoginParseItem(String content) {
@@ -93,5 +94,13 @@ public class LoginParseItem {
     @SuppressWarnings("unused")
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getFilePresent() {
+        return filePresent;
+    }
+    @SuppressWarnings("unused")
+    public void setFilePresent(String filePresent) {
+        this.filePresent = filePresent;
     }
 }

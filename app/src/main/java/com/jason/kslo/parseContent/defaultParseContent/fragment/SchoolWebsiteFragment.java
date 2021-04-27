@@ -1,244 +1,148 @@
 package com.jason.kslo.parseContent.defaultParseContent.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForLatestNews;
-import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForSchoolWebsite;
-import com.jason.kslo.parseContent.parseItem.ParseItem;
-import com.jason.kslo.parseContent.parseItem.SecondParseItem;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
+import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import com.jason.kslo.main.activity.MainActivity;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Objects;
 
-import static com.jason.kslo.App.updateLanguage;
-
 public class SchoolWebsiteFragment extends Fragment {
-    ParseAdapterForSchoolWebsite parseAdapterForSchoolWebsite;
-    ParseAdapterForLatestNews parseAdapterForLatestNews;
-    final ArrayList<ParseItem> parseItems = new ArrayList<>();
-    final ArrayList<SecondParseItem> SecondParseItems = new ArrayList<>();
-
     View view;
-    int b = 0;
-    int LatestNewsSize = 0;
-    ProgressBar progressBar;
-    TextView lastUpdated;
-    SwipeRefreshLayout pullToRefresh;
+    RelativeLayout viewPagerSwitcher;
+    ViewPager2 viewPager;
+    private static int size;
+    private static String countReturn;
+    TextView title, text;
+    String originalPw,finalUsername;
+    int prevMenuItem;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        updateLanguage(requireContext());
-        super.onCreate(savedInstanceState);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        Objects.requireNonNull(getContext()).getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
+                true);
         view = inflater.inflate(R.layout.fragment_school_website, container, false);
+        // Inflate the layout for this fragment
 
-
-        pullToRefresh = view.findViewById(R.id.schoolWebsiteRefresh);
-        pullToRefresh.setOnRefreshListener(() -> {
-            Content content = new Content();
-            content.execute();
-            pullToRefresh.setRefreshing(true);
-        });
-
-        pullToRefresh.setColorSchemeColors(
-                Objects.requireNonNull(getActivity()).getColor(android.R.color.holo_blue_dark),
-                getActivity().getColor(android.R.color.holo_orange_dark),
-                getActivity().getColor(android.R.color.holo_green_dark),
-                getActivity().getColor(android.R.color.holo_red_dark)
-        );
+        viewPager = view.findViewById(R.id.SchoolWebsiteViewPager);
+        setupViewPager(viewPager);
 
         Content content = new Content();
         content.execute();
 
         return view;
     }
-    @SuppressWarnings("deprecation")
+
+    private void setupViewPager(ViewPager2 viewPager)
+    {
+        FragmentManager fm = Objects.requireNonNull(getChildFragmentManager());
+        schoolWebsiteViewPagerAdapter adapter = new schoolWebsiteViewPagerAdapter(fm, getLifecycle());
+        viewPager.setAdapter(adapter);
+    }
+
     @SuppressLint("StaticFieldLeak")
-    private class Content extends AsyncTask<Void,Void,Void> {
-
-            @SuppressWarnings("deprecation")
-            @Override
+    @SuppressWarnings("deprecation")
+    class Content extends AsyncTask<Void,Void,Void> {
+        @Override
         protected void onPreExecute() {
-                pullToRefresh.setRefreshing(true);
-
-                progressBar = view.findViewById(R.id.progress);
-                progressBar.setVisibility(View.VISIBLE);
-
-                RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-                RecyclerView latestNewsRecyclerView = view.findViewById(R.id.LatestNewsRecycler);
-
-                latestNewsRecyclerView.setHasFixedSize(true);
-
-                LinearLayoutManager layoutVerticalManager
-                        = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                latestNewsRecyclerView.setLayoutManager(layoutVerticalManager);
-
-                recyclerView.setHasFixedSize(true);
-                LinearLayoutManager layoutHorizontalManager
-                        = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-                recyclerView.setLayoutManager(layoutHorizontalManager);
-
-                parseAdapterForLatestNews = new ParseAdapterForLatestNews(SecondParseItems, getContext());
-                latestNewsRecyclerView.setAdapter(parseAdapterForLatestNews);
-
-                parseAdapterForSchoolWebsite = new ParseAdapterForSchoolWebsite(parseItems, getContext());
-                recyclerView.setAdapter(parseAdapterForSchoolWebsite);
-
-                lastUpdated = view.findViewById(R.id.lastUpdatedSchoolWebsite);
             super.onPreExecute();
 
+            checkInternet();
+
+            SharedPreferences pref = Objects.requireNonNull(getActivity())
+                    .getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            originalPw = pref.getString("Password","");
+            finalUsername = pref.getString("Username","");
+            finalUsername = finalUsername.replaceAll("s","");
         }
 
-
-        @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
-
-            lastUpdated.setText(getString(R.string.LastUpdatedTime) + Calendar.getInstance().getTime());
-
-            parseItems.clear();
-            for (int pageNo = 1; pageNo < 2; pageNo++) {
-                parseImages("https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/albumindex.php?refid=&page=" + pageNo);
-            }
-
-            SecondParseItems.clear();
-            for (int pageNo = 1; pageNo < 4; pageNo++) {
-                parseLatestNews("https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/tpl.php?bulletin=1&component_id=1&mode=published&page=" + pageNo);
-            }
-
             return null;
         }
 
-        @SuppressWarnings("deprecation")
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(Void unused) {
 
-            parseAdapterForSchoolWebsite.notifyDataSetChanged();
-            parseAdapterForLatestNews.notifyDataSetChanged();
+            viewPager = view.findViewById(R.id.SchoolWebsiteViewPager);
 
-            progressBar.setVisibility(View.GONE);
+            title = view.findViewById(R.id.SchoolWebsiteTitle);
+            text = view.findViewById(R.id.SchoolWebsiteText);
+            viewPagerSwitcher = view.findViewById(R.id.SchoolWebsitePagerSwitcher);
 
-            pullToRefresh.setRefreshing(false);
-        }
+            final String[] Title = {getString(R.string.SchoolWebsite)};
+            title.setText(Title[0]);
 
-        @SuppressWarnings({"deprecation", "EmptyMethod"})
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
+            final String[] Text = {getString(R.string.GoTo) + getString(R.string.Album)};
+            text.setText(Text[0]);
+
+            viewPager.setCurrentItem(0);
+
+            viewPagerSwitcher.setOnClickListener(view -> {
+                if (Title[0].contains(getString(R.string.SchoolWebsite))) {
+                    Title[0] = getString(R.string.Album);
+                    Text[0] = getString(R.string.ReturnTo, getString(R.string.SchoolWebsite));
+
+                    title.setText(Title[0]);
+                    text.setText(Text[0]);
+
+                    viewPager.setCurrentItem(1);
+                } else if (Title[0].contains(getString(R.string.Album))) {
+                    Title[0] = getString(R.string.SchoolWebsite);
+                    Text[0] = getString(R.string.ReturnTo, getString(R.string.Album));
+
+                    title.setText(Title[0]);
+                    text.setText(Text[0]);
+
+                    viewPager.setCurrentItem(0);
+                }
+            });
         }
     }
-    private  void parseLatestNews(String LatestNewsUrl){
-        //parse Latest News
-        try {
-            Document document = Jsoup.connect(LatestNewsUrl).get();
+    private boolean isNetworkAvailable() {
+        ConnectivityManager manager =
+                (ConnectivityManager) Objects.requireNonNull(getActivity())
+                        .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        // Network is present and connected
+        return networkInfo != null && networkInfo.isConnected();
+    }
 
-            Elements LatestNewsData = document.select("ul.list.lightbox");
-            Elements FinalLatestNewsData = LatestNewsData.select("div.content");
+    public void checkInternet() {
 
-            LatestNewsSize = FinalLatestNewsData.size();
-            for (b = 0; b < LatestNewsSize; b++) {
-
-                String latestNewsTime = FinalLatestNewsData
-                        .select("small.date")
-                        .eq(b)
-                        .text();
-
-                String titleLatestNews = FinalLatestNewsData
-                        .select("span.title")
-                        .eq(b)
-                        .text();
-
-                String detailUrl = FinalLatestNewsData
-                .select("a")
-                 .eq(b)
-                 .attr("href");
-
-                String imgUrl = document.select("li")
-                        .select("div.thumb")
-                        .eq(b)
-                        .select("img")
-                        .attr("src");
-
-                String baseDetailUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/";
-                detailUrl = baseDetailUrl + detailUrl;
-
-                String baseImgUrl = "https://www.hkmakslo.edu.hk";
-                imgUrl = baseImgUrl + imgUrl;
-
-                SecondParseItems.add(new SecondParseItem(imgUrl, titleLatestNews, latestNewsTime, detailUrl));
-                Log.d("Latest News items",   ". ImageUrl:" + imgUrl + ". Title: " + titleLatestNews + ". Time: " + latestNewsTime + ". Detail Url: " + detailUrl);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!isNetworkAvailable()) {
+            Snackbar.make(MainActivity.getView(), getString(R.string.CheckInternet), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.Go), view ->
+                            startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS)))
+                    .setBackgroundTint(MainActivity.getPrimary())
+                    .show();
         }
     }
-    public void parseImages(String imageUrl) {
-        try {
-            Document doc = Jsoup.connect(imageUrl).get();
 
-            Elements data = doc.select("div.col_wrap");
-            Elements finalData = data.select("div.wrap");
+    public static int getSize() {
+        return size;
+    }
 
-            int size = data.size();
-            for (int i = 0; i < size; i++) {
-                String imgUrl = data
-                        .select("div.image")
-                        .select("img")
-                        .eq(i)
-                        .attr("src");
-
-                String title = data
-                        .select("div.content")
-                        .select("span.title")
-                        .eq(i)
-                        .text();
-
-                String count = data
-                        .select("div.content")
-                        .select("span.count")
-                        .eq(i)
-                        .text();
-
-                String detailUrl = finalData
-                        .select("a")
-                        .eq(i)
-                        .attr("href");
-
-                String baseUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/";
-                detailUrl = baseUrl + detailUrl;
-                imgUrl = baseUrl + imgUrl;
-
-                parseItems.add(new ParseItem(imgUrl, title, count, detailUrl));
-                Log.d("School Website items", "img:" + imgUrl + ". title: " + title + ". Detail Url: " + detailUrl);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static String getCountReturn() {
+        return countReturn;
     }
 }

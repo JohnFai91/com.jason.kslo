@@ -1,0 +1,8 @@
+<resources>
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.DayNight.FullScreen">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@drawable/splash_image_dark</item>
+    </style>
+
+</resources>

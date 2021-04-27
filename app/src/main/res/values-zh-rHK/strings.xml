@@ -7,7 +7,6 @@
     <string name="Coming_Soon">即將到來！</string>
     <string name="Thanks">多謝使用！</string>
     <string name="Description">一個青年人悶左既產品</string>
-    <string name="Disable_default_landscape">改變強迫性打橫</string>
     <string name="changelog">程式改變</string>
     <string name="View_Pdf">觀看 Pdf</string>
     <string name="Usages">只供個人用途</string>
@@ -19,12 +18,9 @@
     <string name="selectLanguage">選擇語言</string>
     <string name="Settings">設定</string>
     <string name="SourceCode">原始碼</string>
-    <string name="selectTheme">選擇主題</string>
     <string name="LightTheme">白色主題</string>
     <string name="DarkTheme">深色主題</string>
     <string name="SystemDefault">系統設定</string>
-    <string name="Author">由一個好悶既青年開發</string>
-    <string name="Tips">提示</string>
     <string name="SelectTheme">選擇背景</string>
     <string name="ShowHomework">展示功課</string>
     <string name="GetStarted">開始</string>
@@ -32,10 +28,8 @@
     <string name="Customise">個人化</string>
     <string name="CustomiseDesc">設定主題和語言</string>
     <string name="ReplayIntro">重播介紹</string>
-    <string name="DashboardTips">如果你未能在儀表板上看到某些項目，請打橫使用</string>
     <string name="android_auto_update_dialog_title">發現新版本</string>
     <string name="android_auto_update_notify_ticker">發現新版本，點擊更新</string>
-    <string name="android_auto_update_notify_content">發現新版本，點擊更新</string>
     <string name="android_auto_update_dialog_btn_download">立即下載</string>
     <string name="android_auto_update_dialog_btn_cancel">稍後再說</string>
     <string name="android_auto_update_toast_no_new_update">已是最新版本</string>
@@ -49,11 +43,7 @@
     <string name="Page2">第二版</string>
     <string name="Page3">第三版</string>
     <string name="Page4">第四版</string>
-    <string name="Sample">樣本</string>
     <string name="Album">相簿</string>
-    <string name="TestingFeature">測試中</string>
-    <string name="Pictures">最多展示16張</string>
-    <string name="LatestNews">最新消息</string>
     <string name="openVideo">開啟影片</string>
     <string name="Downloading">下載中。。。</string>
     <string name="Page5">第五版</string>
@@ -154,17 +144,39 @@
         "使字可選擇"
     </string>
 
+    <string name="changelogDescLv.1.1.0_beta">
+        "加入自動更新通告(「最新通告」)\n"
+        "加入下線標籤\n"
+        "在「關於」加入圖示"\n"
+        "加入新設定\n"
+        "加入內聯文件標示\n"
+        "詢問再次下載文件"
+    </string>
+    <string name="changelogDescRv.1.1.0_beta">
+        "重新設計「儀表板」 (放棄 webview)\n"
+        "完全除去 webview\n"
+        "解決每次開啟新畫面後出現重複畫面\n"
+        "改變程式顏色 (由用戶建議)\n"
+        "改去底部訪問n\n"
+        "到達底部時重新加載 (相簿及內聯)\n"
+        "增加滑輪與列表之間的空隙\n"
+        "增加「最新消息」和「內聯」字體準確度\n"
+        "解決安桌11文件問題\n"
+        "解決觀看PDF錯誤(2用家反映)\n\n"
+        "支持少 RAM 手機"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha 狀態:\n"
         "基本功能及用戶介面\n (主要為 webview)\n (1.0.1 alpha 至 1.0.5-alpha)"
     </string>
     <string name="changelogDescBeta">
         "Beta 狀態:\n"
-        "改善用戶介面及進階功能\n (主要為 Jsoup 網頁撮取)\n (1.0.6-beta 至 1.0.10-beta)"
+        "改善用戶介面及進階功能\n (主要為 Jsoup 網頁撮取)\n (1.0.6-beta 至 1.1.0-beta)"
     </string>
     <string name="changelogDescStable">
         "Stable 狀態:\n"
-        "修理缺陷及改善功能\n (由 1.0.11-stable 開始)"
+        "修理缺陷及改善功能\n (由 1.1.1-stable 開始)"
     </string>
 
     <string name="changelogDescL">
@@ -177,13 +189,15 @@
     <string name="changelogDescLFuture">
         "通知\n"
         "已閱標籤\n"
-        "下線標籤\n"
-        "續借圖書"
+        "續借圖書\n"
+        "誇班支持\n"
+        "內聯活動(刪除)"
     </string>
     <string name="changelogDescRFuture">
-    "重新設計 「儀表板」 (放棄 webview)\n"
     "支持大畫面\n"
-    "支持舊 Android 版本"
+    "下線支持\n"
+    "顯示以下載文件\n"
+    "分享文件"
     </string>
 
     <string name="Future">將來</string>
@@ -195,8 +209,6 @@
     <string name="Recommended">建議:</string>
     <string name="NumbersMayAffectSpeed">數字可影響速度</string>
     <string name="inputNumbers">輸入數字</string>
-    <string name="OpenLink">開啟連結</string>
-    <string name="UnsupportedFile">不支持文件</string>
     <string name="HelloWelcomeBack">你好！歡迎回來！</string>
     <string name="SigninToContinue">登入以繼續</string>
     <string name="Username">用戶名稱</string>
@@ -210,10 +222,7 @@
     <string name="ImageGradient">圖片斜波</string>
     <string name="Copy">複製</string>
     <string name="AppCrash">不妙！程式停止了！</string>
-    <string name="copy_stacktrace">複製</string>
-    <string name="share_stacktrace">分享</string>
     <string name="restart_application">重新開始</string>
-    <string name="relaunch_app">重新開啟程式</string>
     <string name="copied_message_and_query">成功複製！寄比開發人員？</string>
     <string name="MoreInfo">更多資訊</string>
     <string name="errorTitle">錯誤資訊</string>
@@ -223,7 +232,6 @@
     <string name="copied_message">成功複製！</string>
     <string name="CrashApp">顯示停止畫面</string>
     <string name="YouPressedTheCrashAppButton">你按了停止畫面按鈕</string>
-    <string name="LastUpdatedTime">最後更新時間：</string>
     <string name="CallNumber">索書號</string>
     <string name="PositionInLibrary">館藏位置</string>
     <string name="BookClassification">借閱分類</string>
@@ -232,4 +240,20 @@
     <string name="Version">版本</string>
     <string name="Writer">作者</string>
     <string name="RenewBook">續借</string>
+    <string name="End">到達底部了！</string>
+    <string name="File">文件</string>
+    <string name="DownloadAgainQuery">再次下載？</string>
+    <string name="DownloadedMsg">你已經下載了「 %1$s 」，要再下載嗎？</string>
+    <string name="Open">開啟</string>
+    <string name="Download">下載</string>
+    <string name="tapToViewMore">點擊觀看更多</string>
+    <string name="Books">本書</string>
+    <string name="ReturnTo">返回 %1$s</string>
+    <string name="ReadMail">標籤內聯郵件已讀</string>
+    <string name="ReadMailContent">連接伺服器你已讀內聯郵件</string>
+    <string name="DownloadQueryDesc">你會被問再次下載你已下載的文件</string>
+    <string name="GoTo">去</string>
+    <string name="CheckInternet">請連接網絡以更新資料</string>
+    <string name="WelcomeMessage">祝你有一個很好的體驗！</string>
+    <string name="AssignedBySystem">(由系統/老師發佈)</string>
 </resources>

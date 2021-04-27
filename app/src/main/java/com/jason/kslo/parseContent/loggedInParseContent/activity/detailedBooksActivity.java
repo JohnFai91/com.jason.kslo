@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.jason.kslo.R;
+import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -35,23 +36,21 @@ public class detailedBooksActivity extends AppCompatActivity {
     ProgressBar progressBar;
     SharedPreferences sharedPreferences;
 
-    @SuppressLint("StaticFieldLeak")
-    @SuppressWarnings("unchecked")
+    @SuppressLint({"StaticFieldLeak", "SetTextI18n"})
+    @SuppressWarnings({"ConstantConditions"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         updateLanguage(this);
-        setTheme(R.style.Theme_AppCompat_DayNight_FullScreen_Actionbar);
         setContentView(R.layout.activity_detailed_books);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         setTitle(getIntent().getStringExtra("title"));
 
         url = getIntent().getStringExtra("detailUrl");
-        cookies = (Map<String, String>) getIntent().getSerializableExtra("cookies");
+        cookies = IntranetFragment.getCookies();
 
         BkImg = findViewById(R.id.BookDetailedImage);
 
@@ -72,6 +71,7 @@ public class detailedBooksActivity extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     private class Content extends AsyncTask<Void, Void, Void> {
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

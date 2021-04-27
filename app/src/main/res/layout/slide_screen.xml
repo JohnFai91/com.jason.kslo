@@ -26,7 +26,6 @@
                         android:contentDescription="@string/previous"/>
 
                 <ImageView
-                        android:layout_alignParentRight="true"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/ic_next"
@@ -64,7 +63,6 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:srcCompat="@drawable/selected"
-                            android:layout_marginRight="8dp"
                             android:layout_marginEnd="8dp"
                             android:id="@+id/pgNo.1"
                             android:contentDescription="@string/Page1"/>
@@ -72,7 +70,6 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:srcCompat="@drawable/selected"
-                            android:layout_marginRight="8dp"
                             android:layout_marginEnd="8dp"
                             android:id="@+id/pgNo.2"
                             android:contentDescription="@string/Page2"/>
@@ -80,7 +77,6 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:srcCompat="@drawable/selected"
-                            android:layout_marginRight="8dp"
                             android:layout_marginEnd="8dp"
                             android:id="@+id/pgNo.3"
                             android:contentDescription="@string/Page3"/>
@@ -88,7 +84,6 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         app:srcCompat="@drawable/selected"
-                        android:layout_marginRight="8dp"
                         android:layout_marginEnd="8dp"
                         android:id="@+id/pgNo.4"
                         android:contentDescription="@string/Page4"/>
@@ -96,7 +91,6 @@
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:srcCompat="@drawable/selected"
-                            android:layout_marginRight="8dp"
                             android:layout_marginEnd="8dp"
                             android:id="@+id/pgNo.5"
                             android:contentDescription="@string/Page5"/>

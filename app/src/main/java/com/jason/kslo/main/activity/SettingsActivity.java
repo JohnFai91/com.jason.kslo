@@ -1,5 +1,6 @@
 package com.jason.kslo.main.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.content.Intent;
@@ -9,10 +10,12 @@ import android.widget.*;
 import androidx.appcompat.app.ActionBar;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import com.jason.kslo.R;
 import androidx.annotation.NonNull;
 import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
+import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +27,13 @@ public class SettingsActivity extends AppCompatActivity {
     String Theme, Theme1, Theme2, Theme3;
     Spinner spinner;
     Button change2Eng, change2Chin;
+    Button reLogin;
+    SwitchCompat readMail, downloadAgainQuery;
 
     SharedPreferences pref;
+    @SuppressLint("RestrictedApi")
     @Override
+    @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -37,16 +44,19 @@ public class SettingsActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         Theme = pref.getString("theme","");
 
+        readMail = findViewById(R.id.readMailSwitcher);
+        downloadAgainQuery = findViewById(R.id.downloadQuerySwitcher);
 
         change2Eng =  findViewById(R.id.English);
         change2Chin =  findViewById(R.id.Chinese);
 
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         setTitle(getString(R.string.Settings));
+
+        reLogin = findViewById(R.id.reLoginButton);
 
         Content content = new Content();
         content.run();
@@ -75,6 +85,30 @@ public class SettingsActivity extends AppCompatActivity {
                     Theme3 = getString(R.string.DarkTheme);
                     break;
             }
+
+            readMail.setChecked(pref.getString("ReadMail", "").equals("true"));
+            readMail.setOnClickListener(view -> {
+                if (readMail.isChecked()) {
+                    pref.edit().putString("ReadMail","true").apply();
+                } else if (!readMail.isChecked()) {
+                    pref.edit().putString("ReadMail","false").apply();
+                }
+                Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
+                finish();
+                startActivity(intent);
+            });
+
+            downloadAgainQuery.setChecked(pref.getString("DownloadAgainQuery", "").equals("true"));
+            downloadAgainQuery.setOnClickListener(view -> {
+                if (downloadAgainQuery.isChecked()) {
+                    pref.edit().putString("DownloadAgainQuery","true").apply();
+                } else if (!downloadAgainQuery.isChecked()) {
+                    pref.edit().putString("DownloadAgainQuery","false").apply();
+                }
+                Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
+                finish();
+                startActivity(intent);
+            });
 
             List<String> categories = new ArrayList<>();
             categories.add(0, Theme);
@@ -118,6 +152,12 @@ public class SettingsActivity extends AppCompatActivity {
 
 
             change2Chin.setOnClickListener(v -> setLocale("zh-HK"));
+
+            reLogin.setOnClickListener(view -> {
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+
+                startActivity(intent);
+            });
         }
     }
 
@@ -136,10 +176,11 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putString("lang", lang);  // Saving string
 
         // Save the changes in SharedPreferences
-        editor.commit(); // commit changes
+        editor.apply(); // commit changes
 
         finish();
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        finish();
         startActivity(intent);
     }
     public void setTheme(String theme) {
@@ -149,10 +190,11 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putString("theme", theme);  // Saving string
 
         // Save the changes in SharedPreferences
-        editor.commit(); // commit changes
+        editor.apply(); // commit changes
 
         finish();
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        finish();
         startActivity(intent);
     }
 }

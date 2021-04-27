@@ -34,7 +34,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="30dp"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
                         tools:ignore="RelativeOverlap"/>
 
@@ -44,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/changelog_recycler"
-            android:scrollbars="vertical"
             app:fastScrollEnabled="true"
             app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
             app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"

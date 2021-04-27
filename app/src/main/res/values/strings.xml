@@ -5,17 +5,12 @@
     <string name="Login">Login</string>
     <string name="About">About</string>
 
-    <style name="NightMode">Night Mode</style>
-    <style name="DayMode">Day Mode</style>
-
     <string name="Coming_Soon">Coming Soon!</string>
     <string name="Thanks">Thanks for downloading!</string>
     <string name="Description">A product of a bored teenager in Covid-19~"\n</string>
-    <string name="Disable_default_landscape">"Disable force landscape to freely orientate(自由轉)"</string>
     <string name="changelog">"Changelog"</string>
     <string name="View_Pdf">"View Pdf"</string>
     <string name="Usages">"Only for personal usages"\n</string>
-    <string name="Author">Made by a bored teenager</string>
     <string name="School_Cal">"School Calendar"</string>
     <string name="Featured_Notice">"Featured Notice"</string>
     <string name="Half_Day_Schedule">"Half Day Schedule"</string>
@@ -24,24 +19,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="selectLanguage">Select language</string>
-    <string name="selectTheme">Select Theme</string>
     <string name="LightTheme">Light Theme</string>
     <string name="DarkTheme">Dark Theme</string>
     <string name="SystemDefault">System default</string>
 
-    <string-array name="Themes">
-        <item>@string/selectTheme</item>
-        <item>@string/SystemDefault</item>
-        <item>@string/LightTheme</item>
-        <item>@string/DarkTheme</item>
-    </string-array>
     <string name="app_name" translatable="false">KSLO</string>
     <string name="Settings">Settings</string>
     <string name="SourceCode">Source code</string>
     <string name="Chinese" translatable="false">中文(zh-HK)</string>
     <string name="English" translatable="false">English(en)</string>
-    <string name="Language_CHINESE" translatable="false">zh_HK</string>
-    <string name="Tips">Tips</string>
     <string name="SelectTheme">Select theme</string>
     <string name="ic_drop" translatable="false">drop</string>
     <string name="ShowHomework">Show Homework</string>
@@ -52,13 +38,10 @@
     <string name="CustomiseDesc">Customize your own theme and language</string>
     <string name="ReplayIntro">Replay Introduction</string>
     <string name="schoolLogo" translatable="false">SchoolLogo</string>
-    <string name="DashboardTips">If you cannot see an item in \"Dashboard\", please orientate to landscape(打橫).
-    </string>
 
     <string name="android_auto_update_dialog_title">Found new version</string>
 
     <string name="android_auto_update_notify_ticker">Found new version, click to update</string>
-    <string name="android_auto_update_notify_content">Found new version, click to update</string>
 
     <string name="android_auto_update_dialog_btn_download">Download now</string>
     <string name="android_auto_update_dialog_btn_cancel">Later</string>
@@ -76,11 +59,7 @@
     <string name="Page2">Page 2</string>
     <string name="Page3">Page 3</string>
     <string name="Page4">Page 4</string>
-    <string name="Sample">Sample</string>
     <string name="Album">Album</string>
-    <string name="TestingFeature">Testing</string>
-    <string name="Pictures">Up to 16 pictures</string>
-    <string name="LatestNews">Latest News</string>
     <string name="openVideo">Open Video</string>
     <string name="Downloading">Downloading…</string>
     <string name="Page5">Page 5</string>
@@ -167,11 +146,11 @@
     </string>
 
     <string name="changelogDescLv.1.0.9_beta">
-        "Books' details\n\n"
-        "\"Crash Screen\"\n\n"
-        "Pull to refresh\n\n"
-        "Last updated time\n\n"
-        "Manual Scrolling"
+        "Add Books' details\n\n"
+        "Add \"Crash Screen\"\n\n"
+        "Implement pull to refresh\n\n"
+        "Implement last updated time\n\n"
+        "Implement manual Scrolling"
     </string>
     <string name="changelogDescRv.1.0.9_beta">
         "Resolve changelog always popup\n\n"
@@ -183,17 +162,39 @@
         "Make text selectable"
     </string>
 
+    <string name="changelogDescLv.1.1.0_beta">
+        "Implement auto update notice\n\n"
+        "Implement offline indicator\n\n"
+        "Implement icons in "About"\n\n"
+        "Add new settings\n\n"
+        "Add intranet file indicator\n\n"
+        "Download again query"
+    </string>
+    <string name="changelogDescRv.1.1.0_beta">
+        "Redesign \"Dashboard\" (give up webview)\n\n"
+        "Completely remove webview\n\n"
+        "Resolve duplicated activity after using intent\n\n"
+        "Change app colour (suggested by user)\n\n"
+        "Change to bottom nav\n\n"
+        "Reload on touch bottom (Gallery and intranet)\n\n"
+        "Increase gaps between scrollbars and lists\n\n"
+        "Increase intranet mail and latest news text accuracy\n\n"
+        "Resolve Android 11 file problem\n\n"
+        "Resolve PdfView Crash (reported by 2 users)\n\n"
+        "Large heap for less memory phones"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State:\n"
         "Basic features and UI (mainly with webview) (1.0.1 alpha to 1.0.5-alpha)"
     </string>
     <string name="changelogDescBeta">
         "Beta State:\n"
-        "Improve features and advanced features (mainly with Jsoup by web scrapping) (1.0.6-beta to 1.0.10-beta)"
+        "Improve features and advanced features (mainly with Jsoup by web scrapping) (1.0.6-beta to 1.1.0-beta)"
     </string>
     <string name="changelogDescStable">
         "Stable State:\n"
-        "Fix bugs and improve features (stating from 1.0.11-stable)"
+        "Fix bugs and improve features (stating from 1.1.1-stable)"
     </string>
 
     <string name="changelogDescL">
@@ -206,14 +207,15 @@
     <string name="changelogDescLFuture">
         "Notifications\n\n"
         "Read label\n\n"
-        "Offline indicator\n\n"
-        "Renew books"
+        "Renew books\n\n"
+        "Inter-class support\n\n"
+        "Intranet actions(delete)"
     </string>
     <string name="changelogDescRFuture">
-        "Redesign \"Dashboard\" UI (give up webview)\n\n"
-        "Properly support bigger screens\n\n"
-        "Properly support older Android versions"
-
+        "Support larger screens\n\n"
+        "Offline support\n\n"
+        "Show downloaded files\n\n"
+        "Share files"
     </string>
 
     <string name="Future">Future</string>
@@ -225,8 +227,6 @@
     <string name="Recommended">Recommended:</string>
     <string name="NumbersMayAffectSpeed">Numbers may affect speed</string>
     <string name="inputNumbers">Input numbers</string>
-    <string name="OpenLink">Open link</string>
-    <string name="UnsupportedFile">Unsupported File</string>
     <string name="HelloWelcomeBack">Hello! Welcome back!</string>
     <string name="SigninToContinue">Sign in to continue</string>
     <string name="Username">Username</string>
@@ -240,17 +240,7 @@
     <string name="ImageGradient">Image Gradient</string>
     <string name="Copy">Copy</string>
     <string name="AppCrash">Oh no! The app has crashed!</string>
-    <string name="header_text" translatable="false">Uncaught Exception</string>
-    <string name="explanation_text" translatable="false">An uncaught exception was thrown during the execution of your
-        application
-    </string>
-    <string name="exception_name" translatable="false">Exception: %1$s</string>
-    <string name="exception_cause" translatable="false">Cause: %1$s</string>
-    <string name="exception_message" translatable="false">Message: %1$s</string>
-    <string name="copy_stacktrace">Copy</string>
-    <string name="share_stacktrace">Share</string>
     <string name="restart_application">Restart</string>
-    <string name="relaunch_app">Relaunch App</string>
     <string name="copied_message_and_query">Stacktrace copied! Send to developer?</string>
     <string name="MoreInfo">More info</string>
     <string name="errorTitle">Error details</string>
@@ -260,7 +250,6 @@
     <string name="copied_message">Copied to clipboard!</string>
     <string name="CrashApp">Crash app</string>
     <string name="YouPressedTheCrashAppButton">You Pressed The Crash App Button</string>
-    <string name="LastUpdatedTime">Last updated time:</string>
     <string name="ACNO" translatable="false">ACNO</string>
     <string name="ACNOSample" translatable="false">C014185</string>
     <string name="CallNumber">Call Number</string>
@@ -280,5 +269,27 @@
     <string name="Writer">Writer</string>
     <string name="WriterSample" translatable="false">中川右介,楊裴文</string>
     <string name="RenewBook">Renew Book</string>
+    <string name="End">You have reached the end!</string>
+    <string name="File">File</string>
+    <string name="DownloadAgainQuery">Download Again?</string>
+    <string name="DownloadedMsg">" You have already downloaded \" %1$s \", download again?"</string>
+    <string name="Open">Open</string>
+    <string name="Download">Download</string>
+    <!-- Strings related to login -->
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="tapToViewMore">Tap to view more</string>
+    <string name="Books">Books</string>
+    <string name="ReturnTo">Return to %1$s</string>
+    <string name="ReadMail">Read mail</string>
+    <string name="ReadMailContent">Tell the server that you have read the intranet mail</string>
+    <string name="DownloadQueryDesc">When you have downloaded a file already, you will be prompted to download again
+    </string>
+    <string name="GoTo">Go to</string>
+    <string name="CheckInternet">Please connect to the Internet for updated contents</string>
+    <string name="DateExample" translatable="false">1/1/2021 08:10-08:15</string>
+    <string name="HwExample" translatable="false">Eng SRE EX1</string>
+    <string name="WelcomeMessage">Have a nice experience!</string>
+    <string name="AssignedBySystem">(Assigned by system/teacher)</string>
 
 </resources>

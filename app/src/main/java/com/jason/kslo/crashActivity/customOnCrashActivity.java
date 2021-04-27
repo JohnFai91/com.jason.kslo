@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -25,8 +26,6 @@ public final class customOnCrashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        updateLanguage(this);
-
         //This is needed to avoid a crash if the developer has not specified
         //an app-level theme that extends Theme.AppCompat
         TypedArray a = obtainStyledAttributes(R.styleable.AppCompatTheme);
@@ -35,7 +34,7 @@ public final class customOnCrashActivity extends AppCompatActivity {
         }
         a.recycle();
 
-        setTheme(R.style.Theme_AppCompat_DayNight_FullScreen);
+        updateLanguage(this);
         setContentView(R.layout.activity_custom_activity_on_crash);
 
         //Close/restart button logic:
@@ -102,15 +101,17 @@ public final class customOnCrashActivity extends AppCompatActivity {
         if (clipboard != null) {
             ClipData clip = ClipData.newPlainText(getString(R.string.MoreInfo), errorInformation);
             clipboard.setPrimaryClip(clip);
-            Snackbar.make(relativeLayout, getString(R.string.copied_message_and_query), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.Go), view -> {
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
-                        Toast.makeText(this,getString(R.string.copied_message),Toast.LENGTH_LONG).show();
-                        startActivity(i);
-                    })
-            .setBackgroundTint(getColor(R.color.colorPrimaryDark))
-                            .show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Snackbar.make(relativeLayout, getString(R.string.copied_message_and_query), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.Go), view -> {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
+                            Toast.makeText(this,getString(R.string.copied_message),Toast.LENGTH_LONG).show();
+                            startActivity(i);
+                        })
+                .setBackgroundTint(getColor(R.color.colorPrimaryDark))
+                                .show();
+            }
         }
     }
     private void errorConsists() {
@@ -122,17 +123,19 @@ public final class customOnCrashActivity extends AppCompatActivity {
 
         //Are there any devices without clipboard...?
         if (clipboard != null) {
-            Snackbar.make(relativeLayout, getString(R.string.copied_message_and_consists), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.Send), view -> {
-                        ClipData clip = ClipData.newPlainText(getString(R.string.MoreInfo), errorInformation);
-                        clipboard.setPrimaryClip(clip);
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
-                        Toast.makeText(this,getString(R.string.copied_message),Toast.LENGTH_LONG).show();
-                        startActivity(i);
-                    })
-                    .setBackgroundTint(getColor(R.color.colorPrimaryDark))
-                    .show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Snackbar.make(relativeLayout, getString(R.string.copied_message_and_consists), Snackbar.LENGTH_LONG)
+                        .setAction(getString(R.string.Send), view -> {
+                            ClipData clip = ClipData.newPlainText(getString(R.string.MoreInfo), errorInformation);
+                            clipboard.setPrimaryClip(clip);
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
+                            Toast.makeText(this,getString(R.string.copied_message),Toast.LENGTH_LONG).show();
+                            startActivity(i);
+                        })
+                        .setBackgroundTint(getColor(R.color.colorPrimaryDark))
+                        .show();
+            }
         }
     }
 }

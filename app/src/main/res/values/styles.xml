@@ -1,9 +1,9 @@
 <resources>
 
-    <style name="Theme.AppCompat.DayNight.FullScreen" parent="@style/Theme.AppCompat.DayNight">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,18 +11,14 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.DayNight.FullScreen">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="android:windowBackground">@drawable/splash_image</item>
     </style>
 
-    <style name="Theme.AppCompat.DayNight.FullScreen.Actionbar" parent="Theme.AppCompat.DayNight">
-        <item name="android:windowFullscreen">true</item>
+    <style name="AppTheme.Actionbar" parent="Theme.AppCompat.DayNight">
+        <item name="android:windowFullscreen">false</item>
+        <item name="windowActionBar">true</item>
     </style>
-
-    <style
-            name="Theme.AppCompat.Light.NoActionBar.FullScreen.AppBarOverlay"
-           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style
-            name="Theme.AppCompat.Light.NoActionBar.FullScreen.PopupOverlay"
-           parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

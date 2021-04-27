@@ -23,8 +23,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.jason.kslo.crashActivity.customOnCrashActivity;
-
 public class CaocInitProvider extends ContentProvider {
 
     public boolean onCreate() {

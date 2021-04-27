@@ -7,10 +7,7 @@ public class ParseItem {
     private String count;
     private String file;
     private String fileName;
-
-    @SuppressWarnings("unused")
-    public ParseItem(){
-    }
+    private String date;
 
     public ParseItem(String imgURL, String title, String count, String detailUrl){
         this.imgURL = imgURL;
@@ -82,5 +79,4 @@ public class ParseItem {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-
 }

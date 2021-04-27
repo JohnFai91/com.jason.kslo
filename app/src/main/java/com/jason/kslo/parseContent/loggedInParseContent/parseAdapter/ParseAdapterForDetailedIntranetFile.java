@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.main.activity.MainActivity;
-import com.jason.kslo.main.DownloadView;
+import com.jason.kslo.main.pdfView.download.DownloadView;
 import com.jason.kslo.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
 import com.jason.kslo.R;
 
