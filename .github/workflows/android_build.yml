@@ -23,11 +23,14 @@ jobs:
         with:
           java-version: 8.0.292+10
           distribution: 'adopt'
-      
-      - name: Run Tests
+          
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+        
+      - name: Run tests with gradle
         run: ./gradlew test
         
-      - name: Build project
+      - name: Build project with gradle
         run: ./gradlew assemble
         
       - name: Build with gradle
