@@ -37,7 +37,7 @@ public class SchoolWebsiteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(getContext()).getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
+        requireContext().getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
                 true);
         view = inflater.inflate(R.layout.fragment_school_website, container, false);
         // Inflate the layout for this fragment
@@ -53,7 +53,7 @@ public class SchoolWebsiteFragment extends Fragment {
 
     private void setupViewPager(ViewPager2 viewPager)
     {
-        FragmentManager fm = Objects.requireNonNull(getChildFragmentManager());
+        FragmentManager fm = getChildFragmentManager();
         schoolWebsiteViewPagerAdapter adapter = new schoolWebsiteViewPagerAdapter(fm, getLifecycle());
         viewPager.setAdapter(adapter);
     }
@@ -67,7 +67,7 @@ public class SchoolWebsiteFragment extends Fragment {
 
             checkInternet();
 
-            SharedPreferences pref = Objects.requireNonNull(getActivity())
+            SharedPreferences pref = requireActivity()
                     .getSharedPreferences("MyPref", Context.MODE_PRIVATE);
             originalPw = pref.getString("Password","");
             finalUsername = pref.getString("Username","");
@@ -119,7 +119,7 @@ public class SchoolWebsiteFragment extends Fragment {
     }
     private boolean isNetworkAvailable() {
         ConnectivityManager manager =
-                (ConnectivityManager) Objects.requireNonNull(getActivity())
+                (ConnectivityManager) requireActivity()
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         // Network is present and connected

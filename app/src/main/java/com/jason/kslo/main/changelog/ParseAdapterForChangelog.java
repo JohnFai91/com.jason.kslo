@@ -77,14 +77,7 @@ public class ParseAdapterForChangelog extends RecyclerView.Adapter<ParseAdapterF
         } else {
             holder.separator.setVisibility(View.GONE);
             holder.version.setTextSize(15);
-            if (parseItem.getTitle().contains("-stable")) {
-                holder.arrow.setImageResource(R.drawable.ic_up);
-
-                holder.version.setTextColor(getOrange());
-                holder.descL.setTextColor(getOrange());
-                holder.descR.setTextColor(getOrange());
-
-            } else if (parseItem.getTitle().contains("-beta")){
+            if (parseItem.getTitle().contains("-beta")){
                 holder.arrow.setImageResource(R.drawable.ic_up_green);
 
                 holder.version.setTextColor(getGreen());
@@ -100,7 +93,12 @@ public class ParseAdapterForChangelog extends RecyclerView.Adapter<ParseAdapterF
 
             }
             else {
+
                 holder.arrow.setImageResource(R.drawable.ic_up);
+
+                holder.version.setTextColor(getOrange());
+                holder.descL.setTextColor(getOrange());
+                holder.descR.setTextColor(getOrange());
             }
         }
     }

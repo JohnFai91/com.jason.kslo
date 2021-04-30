@@ -39,6 +39,7 @@ public class DetailedImageActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getIntent().getStringExtra("title") + "");
 

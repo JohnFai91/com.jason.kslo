@@ -13,11 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
+import com.jason.kslo.parseContent.loggedInParseContent.fragment.BorrowedBooksFragment;
 import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -35,6 +38,8 @@ public class detailedBooksActivity extends AppCompatActivity {
     Map<String,String> cookies;
     ProgressBar progressBar;
     SharedPreferences sharedPreferences;
+    @SuppressLint("StaticFieldLeak")
+    static View view;
 
     @SuppressLint({"StaticFieldLeak", "SetTextI18n"})
     @SuppressWarnings({"ConstantConditions"})
@@ -46,6 +51,7 @@ public class detailedBooksActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeButtonEnabled(true);
         setTitle(getIntent().getStringExtra("title"));
 
@@ -58,14 +64,61 @@ public class detailedBooksActivity extends AppCompatActivity {
                 .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
                 .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                 .into(BkImg);
+        view = findViewById(android.R.id.content);
 
         Button renewBook = findViewById(R.id.RenewBook);
-        renewBook.setText(getString(R.string.RenewBook) + " (" + getString(R.string.Coming_Soon) + ")");
-
+        renewBook.setText(getString(R.string.RenewBook));
+        renewBook.setOnClickListener(view -> {
+            RenewBook renewBook1 = new RenewBook();
+            renewBook1.execute();
+        });
         Content content = new Content();
-        //noinspection deprecation
         content.execute();
 
+    }
+    @SuppressLint("StaticFieldLeak")
+    private class RenewBook extends AsyncTask<Void, Void, Void> {
+        Document document;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String jsonBody = "{\"sno\":\"201801323\",\"acno\":\"C014185\"}";
+                document = Jsoup.connect("https://lm.hkmakslo.edu.hk/Services/BookService.asmx/RenewBook")
+                                                    .method(Connection.Method.POST)
+                                                    .cookies(BorrowedBooksFragment.getCookies())
+                                                    .header("Content-Type", "application/json")
+                                                    .header("Accept", "application/json")
+                                                    .followRedirects(true)
+                                                    .ignoreHttpErrors(true)
+                                                    .ignoreContentType(true)
+                                                    .userAgent("Mozilla/5.0 AppleWebKit/537.36 (KHTML," +
+                                                            " like Gecko) Chrome/45.0.2454.4 Safari/537.36")
+                                                    .method(Connection.Method.POST)
+                                                    .requestBody(jsonBody)
+                                                    .maxBodySize(1_000_000 * 30) // 30 mb ~
+                                                    .timeout(0) // infinite timeout
+                                                    .post();
+                Log.d("RenewBook", "Msg: " + document);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            String result = document.text().replaceAll("\"","");
+            Log.d("RenewBook", "ParsedMsg: " + result);
+            Snackbar.make(view, result, Snackbar.LENGTH_LONG).show();
+            Content content = new Content();
+            content.execute();
+        }
     }
     @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("deprecation")

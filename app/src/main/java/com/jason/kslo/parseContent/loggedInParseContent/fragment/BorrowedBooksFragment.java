@@ -32,6 +32,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 
 public class BorrowedBooksFragment extends Fragment {
@@ -47,6 +48,8 @@ public class BorrowedBooksFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     TextView intranetPageText;
     int size;
+    static Map<String, String> cookies;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,14 +60,13 @@ public class BorrowedBooksFragment extends Fragment {
 
         swipeRefreshLayout.setOnRefreshListener(() -> {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                swipeRefreshLayout.setColorSchemeColors(
-                        Objects.requireNonNull(getActivity()).getColor(android.R.color.holo_blue_dark),
-                        getActivity().getColor(android.R.color.holo_orange_dark),
-                        getActivity().getColor(android.R.color.holo_green_dark),
-                        getActivity().getColor(android.R.color.holo_red_dark)
-                );
-            }
+            swipeRefreshLayout.setColorSchemeColors(
+                    requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
+                    requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
+                    requireActivity().getResources().getColor(android.R.color.holo_green_dark),
+                    requireActivity().getResources().getColor(android.R.color.holo_red_dark)
+            );
+
 
 
             Content con = new Content();
@@ -75,7 +77,7 @@ public class BorrowedBooksFragment extends Fragment {
     }
     private boolean isNetworkAvailable() {
         ConnectivityManager manager =
-                (ConnectivityManager) Objects.requireNonNull(getActivity())
+                (ConnectivityManager) requireActivity()
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         // Network is present and connected
@@ -107,7 +109,7 @@ public class BorrowedBooksFragment extends Fragment {
             swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
             swipeRefreshLayout.setRefreshing(true);
 
-            pref = Objects.requireNonNull(getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            pref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
             originalPw = pref.getString("Password","");
             Username = pref.getString("Username","");
@@ -152,8 +154,10 @@ public class BorrowedBooksFragment extends Fragment {
                     .method(Connection.Method.GET)
                     .execute();
 
+            cookies = loginForm.cookies();
+
             Document doc = Jsoup.connect(LmUrl)
-                    .cookies(loginForm.cookies())
+                    .cookies(cookies)
                     .get();
 
             Log.d("Parse Lm", "Cookies: " + loginForm.cookies());
@@ -210,5 +214,8 @@ public class BorrowedBooksFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static Map<String, String> getCookies() {
+        return cookies;
     }
 }

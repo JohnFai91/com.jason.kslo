@@ -26,6 +26,7 @@ public class ChangelogActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.changelog);
 
@@ -68,7 +69,7 @@ public class ChangelogActivity extends AppCompatActivity {
             for (int i = versionCode + 1; i > 0 ; i--) {
                 if (i == 1){
                     version = "1.0.1 alpha\n" +
-                            "(7-2-2021)\n" +
+                            "(7/2/2021)\n" +
                             "(Initial release and start of alpha state)";
 
                     descL = getString(R.string.changelogDescLv_1_0_1_alpha);
@@ -77,7 +78,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 2){
                     version = "1.0.2 alpha\n" +
-                            "(7-2-2021)\n" +
+                            "(7/2/2021)\n" +
                             "(Code update)";
 
                     descL = getString(R.string.changelogDescLv_1_0_2_alpha);
@@ -86,7 +87,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 3) {
                     version = "1.0.3 alpha\n" +
-                            "(11-2-2021)\n" +
+                            "(11/2/2021)\n" +
                             "(UI and\n" +
                             " code update)";
 
@@ -96,7 +97,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 4){
                     version = "1.0.4 alpha\n" +
-                            "(19-2-2021)\n" +
+                            "(19/2/2021)\n" +
                             "(UI update)";
 
                     descL = getString(R.string.changelogDescLv_1_0_4_alpha);
@@ -111,7 +112,7 @@ public class ChangelogActivity extends AppCompatActivity {
                     separatorVisibility = "Gone";
 
                     version = "1.0.5-alpha\n" +
-                            "(26-2-2021)\n" +
+                            "(26/2/2021)\n" +
                             "(UI update)\n" +
                             "(End of alpha state)";
 
@@ -120,7 +121,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 6){
                     version = "1.0.6-beta\n" +
-                            "(Test state: 27-2-2021, Full state: 28-2-2021)\n" +
+                            "(Test state: 27/2/2021, Full state: 28/2/2021)\n" +
                             "(UI and code update)\n" +
                             "(Initial of beta state)";
 
@@ -130,7 +131,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 7){
                     version = "1.0.7-beta\n" +
-                            "(7-3-2021)\n" +
+                            "(7/3/2021)\n" +
                             "(UI update)";
 
                     descL = getString(R.string.changelogDescLv_1_0_7_beta);
@@ -139,7 +140,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 8){
                     version = "1.0.8-beta\n" +
-                            "(18-3-2021)\n" +
+                            "(18/3/2021)\n" +
                             "(Code + " +
                             "\nUI update)";
 
@@ -151,6 +152,7 @@ public class ChangelogActivity extends AppCompatActivity {
 
                     separatorVisibility = "Gone";
                     version = "1.0.9-beta\n" +
+                            "(27/3/2021)\n" +
                             "(Code + " +
                             "\nUI update)";
                     descL = getString(R.string.changelogDescLv_1_0_9_beta);
@@ -161,18 +163,28 @@ public class ChangelogActivity extends AppCompatActivity {
 
                     separatorVisibility = "Visible";
                     parseItems.add(new ChangelogParseItem("","",
-                            getString(R.string.changelogDescStable),separatorVisibility));
-
-                    separatorVisibility = "Visible";
-                    parseItems.add(new ChangelogParseItem("","",
                             getString(R.string.changelogDescBeta),separatorVisibility));
 
                     separatorVisibility = "Gone";
                     version = "1.1.0-beta\n" +
+                            "(27/4/2021)\n" +
                             "(Code + " +
                             "\nUI update)";
                     descL = getString(R.string.changelogDescLv_1_1_0_beta);
                     descR = getString(R.string.changelogDescRv_1_1_0_beta);
+                }
+                else if (i == 11) {
+                    separatorVisibility = "Visible";
+                    parseItems.add(new ChangelogParseItem("","",
+                            getString(R.string.changelogDescStable),separatorVisibility));
+
+                    separatorVisibility = "Gone";
+                    version = "1.1.1\n" +
+                            "(30/4/2021)\n" +
+                            "(UI update)\n" +
+                            "(current)";
+                    descL = getString(R.string.changelogDescLv_1_1_1);
+                    descR = getString(R.string.changelogDescRv_1_1_1);
                 }
                 else if (i == versionCode + 1){
 

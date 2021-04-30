@@ -26,31 +26,30 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-public class PdfViewFeaturedNotice extends AppCompatActivity {
-    private static final String url = PdfConstants.UPDATE_NOTICE_URL;
+public class PdfViewSchedule extends AppCompatActivity {
+    private static final String url = PdfConstants.UPDATE_SCHEDULE_URL;
     SharedPreferences sharedPreferences;
     File file;
-    String currentPdf;
     @Override
     @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_pdf_view);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeButtonEnabled(true);
+        setTitle(R.string.Half_Day_Schedule);
 
-        setTitle(R.string.Featured_Notice);
+        PDFView pdfView = findViewById(R.id.ViewPdf);
 
         sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
-        file = new File(getCacheDir() + "/" + sharedPreferences.getString("CurrentPdf", ""));
 
         Content content = new Content();
         content.execute();
     }
+
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,String> {
         @Override
@@ -59,26 +58,26 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
 
             PDFView pdfView = findViewById(R.id.ViewPdf);
 
-            currentPdf = sharedPreferences.getString("CurrentPdf", "");
+            String currentPdf = sharedPreferences.getString("CurrentSchedulePdf", "");
             if (!new File(getCacheDir() + "/" + currentPdf).exists()) {
                 currentPdf = "";
-                sharedPreferences.edit().putString("CurrentPdf", "").apply();
-                sharedPreferences.edit().putInt("CurrentPdfCode", 0).apply();
+                sharedPreferences.edit().putInt("CurrentSchedulePdfCode", 0).apply();
             }
+            file = new File(getCacheDir() + "/" + currentPdf);
 
             if (currentPdf.isEmpty()) {
-                pdfView.fromAsset("May.pdf")
-                        .defaultPage(3)
+
+                pdfView.fromAsset("3C_Schedule_(Half Day).pdf")
                         .enableSwipe(true)
                         .enableAnnotationRendering(false)
-                        .scrollHandle(new DefaultScrollHandle(getApplicationContext()))
-                        .spacing(2)
+                        .scrollHandle(new DefaultScrollHandle(PdfViewSchedule.this))
                         .fitEachPage(true)
                         .pageFitPolicy(FitPolicy.BOTH)
+                        .spacing(2)
                         .load();
             } else {
                 pdfView.fromFile(file)
-                        .defaultPage(sharedPreferences.getInt("PdfDefaultPage",0))
+                        .defaultPage(sharedPreferences.getInt("PdfScheduleDefaultPage",0))
                         .enableSwipe(true)
                         .enableAnnotationRendering(false)
                         .scrollHandle(new DefaultScrollHandle(getApplicationContext()))
@@ -104,7 +103,7 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
     }
     private void parseJson(String result) {
         try {
-            int version = sharedPreferences.getInt("CurrentPdfCode",0), fileCode = 0, defaultPage = 0;
+            int version = sharedPreferences.getInt("CurrentSchedulePdfCode",0), fileCode = 0, defaultPage = 0;
             String fileName = null,fileUrl = null;
 
             JSONObject obj = new JSONObject(result);
@@ -124,11 +123,10 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
                     " fileCode: " + fileCode + " fileName: " + fileName + " fileUrl : " + fileUrl);
 
             String selectedClass = sharedPreferences.getString("Class", "3C");
-            String pdfClass = sharedPreferences.getString("CurrentPdfClass","3C");
+            String pdfClass = sharedPreferences.getString("CurrentSchedulePdfClass","3C");
             if (fileCode > version) {
                 startDownload(fileCode, defaultPage, fileName, fileUrl, selectedClass);
             } else if(pdfClass.equals("3C")) {
-
                 if (!selectedClass.equals("3C")) {
                     startDownload(fileCode,defaultPage,fileName,fileUrl, selectedClass);
                 } else {
@@ -137,13 +135,13 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
 
             } else if (pdfClass.equals("2D")){
                 if (!selectedClass.equals("2D")) {
-                    startDownload(fileCode,defaultPage,fileName,fileUrl, selectedClass);
+                    startDownload(fileCode,defaultPage,fileName, fileUrl, selectedClass);
                 } else {
                     checkDefaultPage(defaultPage);
                 }
             }
 
-        } catch (Exception e) {
+        } catch (JSONException e) {
             Log.e(PdfConstants.TAG, "parse json error: " + e);
         }
     }
@@ -180,7 +178,7 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
     }
     void startDownload(int fileCode, int defaultPage, String fileName, String fileUrl, String selectedClass) {
 
-        Intent intent = new Intent(PdfViewFeaturedNotice.this, DownloadView.class);
+        Intent intent = new Intent(PdfViewSchedule.this, DownloadView.class);
         intent.putExtra("title", fileName);
         intent.putExtra("fileUrl", fileUrl);
         intent.putExtra("PdfClass", selectedClass);
@@ -188,14 +186,14 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
         intent.putExtra("defaultPage", defaultPage);
         intent.putExtra("Class", selectedClass);
 
-        intent.putExtra("origin", "UpdateNotice");
+        intent.putExtra("origin", "UpdateSchedule");
 
         finish();
         startActivity(intent);
     }
     void checkDefaultPage(int defaultPage) {
-        if (!(sharedPreferences.getInt("PdfDefaultPage",0) == defaultPage)) {
-            sharedPreferences.edit().putInt("PdfDefaultPage", defaultPage).apply();
+        if (!(sharedPreferences.getInt("PdfScheduleDefaultPage",0) == defaultPage)) {
+            sharedPreferences.edit().putInt("PdfScheduleDefaultPage", defaultPage).apply();
         }
     }
 }

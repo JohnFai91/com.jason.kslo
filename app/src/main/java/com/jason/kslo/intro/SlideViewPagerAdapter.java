@@ -14,6 +14,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.autoUpdate.AppUtils;
 import com.jason.kslo.R;
+import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
 
 public class SlideViewPagerAdapter extends PagerAdapter {
     final Context ctx;
@@ -58,14 +59,15 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         Button getStarted = view.findViewById(R.id.GetStartedBtn);
 
         getStarted.setOnClickListener(v -> {
-            Intent intent = new Intent(ctx, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
-            SharedPreferences.Editor editor = ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit();
-            editor.putString("slide", "done");
-            editor.apply();
-            ctx.startActivity(intent);
+            if (!ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).getString("slide","false").equals("done")) {
+                ctx.startActivity(new Intent(ctx, LoginActivity.class));
+                ctx.getSharedPreferences("MyPref",Context.MODE_PRIVATE).edit().putString("slide", "done").apply();
+            } else {
+                Intent intent = new Intent(ctx, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+                ctx.startActivity(intent);
+            }
         });
 
         next.setOnClickListener(v -> SlideActivity.viewPager.setCurrentItem(position+1));

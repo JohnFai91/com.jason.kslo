@@ -12,6 +12,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/loginAgainText"
+                    android:textSize="20sp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Login"
+                    tools:ignore="RelativeOverlap"/>
+
+            <Button
+                    android:drawableEnd="@drawable/ic_login"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/blue_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="@string/reLogin"
+                    android:id="@+id/reLoginButton"
+                    android:textColor="@color/white"
+                    tools:ignore="RelativeOverlap"/>
+
+            <RelativeLayout
+                    android:layout_marginVertical="10dp"
+                    android:id="@+id/ChooseClassBackground"
+                    android:background = "@drawable/blue_background"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/Image">
+                <Spinner
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/SettingsChooseClass"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"/>
+            </RelativeLayout>
+
+            <View
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/holo_blue_bright"/>
+        </LinearLayout>
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +107,6 @@
                     android:textColor="@android:color/white"
                     android:text="@string/English"
                     android:textAllCaps="false"
-                    android:paddingBottom="10dp"
                     android:layout_below="@+id/Chinese"
                     android:layout_centerHorizontal="true"/>
         </RelativeLayout>
@@ -81,6 +131,7 @@
                     tools:ignore="RelativeOverlap"/>
 
                         <androidx.appcompat.widget.AppCompatSpinner
+                                android:layout_centerHorizontal="true"
                                 android:layout_below="@id/SelectThemeText"
                                 android:id="@+id/SelectThemeSpinner"
                                 android:layout_width="match_parent"
@@ -105,81 +156,12 @@
                         android:background="@android:color/holo_blue_bright"/>
             </RelativeLayout>
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                            android:id="@+id/loginAgainText"
-                            android:textSize="20sp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/reLogin"
-                            tools:ignore="RelativeOverlap"/>
-
-                        <Button
-                                android:layout_below="@id/loginAgainText"
-                                android:drawableEnd="@drawable/ic_login"
-                                android:padding="10dp"
-                                android:layout_marginHorizontal="10dp"
-                                android:textAllCaps="false"
-                                android:background="@drawable/blue_background"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:text="@string/reLogin"
-                                android:id="@+id/reLoginButton"
-                                android:textColor="@color/white"
-                                tools:ignore="RelativeOverlap"/>
-
-                <View
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="90dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@android:color/holo_blue_bright"/>
-            </RelativeLayout>
-
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="10dp">
-
-            <TextView
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ReadMail"
-                    tools:ignore="RelativeOverlap"/>
-
-
-            <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/readMailSwitcher"
-                    android:background="@drawable/blue_background"
-                    android:padding="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ReadMailContent"/>
-
-                    <View
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@android:color/holo_blue_bright"/>
-
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
 
                 <TextView
                         android:textSize="20sp"
@@ -191,7 +173,7 @@
 
                 <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/downloadQuerySwitcher"
-                        android:background="@drawable/blue_background"
+                        android:background="@drawable/button_background"
                         android:padding="15dp"
                         android:textColor="@color/white"
                         android:textSize="15sp"
@@ -205,7 +187,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:background="@android:color/holo_blue_bright"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

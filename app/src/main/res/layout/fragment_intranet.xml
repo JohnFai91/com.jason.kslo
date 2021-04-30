@@ -10,9 +10,16 @@
                     android:layout_width="match_parent"
                     android:id="@+id/RelativeLayoutLogin">
 
-                <TextView
+                <Spinner
+                        android:layout_marginTop="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_alignParentTop="true"
+                        android:id="@+id/IntranetFragmentTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:layout_below="@id/IntranetFragmentTitle"
+                        android:layout_marginStart="10dp"
                         android:id="@+id/IntranetPageText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -22,7 +29,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                             android:paddingHorizontal="5dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_below="@id/IntranetPageText"
                             android:id="@+id/IntranetRecycler"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -34,7 +41,8 @@
                             app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
 
                     <ProgressBar
-                            android:layout_margin="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="55dp"
                             android:id="@+id/IntranetProgressBar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

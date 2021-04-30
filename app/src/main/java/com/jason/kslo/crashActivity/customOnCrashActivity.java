@@ -37,6 +37,8 @@ public final class customOnCrashActivity extends AppCompatActivity {
         updateLanguage(this);
         setContentView(R.layout.activity_custom_activity_on_crash);
 
+        errorConsists();
+
         //Close/restart button logic:
         //If a class if set, use restart.
         //Else, use close and just finish the app.
@@ -57,8 +59,6 @@ public final class customOnCrashActivity extends AppCompatActivity {
         } else {
             restartButton.setOnClickListener(v -> CustomActivityOnCrash.closeApplication(customOnCrashActivity.this, config));
         }
-
-        errorConsists();
 
         Button moreInfoButton = findViewById(R.id.customActivityOnCrash_error_activity_more_info_button);
 

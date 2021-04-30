@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
+import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     Spinner spinner;
     Button change2Eng, change2Chin;
     Button reLogin;
-    SwitchCompat readMail, downloadAgainQuery;
+    SwitchCompat downloadAgainQuery;
 
     SharedPreferences pref;
     @SuppressLint("RestrictedApi")
@@ -43,14 +44,46 @@ public class SettingsActivity extends AppCompatActivity {
         spinner = findViewById(R.id.SelectThemeSpinner);
         pref = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         Theme = pref.getString("theme","");
+        String selectedClass = pref.getString("Class","3C");
 
-        readMail = findViewById(R.id.readMailSwitcher);
-        downloadAgainQuery = findViewById(R.id.downloadQuerySwitcher);
+        Spinner classesSpinner = findViewById(R.id.SettingsChooseClass);
+        String[] classes = {
+                getString(R.string.Class) + " (" + selectedClass + ")","2D", "3C"
+        };
+        ArrayAdapter<? extends String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, classes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classesSpinner.setAdapter(adapter);
+
+        classesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+             @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                 switch (position) {
+                     case 1:
+                         pref.edit().putString("Class","2D").apply();
+                         finish();
+                         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                         break;
+                     case 2:
+                         pref.edit().putString("Class","3C").apply();
+                         finish();
+                         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                         break;
+                 }
+             }
+
+             @Override
+             public void onNothingSelected(AdapterView<?> adapterView) {
+
+             }
+         });
+
+            downloadAgainQuery = findViewById(R.id.downloadQuerySwitcher);
 
         change2Eng =  findViewById(R.id.English);
         change2Chin =  findViewById(R.id.Chinese);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
@@ -86,19 +119,7 @@ public class SettingsActivity extends AppCompatActivity {
                     break;
             }
 
-            readMail.setChecked(pref.getString("ReadMail", "").equals("true"));
-            readMail.setOnClickListener(view -> {
-                if (readMail.isChecked()) {
-                    pref.edit().putString("ReadMail","true").apply();
-                } else if (!readMail.isChecked()) {
-                    pref.edit().putString("ReadMail","false").apply();
-                }
-                Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
-                finish();
-                startActivity(intent);
-            });
-
-            downloadAgainQuery.setChecked(pref.getString("DownloadAgainQuery", "").equals("true"));
+            downloadAgainQuery.setChecked(pref.getString("DownloadAgainQuery", "true").equals("true"));
             downloadAgainQuery.setOnClickListener(view -> {
                 if (downloadAgainQuery.isChecked()) {
                     pref.edit().putString("DownloadAgainQuery","true").apply();
@@ -193,7 +214,7 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply(); // commit changes
 
         finish();
-        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
         finish();
         startActivity(intent);
     }
