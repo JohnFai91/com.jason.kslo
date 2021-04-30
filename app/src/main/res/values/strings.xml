@@ -186,6 +186,19 @@
         "Large heap for less memory phones"
     </string>
 
+    <string name="changelogDescLv.1.1.1">
+        "Read label\n\n"
+        "Renew books\n\n"
+        "Inter-class support (2D and 3C)\n\n"
+        "Special thanks to Bosco!\n\n"
+        "Intranet actions (delete and move)\n\n"
+        "Auto update schedule\n\n"
+        "Detailed dashboard"
+    </string>
+    <string name="changelogDescRv.1.1.1">
+        "Share files"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State:\n"
         "Basic features and UI (mainly with webview) (1.0.1 alpha to 1.0.5-alpha)"
@@ -208,16 +221,14 @@
 
     <string name="changelogDescLFuture">
         "Notifications\n\n"
-        "Read label\n\n"
-        "Renew books\n\n"
-        "Inter-class support\n\n"
-        "Intranet actions(delete)"
+        "Offline support\n\n"
+        "Search\n"
     </string>
     <string name="changelogDescRFuture">
         "Support larger screens\n\n"
-        "Offline support\n\n"
         "Show downloaded files\n\n"
-        "Share files"
+        "More \"Intranet\" details (mail size, receiver…)\n\n"
+        "More \"Dashboard\" actions (mark done, change sequence…)"
     </string>
 
     <string name="Future">Future</string>
@@ -293,5 +304,30 @@
     <string name="HwExample" translatable="false">Eng SRE EX1</string>
     <string name="WelcomeMessage">Have a nice experience!</string>
     <string name="AssignedBySystem">(Assigned by system/teacher)</string>
+    <string name="Delete">Delete</string>
+    <string name="Move">Move</string>
+    <string name="IntranetError">An error occurred, please reload the Intranet.</string>
+    <string name="IntranetError2">Unable to login, please check if you have repeatedly logged in.</string>
+    <string name="IntranetError3">Time out! please reload intranet!</string>
+    <string name="IntranetError1">Unable to login, please check your username and password!</string>
+    <string name="Favourite">Favourite</string>
+    <string name="MovedTo">Moved to %1$s</string>
+    <string name="RecyclingBin">Recycling bin</string>
+    <string name="Undo">Undo</string>
+    <string name="ConfirmDelete">You are about to delete \"</string>
+    <string name="Irreversible">\", this action cannot be reversed, are you sure?</string>
+    <string name="DeletedSuccessfully">Deleted successfully!</string>
+    <string name="MoveTo">Move to</string>
+    <string name="IntranetMail">Intranet Mail</string>
+    <string name="ConfirmMove">You are about to move \"</string>
+    <string name="ConfirmQuery">, are you sure?</string>
+    <string name="To">\"To</string>
+    <string name="Inbox">Inbox</string>
+    <string name="ActionDone">Action done,</string>
+    <string name="PleaseReload">Please reload.</string>
+    <string name="Share">Share</string>
+    <string name="Class">Class</string>
+    <string name="Homework">Homework</string>
+    <string name="Confirm">Confirm</string>
 
 </resources>

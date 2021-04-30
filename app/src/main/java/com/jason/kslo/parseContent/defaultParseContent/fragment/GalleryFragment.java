@@ -50,6 +50,12 @@ public class GalleryFragment extends Fragment {
             Content content = new Content();
             content.execute();
         });
+        swipeRefreshLayout.setColorSchemeColors(
+                requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_green_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_red_dark)
+        );
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -153,7 +159,7 @@ public class GalleryFragment extends Fragment {
     }
     private boolean isNetworkAvailable() {
         ConnectivityManager manager =
-                (ConnectivityManager) Objects.requireNonNull(getActivity())
+                (ConnectivityManager) requireActivity()
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         // Network is present and connected

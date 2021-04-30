@@ -58,14 +58,12 @@ public class LatestNewsFragment extends Fragment {
             pullToRefresh.setRefreshing(true);
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            pullToRefresh.setColorSchemeColors(
-                    Objects.requireNonNull(getActivity()).getColor(android.R.color.holo_blue_dark),
-                    getActivity().getColor(android.R.color.holo_orange_dark),
-                    getActivity().getColor(android.R.color.holo_green_dark),
-                    getActivity().getColor(android.R.color.holo_red_dark)
-            );
-        }
+        pullToRefresh.setColorSchemeColors(
+                requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_green_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_red_dark)
+        );
 
         Content content = new Content();
         content.execute();

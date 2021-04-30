@@ -10,15 +10,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="10dp">
-                <TextView
+                <Spinner
                         android:id="@+id/DashboardFragmentTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginHorizontal="10dp"
-                        android:text="@string/Dashboard"
-                        android:textSize="20sp"
-                        android:textColor="@color/blue"/>
+                        android:text="@string/Dashboard"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:padding="5dp"

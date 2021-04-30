@@ -11,13 +11,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 import androidx.core.content.FileProvider;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
+import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
+import com.jason.kslo.main.activity.SettingsActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -36,7 +40,7 @@ public class DownloadView extends AppCompatActivity {
     final int horizontal_progress_bar_type = 1;
     String file_url, origin, fileName;
     File file;
-    String download;
+    String download, fileType;
     @Override
     @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class DownloadView extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeButtonEnabled(true);
         setTitle(getIntent().getStringExtra("title"));
 
@@ -57,16 +63,24 @@ public class DownloadView extends AppCompatActivity {
 
         origin = getIntent().getStringExtra("origin");
 
-            if (getSharedPreferences("MyPref", MODE_PRIVATE).getString("DownloadAgainQuery", "")
+        if (origin.equals("UpdateNotice")) {
+            download = "true";
+            new DownloadFileFromURL().execute(file_url);
+        } else if (origin.equals("UpdateSchedule")) {
+            download = "true";
+            new DownloadFileFromURL().execute(file_url);
+        } else {
+            if (getSharedPreferences("MyPref", MODE_PRIVATE).getString("DownloadAgainQuery", "true")
                     .equals("true")) {
                 if (file.exists()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DownloadView.this);
                     builder.setTitle(getString(R.string.DownloadAgainQuery))
                             .setMessage(getString(R.string.DownloadedMsg, fileName))
                             .setCancelable(true)
-                            .setNegativeButton(getString(R.string.android_auto_update_dialog_btn_cancel), (dialogInterface, which) -> {
-                                builder.create().dismiss();
-                                onBackPressed();
+                            .setNegativeButton(getString(R.string.Download), (dialog, which) -> {
+                                download = "true";
+                                dialog.dismiss();
+                                new DownloadFileFromURL().execute(file_url);
                             })
                             .setPositiveButton(R.string.Open, (dialog, which) -> {
                                 download = "false";
@@ -74,10 +88,19 @@ public class DownloadView extends AppCompatActivity {
                                 new DownloadFileFromURL().execute(file_url);
                             })
 
-                            .setNeutralButton((R.string.Download), (dialog, which) -> {
-                                download = "true";
+                            .setNeutralButton((R.string.Share), (dialog, which) -> {
+                                Uri path;
+                                path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
+                                        file);
+                                Intent intent = ShareCompat.IntentBuilder.from(this)
+                                        .setType("application/pdf")
+                                        .setStream(path)
+                                        .setChooserTitle("Choose bar")
+                                        .createChooserIntent()
+                                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                                 dialog.dismiss();
-                                new DownloadFileFromURL().execute(file_url);
+                                onBackPressed();
+                                startActivity(intent);
                             })
 
                             .setOnCancelListener(dialogInterface -> {
@@ -95,15 +118,7 @@ public class DownloadView extends AppCompatActivity {
                 download = "true";
                 new DownloadFileFromURL().execute(file_url);
             }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {// app icon in action bar clicked; goto parent activity.
-            this.finish();
-            return true;
         }
-        return super.onOptionsItemSelected(item);
     }
     /**
      * Showing Dialog
@@ -144,7 +159,7 @@ public class DownloadView extends AppCompatActivity {
             super.onPreExecute();
 
             if (download.equals("true")) {
-                if (origin.equals("DetailedFile")||(origin.equals("UpdateNotice"))) {
+                if (origin.equals("DetailedFile")||(origin.equals("UpdateNotice")||(origin.equals("UpdateSchedule")))) {
                     showDialog(progress_bar_type);
                 } else {
                     showDialog(horizontal_progress_bar_type);
@@ -177,7 +192,7 @@ public class DownloadView extends AppCompatActivity {
                     } catch (Exception e) {
                         Log.e("Error: ", e.getMessage());
                     }
-                } else if (origin.equals("DetailedFile")||origin.equals("UpdateNotice"))  {
+                } else {
                     try {
                         URL url = new URL(f_url[0]);
                         URLConnection connection = url.openConnection();
@@ -261,14 +276,39 @@ public class DownloadView extends AppCompatActivity {
             // dismiss the dialog after the file was downloaded
 
             if (download.equals("true")) {
-                if (origin.equals("DetailedFile") || origin.equals("UpdateNotice")) {
+                if (origin.equals("DetailedFile") || origin.equals("UpdateNotice")||origin.equals("UpdateSchedule")) {
                     dismissDialog(progress_bar_type);
                 } else {
                     dismissDialog(horizontal_progress_bar_type);
                 }
             }
             if (fileName.contains(".pdf")) {
-                    if (!origin.equals("UpdateNotice")) {
+                    if (origin.equals("UpdateNotice")) {
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+                        sharedPreferences.edit().putString("CurrentPdf",fileName).apply();
+                        sharedPreferences.edit().putString("CurrentPdfClass",
+                                getIntent().getStringExtra("Class")).apply();
+                        sharedPreferences.edit().putInt("CurrentPdfCode",
+                                getIntent().getIntExtra("fileCode",1)).apply();
+                        sharedPreferences.edit().putInt("PdfDefaultPage",
+                                getIntent().getIntExtra("defaultPage",0)).apply();
+
+                        finish();
+                        startActivity(new Intent(DownloadView.this, PdfViewFeaturedNotice.class));
+                    } else if (origin.equals("UpdateSchedule")) {
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
+                        sharedPreferences.edit().putString("CurrentSchedulePdf",fileName).apply();
+                        sharedPreferences.edit().putString("CurrentSchedulePdfClass",
+                                getIntent().getStringExtra("Class")).apply();
+                        sharedPreferences.edit().putInt("CurrentSchedulePdfCode",
+                                getIntent().getIntExtra("fileCode",1)).apply();
+                        sharedPreferences.edit().putInt("PdfScheduleDefaultPage",
+                                getIntent().getIntExtra("defaultPage",0)).apply();
+                        finish();
+                        startActivity(new Intent(DownloadView.this, PdfViewSchedule.class));
+                    } else {
 
                         PDFView pdfView = findViewById(R.id.ViewPdf);
                         pdfView.fromFile(file)
@@ -277,13 +317,6 @@ public class DownloadView extends AppCompatActivity {
                                 .scrollHandle(new DefaultScrollHandle(getApplicationContext()))
                                 .spacing(2)
                                 .load();
-                    } else {
-
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
-                        sharedPreferences.edit().putString("CurrentPdf",fileName).apply();
-
-                        finish();
-                        startActivity(new Intent(DownloadView.this, PdfViewFeaturedNotice.class));
                     }
                 } else {
 
@@ -304,30 +337,40 @@ public class DownloadView extends AppCompatActivity {
                             getApplicationContext().getPackageName() + ".provider", file);
                     if (fileName.contains(".doc") || fileName.contains(".docx")) {
                         // Word document
+                        fileType = "application/msword";
                         intent.setDataAndType(data, "application/msword");
                     } else if (fileName.contains(".ppt") || fileName.contains(".pptx")) {
                         // Powerpoint file
+                        fileType = "application/vnd.ms-powerpoint";
                         intent.setDataAndType(data, "application/vnd.ms-powerpoint");
                     } else if (fileName.contains(".xls") || fileName.contains(".xlsx")) {
                         // Excel file
+                        fileType = "application/vnd.ms-excel";
                         intent.setDataAndType(data, "application/vnd.ms-excel");
                     } else if (fileName.contains(".wav") || fileName.contains(".mp3")) {
                         // WAV audio file
+                        fileType = "audio/x-wav";
                         intent.setDataAndType(data, "audio/x-wav");
                     } else if (fileName.contains(".gif")) {
                         // GIF file
+                        fileType = "image/gif";
                         intent.setDataAndType(data, "image/gif");
                     } else if (fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".png")) {
                         // JPG file
+                        fileType = "image/jpeg";
                         intent.setDataAndType(data, "image/jpeg");
                     } else if (fileName.contains(".txt")) {
                         // Text file
+                        fileType = "text/plain";
                         intent.setDataAndType(data, "text/plain");
                     } else if (fileName.contains(".3gp") || fileName.contains(".mpg") ||
-                            fileName.contains(".mpeg") || fileName.contains(".mpe") || fileName.contains(".mp4") || fileName.contains(".avi")) {
+                            fileName.contains(".mpeg") || fileName.contains(".mpe") || fileName.contains(".mp4") ||
+                            fileName.contains(".avi")) {
                         // Video files
+                        fileType = "video/*";
                         intent.setDataAndType(data, "video/*");
                     } else {
+                        fileType = "*/*";
                         intent.setDataAndType(data, "*/*");
                     }
                     onBackPressed();
@@ -341,5 +384,36 @@ public class DownloadView extends AppCompatActivity {
                 }
             }
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// app icon in action bar clicked; goto parent activity.
+            this.finish();
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_action_bar_settings) {
+            this.startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_action_bar_share) {
+
+            Uri path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", file);
+            Intent intent = ShareCompat.IntentBuilder.from(this)
+                    .setType("application/pdf")
+                    .setStream(path)
+                    .setChooserTitle("Choose bar")
+                    .createChooserIntent()
+                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            startActivity(intent);
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

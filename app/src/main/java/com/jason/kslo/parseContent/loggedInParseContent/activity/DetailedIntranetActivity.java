@@ -53,6 +53,7 @@ public class DetailedIntranetActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDefaultDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getIntent().getStringExtra("title"));
@@ -105,7 +106,6 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
-            if (getSharedPreferences("MyPref",MODE_PRIVATE).getString("ReadMail","").equals("true")) {
                 try {
                     Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/readmail.php3")
                             .cookies(Cookies)
@@ -122,7 +122,6 @@ public class DetailedIntranetActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
 
             parseDetailedIntranet(detailUrl);
             parseDetailedFileIntranet(detailUrl);
@@ -209,6 +208,16 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         }
         if (text.contains("<!--")) {
             text = "";
+        }
+
+        if (text.contains("parent.parent.location = \"/it-school//php/errormessage.php3?")) {
+            if (text.contains("&error=1")) {
+                text = getString(R.string.IntranetError1);
+            } else if (text.contains("&error=2")) {
+                text = getString(R.string.IntranetError2);
+            } else if (text.contains("&error=3")) {
+                text = getString(R.string.IntranetError3);
+            }
         }
 
         } catch (IOException e) {

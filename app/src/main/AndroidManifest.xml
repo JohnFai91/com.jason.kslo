@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".main.pdfView.PdfViewHalfDaySchedule"
+                android:name=".main.pdfView.download.PdfViewSchedule"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
@@ -157,7 +157,7 @@
         <activity
                 android:name=".crashActivity.customOnCrashActivity"
                 android:process=":error_activity"
-                android:theme="@style/AppTheme"/>
+                android:theme="@style/AppTheme.MaterialComponents"/>
 
         <provider
                 android:name=".crashActivity.CaocInitProvider"

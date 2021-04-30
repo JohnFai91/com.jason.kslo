@@ -155,17 +155,18 @@
         "詢問再次下載文件"
     </string>
     <string name="changelogDescRv.1.1.0_beta">
-        "重新設計「儀表板」 (放棄 webview)\n"
-        "完全除去 webview\n"
-        "解決每次開啟新畫面後出現重複畫面\n"
-        "改變程式顏色 (由用戶建議)\n"
-        "改去底部訪問n\n"
-        "到達底部時重新加載 (相簿及內聯)\n"
-        "增加滑輪與列表之間的空隙\n"
-        "增加「最新消息」和「內聯」字體準確度\n"
-        "解決安桌11文件問題\n"
-        "解決觀看PDF錯誤(2用家反映)\n\n"
-        "支持少 RAM 手機"
+        "分享文件"
+    </string>
+
+    <string name="changelogDescLv.1.1.1">
+        "已閱標籤\n"
+        "續借圖書\n"
+        "誇班支持\n"
+        "感謝 Bosco!\n"
+        "內聯活動(刪除)"
+    </string>
+    <string name="changelogDescRv.1.1.1">
+        "Share files"
     </string>
 
     <string name="changelogDescAlpha">
@@ -178,7 +179,7 @@
     </string>
     <string name="changelogDescStable">
         "Stable 狀態:\n"
-        "修理缺陷及改善功能\n (由 1.1.1-stable 開始)"
+        "修理缺陷及改善功能\n (由 1.1.1 開始)"
     </string>
 
     <string name="changelogDescL">
@@ -190,16 +191,14 @@
 
     <string name="changelogDescLFuture">
         "通知\n"
-        "已閱標籤\n"
-        "續借圖書\n"
-        "誇班支持\n"
-        "內聯活動(刪除)"
+        "下線支持\n"
+        "搜索"
     </string>
     <string name="changelogDescRFuture">
-    "支持大畫面\n"
-    "下線支持\n"
-    "顯示以下載文件\n"
-    "分享文件"
+        "支持大畫面\n"
+        "顯示已下載文件\n"
+        "更多內聯資訊(郵件大小，收件者。。。)\n"
+        "更多儀表板動作(標示完成，改變次序。。。)"
     </string>
 
     <string name="Future">將來</string>
@@ -228,8 +227,7 @@
     <string name="copied_message_and_query">成功複製！寄比開發人員？</string>
     <string name="MoreInfo">更多資訊</string>
     <string name="errorTitle">錯誤資訊</string>
-    <string name="copied_message_and_consists">If the error consists, please consider sending it to the developer.
-    </string>
+    <string name="copied_message_and_consists">如果錯誤不停出現，請考慮把錯誤碼寄比開發者。</string>
     <string name="Send">寄！</string>
     <string name="copied_message">成功複製！</string>
     <string name="CrashApp">顯示停止畫面</string>
@@ -254,8 +252,33 @@
     <string name="ReadMail">標籤內聯郵件已讀</string>
     <string name="ReadMailContent">連接伺服器你已讀內聯郵件</string>
     <string name="DownloadQueryDesc">你會被問再次下載你已下載的文件</string>
-    <string name="GoTo">去</string>
+    <string name="GoTo">轉去</string>
     <string name="CheckInternet">請連接網絡以更新資料</string>
     <string name="WelcomeMessage">祝你有一個很好的體驗！</string>
     <string name="AssignedBySystem">(由系統/老師發佈)</string>
+    <string name="Delete">刪除</string>
+    <string name="Move">移動</string>
+    <string name="IntranetError">出現錯誤了，請重新加載。</string>
+    <string name="IntranetError2">無法登入系統! 請檢查登入帳號是否重復使用 。</string>
+    <string name="IntranetError3">超出時限! 系統自動登出！</string>
+    <string name="IntranetError1">無法登入系統! 請檢查登入用戶帳號或密碼是否正确！</string>
+    <string name="Favourite">喜愛</string>
+    <string name="MovedTo">已經搬去了 %1$s</string>
+    <string name="RecyclingBin">回收箱</string>
+    <string name="Undo">退回</string>
+    <string name="ConfirmDelete">你即將刪除「</string>
+    <string name="Irreversible">」, 這個動作不能被逆轉，你肯定嗎？</string>
+    <string name="DeletedSuccessfully">成功刪除！</string>
+    <string name="MoveTo">搬去</string>
+    <string name="IntranetMail">內聯郵件</string>
+    <string name="ConfirmMove">你即將移動 「</string>
+    <string name="ConfirmQuery">，你肯定嗎？</string>
+    <string name="To">」去</string>
+    <string name="Inbox">收件箱</string>
+    <string name="ActionDone">動作完成，</string>
+    <string name="PleaseReload">請重新加載。</string>
+    <string name="Share">分享</string>
+    <string name="Class">班別</string>
+    <string name="Homework">功課</string>
+    <string name="Confirm">確定</string>
 </resources>

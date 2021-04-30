@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -21,7 +20,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class LoginFragment extends Fragment {
     View view;
@@ -29,7 +27,6 @@ public class LoginFragment extends Fragment {
     ViewPager2 viewPager;
     private static int size;
     private static String countReturn;
-    TextView title;
     String originalPw,finalUsername;
     int prevMenuItem;
 
@@ -37,11 +34,12 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Objects.requireNonNull(getContext()).getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
+        requireContext().getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
                 true);
         view = inflater.inflate(R.layout.fragment_login, container, false);
         // Inflate the layout for this fragment
 
+        viewPager = view.findViewById(R.id.LoginViewPager);
         viewPager = view.findViewById(R.id.LoginViewPager);
         setupViewPager(viewPager);
 
@@ -53,7 +51,7 @@ public class LoginFragment extends Fragment {
 
     private void setupViewPager(ViewPager2 viewPager)
     {
-        FragmentManager fm = Objects.requireNonNull(getChildFragmentManager());
+        FragmentManager fm = getChildFragmentManager();
         loginViewPagerAdapter adapter = new loginViewPagerAdapter(fm, getLifecycle());
         viewPager.setAdapter(adapter);
     }
@@ -65,7 +63,7 @@ public class LoginFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            SharedPreferences pref = Objects.requireNonNull(getActivity())
+            SharedPreferences pref = requireActivity()
                     .getSharedPreferences("MyPref", Context.MODE_PRIVATE);
             originalPw = pref.getString("Password","");
             finalUsername = pref.getString("Username","");
@@ -123,11 +121,9 @@ public class LoginFragment extends Fragment {
 
             viewPager = view.findViewById(R.id.LoginViewPager);
 
-            title = view.findViewById(R.id.LoginFragmentTitle);
             viewPagerSwitcher = view.findViewById(R.id.LoginViewPagerSwitcher);
 
             final String[] Title = {getString(R.string.Intranet) };
-            title.setText(Title[0]);
 
             viewPager.setCurrentItem(0);
 
@@ -135,13 +131,9 @@ public class LoginFragment extends Fragment {
                 if (Title[0].contains(getString(R.string.BorrowedBooks))) {
                     Title[0] = getString(R.string.Intranet);
 
-                    title.setText(Title[0]);
-
                     viewPager.setCurrentItem(0);
                 } else if (Title[0].contains(getString(R.string.Intranet))) {
                     Title[0] = getString(R.string.BorrowedBooks);
-
-                    title.setText(Title[0]);
 
                     viewPager.setCurrentItem(1);
                 }

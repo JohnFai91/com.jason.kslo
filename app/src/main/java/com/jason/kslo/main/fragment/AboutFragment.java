@@ -22,10 +22,8 @@ import com.jason.kslo.main.activity.SettingsActivity;
 import com.jason.kslo.main.changelog.ChangelogActivity;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
-import com.jason.kslo.main.pdfView.PdfViewHalfDaySchedule;
+import com.jason.kslo.main.pdfView.download.PdfViewSchedule;
 import com.jason.kslo.main.pdfView.PdfViewSchoolCal;
-
-import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.jason.kslo.App.updateLanguage;
@@ -42,10 +40,10 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_about, container, false);
-            updateLanguage(Objects.requireNonNull(getContext()));
-            pref = Objects.requireNonNull(getContext()).getSharedPreferences("MyPref", MODE_PRIVATE);
-            locale = pref.getString("lang","");
-            theme = pref.getString("theme","");
+            updateLanguage(requireContext());
+            pref = requireContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+            locale = pref.getString("lang","en");
+            theme = pref.getString("theme","Follow System");
             versionVar = BuildConfig.APPLICATION_ID + " " + AppUtils.getVersionName(getContext());
 
             Locale = view.findViewById(R.id.Locale);
@@ -70,7 +68,7 @@ public class AboutFragment extends Fragment {
     void openInstallUnknownDialog(){
         InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
         installUnknownAppsDialog.setCancelable(false);
-            installUnknownAppsDialog.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "InstallUnknownAppsDialog");
+            installUnknownAppsDialog.show(requireActivity().getSupportFragmentManager(), "InstallUnknownAppsDialog");
     }
 
     class Content implements Runnable{
@@ -97,7 +95,7 @@ public class AboutFragment extends Fragment {
             });
 
             HalfDaySchedule.setOnClickListener(view14 -> {
-                Intent intent = new Intent(getContext(), PdfViewHalfDaySchedule.class);
+                Intent intent = new Intent(getContext(), PdfViewSchedule.class);
                 startActivity(intent);
             });
 
@@ -119,7 +117,7 @@ public class AboutFragment extends Fragment {
 
             CheckForUpdate.setOnClickListener(view18 -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    if (!Objects.requireNonNull(getContext()).getPackageManager().canRequestPackageInstalls()){
+                    if (!requireContext().getPackageManager().canRequestPackageInstalls()){
                         openInstallUnknownDialog();
                     }
                     else{

@@ -7,35 +7,27 @@
         android:orientation="vertical"
         tools:context=".parseContent.loggedInParseContent.fragment.LoginFragment">
 
+    <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/LoginViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
     <RelativeLayout
             android:paddingTop="10dp"
-            android:paddingHorizontal="10dp"
             android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_width="100dp"
+            android:layout_height="65dp"
             android:id="@+id/LoginViewPagerSwitcher">
-        <TextView
-                android:id="@+id/LoginFragmentTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/BorrowedBooks"
-                android:textSize="20sp"
-                android:textColor="@color/blue"/>
 
         <TextView
-                android:layout_alignBottom="@id/LoginFragmentTitle"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/LoginViewMore"
-                android:layout_marginVertical="5dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="@string/tapToViewMore"
                 tools:ignore="RelativeOverlap"/>
     </RelativeLayout>
-    <androidx.viewpager2.widget.ViewPager2
-                android:layout_below="@id/LoginViewPagerSwitcher"
-                android:id="@+id/LoginViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 </RelativeLayout>

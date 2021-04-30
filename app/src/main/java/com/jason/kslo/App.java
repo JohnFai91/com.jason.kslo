@@ -26,22 +26,9 @@ public class App extends Application {
 
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String version = prefs.getString("version","");
-        String Theme = prefs.getString("theme","");
-        String Intro = prefs.getString("slide","");
-        String readMail = prefs.getString("ReadMail","");
-        String downloadAgainQuery = prefs.getString("DownloadAgainQuery","");
-
-        if (readMail.isEmpty()) {
-            prefs.edit().putString("ReadMail","true").apply();
-        }
-        if (downloadAgainQuery.isEmpty()) {
-            prefs.edit().putString("DownloadAgainQuery","true").apply();
-        }
-
-        if (TextUtils.isEmpty(Theme)){
-            prefs.edit().putString("theme","Follow System")
-            .apply();
-        }
+        String Theme = prefs.getString("theme","Follow System");
+        String Intro = prefs.getString("slide","false");
+        String downloadAgainQuery = prefs.getString("DownloadAgainQuery","true");
 
         switch (Theme) {
             case "Follow System":
@@ -58,10 +45,7 @@ public class App extends Application {
                 break;}
 
         if (TextUtils.isEmpty(version)){
-            deleteCache(this);
-            deleteDir();
             prefs.edit().putString("version", BuildConfig.VERSION_NAME).apply();
-
         }
         if (!version.equals(BuildConfig.VERSION_NAME)){
             deleteCache(this);

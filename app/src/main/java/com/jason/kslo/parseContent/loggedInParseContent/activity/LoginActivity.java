@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeButtonEnabled(true);
         setTitle(R.string.Login);
 

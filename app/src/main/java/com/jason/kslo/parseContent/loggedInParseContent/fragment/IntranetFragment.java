@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -16,10 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,7 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
-import com.jason.kslo.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForLoginFragment;
+import com.jason.kslo.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForIntranet;
 import com.jason.kslo.parseContent.loggedInParseContent.parseItem.LoginParseItem;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -47,27 +43,27 @@ import java.util.Map;
 import java.util.Objects;
 
 public class IntranetFragment extends Fragment {
-    ParseAdapterForLoginFragment parseAdapterForLoginFragment;
+    ParseAdapterForIntranet parseAdapterForIntranet;
     final ArrayList<LoginParseItem> loginParseItems = new ArrayList<>();
 
     static Map<String, String> Cookies;
-    String title, sender, date, detailUrl, time, booksCountReturn;
+
     View view;
     ProgressBar progressBar, intranetProgress;
     TextView intranetTitleString, pageDesc;
     SwipeRefreshLayout pullToRefresh;
-    int IntranetPage;
-    SharedPreferences pref;
-    int size, booksSize;
     RecyclerView recyclerView;
-    private static String finalUsername, finalPw;
+    Spinner IntranetFragmentTitle;
 
-    final String LOGIN_FORM_URL = "https://www.hkmakslo.edu.hk/it-school//php/login_v5.php3?ran=0.20496586848356468";
+    SharedPreferences pref;
+    static ArrayAdapter<? extends String> adapter;
+    int inboxSize, booksSize, binSize, IntranetPage;
+
+    final String LOGIN_FORM_URL = "https://www.hkmakslo.edu.hk/it-school//php/login_v5.php3?ran=";
     final String LOGIN_ACTION_URL = "https://www.hkmakslo.edu.hk/it-school/php/login_do.php3";
-    final String IntranetUrl = "https://www.hkmakslo.edu.hk/it-school/php/intra/index.php3?index.php3?folder=inbox&page=";
-
-    String Username, filePresent;
-    String Password, originPw;
+    final String IntranetUrl = "https://www.hkmakslo.edu.hk/it-school/php/intra/index.php3?folder=";
+    static String firstInboxSize, firstBinSize,folder = "inbox", finalUsername, finalPw;
+    String Username, filePresent, Password, originPw, title, sender, date, detailUrl, time, booksCountReturn;
 
     @SuppressWarnings("deprecation")
     @Nullable
@@ -75,15 +71,8 @@ public class IntranetFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_intranet, container, false);
 
-        pref = Objects.requireNonNull(getActivity()).getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         String renewed = pref.getString("Renewed","");
-
-        if (renewed.equals("true")){
-            Content content = new Content();
-            content.execute();
-            pref.edit().putString("Renewed","false").apply();
-        }
-
 
         pullToRefresh = view.findViewById(R.id.loginRefresh);
         pullToRefresh.setOnRefreshListener(() -> {
@@ -92,14 +81,12 @@ public class IntranetFragment extends Fragment {
             pullToRefresh.setRefreshing(true);
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            pullToRefresh.setColorSchemeColors(
-                    Objects.requireNonNull(getActivity()).getColor(android.R.color.holo_blue_dark),
-                    getActivity().getColor(android.R.color.holo_orange_dark),
-                    getActivity().getColor(android.R.color.holo_green_dark),
-                    getActivity().getColor(android.R.color.holo_red_dark)
-            );
-        }
+        pullToRefresh.setColorSchemeColors(
+                requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_green_dark),
+                requireActivity().getResources().getColor(android.R.color.holo_red_dark)
+        );
 
         Content content = new Content();
         content.execute();
@@ -107,13 +94,12 @@ public class IntranetFragment extends Fragment {
         return view;
     }
 
-    @SuppressWarnings({"deprecation", "EmptyMethod"})
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void, Void, Void> {
         @SuppressLint("SetTextI18n")
-        @SuppressWarnings("deprecation")
         @Override
         protected void onPreExecute() {
+
             pageDesc = view.findViewById(R.id.IntranetPageText);
 
             TextView showBtmMsg = view.findViewById(R.id.reachedBottomIntranet);
@@ -173,19 +159,47 @@ public class IntranetFragment extends Fragment {
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(layoutHorizontalManager);
 
-            parseAdapterForLoginFragment = new ParseAdapterForLoginFragment(loginParseItems, getContext());
-            recyclerView.setAdapter(parseAdapterForLoginFragment);
+            parseAdapterForIntranet = new ParseAdapterForIntranet(loginParseItems, IntranetFragment.this.getContext());
+            recyclerView.setAdapter(parseAdapterForIntranet);
 
             IntranetPage = 0;
             loginParseItems.clear();
 
             checkInternet();
 
+            IntranetFragmentTitle = view.findViewById(R.id.IntranetFragmentTitle);
+
+            IntranetFragmentTitle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                    switch (position) {
+                        case 1:
+                            folder = "inbox";
+                            IntranetPage = 0;
+                            loginParseItems.clear();
+                            Con con = new Con();
+                            con.execute();
+                            break;
+                        case 2:
+                            folder = "trash";
+                            IntranetPage = 0;
+                            loginParseItems.clear();
+                            con = new Con();
+                            con.execute();
+                            break;
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
             super.onPreExecute();
 
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
                 parseIntranet();
@@ -215,7 +229,6 @@ public class IntranetFragment extends Fragment {
 
                     int closestDueDate = Integer.parseInt(booksCountReturn);
 
-
                     if (closestDueDate < prevCount) {
                         prevCount = closestDueDate;
                         booksCountReturn = String.valueOf(closestDueDate);
@@ -225,7 +238,7 @@ public class IntranetFragment extends Fragment {
                     }
 
                 }
-                booksCountReturn = " (" + booksCountReturn + getString(R.string.DaysToDueDate) + ")";
+                booksCountReturn = " (" + booksCountReturn + requireActivity().getString(R.string.DaysToDueDate) + ")";
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -233,7 +246,6 @@ public class IntranetFragment extends Fragment {
             return null;
         }
         @SuppressLint("SetTextI18n")
-        @SuppressWarnings("deprecation")
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
@@ -242,7 +254,7 @@ public class IntranetFragment extends Fragment {
                     booksSize + " " + getString(R.string.Books) +
                     booksCountReturn);
 
-            parseAdapterForLoginFragment.notifyDataSetChanged();
+            parseAdapterForIntranet.notifyDataSetChanged();
 
             progressBar.setVisibility(View.GONE);
 
@@ -260,6 +272,11 @@ public class IntranetFragment extends Fragment {
                         Log.d("IntranetPages", "No. : " + IntranetPage);
                         floatingActionButton.setVisibility(View.VISIBLE);
 
+                        if (IntranetFragmentTitle.getSelectedItem().equals(0)) {
+                            folder = "inbox";
+                        } else if (IntranetFragmentTitle.getSelectedItem().equals(1)) {
+                            folder = "trash";
+                        }
 
                         Con con = new Con();
                         con.execute();
@@ -284,23 +301,41 @@ public class IntranetFragment extends Fragment {
                     }
                 }
             });
-        }
 
-        @SuppressWarnings("deprecation")
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
+            String[] folders = {
+                    requireActivity().getString(R.string.Intranet) + ": " +
+                            requireActivity().getString(R.string.IntranetMail) + " (" + firstInboxSize + ")",
+                    requireActivity().getString(R.string.IntranetMail) + " (" + firstInboxSize + ")",
+                    requireActivity().getString(R.string.RecyclingBin) + " (" + firstBinSize + ")"
+            };
+            adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, folders);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            IntranetFragmentTitle.setAdapter(adapter);
         }
     }
 
-
-    @SuppressWarnings({"deprecation", "EmptyMethod"})
     @SuppressLint("StaticFieldLeak")
     private class Con extends AsyncTask<Void, Void, Void> {
         @SuppressLint("SetTextI18n")
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            String selected = requireActivity().getString(R.string.IntranetMail);
+            if (folder.equals("inbox")) {
+                selected = requireActivity().getString(R.string.IntranetMail) +  " (" + firstInboxSize + ")";
+            } else if (folder.equals("trash")) {
+                selected = requireActivity().getString(R.string.RecyclingBin) +  " (" + firstBinSize + ")";
+            }
+
+            String[] folders = {
+                    requireActivity().getString(R.string.Intranet) + ": " + selected,
+                    requireActivity().getString(R.string.IntranetMail) + " (" + firstInboxSize + ")",
+                    requireActivity().getString(R.string.RecyclingBin) + " (" + firstBinSize + ")"
+            };
+            adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, folders);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            IntranetFragmentTitle.setAdapter(adapter);
+
             intranetProgress.setVisibility(View.VISIBLE);
 
             pageDesc.setText(getString(R.string.BorrowedBooks) + " " +
@@ -313,21 +348,25 @@ public class IntranetFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            if (IntranetPage < size) {
-                parseIntranet();
-                btmMsg = false;
-            } else {
-                btmMsg = true;
+            int size = 1;
+            if (folder.equals("inbox")) {
+                size = inboxSize;
+            } else if (folder.equals("trash")) {
+                size = binSize;
             }
+                if (IntranetPage < size) {
+                    parseIntranet();
+                    btmMsg = false;
+                } else {
+                    btmMsg = true;
+                }
 
             return null;
         }
-
-        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            parseAdapterForLoginFragment.notifyDataSetChanged();
+            parseAdapterForIntranet.notifyDataSetChanged();
             intranetProgress.setVisibility(View.GONE);
 
             if (btmMsg.equals(true)) {
@@ -383,23 +422,38 @@ public class IntranetFragment extends Fragment {
                     .execute();
             Cookies = response.cookies();
 
-            Document document = Jsoup.connect(IntranetUrl + IntranetPage)
+            Document document = Jsoup.connect(IntranetUrl + folder + "&page=" + IntranetPage)
+                    .cookies(response.cookies())
+                    .get();
+            Document inboxDocument = Jsoup.connect(IntranetUrl + "inbox" + "&page=" + IntranetPage)
+                    .cookies(response.cookies())
+                    .get();
+            Document binDocument = Jsoup.connect(IntranetUrl + "trash" + "&page=" + IntranetPage)
                     .cookies(response.cookies())
                     .get();
 
             Elements table = document.select("TR");
+            Elements inboxTable = inboxDocument.select("TR");
+            Elements binTable = binDocument.select("TR");
 
             int i;
+            int dateCount = 0, senderCount = 24, detailUrlCount = 15, fileCount = 26, readCount = 27;
 
-            int dateCount = 0, senderCount = 24, detailUrlCount = 15, fileCount = 26;
-
-            String firstSize = table.select("option")
+            firstInboxSize = inboxTable.select("option")
                     .eq(0)
                     .text();
+            firstBinSize = binTable.select("option")
+                    .eq(3)
+                    .text();
 
-            firstSize = firstSize.replaceAll(".+/","");
-            firstSize = firstSize.replace(")","");
-            size = (int) Math.ceil(Float.parseFloat(firstSize)/20);
+            firstInboxSize = firstInboxSize.replaceAll(".+/","");
+            firstInboxSize = firstInboxSize.replace(")","");
+            inboxSize = (int) Math.ceil(Float.parseFloat(firstInboxSize)/20);
+
+            firstBinSize = firstBinSize.replaceAll(".+/","");
+            firstBinSize = firstBinSize.replace(")","");
+            firstBinSize = firstBinSize.replace("回收筒(","");
+            binSize = (int) Math.ceil(Float.parseFloat(firstBinSize)/20);
 
             for (i = 0; i < 20; i++) {
 
@@ -438,10 +492,21 @@ public class IntranetFragment extends Fragment {
                     filePresent = "true";
                 }
 
+                String readMail = document
+                        .select("tbody")
+                        .select("td")
+                        .select("img")
+                        .eq(readCount)
+                        .attr("src");
+                if (readMail.contains("/it-school//images/themes/itschool/icon_read.gif")) {
+                    readMail = "true";
+                }
+
                 detailUrlCount = detailUrlCount + 1;
                 dateCount = dateCount + 2;
                 senderCount = senderCount + 16;
                 fileCount = fileCount + 5;
+                readCount = readCount + 5;
 
                 date = date + " " + time;
 
@@ -449,9 +514,10 @@ public class IntranetFragment extends Fragment {
 
                 Log.d("parseIntranet", "File: " + filePresent);
 
-                loginParseItems.add(new LoginParseItem(title,sender,date,detailUrl,filePresent));
+                loginParseItems.add(new LoginParseItem(title,sender,date,detailUrl,filePresent, readMail));
                 Log.d("Test", IntranetPage + " Title: " + title +
-                        " Sender: " + sender + " Time: " + date + ". Size: " + size + " detailUrl: " + detailUrl);
+                        " Sender: " + sender + " Time: " + date + ". Size: " + inboxSize + " detailUrl: " + detailUrl + " read: "
+                + readMail);
             }
 
             } catch (Exception e) {
@@ -460,7 +526,7 @@ public class IntranetFragment extends Fragment {
     }
     private boolean isNetworkAvailable() {
         ConnectivityManager manager =
-                (ConnectivityManager) Objects.requireNonNull(getActivity())
+                (ConnectivityManager) requireActivity()
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         // Network is present and connected
@@ -488,5 +554,9 @@ public class IntranetFragment extends Fragment {
 
     public static Map<String, String> getCookies() {
         return Cookies;
+    }
+
+    public static String getFolder() {
+        return folder;
     }
 }

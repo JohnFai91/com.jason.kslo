@@ -1,66 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardView_intranet"
+        app:cardCornerRadius="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp">
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="12dp">
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView_intranet"
-                    android:layout_margin="12dp"
-                    android:layout_width="match_parent"
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlSymmetry">
+        <TextView
+                android:id="@+id/intranetTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"/>
+
+        <ImageButton
+                android:id="@+id/IntranetMoreInfo"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/intranetTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_more_vert"
+                android:contentDescription="@string/MoreInfo"/>
+
+        <TextView
+                android:layout_below="@id/intranetTitle"
+                android:textSize="12sp"
+                android:id="@+id/intranetDate"
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"/>
+
+        <TextView
+                android:layout_alignTop="@id/intranetDate"
+                android:textAlignment="gravity"
+                android:textSize="15sp"
+                android:textColor="@android:color/holo_blue_light"
+                android:id="@+id/intranetSender"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@id/intranetDate">
+            <ImageView
+                    android:id="@+id/attachmentIndicator"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="8dp">
+                    app:srcCompat="@drawable/ic_attachment_dark"
+                    android:contentDescription="@string/File"/>
 
-                <TextView
-                        android:id="@+id/intranetTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:textSize="20sp"
-                        android:layout_margin="12dp"/>
+            <ImageView
+                    android:id="@+id/IntranetReadIndicator"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_unread"
+                    android:contentDescription="@string/File"/>
+        </LinearLayout>
+        <View
+                android:layout_below="@id/intranetDate"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/holo_blue_bright"/>
 
-                <TextView
-                        android:textSize="12sp"
-                        android:id="@+id/intranetDate"
-                        android:gravity="bottom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"/>
-
-                <TextView
-                        android:textAlignment="gravity"
-                        android:textSize="15sp"
-                        android:textColor="@android:color/holo_blue_light"
-                        android:id="@+id/intranetSender"
-                        android:gravity="end"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"/>
-
-                <ImageView
-                        android:visibility="gone"
-                        android:id="@+id/attachmentIndicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_attachment_dark"
-                        android:layout_marginTop="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:contentDescription="@string/File"/>
-
-                <View
-                        android:layout_marginTop="130dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@android:color/holo_blue_bright"/>
-            </androidx.cardview.widget.CardView>
-
-</RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
