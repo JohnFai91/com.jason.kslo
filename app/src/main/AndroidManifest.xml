@@ -15,6 +15,7 @@
             android:name=".App"
             android:allowBackup="true"
             android:configChanges="keyboardHidden|screenSize"
+            android:extractNativeLibs="true"
             android:fullBackupContent="true"
             android:hardwareAccelerated="true"
             android:icon="@mipmap/ic_launcher"
@@ -24,8 +25,7 @@
             android:supportsRtl="true"
             android:theme="@style/SplashScreenTheme"
             android:usesCleartextTraffic="true"
-            tools:targetApi="m"
-            android:extractNativeLibs="true">
+            tools:targetApi="m">
         <activity
                 android:name=".main.activity.MainActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize">
@@ -136,8 +136,8 @@
         </activity>
         <activity
                 android:name=".main.changelog.ChangelogActivity"
-                android:configChanges="keyboardHidden|screenSize"
-                android:screenOrientation="userPortrait"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:screenOrientation="user"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
                 <action android:name="android.intent.category.LAUNCHER"/>
@@ -164,6 +164,13 @@
                 android:authorities="${applicationId}.customactivityoncrashinitprovider"
                 android:exported="false"
                 android:initOrder="101"/>
+        <activity android:name=".parseContent.defaultParseContent.activity.DownloadedFiles"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:theme="@style/AppTheme.Actionbar">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

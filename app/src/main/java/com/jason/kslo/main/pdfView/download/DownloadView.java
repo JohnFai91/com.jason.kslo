@@ -63,61 +63,66 @@ public class DownloadView extends AppCompatActivity {
 
         origin = getIntent().getStringExtra("origin");
 
-        if (origin.equals("UpdateNotice")) {
-            download = "true";
-            new DownloadFileFromURL().execute(file_url);
-        } else if (origin.equals("UpdateSchedule")) {
-            download = "true";
-            new DownloadFileFromURL().execute(file_url);
-        } else {
-            if (getSharedPreferences("MyPref", MODE_PRIVATE).getString("DownloadAgainQuery", "true")
-                    .equals("true")) {
-                if (file.exists()) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DownloadView.this);
-                    builder.setTitle(getString(R.string.DownloadAgainQuery))
-                            .setMessage(getString(R.string.DownloadedMsg, fileName))
-                            .setCancelable(true)
-                            .setNegativeButton(getString(R.string.Download), (dialog, which) -> {
-                                download = "true";
-                                dialog.dismiss();
-                                new DownloadFileFromURL().execute(file_url);
-                            })
-                            .setPositiveButton(R.string.Open, (dialog, which) -> {
-                                download = "false";
-                                dialog.dismiss();
-                                new DownloadFileFromURL().execute(file_url);
-                            })
-
-                            .setNeutralButton((R.string.Share), (dialog, which) -> {
-                                Uri path;
-                                path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
-                                        file);
-                                Intent intent = ShareCompat.IntentBuilder.from(this)
-                                        .setType("application/pdf")
-                                        .setStream(path)
-                                        .setChooserTitle("Choose bar")
-                                        .createChooserIntent()
-                                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                dialog.dismiss();
-                                onBackPressed();
-                                startActivity(intent);
-                            })
-
-                            .setOnCancelListener(dialogInterface -> {
-                                builder.create().dismiss();
-                                onBackPressed();
-                            });
-                    //Creating dialog box
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                } else {
-                    download = "true";
-                    new DownloadFileFromURL().execute(file_url);
-                }
-            } else {
+        switch (origin) {
+            case "UpdateNotice":
+            case "UpdateSchedule":
                 download = "true";
                 new DownloadFileFromURL().execute(file_url);
-            }
+                break;
+            case "OpenFile":
+                download = "false";
+                new DownloadFileFromURL().execute(file_url);
+                break;
+            default:
+                if (getSharedPreferences("MyPref", MODE_PRIVATE).getString("DownloadAgainQuery", "true")
+                        .equals("true")) {
+                    if (file.exists()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DownloadView.this);
+                        builder.setTitle(getString(R.string.DownloadAgainQuery))
+                                .setMessage(getString(R.string.DownloadedMsg, fileName))
+                                .setCancelable(true)
+                                .setNegativeButton(getString(R.string.Download), (dialog, which) -> {
+                                    download = "true";
+                                    dialog.dismiss();
+                                    new DownloadFileFromURL().execute(file_url);
+                                })
+                                .setPositiveButton(R.string.Open, (dialog, which) -> {
+                                    download = "false";
+                                    dialog.dismiss();
+                                    new DownloadFileFromURL().execute(file_url);
+                                })
+
+                                .setNeutralButton((R.string.Share), (dialog, which) -> {
+                                    Uri path;
+                                    path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
+                                            file);
+                                    Intent intent = ShareCompat.IntentBuilder.from(this)
+                                            .setType("application/pdf")
+                                            .setStream(path)
+                                            .setChooserTitle("Choose bar")
+                                            .createChooserIntent()
+                                            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                    dialog.dismiss();
+                                    onBackPressed();
+                                    startActivity(intent);
+                                })
+
+                                .setOnCancelListener(dialogInterface -> {
+                                    builder.create().dismiss();
+                                    onBackPressed();
+                                });
+                        //Creating dialog box
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    } else {
+                        download = "true";
+                        new DownloadFileFromURL().execute(file_url);
+                    }
+                } else {
+                    download = "false";
+                    new DownloadFileFromURL().execute(file_url);
+                }
+                break;
         }
     }
     /**
@@ -387,7 +392,7 @@ public class DownloadView extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        getMenuInflater().inflate(R.menu.actionbar_files_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override

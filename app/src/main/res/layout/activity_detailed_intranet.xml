@@ -2,7 +2,7 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -20,16 +20,24 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="20sp"
-                                android:paddingBottom="20dp"
                                 android:textColor="@android:color/holo_blue_light"
-                                android:layout_margin="15dp"
-                                android:textIsSelectable="true"/>
+                                android:textIsSelectable="true"
+                                android:layout_marginHorizontal="15dp"
+                                android:layout_marginTop="15dp"/>
+
+                        <TextView
+                                android:id="@+id/detailedIntranetReceiver"
+                                android:textColor="@color/blue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/detailedIntranetTitle"
+                                android:layout_margin="15dp"/>
 
                         <TextView
                                 android:layout_margin="15dp"
                                 android:textSize="12sp"
                                 android:id="@+id/detailedIntranetDate"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="gravity"
                                 android:gravity="start"
@@ -40,12 +48,13 @@
                                 android:textSize="15sp"
                                 android:textColor="@android:color/holo_blue_light"
                                 android:id="@+id/detailedIntranetAuthor"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="gravity"
-                                android:gravity="end"
+                                android:layout_alignParentEnd="true"
                                 android:layout_alignParentBottom="true"
-                                android:textIsSelectable="true"/>
+                                android:textIsSelectable="true"
+                                tools:ignore="RelativeOverlap"/>
             </RelativeLayout>
                 <TextView
                         android:textSize="18sp"

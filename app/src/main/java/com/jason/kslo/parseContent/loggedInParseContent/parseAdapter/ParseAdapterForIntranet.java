@@ -63,7 +63,7 @@ public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterFo
         holder.title.setText(parseItem.getTitle());
         holder.sender.setText(parseItem.getSender());
         holder.date.setText(parseItem.getDate());
-
+        holder.size.setText(parseItem.getSize());
         holder.more.setOnClickListener(view -> showPopup(view,position));
 
          viewHolder = holder;
@@ -88,9 +88,7 @@ public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterFo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final TextView title;
-        final TextView date;
-        final TextView sender;
+        final TextView title, date, sender, size;
         final ImageView file, readIndicator;
         final ImageButton more;
 
@@ -102,6 +100,7 @@ public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterFo
             file = itemView.findViewById(R.id.attachmentIndicator);
             more = itemView.findViewById(R.id.IntranetMoreInfo);
             readIndicator = itemView.findViewById(R.id.IntranetReadIndicator);
+            size = itemView.findViewById(R.id.intranetSize);
 
             itemView.setOnClickListener(this);
         }
@@ -139,7 +138,7 @@ public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterFo
                         showDeleteDialog();
                         return true;
 
-                    case R.id.intranet_action_popup_star:
+                    case R.id.intranet_action_popup_move:
 
                         Log.d("Intranet", "star: " + parseItem.getDetailUrl());
                         showMoveDialog();

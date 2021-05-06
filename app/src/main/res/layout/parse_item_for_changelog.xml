@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
+        android:id="@+id/changelogCardView"
+        app:cardBackgroundColor="@android:color/transparent"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.cardview.widget.CardView
-            android:id="@+id/changelogCardView"
-            app:cardBackgroundColor="@android:color/transparent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp">
+        <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <View
-                android:id="@+id/changelogLineIdentifier"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginHorizontal="10dp"
-                android:background="@android:color/holo_blue_light"/>
+                <View
+                        android:id="@+id/changelogLineIdentifier"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@android:color/holo_blue_light"/>
 
-        <ImageView
-                android:id="@+id/changelogArrow"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_up"
-                android:contentDescription="@string/Up"/>
+                <ImageView
+                        android:layout_marginBottom="50dp"
+                        android:id="@+id/changelogArrow"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_up"
+                        android:contentDescription="@string/Up"/>
 
-        <TextView
-                android:id="@+id/leftChangelog"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="20dp"
-                android:textIsSelectable="true"/>
-        <TextView
-                android:id="@+id/rightChangelog"
-                android:layout_gravity="end"
-                android:layout_width="120dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="20dp"
-                android:layout_height="wrap_content"
-                android:textIsSelectable="true"/>
-        <TextView
-                android:id="@+id/changelogVersion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="90dp"
-                android:layout_marginBottom="30dp"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:textIsSelectable="true"/>
-    </androidx.cardview.widget.CardView>
-
-</RelativeLayout>
+                <TextView
+                        android:layout_toStartOf="@id/changelogArrow"
+                        android:id="@+id/leftChangelog"
+                        android:layout_marginStart="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:textIsSelectable="true"/>
+                <TextView
+                        android:layout_toEndOf="@id/changelogArrow"
+                        android:id="@+id/rightChangelog"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        android:textIsSelectable="true"/>
+                <TextView
+                        android:layout_below="@id/changelogArrow"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/changelogVersion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textIsSelectable="true"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

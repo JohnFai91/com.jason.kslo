@@ -13,14 +13,16 @@ public class LoginParseItem {
     private String content;
     private String filePresent;
     private String read;
+    private String size;
 
-    public LoginParseItem(String title, String sender, String date, String detailUrl, String filePresent, String read) {
+    public LoginParseItem(String title, String sender, String date, String detailUrl, String filePresent, String read, String size) {
         this.title = title;
         this.sender = sender;
         this. date = date;
         this.detailUrl = detailUrl;
         this.filePresent = filePresent;
         this.read = read;
+        this.size = size;
     }
 
     public LoginParseItem(String content) {
@@ -108,5 +110,13 @@ public class LoginParseItem {
     @SuppressWarnings("unused")
     public void setRead(String read) {
         this.read = read;
+    }
+
+    public String getSize() {
+        return size;
+    }
+    @SuppressWarnings("unused")
+    public void setSize(String size) {
+        this.size = size;
     }
 }

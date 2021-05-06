@@ -50,21 +50,21 @@ public class ParseAdapterForChangelog extends RecyclerView.Adapter<ParseAdapterF
             holder.separator.setVisibility(View.VISIBLE);
             holder.version.setTextSize(18);
                 if (parseItem.getTitle().contains("Stable")) {
-                    holder.arrow.setImageResource(R.drawable.selected);
+                    holder.arrow.setImageResource(R.drawable.ic_up);
                     holder.separator.setBackgroundColor(getOrange());
 
                     holder.version.setTextColor(getOrange());
                 } else if (parseItem.getTitle().contains("Beta")){
                     holder.separator.setBackgroundColor(getGreen());
-                    holder.arrow.setImageResource(R.drawable.green_circle);
+                    holder.arrow.setImageResource(R.drawable.ic_up_green);
 
                     holder.version.setTextColor(getGreen());
                 } else if (parseItem.getTitle().contains("Alpha")){
                     holder.separator.setBackgroundColor(getRed());
-                    holder.arrow.setImageResource(R.drawable.red_circle);
+                    holder.arrow.setImageResource(R.drawable.ic_up_red);
 
                     holder.version.setTextColor(getRed());
-                } else if (parseItem.getTitle().contains(getFuture())) {
+                } else if (parseItem.getTitle().contains(cardView.getContext().getString(R.string.Future))) {
                     holder.arrow.setImageResource(R.drawable.ic_up_blue);
                     holder.separator.setBackgroundColor(getBlue());
 
@@ -72,7 +72,7 @@ public class ParseAdapterForChangelog extends RecyclerView.Adapter<ParseAdapterF
                     holder.descL.setTextColor(getBlue());
                     holder.descR.setTextColor(getBlue());
                 } else {
-                    holder.arrow.setImageResource(R.drawable.unselected);
+                    holder.arrow.setImageResource(R.drawable.ic_up_blue);
                 }
         } else {
             holder.separator.setVisibility(View.GONE);

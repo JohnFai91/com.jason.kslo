@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,12 +19,18 @@ import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
 import com.jason.kslo.autoUpdate.UpdateChecker;
 import com.jason.kslo.intro.SlideActivity;
+import com.jason.kslo.parseContent.defaultParseContent.activity.DownloadedFiles;
 import com.jason.kslo.main.activity.SettingsActivity;
 import com.jason.kslo.main.changelog.ChangelogActivity;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
 import com.jason.kslo.main.pdfView.download.PdfViewSchedule;
 import com.jason.kslo.main.pdfView.PdfViewSchoolCal;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
+import java.util.Random;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.jason.kslo.App.updateLanguage;
@@ -34,7 +41,8 @@ public class AboutFragment extends Fragment {
     SharedPreferences pref;
     String locale,theme,versionVar;
     TextView version,Locale,ThemeText,desc;
-    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp;
+    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp,downloadedFiles;
+    ImageView schoolIcon;
 
     @Nullable
     @Override
@@ -59,6 +67,8 @@ public class AboutFragment extends Fragment {
             CheckForUpdate = view.findViewById(R.id.CheckForUpdate);
             CrashApp = view.findViewById(R.id.CrashApp);
             desc = view.findViewById(R.id.description);
+            schoolIcon = view.findViewById(R.id.School_Logo);
+            downloadedFiles = view.findViewById(R.id.showDownloadedFiles);
 
             Content content = new Content();
             content.run();
@@ -73,7 +83,37 @@ public class AboutFragment extends Fragment {
 
     class Content implements Runnable{
         @Override
-        public void run() {
+        public void run() {// create an instance of random.
+            Random random = new Random();
+            String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            alphabet = alphabet + alphabet.toLowerCase(java.util.Locale.ROOT);
+            // convert the string to a char array
+            char[] alphabetArr = alphabet.toCharArray();
+            //set the max number for the int to be the length of the string.
+
+            StringBuilder randomCode = new StringBuilder();
+            for (int i = 0; i < 30; i++) {
+                int randomInt = random.nextInt(alphabet.length());
+                   randomCode.append(alphabetArr[randomInt] + randomInt);
+            }
+
+            Picasso.get().load("https://opengraph.githubassets.com/" + randomCode
+                    + "/johnfai91/com.jason.kslo").memoryPolicy(MemoryPolicy.NO_STORE,MemoryPolicy.NO_CACHE).into(schoolIcon, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                    schoolIcon.setOnClickListener(view -> {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/JohnFai91/com.jason.kslo"));
+                        startActivity(browserIntent);
+                    });
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Picasso.get().load(R.drawable.school_logo).into(schoolIcon);
+                }
+            });
+
             version.setText(versionVar);
             Locale.setText(locale);
             ThemeText.setText(theme);
@@ -129,6 +169,8 @@ public class AboutFragment extends Fragment {
             CrashApp.setOnClickListener(view19 -> {
                     throw new RuntimeException(getString(R.string.YouPressedTheCrashAppButton));
             });
+
+            downloadedFiles.setOnClickListener(view -> startActivity(new Intent(getActivity(), DownloadedFiles.class)));
         }
     }
 }

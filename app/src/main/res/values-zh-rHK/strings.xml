@@ -155,7 +155,17 @@
         "詢問再次下載文件"
     </string>
     <string name="changelogDescRv.1.1.0_beta">
-        "分享文件"
+        "重新設計「儀表板」 (放棄 webview)\n"
+        "完全除去 webview\n"
+        "解決每次開啟新畫面後出現重複畫面\n"
+        "改變程式顏色 (由用戶建議)\n"
+        "改去底部訪問\n"
+        "到達底部時重新加載 (相簿及內聯)\n"
+        "增加滑輪與列表之間的空隙\n"
+        "增加「最新消息」和「內聯」字體準確度\n"
+        "解決安桌11文件問題\n"
+        "解決觀看PDF錯誤(2用家反映)\n"
+        "支持少 RAM 手機"
     </string>
 
     <string name="changelogDescLv.1.1.1">
@@ -166,8 +176,19 @@
         "內聯活動(刪除)"
     </string>
     <string name="changelogDescRv.1.1.1">
-        "Share files"
+        "分享文件"
     </string>
+
+    <string name="changelogDescRv.1.1.2">
+        "更多資訊 (郵件大小, 收件人…)\n"
+        "「儀表板」 由今天的位置開始"
+    </string>
+    <string name="changelogDescLv.1.1.2">
+        "顯示已下載文件\n"
+        "「儀表板」有一個新圖片\n"
+        "「登入」由用戶名稱開始，\"Enter\"鍵會到下一個箱子"
+    </string>
+
 
     <string name="changelogDescAlpha">
         "Alpha 狀態:\n"
@@ -196,8 +217,6 @@
     </string>
     <string name="changelogDescRFuture">
         "支持大畫面\n"
-        "顯示已下載文件\n"
-        "更多內聯資訊(郵件大小，收件者。。。)\n"
         "更多儀表板動作(標示完成，改變次序。。。)"
     </string>
 
@@ -281,4 +300,6 @@
     <string name="Class">班別</string>
     <string name="Homework">功課</string>
     <string name="Confirm">確定</string>
+    <string name="Today">今日</string>
+    <string name="DownloadedFiles">已下載文件</string>
 </resources>

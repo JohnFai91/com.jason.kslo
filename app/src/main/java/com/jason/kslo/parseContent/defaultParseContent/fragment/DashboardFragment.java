@@ -1,19 +1,17 @@
 package com.jason.kslo.parseContent.defaultParseContent.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-import androidx.fragment.app.DialogFragment;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,17 +21,17 @@ import biweekly.component.VEvent;
 import biweekly.io.text.ICalReader;
 import biweekly.property.*;
 import com.jason.kslo.R;
-import com.jason.kslo.autoUpdate.UpdateChecker;
-import com.jason.kslo.main.activity.MainActivity;
-import com.jason.kslo.main.activity.SettingsActivity;
-import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDashboard;
 import com.jason.kslo.parseContent.parseItem.DashboardParseItem;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -43,17 +41,19 @@ public class DashboardFragment extends Fragment {
     File file;
     ICalReader reader;
     ParseAdapterForDashboard parseAdapterForDashboard;
-    final ArrayList<DashboardParseItem> ParseItems = new ArrayList<>();
+    final static ArrayList<DashboardParseItem> ParseItems = new ArrayList<>();
+    final ArrayList<Date> dates = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     SharedPreferences sharedPreferences;
     String selectedClass;
     Spinner chooseClass;
+    static String icsPositionStr;
+    static int icsPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        checkUpdate();
 
         Content content = new Content();
         content.execute();
@@ -61,11 +61,13 @@ public class DashboardFragment extends Fragment {
     }
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
+        DateFormat df;
+        RecyclerView recyclerView;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            RecyclerView recyclerView = v.findViewById(R.id.DashboardFragmentRecyclerView);
+            recyclerView = v.findViewById(R.id.DashboardFragmentRecyclerView);
             recyclerView.setHasFixedSize(true);
             LinearLayoutManager layoutVerticalManager
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -125,16 +127,9 @@ public class DashboardFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
             downloadIcs();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-
 
             ICalendar ical;
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            df = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
             try {
                 reader = new ICalReader(new File(requireActivity().getCacheDir() + "/" + "Hw.ics"));
@@ -142,7 +137,7 @@ public class DashboardFragment extends Fragment {
                 e.printStackTrace();
             }
             try {
-            while ((ical = reader.readNext()) != null) {
+                while ((ical = reader.readNext()) != null) {
 
                     for (VEvent event : ical.getEvents()) {
                         DateStart dateStart = event.getDateStart();
@@ -168,10 +163,10 @@ public class DashboardFragment extends Fragment {
                                 finalSummaryStr = finalSummaryStr + "]";
                             }
 
-                            summaryStr = finalSummaryStr+ " " + summaryStr + getString(R.string.AssignedBySystem) ;
+                            summaryStr = finalSummaryStr+ " " + summaryStr + getString(R.string.AssignedBySystem);
                         }
 
-                        String urlStr = null, desc = null, assignmentCode = null, courseCode = null;
+                        String urlStr = null, desc = null, assignmentCode = null, courseCode;
                         Url url = event.getUrl();
                         Description description = event.getDescription();
                         if (url != null) {
@@ -197,6 +192,7 @@ public class DashboardFragment extends Fragment {
                                 urlStr = "https://hkedcity.instructure.com/courses/" + courseCode + "/assignments/" + assignmentCode;
                             }
                         }
+                        String finalDescStr;
                         if (description != null) {
                             desc = description.getValue();
                         }
@@ -207,15 +203,26 @@ public class DashboardFragment extends Fragment {
                             String finalDateStart = dateStartStr.substring(0, 11);
                             String finalDateEnd = dateEndStr.substring(0, 11);
 
+                            try {
+                                Date date = df.parse(dateStartStr);
+                                dates.add(date);
+                                Log.d("Dates", "ArrayList: " + date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
                             if (dateStartStr.equals(dateEndStr)) {
                                 if (summaryStr != null) {
-                                    ParseItems.add(new DashboardParseItem(dateEndStr, summaryStr, desc, urlStr));
-                                    Log.d("Dashboard", "ParseIcs: " + dateEndStr + summaryStr + " Url: " + urlStr +
+                                    ParseItems.add(new DashboardParseItem(dateStartStr, summaryStr, desc, urlStr));
+                                    Log.d("Dashboard", "ParseIcs: " + dateStartStr + summaryStr + " Url: " + urlStr +
                                             " desc: " + desc);
                                 }
                             } else {
-                                ParseItems.add(new DashboardParseItem(dateStartStr + "-" +dateEndStr, summaryStr, desc, urlStr));
-                                Log.d("Dashboard", "ParseIcs: " + dateStartStr + "-" +dateEndStr + summaryStr + " Url: " +
+                                if (finalDateStart.equals(finalDateEnd)) {
+                                    dateEndStr = dateEndStr.replace(finalDateEnd,"");
+                                }
+                                ParseItems.add(new DashboardParseItem(dateStartStr + "-" + dateEndStr, summaryStr, desc, urlStr));
+                                Log.d("Dashboard", "ParseIcs: " + dateStartStr + "-" + dateEndStr + summaryStr + " Url: " +
                                         urlStr + " desc: " + desc);
                             }
                         }
@@ -224,11 +231,31 @@ public class DashboardFragment extends Fragment {
                 if (reader != null) {
                     reader.close();
                 }
-
-                Collections.reverse(ParseItems);
-                parseAdapterForDashboard.notifyDataSetChanged();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+
+            Collections.reverse(dates);
+            try {
+                Date finalDate = Calendar.getInstance().getTime();
+                String finalDateStr = df.format(finalDate);
+                finalDate = df.parse(finalDateStr);
+                getDateNearest(dates, finalDate);
+                Log.d("Testing", "currentDate: " + finalDate + " getDateNearest: " + "isComparing " + icsPositionStr);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Collections.reverse(ParseItems);
+            parseAdapterForDashboard.notifyDataSetChanged();
+            if (getIcsPosition() > 4) {
+                recyclerView.scrollToPosition(getIcsPosition() - 4);
             }
             swipeRefreshLayout.setRefreshing(false);
         }
@@ -257,16 +284,23 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
-
-    public void checkUpdate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (!requireActivity().getPackageManager().canRequestPackageInstalls()) {
-                InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
-                installUnknownAppsDialog.setCancelable(false);
-                installUnknownAppsDialog.show(requireActivity().getSupportFragmentManager(), "ChangelogDialog");
-            } else {
-                UpdateChecker.checkForDialog(getContext());
+    private void getDateNearest(List<Date> dates, Date targetDate){
+        int position = 0;
+        for (Date date : dates) {
+            if (date.compareTo(targetDate) <= 0) {
+                icsPositionStr = dates.get(position).toString();
+                icsPosition = position;
+                return;
             }
+            position = position + 1;
         }
+    }
+
+    public static String getIcsPositionStr() {
+        return icsPositionStr;
+    }
+
+    public static int getIcsPosition() {
+        return icsPosition;
     }
 }

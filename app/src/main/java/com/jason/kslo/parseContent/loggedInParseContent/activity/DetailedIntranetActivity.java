@@ -34,8 +34,8 @@ public class DetailedIntranetActivity extends AppCompatActivity {
     private ParseAdapterForDetailedIntranetFile fileAdapter;
     private final ArrayList<SecondLoginParseItem> secondLoginParseItems = new ArrayList<>();
 
-    String text, firstP, lastP;
-    TextView textView;
+    String text, firstP, lastP, receiverTxt;
+    TextView textView, receiver;
     Document doc, fileDoc;
     RecyclerView IntranetRecyclerFile;
     String detailUrl;
@@ -78,10 +78,10 @@ public class DetailedIntranetActivity extends AppCompatActivity {
     @SuppressWarnings({"deprecation"})
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
-        @SuppressWarnings("deprecation")
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            receiver = findViewById(R.id.detailedIntranetReceiver);
             textView = findViewById(R.id.detailedIntranetText);
 
             progressBar = findViewById(R.id.detailedIntranetProgressBar);
@@ -107,18 +107,21 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
                 try {
-                    Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/readmail.php3")
-                            .cookies(Cookies)
-                            .method(Connection.Method.POST)
-                            .data("folder", "inbox")
-                            .data("order_by", "date")
-                            .data("warned", "")
-                            .data("formaction", "")
-                            .data("sorting_method", "desc")
-                            .data("mail_id", detailUrl)
-                            .data("postURL", "index.php3?&folder=inbox&page=")
-                            .data("isMoveMail", "1")
-                            .post();
+                    Document readMail = Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/readmail.php3")
+                                            .cookies(Cookies)
+                                            .method(Connection.Method.POST)
+                                            .data("folder", "inbox")
+                                            .data("order_by", "date")
+                                            .data("warned", "")
+                                            .data("formaction", "")
+                                            .data("sorting_method", "desc")
+                                            .data("mail_id", detailUrl)
+                                            .data("postURL", "index.php3?&folder=inbox&page=")
+                                            .data("isMoveMail", "1")
+                                            .post();
+                    receiverTxt = readMail.select("font").eq(6).text();
+                    Log.d("detailedIntranet", "readMail html: " + readMail.select("font").eq(6).text());
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -132,6 +135,7 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
+            receiver.setText(receiverTxt);
 
             if (text.contains("<script language=\"javascript\">&nbsp;")) {
                 text = text.replace(text.substring(text.indexOf("<script language=\"javascript\">&nbsp;")), "");
@@ -157,7 +161,6 @@ public class DetailedIntranetActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressLint("LongLogTag")
     private void parseDetailedFileIntranet(String mailId) {
         try{
             fileDoc = Jsoup.connect("https://www.hkmakslo.edu.hk/it-school/php/intra/mailattach.php?mail_id=" + mailId + "&encode=utf-8&1616736986")
