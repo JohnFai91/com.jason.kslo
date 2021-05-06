@@ -3,7 +3,9 @@ package com.jason.kslo.parseContent.loggedInParseContent.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +53,18 @@ public class LoginActivity extends AppCompatActivity {
 
             username.setText(pref.getString("Username",""));
             password.setText(pref.getString("Password",""));
+
+            username.requestFocus();
+
+            password.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                    if (i == KeyEvent.KEYCODE_ENTER) {
+                        login.performClick();
+                    }
+                    return false;
+                }
+            });
 
             login.setOnClickListener(view -> {
 

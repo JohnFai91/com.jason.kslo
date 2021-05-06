@@ -21,7 +21,6 @@ import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.HttpUtils;
 import com.jason.kslo.main.activity.SettingsActivity;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -149,7 +148,7 @@ public class PdfViewFeaturedNotice extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        getMenuInflater().inflate(R.menu.actionbar_files_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override

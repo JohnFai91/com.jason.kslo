@@ -24,6 +24,7 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
+import com.jason.kslo.autoUpdate.UpdateChecker;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.fragment.AboutFragment;
 import com.jason.kslo.parseContent.defaultParseContent.fragment.DashboardFragment;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme_MaterialComponents);
         updateLanguage(this);
         setContentView(R.layout.activity_main);
+        checkUpdate();
 
         view = findViewById(android.R.id.content);
         contextOfApplication = MainActivity.this;
@@ -355,5 +357,17 @@ public class MainActivity extends AppCompatActivity {
 
     public static int getNewMsgSize() {
         return NewMsgSize;
+    }
+
+    public void checkUpdate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (!getPackageManager().canRequestPackageInstalls()) {
+                InstallUnknownAppsDialog installUnknownAppsDialog = new InstallUnknownAppsDialog();
+                installUnknownAppsDialog.setCancelable(false);
+                installUnknownAppsDialog.show(getSupportFragmentManager(), "ChangelogDialog");
+            } else {
+                UpdateChecker.checkForDialog(this);
+            }
+        }
     }
 }

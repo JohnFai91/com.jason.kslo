@@ -437,7 +437,7 @@ public class IntranetFragment extends Fragment {
             Elements binTable = binDocument.select("TR");
 
             int i;
-            int dateCount = 0, senderCount = 24, detailUrlCount = 15, fileCount = 26, readCount = 27;
+            int dateCount = 0, senderCount = 24, detailUrlCount = 15, fileCount = 26, readCount = 27, sizeCount = 30;
 
             firstInboxSize = inboxTable.select("option")
                     .eq(0)
@@ -488,6 +488,11 @@ public class IntranetFragment extends Fragment {
                         .eq(fileCount)
                         .attr("src");
 
+                String size = document
+                        .select("font")
+                        .eq(sizeCount)
+                        .text();
+
                 if (filePresent.contains("attachment.gif")) {
                     filePresent = "true";
                 }
@@ -505,6 +510,7 @@ public class IntranetFragment extends Fragment {
                 detailUrlCount = detailUrlCount + 1;
                 dateCount = dateCount + 2;
                 senderCount = senderCount + 16;
+                sizeCount = sizeCount + 16;
                 fileCount = fileCount + 5;
                 readCount = readCount + 5;
 
@@ -512,12 +518,10 @@ public class IntranetFragment extends Fragment {
 
                 detailUrl = detailUrl.substring(22,30);
 
-                Log.d("parseIntranet", "File: " + filePresent);
-
-                loginParseItems.add(new LoginParseItem(title,sender,date,detailUrl,filePresent, readMail));
+                loginParseItems.add(new LoginParseItem(title,sender,date,detailUrl,filePresent, readMail, size));
                 Log.d("Test", IntranetPage + " Title: " + title +
                         " Sender: " + sender + " Time: " + date + ". Size: " + inboxSize + " detailUrl: " + detailUrl + " read: "
-                + readMail);
+                + readMail + " MailSize: " +  size);
             }
 
             } catch (Exception e) {

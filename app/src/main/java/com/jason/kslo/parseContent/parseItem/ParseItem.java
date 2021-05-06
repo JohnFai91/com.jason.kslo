@@ -8,19 +8,21 @@ public class ParseItem {
     private String file;
     private String fileName;
     private String date;
+    private String size;
+    private long fileSize;
+    private long fileDate;
+
+    public ParseItem(String fileName, long fileSize, String date) {
+        this.fileName = fileName;
+        this.fileSize = fileSize;
+        this.date = date;
+    }
 
     public ParseItem(String imgURL, String title, String count, String detailUrl){
         this.imgURL = imgURL;
         this.title = title;
         this.detailUrl = detailUrl;
         this.count = count;
-    }
-
-    @SuppressWarnings("unused")
-    public ParseItem(String imgURL, String title, String detailUrl){
-        this.imgURL = imgURL;
-        this.title = title;
-        this.detailUrl = detailUrl;
     }
 
     public ParseItem(String imgURL){
@@ -78,5 +80,37 @@ public class ParseItem {
     @SuppressWarnings("unused")
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getDate() {
+        return date;
+    }
+    @SuppressWarnings("unused")
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getSize() {
+        return size;
+    }
+    @SuppressWarnings("unused")
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+    @SuppressWarnings("unused")
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public long getFileDate() {
+        return fileDate;
+    }
+    @SuppressWarnings("unused")
+    public void setFileDate(long fileDate) {
+        this.fileDate = fileDate;
     }
 }

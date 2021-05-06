@@ -28,5 +28,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/DateExample"/>
+
+        <RelativeLayout
+                android:id="@+id/DashboardCardViewTodayView"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/DashboardCardViewDate">
+            <TextView
+                    android:textColor="@color/red"
+                    android:id="@+id/DashboardCardViewToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/Today"/>
+            <View
+                    android:layout_below="@id/DashboardCardViewToday"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/red"/>
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

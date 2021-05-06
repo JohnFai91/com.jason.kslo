@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
@@ -21,17 +22,17 @@ import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 
-import java.util.Objects;
-
 public class SchoolWebsiteFragment extends Fragment {
     View view;
-    RelativeLayout viewPagerSwitcher;
+    Button viewPagerSwitcher;
     ViewPager2 viewPager;
     private static int size;
     private static String countReturn;
     TextView title, text;
     String originalPw,finalUsername;
     int prevMenuItem;
+    String[] Title;
+    String[] Text;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -64,7 +65,8 @@ public class SchoolWebsiteFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            Text = new String[]{getString(R.string.GoTo) + getString(R.string.Album)};
+            Title = new String[]{getString(R.string.SchoolWebsite)};;
             checkInternet();
 
             SharedPreferences pref = requireActivity()
@@ -88,13 +90,12 @@ public class SchoolWebsiteFragment extends Fragment {
             text = view.findViewById(R.id.SchoolWebsiteText);
             viewPagerSwitcher = view.findViewById(R.id.SchoolWebsitePagerSwitcher);
 
-            final String[] Title = {getString(R.string.SchoolWebsite)};
             title.setText(Title[0]);
 
-            final String[] Text = {getString(R.string.GoTo) + getString(R.string.Album)};
             text.setText(Text[0]);
 
             viewPager.setCurrentItem(0);
+
 
             viewPagerSwitcher.setOnClickListener(view -> {
                 if (Title[0].contains(getString(R.string.SchoolWebsite))) {
@@ -135,6 +136,32 @@ public class SchoolWebsiteFragment extends Fragment {
                     .setBackgroundTint(MainActivity.getPrimary())
                     .show();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        viewPagerSwitcher.setOnClickListener(view -> {
+            if (Title[0].contains(getString(R.string.SchoolWebsite))) {
+                Title[0] = getString(R.string.Album);
+                Text[0] = getString(R.string.ReturnTo, getString(R.string.SchoolWebsite));
+
+                title.setText(Title[0]);
+                text.setText(Text[0]);
+
+                viewPager.setCurrentItem(1);
+            } else if (Title[0].contains(getString(R.string.Album))) {
+                Title[0] = getString(R.string.SchoolWebsite);
+                Text[0] = getString(R.string.ReturnTo, getString(R.string.Album));
+
+                title.setText(Title[0]);
+                text.setText(Text[0]);
+
+                viewPager.setCurrentItem(0);
+            }
+        });
     }
 
     public static int getSize() {

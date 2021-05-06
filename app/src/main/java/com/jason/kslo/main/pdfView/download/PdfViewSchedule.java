@@ -147,7 +147,7 @@ public class PdfViewSchedule extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        getMenuInflater().inflate(R.menu.actionbar_files_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override

@@ -199,6 +199,16 @@
         "Share files"
     </string>
 
+    <string name="changelogDescRv.1.1.2">
+        "More details (mail size, receiver…)\n\n"
+        "\"Dashboard\" starts at today's position\n\n"
+    </string>
+    <string name="changelogDescLv.1.1.2">
+        "Show downloaded files\n\n"
+        "\"About\" has a new Github repo image instead of the school logo\n\n"
+        "\"Login\" will start with the username box focused and enters will apply"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State:\n"
         "Basic features and UI (mainly with webview) (1.0.1 alpha to 1.0.5-alpha)"
@@ -329,5 +339,8 @@
     <string name="Class">Class</string>
     <string name="Homework">Homework</string>
     <string name="Confirm">Confirm</string>
+    <string name="Today">Today</string>
+    <string name="DownloadedFiles">Downloaded Files</string>
+    <string name="SizeSample" translatable="false">1 kb</string>
 
 </resources>

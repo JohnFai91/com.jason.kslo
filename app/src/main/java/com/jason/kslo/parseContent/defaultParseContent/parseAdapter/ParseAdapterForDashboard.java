@@ -5,13 +5,16 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.R;
+import com.jason.kslo.parseContent.defaultParseContent.fragment.DashboardFragment;
 import com.jason.kslo.parseContent.parseItem.DashboardParseItem;
 
 import java.util.ArrayList;
@@ -38,8 +41,16 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
     public void onBindViewHolder(@NonNull ParseAdapterForDashboard.ViewHolder holder, int position) {
         parseItem = parseItems.get(position);
 
-        holder.title.setText(parseItem.getTitle());
-        holder.date.setText(parseItem.getDate());
+        if (position == DashboardFragment.getIcsPosition() - 1) {
+            holder.title.setText(parseItem.getTitle());
+            holder.date.setText(parseItem.getDate());
+            holder.todayView.setVisibility(View.VISIBLE);
+            Log.d("AdapterForDashboard", "position: " + DashboardFragment.getIcsPositionStr());
+        } else {
+            holder.title.setText(parseItem.getTitle());
+            holder.date.setText(parseItem.getDate());
+            holder.todayView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -49,14 +60,17 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView title, date;
+        final RelativeLayout todayView;
 
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                title = itemView.findViewById(R.id.DashboardCardViewTitle);
-                date = itemView.findViewById(R.id.DashboardCardViewDate);
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.DashboardCardViewTitle);
+            date = itemView.findViewById(R.id.DashboardCardViewDate);
+            todayView = itemView.findViewById(R.id.DashboardCardViewTodayView);
 
-                itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
+
         @SuppressLint("SetTextI18n")
         @Override
         public void onClick(View view) {
@@ -64,16 +78,32 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
 
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             builder.setTitle(parseItems.get(position).getTitle())
-                    .setMessage(parseItems.get(position).getDesc())
                     .setNegativeButton(R.string.Confirm, (dialogInterface, i) -> dialogInterface.dismiss())
                     .setCancelable(true);
             if (parseItems.get(position).getUrl() != null) {
-                builder.setNeutralButton(view.getContext().getString(R.string.GoTo) + "VLE", (dialogInterface, i) -> {
+                builder.setNeutralButton(view.getContext().getString(R.string.GoTo) + " VLE", (dialogInterface, i) -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(parseItems.get(position).getUrl()));
                     view.getContext().startActivity(intent);
                 });
             }
-            builder.show();
+                if (parseItems.get(position).getDesc() != null &&
+                        parseItems.get(position).getDesc().contains("HwUrl: https://hkedcity.instructure.com/courses/")) {
+
+                    String desc = parseItems.get(position).getDesc(), url;
+                    url = desc.substring(desc.indexOf("HwUrl: "));
+                    url = url.replace("HwUrl: ","");
+                    desc = desc.replace("HwUrl: " + url, "");
+
+                    String finalUrl = url;
+                    builder.setMessage(desc)
+                           .setNeutralButton(view.getContext().getString(R.string.GoTo) + " VLE", (dialogInterface, i) -> {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl));
+                                view.getContext().startActivity(intent);
+                    });
+                } else {
+                    builder.setMessage(parseItems.get(position).getDesc());
+                }
+                builder.show();
         }
     }
 }

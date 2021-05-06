@@ -6,7 +6,7 @@
         android:title="@string/Delete"
         android:icon="@drawable/ic_delete"/>
     <item
-        android:id="@+id/intranet_action_popup_star"
+        android:id="@+id/intranet_action_popup_move"
         android:title="@string/Move"
         android:icon="@drawable/ic_move"/>
 

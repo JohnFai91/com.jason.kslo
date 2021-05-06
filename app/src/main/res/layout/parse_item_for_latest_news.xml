@@ -37,6 +37,6 @@
                         android:layout_below="@id/LatestNewsDate"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@android:color/holo_blue_bright"/>
+                        android:background="@color/colorPrimary"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
