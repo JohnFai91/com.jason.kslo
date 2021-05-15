@@ -98,7 +98,7 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
                     Log.d("CheckUpdate", "apk Architecture: " + "x86_64 (64-bit)");
                     break;
                 default:
-                    apkUrl = obj.getString(Constants.APK_UPDATE_CONTENT);
+                    apkUrl = obj.getString(Constants.APK_DOWNLOAD_URL);
                     Log.d("CheckUpdate", "apk Architecture: " + "Unknown (using universal apk)");
                     break;
             }

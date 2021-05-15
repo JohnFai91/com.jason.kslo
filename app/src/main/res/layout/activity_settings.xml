@@ -31,7 +31,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:paddingHorizontal="10dp"
                     android:textAllCaps="false"
-                    android:background="@drawable/blue_background"
+                    android:background="@drawable/default_button_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
@@ -43,7 +43,7 @@
             <RelativeLayout
                     android:layout_marginVertical="10dp"
                     android:id="@+id/ChooseClassBackground"
-                    android:background = "@drawable/blue_background"
+                    android:background = "@drawable/default_button_background"
                     android:layout_marginHorizontal="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@android:color/holo_blue_bright"/>
+                    android:background="@color/colorPrimary"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -86,7 +86,7 @@
                     android:paddingHorizontal="10dp"
                     android:layout_height="40dp"
                     android:layout_below="@+id/SelectLanguage"
-                    android:background="@drawable/blue_background"
+                    android:background="@drawable/default_button_background"
                     android:textColor="@android:color/white"
                     android:text="@string/Chinese"
                     android:textAllCaps="false"
@@ -95,7 +95,7 @@
                     android:layout_marginTop="130dp"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@android:color/holo_blue_bright"/>
+                    android:background="@color/colorPrimary"/>
 
             <Button
                     android:id="@+id/English"
@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:paddingHorizontal="10dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/blue_background"
+                    android:background="@drawable/default_button_background"
                     android:textColor="@android:color/white"
                     android:text="@string/English"
                     android:textAllCaps="false"
@@ -137,7 +137,7 @@
                                 android:layout_width="match_parent"
                                 android:paddingHorizontal="10dp"
                                 android:layout_height="40dp"
-                                android:background="@drawable/blue_background"/>
+                                android:background="@drawable/default_button_background"/>
 
                         <ImageView
                                 android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
                         android:layout_marginTop="80dp"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@android:color/holo_blue_bright"/>
+                        android:background="@color/colorPrimary"/>
             </RelativeLayout>
 
         <LinearLayout
@@ -186,7 +186,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:background="@android:color/holo_blue_bright"/>
+                        android:background="@color/colorPrimary"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

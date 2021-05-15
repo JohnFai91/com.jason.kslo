@@ -27,6 +27,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterForIntranet.ViewHolder> {
@@ -341,5 +342,9 @@ public class ParseAdapterForIntranet extends RecyclerView.Adapter<ParseAdapterFo
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+    public void filterList(ArrayList<LoginParseItem> filteredList) {
+        parseItems = filteredList;
+        notifyDataSetChanged();
     }
 }

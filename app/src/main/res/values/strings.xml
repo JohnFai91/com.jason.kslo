@@ -209,6 +209,16 @@
         "\"Login\" will start with the username box focused and enters will apply"
     </string>
 
+    <string name="changelogDescRv.1.1.3">
+        "Search\n\n"
+        "Add link to join group\n\n"
+        "Gallery supports zoom in controls"
+    </string>
+    <string name="changelogDescLv.1.1.3">
+        "Use dark theme friendly text colours\n\n"
+        "Remove dashboard bottom space"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State:\n"
         "Basic features and UI (mainly with webview) (1.0.1 alpha to 1.0.5-alpha)"
@@ -342,5 +352,10 @@
     <string name="Today">Today</string>
     <string name="DownloadedFiles">Downloaded Files</string>
     <string name="SizeSample" translatable="false">1 kb</string>
+    <string name="Search">Search</string>
+    <string name="FinishedSearching">Finished searching, search for more results?</string>
+    <string name="Yes">Yes</string>
+    <string name="SearchComplete">Search complete</string>
+    <string name="JoinDevelopment">Join development</string>
 
 </resources>

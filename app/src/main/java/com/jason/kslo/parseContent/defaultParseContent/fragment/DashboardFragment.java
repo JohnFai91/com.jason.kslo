@@ -129,7 +129,7 @@ public class DashboardFragment extends Fragment {
             downloadIcs();
 
             ICalendar ical;
-            df = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            df = new SimpleDateFormat("dd/MM/yyyy E HH:mm", Locale.ENGLISH);
 
             try {
                 reader = new ICalReader(new File(requireActivity().getCacheDir() + "/" + "Hw.ics"));

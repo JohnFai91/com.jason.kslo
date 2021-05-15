@@ -17,7 +17,7 @@
                 android:id="@+id/openFile"
                 android:paddingHorizontal="20sp"
                 android:layout_marginHorizontal="12sp"
-                android:background="@drawable/blue_background"
+                android:background="@drawable/default_button_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_open"

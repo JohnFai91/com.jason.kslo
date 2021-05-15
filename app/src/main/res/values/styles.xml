@@ -7,9 +7,9 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#4CAF50</item>
-        <item name="colorAccent">#8BC34A</item>
-        <item name="titleTextColor">@android:color/white</item>
+        <item name="colorPrimaryDark">#009688</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
 
     <style name="AppTheme.MaterialComponents" parent="@style/Theme.MaterialComponents.DayNight">
@@ -19,9 +19,9 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#4CAF50</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">#8BC34A</item>
-        <item name="titleTextColor">@android:color/white</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.DayNight.FullScreen">
@@ -36,9 +36,9 @@
         <item name="android:windowFullscreen">false</item>
         <item name="windowActionBar">true</item>
         <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#4CAF50</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">#8BC34A</item>
-        <item name="titleTextColor">@android:color/white</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
 
 </resources>

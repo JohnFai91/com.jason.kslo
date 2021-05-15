@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -9,14 +8,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <ImageView
-                app:layout_constraintTop_toBottomOf="parent"
-                android:layout_width="match_parent"
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:layout_marginVertical="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:id="@+id/School_Logo"
+                    android:src="@drawable/school_logo"
+                    android:contentDescription="@string/schoolLogo"
+                    android:layout_marginHorizontal="20dp"/>
+            <View
+                android:background="@color/imageFront"
                 android:layout_height="wrap_content"
-                android:id="@+id/School_Logo"
-                android:src="@drawable/school_logo"
-                android:contentDescription="@string/schoolLogo"
-                android:layout_marginHorizontal="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_alignStart="@id/School_Logo"
+                android:layout_alignEnd="@id/School_Logo"
+                android:layout_alignTop="@id/School_Logo"
+                android:layout_alignBottom="@id/School_Logo"/>
+        </RelativeLayout>
 
             <Button
                     android:layout_marginTop="10dp"
@@ -27,8 +39,8 @@
                     android:layout_height="40dp"
                     android:text="@string/Settings"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/blue_background"
-                    android:textColor="@android:color/white"
+                    android:background="@drawable/default_button_background"
+                    android:textColor="@color/white"
                     android:drawableEnd="@drawable/ic_settings"
                     android:paddingEnd="20dp"
                     android:textAllCaps="false">
@@ -43,8 +55,8 @@
                 android:layout_height="40dp"
                 android:text="@string/CheckForUpdate"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/blue_background"
-                android:textColor="@android:color/white"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
                 android:drawableEnd="@drawable/ic_update"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
@@ -59,8 +71,8 @@
                 android:layout_height="40dp"
                 android:text="@string/ReplayIntro"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/blue_background"
-                android:textColor="@android:color/white"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
                 android:drawableEnd="@drawable/ic_play"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
@@ -75,9 +87,9 @@
                 android:layout_height="40dp"
                 android:text="@string/CrashApp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/blue_background"
+                android:background="@drawable/default_button_background"
                 android:drawableEnd="@drawable/ic_error"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:paddingEnd="20dp"
                 android:textAllCaps="false">
         </Button>
@@ -100,7 +112,7 @@
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/Half_Day_Schedule"
                     android:background="@drawable/spinner_background"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:drawableEnd="@drawable/ic_schedule"
                     android:paddingEnd="20dp"
                     android:textAllCaps="false">
@@ -115,7 +127,7 @@
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/SchoolCal"
                     android:background="@drawable/spinner_background"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:paddingEnd="20dp"
                     android:paddingStart="20dp"
                     android:drawableEnd="@drawable/ic_calendar"
@@ -132,7 +144,7 @@
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/Featured_Notice"
                     android:background="@drawable/spinner_background"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:drawableEnd="@drawable/ic_attachment"
                     android:textAllCaps="false">
             </Button>
@@ -147,7 +159,7 @@
                     android:text="@string/DownloadedFiles"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/spinner_background"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:drawableEnd="@drawable/ic_download"
                     android:textAllCaps="false">
             </Button>
@@ -169,8 +181,8 @@
                     android:layout_height="40dp"
                     android:text="@string/changelog"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/blue_background"
-                    android:textColor="@android:color/white"
+                    android:background="@drawable/default_button_background"
+                    android:textColor="@color/white"
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:paddingEnd="20dp"
@@ -186,13 +198,30 @@
                 android:layout_height="40dp"
                 android:text="@string/SourceCode"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/blue_background"
-                android:textColor="@android:color/white"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
                 android:drawableEnd="@drawable/ic_source"
+                android:textAllCaps="false">
+        </Button>
+
+        <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/button_JoinDevelopment"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="@string/JoinDevelopment"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:drawableEnd="@drawable/ic_developer"
                 android:textAllCaps="false">
         </Button>
 

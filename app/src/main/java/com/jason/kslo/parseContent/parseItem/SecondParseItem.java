@@ -32,6 +32,11 @@ public class SecondParseItem {
             this.bulletPoints = src;
     }
 
+    public SecondParseItem(String imgUrl, String detailImgUrl) {
+        this.imgURL = imgUrl;
+        this.detailUrl = detailImgUrl;
+    }
+
     public String getImgURL(){
         return imgURL;
     }

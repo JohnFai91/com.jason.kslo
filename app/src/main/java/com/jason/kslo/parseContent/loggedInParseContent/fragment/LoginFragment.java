@@ -34,7 +34,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        requireContext().getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
+        requireContext().getTheme().applyStyle(R.style.AppTheme_MaterialComponents,
                 true);
         view = inflater.inflate(R.layout.fragment_login, container, false);
         // Inflate the layout for this fragment

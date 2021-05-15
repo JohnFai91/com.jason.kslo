@@ -9,7 +9,9 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +25,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
@@ -54,10 +58,13 @@ public class IntranetFragment extends Fragment {
     SwipeRefreshLayout pullToRefresh;
     RecyclerView recyclerView;
     Spinner IntranetFragmentTitle;
+    FloatingActionButton goToTop, search;
+    EditText searchEditText;
 
     SharedPreferences pref;
     static ArrayAdapter<? extends String> adapter;
-    int inboxSize, booksSize, binSize, IntranetPage;
+    int inboxSize, booksSize, binSize, IntranetPage, previousPage;
+    final int[] size = {5};
 
     final String LOGIN_FORM_URL = "https://www.hkmakslo.edu.hk/it-school//php/login_v5.php3?ran=";
     final String LOGIN_ACTION_URL = "https://www.hkmakslo.edu.hk/it-school/php/login_do.php3";
@@ -78,7 +85,6 @@ public class IntranetFragment extends Fragment {
         pullToRefresh.setOnRefreshListener(() -> {
             Content content = new Content();
             content.execute();
-            pullToRefresh.setRefreshing(true);
         });
 
         pullToRefresh.setColorSchemeColors(
@@ -260,17 +266,54 @@ public class IntranetFragment extends Fragment {
 
             pullToRefresh.setRefreshing(false);
 
+            searchEditText = view.findViewById(R.id.IntranetSearchEditText);
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    if (!searchEditText.getText().toString().equals("")) {
+                        editTextReload(charSequence);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                }
+            });
+
+            TextInputLayout editTextBackground = view.findViewById(R.id.IntranetSearchBackground);
+            search = view.findViewById(R.id.searchInternet);
+            search.setOnClickListener(view -> {
+                if (editTextBackground.getVisibility() == View.VISIBLE) {
+                    searchEditText.setText("");
+                    editTextBackground.setVisibility(View.GONE);
+                } else {
+                    editTextBackground.setVisibility(View.VISIBLE);
+                }
+            });
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
 
-                    FloatingActionButton floatingActionButton = view.findViewById(R.id.goToTopIntranet);
+                    goToTop = view.findViewById(R.id.goToTopIntranet);
+
+                    goToTop.setOnClickListener(view -> {
+                        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
+                                .getLayoutManager();
+                        assert linearLayoutManager != null;
+                        recyclerView.setNestedScrollingEnabled(false);
+                        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+                        recyclerView.setNestedScrollingEnabled(true);
+                    });
 
                     if (!recyclerView.canScrollVertically(1)) {
-                        IntranetPage = IntranetPage + 1;
                         Log.d("IntranetPages", "No. : " + IntranetPage);
-                        floatingActionButton.setVisibility(View.VISIBLE);
+                        goToTop.setVisibility(View.VISIBLE);
 
                         if (IntranetFragmentTitle.getSelectedItem().equals(0)) {
                             folder = "inbox";
@@ -281,23 +324,6 @@ public class IntranetFragment extends Fragment {
                         Con con = new Con();
                         con.execute();
 
-                    } else if (recyclerView.canScrollVertically(View.FOCUS_UP)) {
-                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                            floatingActionButton.setVisibility(View.VISIBLE);
-                            floatingActionButton.startAnimation(AnimationUtils.loadAnimation(getContext(),android.R.anim.fade_in));
-                            floatingActionButton.setOnClickListener(view -> {
-                                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
-                                        .getLayoutManager();
-                                assert linearLayoutManager != null;
-                                linearLayoutManager.scrollToPositionWithOffset(0, 0);
-                            });
-                        } else {
-                            floatingActionButton.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_out));
-                            floatingActionButton.setVisibility(View.GONE);
-                        }
-                    } else if (!recyclerView.canScrollVertically(View.FOCUS_UP)) {
-                        floatingActionButton.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_out));
-                        floatingActionButton.setVisibility(View.GONE);
                     }
                 }
             });
@@ -311,7 +337,53 @@ public class IntranetFragment extends Fragment {
             adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, folders);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             IntranetFragmentTitle.setAdapter(adapter);
+
+            filter(searchEditText.getText().toString());
         }
+    }
+
+    private void editTextReload(CharSequence editable) {
+        for (int i = 0; i < size[0]; i++) {
+            progressBar.setVisibility(View.VISIBLE);
+            Con con = new Con();
+            con.execute();
+            filter(editable.toString());
+            progressBar.setVisibility(View.GONE);
+            Snackbar.make(MainActivity.getView(), R.string.FinishedSearching, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.Yes, view -> {
+                        if (!(size[0] + 5 > inboxSize)) {
+                            size[0] = size[0] + 5;
+                            editTextReload(editable);
+                        } else if (!(size[0] + 4 > inboxSize)) {
+                            size[0] = size[0] + 4;
+                            editTextReload(editable);
+                        } else if (!(size[0] + 3 > inboxSize)) {
+                            size[0] = size[0] + 3;
+                            editTextReload(editable);
+                        } else if (!(size[0] + 2 > inboxSize)) {
+                            size[0] = size[0] + 2;
+                            editTextReload(editable);
+                        } else if (!(size[0] + 1 > inboxSize)) {
+                            size[0] = size[0] + 1;
+                            editTextReload(editable);
+                        } else {
+                            Snackbar snackbar = Snackbar.make(view, R.string.SearchComplete, BaseTransientBottomBar.LENGTH_LONG);
+                            snackbar.setAction("OK", view1 -> snackbar.dismiss());
+                        }
+                    }).show();
+        }
+    }
+
+    private void filter(String text) {
+        ArrayList<LoginParseItem> filteredList = new ArrayList<>();
+
+        for (LoginParseItem item : loginParseItems) {
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase()) || item.getSender().contains(text)) {
+                filteredList.add(item);
+            }
+        }
+
+        parseAdapterForIntranet.filterList(filteredList);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -372,9 +444,14 @@ public class IntranetFragment extends Fragment {
             if (btmMsg.equals(true)) {
                 runOnUiThread run = new runOnUiThread();
                 run.run();
-
+            } else {
+                if (IntranetPage > previousPage) {
+                    filter(searchEditText.getText().toString());
+                    previousPage = IntranetPage;
+                }
             }
             btmMsg = false;
+            IntranetPage = IntranetPage + 1;
         }
     }
 
@@ -519,7 +596,7 @@ public class IntranetFragment extends Fragment {
                 detailUrl = detailUrl.substring(22,30);
 
                 loginParseItems.add(new LoginParseItem(title,sender,date,detailUrl,filePresent, readMail, size));
-                Log.d("Test", IntranetPage + " Title: " + title +
+                Log.d("Intranet", IntranetPage + " Title: " + title +
                         " Sender: " + sender + " Time: " + date + ". Size: " + inboxSize + " detailUrl: " + detailUrl + " read: "
                 + readMail + " MailSize: " +  size);
             }

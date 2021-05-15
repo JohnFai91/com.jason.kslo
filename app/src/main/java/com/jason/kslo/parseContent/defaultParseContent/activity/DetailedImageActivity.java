@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.R;
 import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDetailedWebsite;
-import com.jason.kslo.parseContent.parseItem.ParseItem;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.Picasso;
+import com.jason.kslo.parseContent.parseItem.SecondParseItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -27,9 +23,9 @@ import java.util.ArrayList;
 
 public class DetailedImageActivity extends AppCompatActivity {
     private ParseAdapterForDetailedWebsite adapter;
-    private final ArrayList<ParseItem> parseItems = new ArrayList<>();
+    private final ArrayList<SecondParseItem> parseItems = new ArrayList<>();
+    public static String title;
 
-    @SuppressLint("RestrictedApi")
     @Override
     @SuppressWarnings("ConstantConditions")
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,11 +33,12 @@ public class DetailedImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_image);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDefaultDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(getIntent().getStringExtra("title") + "");
+
+        title = getIntent().getStringExtra("title");
+        actionBar.setTitle(title);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDetail);
 
@@ -56,17 +53,6 @@ public class DetailedImageActivity extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     @Override
     protected void onResume() {
-
-
-        TextView titleTextView = findViewById(R.id.TitleDetailedText);
-        ImageView titleImageView = findViewById(R.id.TitleDetailedImage);
-
-        titleTextView.setText(getIntent().getStringExtra("title"));
-
-        Picasso.get().load(getIntent()
-                .getStringExtra("image"))
-                .memoryPolicy(MemoryPolicy.NO_STORE,MemoryPolicy.NO_CACHE)
-                .into(titleImageView);
 
         Content content = new Content();
         content.execute();
@@ -137,10 +123,17 @@ public class DetailedImageActivity extends AppCompatActivity {
                             .eq(i)
                             .attr("src");
 
-                    imgUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/" + imgUrl;
+                    String detailImgUrl = document.select("li")
+                            .select("a")
+                            .eq(i)
+                            .attr("href");
 
-                    parseItems.add(new ParseItem(imgUrl));
-                    Log.d(". detailImg ", ". total pages: " + totalPages + ". img: " + imgUrl);
+                    imgUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/" + imgUrl;
+                    detailImgUrl = "https://www.hkmakslo.edu.hk" + detailImgUrl;
+
+                    parseItems.add(new SecondParseItem(imgUrl, detailImgUrl));
+                    Log.d(". detailImg ", ". total pages: " + totalPages + ". img: " + imgUrl +
+                            " detailed img: " + detailImgUrl);
                 }
             }
         } catch (IOException e) {

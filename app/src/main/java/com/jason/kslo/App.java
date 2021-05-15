@@ -42,7 +42,8 @@ public class App extends Application {
             case "Night Mode":
                 setTheme(AppCompatDelegate.MODE_NIGHT_YES);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;}
+                break;
+        }
 
         if (TextUtils.isEmpty(version)){
             prefs.edit().putString("version", BuildConfig.VERSION_NAME).apply();
@@ -68,7 +69,6 @@ public class App extends Application {
         updateLanguage(getApplicationContext());
     }
 
-    @SuppressWarnings("deprecation")
     public static void updateLanguage(Context ctx)
     {
         SharedPreferences prefs = ctx.getSharedPreferences("MyPref",MODE_PRIVATE);
@@ -89,7 +89,6 @@ public class App extends Application {
             }
     }
 
-    @SuppressWarnings({"deprecation"})
     public static void updateLanguage(Context ctx, String lang) {
         Configuration cfg = new Configuration();
         if (!TextUtils.isEmpty(lang))

@@ -164,13 +164,21 @@
                 android:authorities="${applicationId}.customactivityoncrashinitprovider"
                 android:exported="false"
                 android:initOrder="101"/>
-        <activity android:name=".parseContent.defaultParseContent.activity.DownloadedFiles"
-                  android:configChanges="keyboardHidden|orientation|screenSize"
-                  android:theme="@style/AppTheme.Actionbar">
+
+        <activity
+                android:name=".parseContent.defaultParseContent.activity.DownloadedFiles"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:theme="@style/AppTheme.Actionbar">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".parseContent.defaultParseContent.activity.Detailed_Gallery"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

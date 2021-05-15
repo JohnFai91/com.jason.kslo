@@ -38,7 +38,7 @@ public class SchoolWebsiteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        requireContext().getTheme().applyStyle(R.style.Theme_MaterialComponents_DayNight,
+        requireContext().getTheme().applyStyle(R.style.AppTheme_MaterialComponents,
                 true);
         view = inflater.inflate(R.layout.fragment_school_website, container, false);
         // Inflate the layout for this fragment
@@ -66,7 +66,7 @@ public class SchoolWebsiteFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             Text = new String[]{getString(R.string.GoTo) + getString(R.string.Album)};
-            Title = new String[]{getString(R.string.SchoolWebsite)};;
+            Title = new String[]{getString(R.string.SchoolWebsite)};
             checkInternet();
 
             SharedPreferences pref = requireActivity()
@@ -136,32 +136,6 @@ public class SchoolWebsiteFragment extends Fragment {
                     .setBackgroundTint(MainActivity.getPrimary())
                     .show();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
-        viewPagerSwitcher.setOnClickListener(view -> {
-            if (Title[0].contains(getString(R.string.SchoolWebsite))) {
-                Title[0] = getString(R.string.Album);
-                Text[0] = getString(R.string.ReturnTo, getString(R.string.SchoolWebsite));
-
-                title.setText(Title[0]);
-                text.setText(Text[0]);
-
-                viewPager.setCurrentItem(1);
-            } else if (Title[0].contains(getString(R.string.Album))) {
-                Title[0] = getString(R.string.SchoolWebsite);
-                Text[0] = getString(R.string.ReturnTo, getString(R.string.Album));
-
-                title.setText(Title[0]);
-                text.setText(Text[0]);
-
-                viewPager.setCurrentItem(0);
-            }
-        });
     }
 
     public static int getSize() {

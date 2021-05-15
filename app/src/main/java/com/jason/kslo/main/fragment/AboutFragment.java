@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
@@ -41,14 +43,16 @@ public class AboutFragment extends Fragment {
     SharedPreferences pref;
     String locale,theme,versionVar;
     TextView version,Locale,ThemeText,desc;
-    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp,downloadedFiles;
+    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp,downloadedFiles,
+    JoinDevelopment;
     ImageView schoolIcon;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_about, container, false);
-            updateLanguage(requireContext());
+        requireContext().getTheme().applyStyle(R.style.AppTheme_MaterialComponents,
+                true);
             pref = requireContext().getSharedPreferences("MyPref", MODE_PRIVATE);
             locale = pref.getString("lang","en");
             theme = pref.getString("theme","Follow System");
@@ -69,6 +73,7 @@ public class AboutFragment extends Fragment {
             desc = view.findViewById(R.id.description);
             schoolIcon = view.findViewById(R.id.School_Logo);
             downloadedFiles = view.findViewById(R.id.showDownloadedFiles);
+            JoinDevelopment = view.findViewById(R.id.button_JoinDevelopment);
 
             Content content = new Content();
             content.run();
@@ -171,6 +176,12 @@ public class AboutFragment extends Fragment {
             });
 
             downloadedFiles.setOnClickListener(view -> startActivity(new Intent(getActivity(), DownloadedFiles.class)));
+
+            JoinDevelopment.setOnClickListener(view -> {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
+                startActivity(i);
+            });
         }
     }
 }
