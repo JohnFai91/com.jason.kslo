@@ -1,6 +1,7 @@
 ---
 title: About
 permalink: /about
+layout: default
 ---
 
 # [com.jason.kslo (Android)](https://www.github.com/johnfai91/com.jason.kslo)
