@@ -22,9 +22,6 @@ on:
     branches: 
       - master
       - dev
-    
-  schedule:
-    - cron: '37 9 * * 0'
 
 jobs:
   analyze:
