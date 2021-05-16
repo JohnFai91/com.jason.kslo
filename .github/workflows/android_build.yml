@@ -33,8 +33,10 @@ jobs:
       - name: Build with gradle
         run: ./gradlew build
 
-      - name: Generate code coverage report
+      - name: Test code coverage report
         run: ./gradlew jacocoTestReport
+      
+      -name: Run code coverage report
         run: ./gradlew connectedCheck
         
       - name: Upload code coverage to Codecov
