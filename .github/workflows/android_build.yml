@@ -32,6 +32,9 @@ jobs:
 
       - name: Build with gradle
         run: ./gradlew build
+
+      - name: Generate code coverage report
+        run: ./gradlew jacocoTestReport
         
       - name: Upload code coverage to Codecov
         uses: codecov/codecov-action@v1.5.0
