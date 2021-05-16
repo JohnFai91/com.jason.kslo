@@ -1,6 +1,6 @@
 title: "com.jason.kslo"
 
-theme: minimal-mistakes-jekyll
+remote_theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: sunrise
 
 markdown: GFM
