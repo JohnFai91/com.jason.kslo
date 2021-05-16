@@ -35,6 +35,3 @@ jobs:
         
       - name: Upload code coverage to Codecov
         uses: codecov/codecov-action@v1.5.0
-        with:
-          # Repository upload token - get it from codecov.io. Required only for private repositories
-          token: ${{ secrets.CODECOV_AUTH_TOKEN }}
