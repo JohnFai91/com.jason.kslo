@@ -1,3 +1,9 @@
 title: "com.jason.kslo"
-theme: jekyll-theme-cayman
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: sunrise
+
 markdown: GFM
+
+plugins:
+  - jekyll-include-cache
