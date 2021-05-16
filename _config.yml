@@ -1,9 +1,30 @@
 title: "com.jason.kslo"
 title_separator: "|"
 logo: "assets/profile.jpg"
-subtitle: "By Jason Leung"
+subtitle: "By JohnFai91"
 masthead_title: "com.jason.kslo"
 
+author:
+  name     : "John Fai"
+  avatar   : "/assets/profile.jpg"
+  bio      : "I'm bored."
+  location : "Somewhere, Hong Kong"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/johnfai91"
+    - label: "Gmail"
+      icon: "fab fa-fw fa-envelope"
+      url: "https://johnfai91@gmail.com"
+      
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/johnfai91"
+    - label: "Gmail"
+      icon: "fab fa-fw fa-envelope"
+      url: "https://johnfai91@gmail.com"
 
 remote_theme: "mmistakes/minimal-mistakes@4.23.0"
 minimal_mistakes_skin: sunrise
