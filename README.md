@@ -46,6 +46,7 @@ Branch          |Build Status  | Security Check Status | Last Commit
 ------------    | ------------ |         ------------- | ---------- |
 Master          |[![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/Build/master?logo=GitHub&label=Build)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/android_build.yml?query=branch%3Amaster) | [![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/CodeQL/master?logo=GitHub&label=CodeQL)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/codeql-analysis.yml?query=branch%3Adev) | [![](https://shields.io/github/last-commit/johnfai91/com.jason.kslo/master?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo)
 Dev             |[![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/Build/dev?logo=GitHub&label=Build)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/android_build.yml?query=branch%3Amaster) | [![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/CodeQL/dev?logo=GitHub&label=CodeQL)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/codeql-analysis.yml?query=branch%3Adev)| [![](https://shields.io/github/last-commit/johnfai91/com.jason.kslo/dev?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/tree/dev)
+
 ## Note
 I am not responsible for any damage done by this app, please use it for your own means.
 
@@ -56,5 +57,6 @@ I am not responsible for any damage done by this app, please use it for your own
 <img
     alt = "Made With Java"
     src = "https://forthebadge.com/images/badges/made-with-java.svg"/><img 
+<img 
     alt = "Built for Android" 
     src = "https://forthebadge.com/images/badges/built-for-android.svg"/>
