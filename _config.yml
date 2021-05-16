@@ -6,7 +6,7 @@ remote_theme: "mmistakes/minimal-mistakes@4.23.0"
 minimal_mistakes_skin: sunrise
 
 include:
-  - _pages
+  - "_pages"
 
 plugins:
   - jekyll-include-cache
