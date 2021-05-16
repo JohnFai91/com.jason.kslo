@@ -9,9 +9,7 @@ In the current pandemic, a bored teenager got bored and created this app. This a
 Type       | Info
 ---------- | ---------- |
 Total Downloads|[![](https://img.shields.io/github/downloads/johnfai91/com.jason.kslo/total?logo=GitHub/total.svg)](https://github.com/JohnFai91/com.jason.kslo)
-
 Language| [![](https://shields.io/github/languages/top/johnfai91/com.jason.kslo?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/search?l=java)
-
 Contributors|[![](https://contrib.rocks/image?repo=johnfai91/com.jason.kslo)](https://img.shields.io/github/contributors/johnfai91/com.jason.kslo)
 Commit| [![](https://img.shields.io/github/commit-activity/w/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo) [![](https://img.shields.io/github/commit-activity/m/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo)
 
