@@ -17,8 +17,9 @@ android {
     }
 
     buildTypes {
-        customDebugType {
+        debug {
             minifyEnabled true
+            testCoverageEnabled true
             debuggable true
         }
 

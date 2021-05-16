@@ -11,6 +11,16 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+plugins {
+    id 'jacoco'
+    id 'java'
+}
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
 
 allprojects {
     repositories {
@@ -18,8 +28,4 @@ allprojects {
         jcenter()
         maven { url 'https://jitpack.io' }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

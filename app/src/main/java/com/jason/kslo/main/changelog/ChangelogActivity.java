@@ -184,18 +184,27 @@ public class ChangelogActivity extends AppCompatActivity {
                 }
                 else if (i == 12) {
 
+                            separatorVisibility = "Gone";
+                            version = "1.1.2\n" +
+                                    "(6/5/2021)\n" +
+                                    "(UI update)";
+                            descL = getString(R.string.changelogDescLv_1_1_2);
+                            descR = getString(R.string.changelogDescRv_1_1_2);
+                }
+                else if (i == 13) {
+
                     separatorVisibility = "Visible";
                     parseItems.add(new ChangelogParseItem("","",
                             getString(R.string.changelogDescStable),separatorVisibility));
 
-                            separatorVisibility = "Gone";
-                            version = "1.1.2\n" +
-                                    "(6/5/2021)\n" +
-                                    "(UI update)\n" +
-                                    "(current)";
-                            descL = getString(R.string.changelogDescLv_1_1_2);
-                            descR = getString(R.string.changelogDescRv_1_1_2);
+                    separatorVisibility = "Gone";
+                    version = "1.1.3\n" +
+                            "(15/5/2021)\n" +
+                            "(UI update)";
+                    descL = getString(R.string.changelogDescLv_1_1_3);
+                    descR = getString(R.string.changelogDescRv_1_1_3);
                 }
+                //TODO Update new version
                 else if (i == versionCode + 1){
 
                     separatorVisibility = "Visible";
