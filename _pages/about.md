@@ -3,7 +3,7 @@ title: About
 permalink: /about
 ---
 
-[# com.jason.kslo (Android)](https://www.github.com/johnfai91/com.jason.kslo)
+# [com.jason.kslo (Android)](https://www.github.com/johnfai91/com.jason.kslo)
 
 This app is for KSLO 3C students to check homework, browse the school website and view notices.
 
