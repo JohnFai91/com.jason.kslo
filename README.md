@@ -57,6 +57,5 @@ I am not responsible for any damage done by this app, please use it for your own
 <img
     alt = "Made With Java"
     src = "https://forthebadge.com/images/badges/made-with-java.svg"/><img 
-<img 
     alt = "Built for Android" 
     src = "https://forthebadge.com/images/badges/built-for-android.svg"/>
