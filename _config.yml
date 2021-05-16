@@ -5,5 +5,8 @@ minimal_mistakes_skin: sunrise
 
 markdown: GFM
 
+include:
+  - _pages
+
 plugins:
   - jekyll-include-cache
