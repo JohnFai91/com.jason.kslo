@@ -1,6 +1,8 @@
 title: "com.jason.kslo"
+title_separator: "|"
+subtitle: "By Jason Leung"
 
-remote_theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.23.0"
 minimal_mistakes_skin: sunrise
 
 markdown: GFM
