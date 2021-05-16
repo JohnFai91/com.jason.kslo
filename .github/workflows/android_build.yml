@@ -32,3 +32,6 @@ jobs:
 
       - name: Build with gradle
         run: ./gradlew build
+        
+      - name: Upload code coverage to Codecov
+        uses: codecov/codecov-action@v1.5.0
