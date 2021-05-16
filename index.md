@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+# Welcome to my website
 
-You can use the [editor on GitHub](https://github.com/JohnFai91/com.jason.kslo/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+I'm an teenager bored in the pademic who then decided to become a developer.
+## Github
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Check out my [Github](https://github.com/johnfai91)!
 
-### Markdown
+[![](https://github-readme-stats.vercel.app/api?username=johnfai91&show_icons=true)](https://github.com/johnfai91)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Projects
 
-```markdown
-Syntax highlighted code block
+I'm currently working on one project, [com.jason.kslo](https://github.com/johnfai91). It's an Android app for my school's student to browse the school website and homework. 
 
-# Header 1
-## Header 2
-### Header 3
+The aim of it is to provide a place to check their homework and provide a better experience and encourage students to browse the **10 years** old UI design of the intranet. As a by-product, I also implemented the school website and the library for the convenince of the users.
 
-- Bulleted
-- List
+## More about me
+I'm now learning Android App development in Java and it's quite fun.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/JohnFai91/com.jason.kslo/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=johnfai91&theme=blue-green)
 
 ### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If you want to help me out, please contact me through [email.](mailto:johnfai91@gmail.com)
