@@ -1,5 +1,6 @@
 ---
 title: About
+permalink: /about
 ---
 
 # com.jason.kslo (Android)
