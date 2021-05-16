@@ -9,7 +9,9 @@ In the current pandemic, a bored teenager got bored and created this app. This a
 Type       | Info
 ---------- | ---------- |
 Total Downloads|[![](https://img.shields.io/github/downloads/johnfai91/com.jason.kslo/total?logo=GitHub/total.svg)](https://github.com/JohnFai91/com.jason.kslo)
+
 Language| [![](https://shields.io/github/languages/top/johnfai91/com.jason.kslo?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/search?l=java)
+
 Contributors|[![](https://contrib.rocks/image?repo=johnfai91/com.jason.kslo)](https://img.shields.io/github/contributors/johnfai91/com.jason.kslo)
 Commit| [![](https://img.shields.io/github/commit-activity/w/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo) [![](https://img.shields.io/github/commit-activity/m/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo)
 
@@ -30,10 +32,10 @@ Stable|[![](https://img.shields.io/badge/release-v.1.1.2-blue?logo=GitHub)](http
 <br />|[![](https://img.shields.io/badge/release-v.1.0.9--beta-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.9-beta)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v.1.0.9-beta/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.9-beta)| 27/03/2021
 <br />|[![](https://img.shields.io/badge/release-v.1.0.8--beta-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.8-beta)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v.1.0.8-beta/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.8-beta)| 18/03/2021
 <br />|[![](https://img.shields.io/badge/release-v.1.0.7--beta-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.7-beta)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v.1.0.7-beta/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.7-beta)| 07/03/2021
+
 <br />|[![](https://img.shields.io/badge/release-v.1.0.6--beta-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.6-beta)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v.1.0.6-beta/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.6-beta)| 28/02/2021
 Alpha|[![](https://img.shields.io/badge/release-v.1.0.5--alpha-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.5-alpha)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v.1.0.5-alpha/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v.1.0.5-alpha)| 26/02/2021
 <br />|[![](https://img.shields.io/badge/release-v.1.0.4--alpha-blue?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v1.0.4-alpha)| [![](https://shields.io/github/downloads/johnfai91/com.jason.kslo/v1.0.4-alpha/total?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/releases/v1.0.4-alpha)| 19/02/2021
-
 
 ### Issues
 If you find any issues or bugs, please report [here](https://github.com/JohnFai91/com.jason.kslo/issues/new/choose).
