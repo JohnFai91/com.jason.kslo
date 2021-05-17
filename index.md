@@ -1,4 +1,4 @@
-# Welcome to my website
+## Welcome to my website
 
 I'm an teenager bored in the pademic who then decided to become a developer.
 ## Github
