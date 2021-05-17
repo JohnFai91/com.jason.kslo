@@ -1,6 +1,6 @@
 ---
 title: Welcome to my website
-layout: single
+layout: Home
 toc: true
 toc_label: Welcome to my website
 ---
