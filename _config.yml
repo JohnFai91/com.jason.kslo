@@ -3,7 +3,6 @@ title_separator: "|"
 logo: "assets/profile.jpg"
 subtitle: "By JohnFai91"
 masthead_title: "com.jason.kslo"
-toc: true
 
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
