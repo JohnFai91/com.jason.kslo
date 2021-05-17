@@ -6,19 +6,6 @@ masthead_title: "com.jason.kslo"
 
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-
-author:
-  name     : "John Fai"
-  avatar   : "/assets/profile.jpg"
-  bio      : "I'm bored."
-  location : "Somewhere, Hong Kong"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/johnfai91"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:johnfai91@gmail.com"
       
 footer:
   links:
