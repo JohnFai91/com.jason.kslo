@@ -18,7 +18,6 @@ Total Downloads|[![](https://img.shields.io/github/downloads/johnfai91/com.jason
 Language| [![](https://shields.io/github/languages/top/johnfai91/com.jason.kslo?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/search?l=java)
 Contributors|[![](https://contrib.rocks/image?repo=johnfai91/com.jason.kslo)](https://img.shields.io/github/contributors/johnfai91/com.jason.kslo)
 Commit| [![](https://img.shields.io/github/commit-activity/w/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo) [![](https://img.shields.io/github/commit-activity/m/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo)
-Code Coverage| [![codecov](https://codecov.io/gh/JohnFai91/com.jason.kslo/branch/master/graph/badge.svg?token=7FHNOD9Y9V)](https://codecov.io/gh/JohnFai91/com.jason.kslo)
 
 ### Track the progress
 [Click here](https://github.com/JohnFai91/com.jason.kslo/projects/5)
