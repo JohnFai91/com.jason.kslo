@@ -1,6 +1,7 @@
 ---
 title: Welcome to my new website
 permalink: /posts/2021/05/17/welcome-to-my-new-website
+author: John Fai
 ---
 ## Greetings
 Hi there, thanks for visiting my website! Over the past few months, I've spent hundreds of hours on developing [com.jason.kslo](https://github.com/johnfai91/com.jason.kslo) for the convenience of my friends. It has been a great time developing it.
