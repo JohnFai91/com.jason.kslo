@@ -32,12 +32,3 @@ jobs:
 
       - name: Build with gradle
         run: ./gradlew build
-
-      - name: Test code coverage report
-        run: ./gradlew jacocoTestReport
-      
-      - name: Run code coverage report
-        run: ./gradlew connectedCheck
-        
-      - name: Upload code coverage to Codecov
-        uses: codecov/codecov-action@v1.5.0
