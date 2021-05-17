@@ -1,5 +1,5 @@
 ---
 title: Posts
 permalink: /posts
-layout: home
+layout: categories
 ---
