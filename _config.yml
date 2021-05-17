@@ -27,8 +27,18 @@ footer:
       url: "mailto:johnfai91@gmail.com"
       
 defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
     values:
-      author_profile: true
+      layout: single
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      show_date: true
+      read_time: true
 
 remote_theme: "mmistakes/minimal-mistakes@4.23.0"
 minimal_mistakes_skin: sunrise
