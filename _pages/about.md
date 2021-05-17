@@ -2,6 +2,7 @@
 title: About
 permalink: /about
 layout: single
+toc: true
 ---
 
 # [com.jason.kslo (Android)](https://www.github.com/johnfai91/com.jason.kslo)
