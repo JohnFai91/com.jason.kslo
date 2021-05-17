@@ -31,6 +31,19 @@ defaults:
       related: true
       show_date: true
       read_time: true
+        
+author:
+  name     : "JohnFai91"
+  avatar   : "/assets/profile.jpg"
+  bio      : "I'm bored."
+  location : "Somewhere, Hong Kong"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/johnfai91"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:johnfai91@gmail.com"
 
 remote_theme: "mmistakes/minimal-mistakes@4.23.0"
 minimal_mistakes_skin: sunrise
