@@ -49,6 +49,7 @@ markdown: GFM
 
 include:
   - "_pages"
+  - "_posts"
 
 plugins:
   - jekyll-include-cache
