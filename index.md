@@ -1,6 +1,8 @@
 ---
 title: Welcome to my website
+layout: single
 toc: true
+toc_label: Welcome to my website
 ---
 
 ## About me
