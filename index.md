@@ -1,6 +1,6 @@
----------------------
+---
 title: Welcome to my website
----------------------
+---
 
 ## About me
 I'm an teenager bored in the pademic who then decided to become a developer.
