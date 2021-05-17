@@ -1,6 +1,7 @@
 ---
 title: Welcome to my new website
 permalink: /posts/2021/05/17/welcome-to-my-new-website
+author: "JohnFai91"
 author_profile: true
 ---
 ## Greetings
