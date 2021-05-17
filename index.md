@@ -1,5 +1,6 @@
 ---
 title: Welcome to my website
+toc: true
 ---
 
 ## About me
