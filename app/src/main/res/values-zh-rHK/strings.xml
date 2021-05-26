@@ -199,6 +199,16 @@
         "移除「儀表板」底部控隙"
     </string>
 
+    <string name="changelogDescRv.1.1.4">
+        "修理連結\n"
+        "解決沒有圖書時 null 現象"
+    </string>
+    <string name="changelogDescLv.1.1.4">
+        "「儀表板」加入簡單日子圖案\n"
+        "移除「儀表板」底下空白\n"
+        "加入連結去新網頁"
+    </string>
+
 
     <string name="changelogDescAlpha">
         "Alpha 狀態:\n"
@@ -316,4 +326,7 @@
     <string name="Yes">是</string>
     <string name="SearchComplete">搜索完成</string>
     <string name="JoinDevelopment">參與開發</string>
+    <string name="Website">網頁</string>
+    <string name="Date_sample">09</string>
+    <string name="Now">現在</string>
 </resources>

@@ -18,10 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
-import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.pdfView.download.DownloadView;
 import com.jason.kslo.parseContent.defaultParseContent.activity.DownloadedFiles;
 import com.jason.kslo.parseContent.parseItem.ParseItem;
@@ -191,9 +189,7 @@ public class ParseAdapterForDownloadedFiles extends RecyclerView.Adapter<ParseAd
                 File file = new File(context.getCacheDir() + "/" + fileName);
                 if (file.exists()) {
                     if (file.delete()) {
-                        Snackbar.make(DownloadedFiles.getView(), context.getString(R.string.DeletedSuccessfully) +
-                                        context.getString(R.string.PleaseReload),
-                                Snackbar.LENGTH_LONG).show();
+                        DownloadedFiles.ReloadPage();
                     }
                 }
             });

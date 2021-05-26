@@ -17,7 +17,10 @@ import com.jason.kslo.R;
 import com.jason.kslo.parseContent.defaultParseContent.fragment.DashboardFragment;
 import com.jason.kslo.parseContent.parseItem.DashboardParseItem;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterForDashboard.ViewHolder> {
 
@@ -51,6 +54,19 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
             holder.date.setText(parseItem.getDate());
             holder.todayView.setVisibility(View.GONE);
         }
+
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy E HH:mm", Locale.ENGLISH);
+        String todayStr = df.format(Calendar.getInstance().getTime());
+
+        String date = parseItem.getDate();
+        Log.d("Dashboard", "Date(today): " + todayStr + " Date(item): " + parseItem.getDate());
+        if (date.substring(0,11).equals(todayStr.substring(0,11))) {
+            holder.dateSample.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.red));
+        } else {
+            holder.dateSample.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.colorPrimary));
+        }
+        holder.dateSample.setText(parseItem.getDate().substring(0,2));
     }
 
     @Override
@@ -59,7 +75,7 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final TextView title, date;
+        final TextView title, date, dateSample;
         final RelativeLayout todayView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -67,6 +83,7 @@ public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterF
             title = itemView.findViewById(R.id.DashboardCardViewTitle);
             date = itemView.findViewById(R.id.DashboardCardViewDate);
             todayView = itemView.findViewById(R.id.DashboardCardViewTodayView);
+            dateSample = itemView.findViewById(R.id.Dashboard_Simple_Date);
 
             itemView.setOnClickListener(this);
         }

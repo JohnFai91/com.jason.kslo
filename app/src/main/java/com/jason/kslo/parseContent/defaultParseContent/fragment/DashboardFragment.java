@@ -243,11 +243,11 @@ public class DashboardFragment extends Fragment {
 
             Collections.reverse(dates);
             try {
-                Date finalDate = Calendar.getInstance().getTime();
-                String finalDateStr = df.format(finalDate);
-                finalDate = df.parse(finalDateStr);
-                getDateNearest(dates, finalDate);
-                Log.d("Testing", "currentDate: " + finalDate + " getDateNearest: " + "isComparing " + icsPositionStr);
+                Date today = Calendar.getInstance().getTime();
+                String finalDateStr = df.format(today);
+                today = df.parse(finalDateStr);
+                getDateNearest(dates, today);
+                Log.d("Dates", "currentDate: " + today + " getDateNearest: " + "isComparing " + icsPositionStr);
             } catch (ParseException e) {
                 e.printStackTrace();
             }

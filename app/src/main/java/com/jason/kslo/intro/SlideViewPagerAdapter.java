@@ -164,8 +164,8 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 title.setText(newInVersionTitle + " (" + AppUtils.getVersionName(ctx.getApplicationContext()) + ")");
                 desc.setVisibility(View.GONE);
                 newInVersion.setVisibility(View.VISIBLE);
-                newInVersion.setText(ctx.getString(R.string.changelogDescLv_1_1_3) +
-                        ctx.getString(R.string.changelogDescRv_1_1_3));
+                newInVersion.setText(ctx.getString(R.string.changelogDescLv_1_1_4) +
+                        ctx.getString(R.string.changelogDescRv_1_1_4));
                 //TODO Update new version
 
                 Background.setBackgroundColor(Color.parseColor("#ffffff"));

@@ -10,6 +10,7 @@
         <item name="colorPrimaryDark">#009688</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="titleTextColor">@color/white</item>
+        <item name="android:autoLink">web</item>
     </style>
 
     <style name="AppTheme.MaterialComponents" parent="@style/Theme.MaterialComponents.DayNight">
@@ -21,6 +22,7 @@
         <item name="colorPrimary">#009688</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">#8BC34A</item>
+        <item name="android:autoLink">web</item>
         <item name="titleTextColor">@color/white</item>
     </style>
 
@@ -39,6 +41,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">#8BC34A</item>
         <item name="titleTextColor">@color/white</item>
+        <item name="android:autoLink">web</item>
     </style>
 
 </resources>

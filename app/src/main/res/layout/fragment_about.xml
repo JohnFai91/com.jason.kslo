@@ -78,7 +78,6 @@
                 android:textAllCaps="false">
         </Button>
         <Button
-                android:layout_marginBottom="30dp"
                 android:layout_marginTop="10dp"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
@@ -91,6 +90,39 @@
                 android:drawableEnd="@drawable/ic_error"
                 android:textColor="@color/white"
                 android:paddingEnd="20dp"
+                android:textAllCaps="false">
+        </Button>
+
+        <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/button_ChangeLog"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="@string/changelog"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:drawableEnd="@drawable/ic_change"
+                android:textAllCaps="false"
+                android:layout_marginBottom="10dp">
+        </Button>
+
+        <Button
+                android:id="@+id/showDownloadedFiles"
+                android:layout_marginBottom="30dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="@string/DownloadedFiles"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/spinner_background"
+                android:textColor="@color/white"
+                android:drawableEnd="@drawable/ic_download"
                 android:textAllCaps="false">
         </Button>
 
@@ -149,21 +181,6 @@
                     android:textAllCaps="false">
             </Button>
 
-            <Button
-                    android:id="@+id/showDownloadedFiles"
-                    android:layout_marginBottom="30dp"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:text="@string/DownloadedFiles"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="@color/white"
-                    android:drawableEnd="@drawable/ic_download"
-                    android:textAllCaps="false">
-            </Button>
-
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,21 +192,22 @@
                 android:textAllCaps="false">
         </TextView>
 
-            <Button
-                    android:id="@+id/button_ChangeLog"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:text="@string/changelog"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/default_button_background"
-                    android:textColor="@color/white"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingEnd="20dp"
-                    android:paddingStart="20dp"
-                    android:drawableEnd="@drawable/ic_change"
-                    android:textAllCaps="false">
-            </Button>
+        <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/button_myWebsite"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="@string/Website"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/default_button_background"
+                android:textColor="@color/white"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:drawableEnd="@drawable/ic_web"
+                android:textAllCaps="false">
+        </Button>
 
         <Button
                 android:layout_marginTop="10dp"
