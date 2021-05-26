@@ -1,13 +1,11 @@
 {
-  "url":"https://github.com/JohnFai91/com.jason.kslo/files/6488591/3C_schedule.pdf",
-  "version":"3",
-  "name":"3C_Schedule_May_17-21.pdf",
-  "msg":"",
+  "url":"https://github.com/JohnFai91/com.jason.kslo/files/6546404/Schedule.pdf",
+  "version":"4",
+  "name":"3C_Schedule_May_After24.pdf",
   "default":"0",
     
-  "2D_url":"https://github.com/JohnFai91/com.jason.kslo/files/6488592/2D_schedule.pdf",
-  "2D_version":"3",
-  "2D_name":"2D_Schedule_May_17-21.pdf",
-  "2D_msg":"",
+  "2D_url":"https://github.com/JohnFai91/com.jason.kslo/files/6546405/2D_schedule.pdf",
+  "2D_version":"4",
+  "2D_name":"2D_Schedule_May_After24.pdf",
   "2D_default":"0"
 }
