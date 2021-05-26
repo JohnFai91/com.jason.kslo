@@ -219,6 +219,17 @@
         "Remove dashboard bottom space"
     </string>
 
+    <string name="changelogDescRv.1.1.4">
+        "Fix Intranet and all links\n\n"
+        "Change Dashboard "Today" to "Now\n\n"
+        "Resolve null messages when no books are present"
+    </string>
+    <string name="changelogDescLv.1.1.4">
+        "Add simple calendar icon to Dashboard\n\n"
+        "Remove dashboard bottom space\n\n"
+        "Add link to new website"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State:\n"
         "Basic features and UI (mainly with webview) (1.0.1 alpha to 1.0.5-alpha)"
@@ -357,5 +368,8 @@
     <string name="Yes">Yes</string>
     <string name="SearchComplete">Search complete</string>
     <string name="JoinDevelopment">Join development</string>
+    <string name="Website">Website</string>
+    <string name="Date_sample">09</string>
+    <string name="Now">Now</string>
 
 </resources>

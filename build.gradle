@@ -11,16 +11,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-plugins {
-    id 'jacoco'
-    id 'java'
-}
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
 
 allprojects {
     repositories {

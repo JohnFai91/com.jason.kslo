@@ -2,7 +2,6 @@ package com.jason.kslo.parseContent.defaultParseContent.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,13 +25,20 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class DownloadedFiles extends AppCompatActivity {
-    private ParseAdapterForDownloadedFiles fileAdapter;
-    private final ArrayList<ParseItem> parseItem = new ArrayList<>();
-    static RecyclerView recyclerView;
-    ProgressBar progressBar;
     @SuppressLint("StaticFieldLeak")
     static View view;
-    SwipeRefreshLayout swipeRefreshLayout;
+    @SuppressLint("StaticFieldLeak")
+    static SwipeRefreshLayout swipeRefreshLayout;
+
+    @SuppressLint("StaticFieldLeak")
+    static ProgressBar progressBar;
+    @SuppressLint("StaticFieldLeak")
+    static ParseAdapterForDownloadedFiles fileAdapter;
+
+    static RecyclerView recyclerView;
+    static File fileDir;
+
+    private static final ArrayList<ParseItem> parseItem = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,47 +54,44 @@ public class DownloadedFiles extends AppCompatActivity {
 
         view = findViewById(android.R.id.content);
 
+        swipeRefreshLayout = findViewById(R.id.DownloadedFileSwipeRefresh);
+        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_dark),
+                getResources().getColor(android.R.color.holo_orange_dark),
+                getResources().getColor(android.R.color.holo_green_dark),
+                getResources().getColor(android.R.color.holo_red_dark)
+        );
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            Content content = new Content();
+            content.run();
+        });
+
+        recyclerView = findViewById(R.id.DownloadedFilesRecyclerView);
+        LinearLayoutManager layoutHorizontalManager
+                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutHorizontalManager);
+        recyclerView.setNestedScrollingEnabled(false);
+
+        fileAdapter = new ParseAdapterForDownloadedFiles(parseItem, DownloadedFiles.this);
+        recyclerView.setAdapter(fileAdapter);
+
+        progressBar = findViewById(R.id.DownloadedFilesProgressBar);
+
+        fileDir = new File(getCacheDir(), "/");
+
         Content content = new Content();
-        content.execute();
+        content.run();
     }
-    @SuppressLint("StaticFieldLeak")
-    class Content extends AsyncTask<Void, Void, Void> {
+    static class Content implements Runnable {
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            swipeRefreshLayout = findViewById(R.id.DownloadedFileSwipeRefresh);
-            swipeRefreshLayout.setRefreshing(true);
-            swipeRefreshLayout.setColorSchemeColors(
-                    getResources().getColor(android.R.color.holo_blue_dark),
-                    getResources().getColor(android.R.color.holo_orange_dark),
-                    getResources().getColor(android.R.color.holo_green_dark),
-                    getResources().getColor(android.R.color.holo_red_dark)
-            );
-            swipeRefreshLayout.setOnRefreshListener(() -> {
-                Content content = new Content();
-                content.execute();
-            });
+        public void run() {
 
             parseItem.clear();
-
-            recyclerView = findViewById(R.id.DownloadedFilesRecyclerView);
-            recyclerView.setHasFixedSize(true);
-            LinearLayoutManager layoutHorizontalManager
-                    = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-            recyclerView.setLayoutManager(layoutHorizontalManager);
-            recyclerView.setNestedScrollingEnabled(false);
-
-            fileAdapter = new ParseAdapterForDownloadedFiles(parseItem, DownloadedFiles.this);
-            recyclerView.setAdapter(fileAdapter);
-
-            progressBar = findViewById(R.id.DownloadedFilesProgressBar);
             progressBar.setVisibility(View.VISIBLE);
 
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            File fileDir = new File(getCacheDir(), "/");
             for (File f : Objects.requireNonNull(fileDir.listFiles())) {
                 if (f.isFile()) {
                     String fileName = f.getName();
@@ -102,12 +105,6 @@ public class DownloadedFiles extends AppCompatActivity {
                     }
                 }
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
             progressBar.setVisibility(View.GONE);
             fileAdapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
@@ -134,5 +131,9 @@ public class DownloadedFiles extends AppCompatActivity {
 
     public static View getView() {
         return view;
+    }
+    public static void ReloadPage() {
+        Content content = new Content();
+        content.run();
     }
 }

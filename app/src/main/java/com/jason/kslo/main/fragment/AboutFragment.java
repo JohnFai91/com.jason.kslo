@@ -11,11 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
@@ -44,7 +42,7 @@ public class AboutFragment extends Fragment {
     String locale,theme,versionVar;
     TextView version,Locale,ThemeText,desc;
     Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp,downloadedFiles,
-    JoinDevelopment;
+    JoinDevelopment, website;
     ImageView schoolIcon;
 
     @Nullable
@@ -74,6 +72,7 @@ public class AboutFragment extends Fragment {
             schoolIcon = view.findViewById(R.id.School_Logo);
             downloadedFiles = view.findViewById(R.id.showDownloadedFiles);
             JoinDevelopment = view.findViewById(R.id.button_JoinDevelopment);
+            website = view.findViewById(R.id.button_myWebsite);
 
             Content content = new Content();
             content.run();
@@ -180,6 +179,12 @@ public class AboutFragment extends Fragment {
             JoinDevelopment.setOnClickListener(view -> {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse("https://signal.group/#CjQKIOvHZXoDBVldMPF9VqJJAt2JjSRiUptLsto_Rj-0CMR2EhC6SG6a08ubmRndGuP7bqKE"));
+                startActivity(i);
+            });
+
+            website.setOnClickListener(view -> {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://johnfai91.github.io/com.jason.kslo/"));
                 startActivity(i);
             });
         }

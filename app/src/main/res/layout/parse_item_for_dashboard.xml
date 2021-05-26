@@ -10,20 +10,45 @@
 
     <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
-        <TextView
-                android:id="@+id/DashboardCardViewTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:layout_margin="4dp"
-                android:textSize="20sp"
-                android:text="@string/HwExample"/>
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/DashboardCardViewTitleBackground"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <RelativeLayout
+                        android:layout_margin="7dp"
+                        android:id="@+id/Dashboard_Simple_Calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_calendar_primary"/>
+
+                <TextView
+                        android:layout_marginStart="9dp"
+                        android:id="@+id/Dashboard_Simple_Date"
+                        android:text="@string/Date_sample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignTop="@id/Dashboard_Simple_Calendar"
+                        android:layout_marginTop="15dp"/>
+            </RelativeLayout>
+            <TextView
+                    android:id="@+id/DashboardCardViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:layout_margin="4dp"
+                    android:textSize="20sp"
+                    android:text="@string/HwExample"/>
+        </LinearLayout>
         <TextView
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorPrimary"
-                android:layout_below="@id/DashboardCardViewTitle"
+                android:layout_below="@id/DashboardCardViewTitleBackground"
                 android:id="@+id/DashboardCardViewDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/Today"/>
+                    android:text="@string/Now"/>
             <View
                     android:layout_below="@id/DashboardCardViewToday"
                     android:layout_width="match_parent"

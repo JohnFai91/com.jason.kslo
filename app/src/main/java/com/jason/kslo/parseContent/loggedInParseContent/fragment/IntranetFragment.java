@@ -233,18 +233,14 @@ public class IntranetFragment extends Fragment {
 
                     Log.d("ParseLM", "Size: " + booksSize + booksCountReturn);
 
-                    int closestDueDate = Integer.parseInt(booksCountReturn);
-
-                    if (closestDueDate < prevCount) {
-                        prevCount = closestDueDate;
-                        booksCountReturn = String.valueOf(closestDueDate);
-                    } else if (prevCount == 0) {
-                        prevCount = closestDueDate;
-                        booksCountReturn = String.valueOf(closestDueDate);
-                    }
-
                 }
-                booksCountReturn = " (" + booksCountReturn + requireActivity().getString(R.string.DaysToDueDate) + ")";
+                if (booksCountReturn != null) {
+                    if (booksSize != 0) {
+                        booksCountReturn = " (" + booksCountReturn + requireActivity().getString(R.string.DaysToDueDate) + ")";
+                    }
+                } else {
+                    booksCountReturn = "";
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -275,9 +271,7 @@ public class IntranetFragment extends Fragment {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (!searchEditText.getText().toString().equals("")) {
-                        editTextReload(charSequence);
-                    }
+                    editTextReload(charSequence);
                 }
 
                 @Override
@@ -343,34 +337,24 @@ public class IntranetFragment extends Fragment {
     }
 
     private void editTextReload(CharSequence editable) {
-        for (int i = 0; i < size[0]; i++) {
-            progressBar.setVisibility(View.VISIBLE);
-            Con con = new Con();
-            con.execute();
-            filter(editable.toString());
-            progressBar.setVisibility(View.GONE);
-            Snackbar.make(MainActivity.getView(), R.string.FinishedSearching, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.Yes, view -> {
-                        if (!(size[0] + 5 > inboxSize)) {
-                            size[0] = size[0] + 5;
-                            editTextReload(editable);
-                        } else if (!(size[0] + 4 > inboxSize)) {
-                            size[0] = size[0] + 4;
-                            editTextReload(editable);
-                        } else if (!(size[0] + 3 > inboxSize)) {
-                            size[0] = size[0] + 3;
-                            editTextReload(editable);
-                        } else if (!(size[0] + 2 > inboxSize)) {
-                            size[0] = size[0] + 2;
-                            editTextReload(editable);
-                        } else if (!(size[0] + 1 > inboxSize)) {
-                            size[0] = size[0] + 1;
-                            editTextReload(editable);
-                        } else {
-                            Snackbar snackbar = Snackbar.make(view, R.string.SearchComplete, BaseTransientBottomBar.LENGTH_LONG);
-                            snackbar.setAction("OK", view1 -> snackbar.dismiss());
-                        }
-                    }).show();
+        if (editable != "") {
+            for (int i = 0; i < size[0]; i++) {
+                progressBar.setVisibility(View.VISIBLE);
+                Con con = new Con();
+                con.execute();
+                filter(editable.toString());
+                progressBar.setVisibility(View.GONE);
+                Snackbar.make(MainActivity.getView(), R.string.FinishedSearching, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.Yes, view -> {
+                            if (!(size[0] + 3 > inboxSize)) {
+                                size[0] = size[0] + 3;
+                                editTextReload(editable);
+                            } else {
+                                Snackbar snackbar = Snackbar.make(view, R.string.SearchComplete, BaseTransientBottomBar.LENGTH_LONG);
+                                snackbar.setAction("OK", view1 -> snackbar.dismiss());
+                            }
+                        }).show();
+            }
         }
     }
 
