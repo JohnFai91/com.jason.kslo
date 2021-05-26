@@ -207,8 +207,8 @@ public class ChangelogActivity extends AppCompatActivity {
                             getString(R.string.changelogDescStable),separatorVisibility));
 
                     separatorVisibility = "Gone";
-                    version = "1.1.3\n" +
-                            "(15/5/2021)\n" +
+                    version = "1.1.4\n" +
+                            "(26/5/2021)\n" +
                             "(Code update)";
                     descL = getString(R.string.changelogDescLv_1_1_4);
                     descR = getString(R.string.changelogDescRv_1_1_4);
