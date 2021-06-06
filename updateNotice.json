@@ -3,11 +3,11 @@
   "version":"3",
   "name":"3C_考試範圍+6月通告.pdf",
   "msg":"",
-  "default":"1",
+  "default":"0",
   
   "2D_url":"https://github.com/JohnFai91/com.jason.kslo/files/6603530/June_Notice.pdf",
   "2D_version":"3",
   "2D_name":"2D_June.pdf",
   "2D_msg":"",
-  "2D_default":"1"
+  "2D_default":"0"
 }
