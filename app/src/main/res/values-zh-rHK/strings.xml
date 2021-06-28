@@ -204,24 +204,55 @@
         "解決沒有圖書時 null 現象"
     </string>
     <string name="changelogDescLv.1.1.4">
+        "*Tadan*加入\n"
+        "*Henry*加入\n"
         "「儀表板」加入簡單日子圖案\n"
         "移除「儀表板」底下空白\n"
         "加入連結去新網頁"
     </string>
 
+    <string name="changelogDescLv.1.1.5">
+        "支持圖片\n"
+        "捷徑 (年曆, 時間表, 以及通告)\n"
+        "移除「介紹」"
+    </string>
+    <string name="changelogDescRv.1.1.5">
+        "支持分享圖片\n"
+        "改善「已下載文件」滑動\n"
+        "改善「程式改變」"
+    </string>
 
     <string name="changelogDescAlpha">
-        "Alpha 狀態:\n"
-        "基本功能及用戶介面\n (主要為 webview)\n (1.0.1 alpha 至 1.0.5-alpha)"
+        "Alpha 狀態"
     </string>
+    <string name="changelogDescAlphaDescL">
+        "基本功能及用戶介面\n (主要為 webview)"
+    </string>
+    <string name="changelogDescAlphaDescR">
+        "(1.0.1 alpha 至 1.0.5-alpha)"
+    </string>
+
     <string name="changelogDescBeta">
-        "Beta 狀態:\n"
-        "改善用戶介面及進階功能\n (主要為 Jsoup 網頁撮取)\n (1.0.6-beta 至 1.1.0-beta)"
+        "Beta 狀態"
     </string>
+    <string name="changelogDescBetaDescL">
+        "改善用戶介面及進階功能\n (主要為 Jsoup 網頁撮取)"
+    </string>
+    <string name="changelogDescBetaDescR">
+        "(1.0.6-beta 至 1.1.0-beta)"
+    </string>
+
     <string name="changelogDescStable">
-        "Stable 狀態:\n"
-        "修理缺陷及改善功能\n (由 1.1.1 開始)"
+        "Stable 狀態"
     </string>
+    <string name="changelogDescStableDescL">
+        "修理缺陷及改善功能"
+    </string>
+
+    <string name="changelogDescStableDescR">
+        "(由 1.1.1 開始)"
+    </string>
+
 
     <string name="changelogDescL">
         /
@@ -329,4 +360,11 @@
     <string name="Website">網頁</string>
     <string name="Date_sample">09</string>
     <string name="Now">現在</string>
+    <string name="Next">下一個</string>
+    <string name="Previous">上一個</string>
+    <string name="AddToHomeScreen">加到桌面</string>
+    <string name="Calendar">年曆</string>
+    <string name="Notice">通告</string>
+    <string name="Schedule">時間表</string>
+    <string name="PleasePressAddAutomatically">請按「自動增加」</string>
 </resources>

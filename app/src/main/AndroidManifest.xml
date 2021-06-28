@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.jason.kslo">
+
+    <dist:module dist:instant="true"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-    <uses-permission
-            android:name="android.permission.INSTALL_PACKAGES"
-            tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
 
     <application
             android:name=".App"
@@ -34,18 +35,24 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+            <meta-data
+                    android:name="android.app.shortcuts"
+                    android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-                android:name=".main.pdfView.download.DownloadView"
+                android:name=".main.DownloadView"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
                 android:name=".main.pdfView.download.PdfViewFeaturedNotice"
                 android:configChanges="keyboardHidden|orientation|screenSize"
+                android:icon="@mipmap/ic_launcher_attachment"
+                android:roundIcon="@mipmap/ic_launcher_attachment_round"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
-                <action android:name="android.intent.category.ALTERNATIVE"/>
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
@@ -53,21 +60,25 @@
         <activity
                 android:name=".main.pdfView.download.PdfViewSchedule"
                 android:configChanges="keyboardHidden|orientation|screenSize"
+                android:icon="@mipmap/ic_launcher_schedule"
+                android:roundIcon="@mipmap/ic_launcher_schedule_round"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
                 <action android:name="android.intent.category.LAUNCHER"/>
 
-                <category android:name="android.intent.category.ALTERNATIVE"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
                 android:name=".main.pdfView.PdfViewSchoolCal"
                 android:configChanges="keyboardHidden|orientation|screenSize"
+                android:icon="@mipmap/ic_launcher_calendar"
+                android:roundIcon="@mipmap/ic_launcher_calendar_round"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
                 <action android:name="android.intent.category.LAUNCHER"/>
 
-                <category android:name="android.intent.category.ALTERNATIVE"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -105,37 +116,27 @@
         </provider>
 
         <activity
-                android:name=".intro.SlideActivity"
-                android:configChanges="keyboardHidden|orientation|screenSize"
-                android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.category.LAUNCHER"/>
-
-                <category android:name="android.intent.category.ALTERNATIVE"/>
-            </intent-filter>
-        </activity>
-        <activity
-                android:name=".parseContent.loggedInParseContent.activity.detailedBooksActivity"
+                android:name=".main.parseContent.loggedInParseContent.activity.detailedBooksActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
-                android:name=".parseContent.defaultParseContent.activity.DetailedImageActivity"
+                android:name=".main.parseContent.defaultParseContent.activity.DetailedImageActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
-                android:name=".parseContent.defaultParseContent.activity.DetailedLatestNewsActivity"
+                android:name=".main.parseContent.defaultParseContent.activity.DetailedLatestNewsActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
-                android:name=".parseContent.loggedInParseContent.activity.DetailedIntranetActivity"
+                android:name=".main.parseContent.loggedInParseContent.activity.DetailedIntranetActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
-                android:name=".main.changelog.ChangelogActivity"
+                android:name=".changelog.ChangelogActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:screenOrientation="user"
                 android:theme="@style/AppTheme.Actionbar">
@@ -146,7 +147,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".parseContent.loggedInParseContent.activity.LoginActivity"
+                android:name=".main.parseContent.loggedInParseContent.activity.LoginActivity"
                 android:configChanges="keyboard|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
@@ -173,9 +174,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".parseContent.defaultParseContent.activity.Detailed_Gallery"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.Actionbar">
+        <activity
+                android:name=".main.parseContent.defaultParseContent.activity.Detailed_Gallery"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:theme="@style/AppTheme.Actionbar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>

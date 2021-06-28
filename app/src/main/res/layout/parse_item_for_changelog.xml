@@ -19,33 +19,33 @@
                         android:background="@android:color/holo_blue_light"/>
 
                 <ImageView
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="10dp"
                         android:id="@+id/changelogArrow"
-                        android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_up"
                         android:contentDescription="@string/Up"/>
 
                 <TextView
-                        android:layout_toStartOf="@id/changelogArrow"
+                        android:layout_below="@id/rightChangelog"
+                        android:layout_alignStart="@id/rightChangelog"
                         android:id="@+id/leftChangelog"
-                        android:layout_marginStart="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="20dp"
                         android:textIsSelectable="true"/>
                 <TextView
                         android:layout_toEndOf="@id/changelogArrow"
                         android:id="@+id/rightChangelog"
                         android:layout_width="match_parent"
                         android:layout_marginTop="50dp"
-                        android:layout_marginEnd="20dp"
                         android:layout_height="wrap_content"
                         android:textIsSelectable="true"/>
                 <TextView
+                        android:layout_margin="10dp"
+                        android:width="100dp"
                         android:layout_below="@id/changelogArrow"
-                        android:layout_centerHorizontal="true"
                         android:id="@+id/changelogVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

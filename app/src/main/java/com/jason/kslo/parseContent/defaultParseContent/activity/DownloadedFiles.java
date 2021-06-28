@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.SettingsActivity;
-import com.jason.kslo.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDownloadedFiles;
-import com.jason.kslo.parseContent.parseItem.ParseItem;
+import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDownloadedFiles;
+import com.jason.kslo.main.parseContent.parseItem.ParseItem;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -30,8 +29,6 @@ public class DownloadedFiles extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     static SwipeRefreshLayout swipeRefreshLayout;
 
-    @SuppressLint("StaticFieldLeak")
-    static ProgressBar progressBar;
     @SuppressLint("StaticFieldLeak")
     static ParseAdapterForDownloadedFiles fileAdapter;
 
@@ -78,8 +75,6 @@ public class DownloadedFiles extends AppCompatActivity {
         fileAdapter = new ParseAdapterForDownloadedFiles(parseItem, DownloadedFiles.this);
         recyclerView.setAdapter(fileAdapter);
 
-        progressBar = findViewById(R.id.DownloadedFilesProgressBar);
-
         fileDir = new File(getCacheDir(), "/");
 
         Content content = new Content();
@@ -90,7 +85,6 @@ public class DownloadedFiles extends AppCompatActivity {
         public void run() {
 
             parseItem.clear();
-            progressBar.setVisibility(View.VISIBLE);
 
             for (File f : Objects.requireNonNull(fileDir.listFiles())) {
                 if (f.isFile()) {
@@ -105,7 +99,6 @@ public class DownloadedFiles extends AppCompatActivity {
                     }
                 }
             }
-            progressBar.setVisibility(View.GONE);
             fileAdapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
         }

@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".parseContent.loggedInParseContent.fragment.LoginFragment">
+        tools:context=".main.parseContent.loggedInParseContent.fragment.LoginFragment">
 
     <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/LoginViewPager"
@@ -22,7 +22,6 @@
 
         <TextView
                 android:layout_alignParentEnd="true"
-                android:id="@+id/LoginViewMore"
                 android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

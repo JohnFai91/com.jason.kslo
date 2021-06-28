@@ -6,7 +6,6 @@
         android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                    android:id="@+id/horizontal_recycler"
                     android:layout_centerHorizontal="true"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"

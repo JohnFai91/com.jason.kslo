@@ -66,21 +66,6 @@
                 android:layout_marginTop="10dp"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
-                android:id="@+id/Intro_Button"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:text="@string/ReplayIntro"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/default_button_background"
-                android:textColor="@color/white"
-                android:drawableEnd="@drawable/ic_play"
-                android:paddingEnd="20dp"
-                android:textAllCaps="false">
-        </Button>
-        <Button
-                android:layout_marginTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
                 android:id="@+id/CrashApp"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
@@ -130,7 +115,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Thanks"
-                android:id="@+id/Thanks"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
                 android:textAllCaps="false">
@@ -244,7 +228,6 @@
         </Button>
 
         <TextView
-                android:id="@+id/Usages"
                 android:text="@string/Usages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
