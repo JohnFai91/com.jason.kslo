@@ -18,10 +18,9 @@ import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
 import com.jason.kslo.autoUpdate.UpdateChecker;
-import com.jason.kslo.intro.SlideActivity;
+import com.jason.kslo.changelog.ChangelogActivity;
 import com.jason.kslo.parseContent.defaultParseContent.activity.DownloadedFiles;
 import com.jason.kslo.main.activity.SettingsActivity;
-import com.jason.kslo.main.changelog.ChangelogActivity;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
 import com.jason.kslo.main.pdfView.download.PdfViewSchedule;
@@ -33,7 +32,6 @@ import com.squareup.picasso.Picasso;
 import java.util.Random;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.jason.kslo.App.updateLanguage;
 
 
 public class AboutFragment extends Fragment {
@@ -41,7 +39,7 @@ public class AboutFragment extends Fragment {
     SharedPreferences pref;
     String locale,theme,versionVar;
     TextView version,Locale,ThemeText,desc;
-    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,Intro,CheckForUpdate,SourceCode,CrashApp,downloadedFiles,
+    Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,CheckForUpdate,SourceCode,CrashApp,downloadedFiles,
     JoinDevelopment, website;
     ImageView schoolIcon;
 
@@ -64,7 +62,6 @@ public class AboutFragment extends Fragment {
             FeaturedNotice = view.findViewById(R.id.Featured_Notice);
             HalfDaySchedule = view.findViewById(R.id.Half_Day_Schedule);
             Settings = view.findViewById(R.id.Settings_button);
-            Intro = view.findViewById(R.id.Intro_Button);
             SourceCode = view.findViewById(R.id.button_SourceCode);
             CheckForUpdate = view.findViewById(R.id.CheckForUpdate);
             CrashApp = view.findViewById(R.id.CrashApp);
@@ -145,12 +142,6 @@ public class AboutFragment extends Fragment {
 
             Settings.setOnClickListener(view15 -> {
                 Intent intent = new Intent(getContext(), SettingsActivity.class);
-                startActivity(intent);
-            });
-
-            Intro.setOnClickListener(view16 -> {
-                Intent intent = new Intent(getContext(), SlideActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             });
 

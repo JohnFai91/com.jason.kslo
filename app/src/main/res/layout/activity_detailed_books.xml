@@ -2,14 +2,13 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/detailedBookView"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".parseContent.loggedInParseContent.activity.detailedBooksActivity">
+            tools:context=".main.parseContent.loggedInParseContent.activity.detailedBooksActivity">
 
         <ImageView
                 android:id="@+id/BookDetailedImage"

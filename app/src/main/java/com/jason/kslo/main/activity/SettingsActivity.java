@@ -15,8 +15,7 @@ import com.jason.kslo.R;
 import androidx.annotation.NonNull;
 import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
-import com.jason.kslo.parseContent.loggedInParseContent.activity.LoginActivity;
-import com.jason.kslo.parseContent.loggedInParseContent.fragment.IntranetFragment;
+import com.jason.kslo.main.parseContent.loggedInParseContent.activity.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;

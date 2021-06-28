@@ -1,0 +1,26 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_calendar">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.PdfViewSchoolCal" />
+    </shortcut>
+    <shortcut
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_calendar">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice" />
+    </shortcut>
+    <shortcut
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_schedule">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.download.PdfViewSchedule" />
+    </shortcut>
+</shortcuts>

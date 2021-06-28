@@ -3,8 +3,12 @@ package com.jason.kslo.main.pdfView.download;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,12 +18,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ShareCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.HttpUtils;
+import com.jason.kslo.main.DownloadView;
+import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.activity.SettingsActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -147,7 +154,7 @@ public class PdfViewSchedule extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_files_menu, menu);
+        getMenuInflater().inflate(R.menu.actionbar_files_with_shortcuts_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -158,6 +165,10 @@ public class PdfViewSchedule extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.menu_action_bar_settings) {
             this.startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        if (item.getItemId() == R.id.menu_action_bar_add_to_home_screen) {
+            addShortcut(getString(R.string.Schedule), R.mipmap.ic_launcher_schedule);
             return true;
         }
         if (item.getItemId() == R.id.menu_action_bar_share) {
@@ -194,6 +205,30 @@ public class PdfViewSchedule extends AppCompatActivity {
     void checkDefaultPage(int defaultPage) {
         if (!(sharedPreferences.getInt("PdfScheduleDefaultPage",0) == defaultPage)) {
             sharedPreferences.edit().putInt("PdfScheduleDefaultPage", defaultPage).apply();
+        }
+    }
+    private void addShortcut(String shortcutName, int icon){
+        ShortcutManager shortcutManager = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            shortcutManager = getSystemService(ShortcutManager.class);
+        }
+
+        if (ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
+
+                ShortcutInfo pinShortcutInfo = new ShortcutInfo.Builder(this, shortcutName)
+                        .setIcon(Icon.createWithResource(this, icon))
+                        .setShortLabel(shortcutName)
+                        .setIntent(new Intent(this, PdfViewSchedule.class).setAction(Intent.ACTION_MAIN))
+                        .build();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Intent startMain = new Intent(Intent.ACTION_MAIN);
+                    startMain.addCategory(Intent.CATEGORY_HOME);
+                    startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(startMain);
+                    shortcutManager.requestPinShortcut(pinShortcutInfo, null);
+                }
+            }
         }
     }
 }

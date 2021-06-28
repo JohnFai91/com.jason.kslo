@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/menu_action_bar_share"
+            android:icon="@drawable/ic_share"
+            android:title="@string/Share"
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction"/>
+    <item
+            android:id="@+id/menu_action_bar_add_to_home_screen"
+            android:icon="@drawable/ic_add_to_home_screen"
+            android:title="@string/AddToHomeScreen"
+            app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_action_bar_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/Settings"
+        app:showAsAction="always"/>
+</menu>

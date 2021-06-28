@@ -5,30 +5,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Environment;
 import android.text.TextUtils;
 import androidx.appcompat.app.AppCompatDelegate;
-import com.jason.kslo.intro.SlideActivity;
-import com.jason.kslo.main.changelog.ChangelogActivity;
+import com.jason.kslo.changelog.ChangelogActivity;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.Objects;
 
-@SuppressWarnings("unused")
 public class App extends Application {
 
     @Override
     public void onCreate()
     {
         super.onCreate();
-
-        deleteDir();
+        for (File f : Objects.requireNonNull(getCacheDir().listFiles())) {
+            if (f.getName().startsWith("gallery_")) {
+                //noinspection ResultOfMethodCallIgnored
+                f.delete();
+            }
+        }
 
         SharedPreferences prefs = getBaseContext().getSharedPreferences("MyPref",MODE_PRIVATE);
         String version = prefs.getString("version","");
         String Theme = prefs.getString("theme","Follow System");
-        String Intro = prefs.getString("slide","false");
-        String downloadAgainQuery = prefs.getString("DownloadAgainQuery","true");
 
         switch (Theme) {
             case "Follow System":
@@ -48,7 +48,7 @@ public class App extends Application {
         if (TextUtils.isEmpty(version)){
             prefs.edit().putString("version", BuildConfig.VERSION_NAME).apply();
         }
-        if (!version.equals(BuildConfig.VERSION_NAME)){
+        if (!version.equals(BuildConfig.VERSION_NAME)) {
             deleteCache(this);
 
             prefs.edit().putString("version", BuildConfig.VERSION_NAME).apply();
@@ -56,15 +56,6 @@ public class App extends Application {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("updated","true");
             startActivity(intent);
-        }
-
-            if (Intro.isEmpty()) {
-
-                prefs.edit().putString("version", BuildConfig.VERSION_NAME).apply();
-
-                Intent intent = new Intent(getApplicationContext(), SlideActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
         }
         updateLanguage(getApplicationContext());
     }
@@ -127,18 +118,6 @@ public class App extends Application {
             return dir.delete();
         } else {
             return false;
-        }
-    }
-    public void deleteDir() {
-        File dir = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "");
-        if (dir.isDirectory())
-        {
-            String[] children = dir.list();
-            assert children != null;
-            for (String child : children) {
-                //noinspection ResultOfMethodCallIgnored
-                new File(dir, child).delete();
-            }
         }
     }
 }

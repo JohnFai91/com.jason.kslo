@@ -1,0 +1,47 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+            android:shortcutId="calendar"
+            android:shortcutShortLabel="@string/Calendar"
+            android:shortcutLongLabel="@string/School_Cal"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_calendar">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.activity.MainActivity" />
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.PdfViewSchoolCal" />
+    </shortcut>
+    <shortcut
+            android:shortcutId="notice"
+            android:shortcutShortLabel="@string/Notice"
+            android:shortcutLongLabel="@string/Featured_Notice"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_attachment">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.activity.MainActivity" />
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice" />
+    </shortcut>
+    <shortcut
+            android:shortcutId="schedule"
+            android:shortcutShortLabel="@string/Schedule"
+            android:shortcutLongLabel="@string/Half_Day_Schedule"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher_schedule">
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.activity.MainActivity" />
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.jason.kslo"
+                android:targetClass="com.jason.kslo.main.pdfView.download.PdfViewSchedule" />
+    </shortcut>
+</shortcuts>

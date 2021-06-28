@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".parseContent.defaultParseContent.activity.Detailed_Gallery">
+        tools:context=".main.parseContent.defaultParseContent.activity.Detailed_Gallery">
 
     <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/DetailedGalleryPhotoView"
