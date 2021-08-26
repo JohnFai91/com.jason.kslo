@@ -29,6 +29,7 @@
                     android:drawableEnd="@drawable/ic_login"
                     android:layout_marginHorizontal="10dp"
                     android:paddingHorizontal="10dp"
+                    android:layout_marginBottom="10dp"
                     android:textAllCaps="false"
                     android:background="@drawable/default_button_background"
                     android:layout_width="match_parent"
@@ -38,21 +39,6 @@
                     android:id="@+id/reLoginButton"
                     android:textColor="@color/white"
                     tools:ignore="RelativeOverlap"/>
-
-            <RelativeLayout
-                    android:layout_marginVertical="10dp"
-                    android:background = "@drawable/default_button_background"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/Image">
-                <Spinner
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/SettingsChooseClass"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"/>
-            </RelativeLayout>
 
             <View
                     android:layout_marginHorizontal="10dp"

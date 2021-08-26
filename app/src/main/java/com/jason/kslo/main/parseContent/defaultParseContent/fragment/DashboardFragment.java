@@ -1,7 +1,6 @@
 package com.jason.kslo.main.parseContent.defaultParseContent.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,9 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,8 +41,6 @@ public class DashboardFragment extends Fragment {
     final ArrayList<Date> dates = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     SharedPreferences sharedPreferences;
-    String selectedClass;
-    Spinner chooseClass;
     static String icsPositionStr;
     static int icsPosition;
 
@@ -87,38 +81,6 @@ public class DashboardFragment extends Fragment {
                     requireActivity().getResources().getColor(android.R.color.holo_green_dark),
                     requireActivity().getResources().getColor(android.R.color.holo_red_dark)
             );
-            sharedPreferences = requireContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-            selectedClass = sharedPreferences.getString("Class", "3C");
-            chooseClass = v.findViewById(R.id.DashboardFragmentTitle);
-        String[] classes = {
-                requireActivity().getString(R.string.Dashboard) + " (" + selectedClass + ")","2D", "3C"
-        };
-        ArrayAdapter<? extends String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, classes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        chooseClass.setAdapter(adapter);
-
-            chooseClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                 @Override
-                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                     switch (position) {
-                         case 1:
-                             sharedPreferences.edit().putString("Class","2D").apply();
-                             Content content = new Content();
-                             content.execute();
-                             break;
-                         case 2:
-                             sharedPreferences.edit().putString("Class","3C").apply();
-                             content = new Content();
-                             content.execute();
-                             break;
-                     }
-                 }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-            });
             swipeRefreshLayout.setRefreshing(true);
             ParseItems.clear();
         }
@@ -147,24 +109,6 @@ public class DashboardFragment extends Fragment {
 
                         Summary summary = event.getSummary();
                         String summaryStr = (summary == null) ? null : summary.getValue();
-                        if (summaryStr != null && summaryStr.contains("[2020-21 ")) {
-                            String finalSummaryStr = summaryStr.substring(summaryStr.indexOf("[2020-21 "));
-                            summaryStr = summaryStr.replace(finalSummaryStr,"");
-
-                            finalSummaryStr = finalSummaryStr.replace("2020-21 ","");
-                            if (finalSummaryStr.contains(selectedClass)) {
-                                finalSummaryStr = finalSummaryStr.replace(selectedClass + " ", "");
-                            }
-
-                            if (finalSummaryStr.contains("Science (")) {
-                                finalSummaryStr = finalSummaryStr.replace("Science (","");
-                                finalSummaryStr = finalSummaryStr.replace(finalSummaryStr.substring(finalSummaryStr.lastIndexOf(")"))
-                                        ,"");
-                                finalSummaryStr = finalSummaryStr + "]";
-                            }
-
-                            summaryStr = finalSummaryStr+ " " + summaryStr + getString(R.string.AssignedBySystem);
-                        }
 
                         String urlStr = null, desc = null, assignmentCode = null, courseCode;
                         Url url = event.getUrl();
@@ -185,7 +129,7 @@ public class DashboardFragment extends Fragment {
                                     courseCode = courseCode.replace("course_", "");
                                 }
 
-                                if (assignmentCode.contains("#assignment_")) {
+                                if (assignmentCode != null && assignmentCode.contains("#assignment_")) {
                                     assignmentCode = assignmentCode.replace("#assignment_", "");
                                 }
 
@@ -263,13 +207,7 @@ public class DashboardFragment extends Fragment {
         void downloadIcs() {
             String url;
             try {
-                if (selectedClass.equals("3C")) {
-                    //3C
-                    url = "https://hkedcity.instructure.com/feeds/calendars/user_r3rBBJB2zCiooISGiBIEalWRDfnn4xTBdKxgEPr9.ics";
-                } else {
-                    //2D
-                    url = "https://hkedcity.instructure.com/feeds/calendars/user_mbha2FngAAEJI9IzszNwngot4tcJzkNRKp2hgCaz.ics";
-                }
+                url = "https://hkedcity.instructure.com/feeds/calendars/user_r3rBBJB2zCiooISGiBIEalWRDfnn4xTBdKxgEPr9.ics";
                 Connection.Response resultImageResponse;
                 resultImageResponse = Jsoup.connect(url)
                         .ignoreContentType(true)

@@ -67,7 +67,7 @@ public class ParseAdapterForDetailedFile extends RecyclerView.Adapter<ParseAdapt
 
                 Intent intent = new Intent(MainActivity.getContextOfApplication(), DownloadView.class);
                 intent.putExtra("title", parseItem.getFileName());
-                intent.putExtra("fileUrl", parseItem.getFile());
+                intent.putExtra("fileUrl", parseItem.getFileUrl());
                 intent.putExtra("origin", "DetailedFile");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 MainActivity.getContextOfApplication().startActivity(intent);

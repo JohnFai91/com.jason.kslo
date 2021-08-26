@@ -1,18 +1,5 @@
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight">
-        <item name="textAllCaps">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#009688</item>
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="titleTextColor">@color/white</item>
-        <item name="android:autoLink">web</item>
-    </style>
-
     <style name="AppTheme.MaterialComponents" parent="@style/Theme.MaterialComponents.DayNight">
         <item name="textAllCaps">false</item>
         <item name="windowNoTitle">true</item>

@@ -22,7 +22,7 @@ import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.main.DownloadView;
 import com.jason.kslo.main.parseContent.parseItem.ParseItem;
-import com.jason.kslo.parseContent.defaultParseContent.activity.DownloadedFiles;
+import com.jason.kslo.main.parseContent.defaultParseContent.activity.DownloadedFiles;
 
 import java.io.File;
 import java.util.ArrayList;

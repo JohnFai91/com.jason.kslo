@@ -38,7 +38,6 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
 
     String title, text, fileName, date;
     TextView textView, titleTextView, dateTextView;
-    @SuppressWarnings("unused")
     String bulletPoints, video, fileUrl;
     Document doc;
     Button openVideo;
@@ -113,14 +112,16 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
 
-            text = text.replaceAll(">",">" + "\n");
+            if (text.contains("<a href=\"")) {
+                text = text.replace(text.substring(text.indexOf("<a href=\"")), "");
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 textView.setText(Html.fromHtml(text,0));
-            } else {
-                textView.setText(Html.fromHtml(text));
             }
+
             titleTextView.setText(getIntent().getStringExtra("title"));
-            dateTextView.setText(date);
+            dateTextView.setText(getIntent().getStringExtra("date"));
 
                 if (TextUtils.isEmpty(video)){
                     openVideo.setVisibility(View.GONE);
@@ -143,7 +144,7 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
 
                 }
             fileAdapter.notifyDataSetChanged();
-            Log.d("items", ". title: " + title + ". text: " + text + " .video: " + video + ". file: " + fileUrl + ". file name: " + fileName);
+            Log.d("items", ". title: " + title + ". text: " + text + " .video: " + video);
             progressBar.setVisibility(View.GONE);
         }
     }
@@ -157,26 +158,16 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
     }
     private void parseDetailedLatestNews(String url) {
         try {
-
             doc = Jsoup.connect(url).get();
+            Elements elements = doc.select("div.newsItem");
 
-            try {
-                date = doc.select("div.contn")
-                        .select("div.title")
-                        .select("span.date")
-                        .text();
-
-                text = doc.select("div.paragraph_block.contents_wrap")
+                text = elements
                         .html();
 
-                video = doc.select("div.paragraph_block.contents_wrap")
+                video = elements
                         .select("iframe")
                         .attr("src");
 
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,7 +175,7 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
     private void parseDetailedFile(String fileUrl) {
         try {
             Document document = Jsoup.connect(fileUrl).get();
-            Elements fileElement = document.select("div.file");
+            Elements fileElement = document.select("div.newsItem");
             Elements finalFile = fileElement.select("a");
             int finalFileSize = finalFile.size();
 
@@ -192,13 +183,18 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
                 fileUrl = finalFile
                         .eq(i)
                         .attr("href");
-                String baseUrl = "https://www.hkmakslo.edu.hk";
-                fileUrl = baseUrl + fileUrl;
 
                 fileName = finalFile
                         .eq(i)
                         .text();
+                if (fileUrl.startsWith("/wp-content/uploads/")) {
+                    fileUrl = "https://www.hkmakslo.edu.hk" + fileUrl;
+                }
+                if (fileName.isEmpty()) {
+                    fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+                }
                 parseItem.add(new ParseItem(fileUrl, fileName));
+                Log.d("Latest News File", "Name: " + fileName + " Url: " + fileUrl);
 
             }
         } catch (Exception exception) {

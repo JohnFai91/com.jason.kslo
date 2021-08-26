@@ -1,34 +1,35 @@
 package com.jason.kslo.main.parseContent.defaultParseContent.fragment;
 
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import com.jason.kslo.R;
+import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForSchoolWebsite;
+import com.jason.kslo.main.parseContent.parseItem.ParseItem;
+
+import java.util.ArrayList;
+/**
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.snackbar.Snackbar;
-import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
-import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForSchoolWebsite;
-import com.jason.kslo.main.parseContent.parseItem.ParseItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
-import java.util.ArrayList;
-
+ **/
 public class GalleryFragment extends Fragment {
     View view;
     int pageNo = 1;
@@ -41,7 +42,7 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_gallery, container, false);
-
+    /*
         swipeRefreshLayout = view.findViewById(R.id.GallerySwipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             pageNo = 1;
@@ -83,10 +84,10 @@ public class GalleryFragment extends Fragment {
 
         Content content = new Content();
         content.execute();
-
+    */
         return view;
     }
-
+    /*
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
         @Override
@@ -144,7 +145,7 @@ public class GalleryFragment extends Fragment {
                         .eq(i)
                         .attr("href");
 
-                String baseUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/";
+                String baseUrl = "https://www.hkmakslo.edu.hk";
                 detailUrl = baseUrl + detailUrl;
                 imgUrl = baseUrl + imgUrl;
 
@@ -175,4 +176,5 @@ public class GalleryFragment extends Fragment {
                     .show();
         }
     }
+    **/
 }

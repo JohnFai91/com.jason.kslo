@@ -98,7 +98,7 @@
 
         <Button
                 android:id="@+id/showDownloadedFiles"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:layout_width="200dp"
@@ -108,6 +108,21 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="@color/white"
                 android:drawableEnd="@drawable/ic_download"
+                android:textAllCaps="false">
+        </Button>
+
+        <Button
+                android:id="@+id/shareApp"
+                android:layout_marginBottom="30dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="@string/ShareApp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/spinner_background"
+                android:textColor="@color/white"
+                android:drawableEnd="@drawable/ic_share"
                 android:textAllCaps="false">
         </Button>
 

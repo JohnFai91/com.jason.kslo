@@ -102,9 +102,7 @@ public class LatestNewsFragment extends Fragment {
 
 
             SecondParseItems.clear();
-            for (int pageNo = 1; pageNo < 4; pageNo++) {
-                parseLatestNews("https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/tpl.php?bulletin=1&component_id=1&mode=published&page=" + pageNo);
-            }
+            parseLatestNews();
 
             return null;
         }
@@ -127,46 +125,34 @@ public class LatestNewsFragment extends Fragment {
             super.onCancelled();
         }
     }
-    private  void parseLatestNews(String LatestNewsUrl){
+    private  void parseLatestNews(){
         //parse Latest News
         try {
-            Document document = Jsoup.connect(LatestNewsUrl).get();
+            Document document = Jsoup.connect("https://www.hkmakslo.edu.hk/").get();
 
-            Elements LatestNewsData = document.select("ul.list.lightbox");
-            Elements FinalLatestNewsData = LatestNewsData.select("div.content");
+            Elements latestNewsData = document.select("div#latestNews.col-xs-12");
+            Elements FinalLatestNewsData = latestNewsData.select("h2");
 
             LatestNewsSize = FinalLatestNewsData.size();
             for (b = 0; b < LatestNewsSize; b++) {
 
-                String latestNewsTime = FinalLatestNewsData
-                        .select("small.date")
+                String latestNewsDate = latestNewsData
+                        .select("span.newsDate")
                         .eq(b)
                         .text();
 
                 String titleLatestNews = FinalLatestNewsData
-                        .select("span.title")
                         .eq(b)
                         .text();
 
-                String detailUrl = FinalLatestNewsData
-                .select("a")
-                 .eq(b)
-                 .attr("href");
+                String detailUrl = latestNewsData
+                        .select("a")
+                        .eq(b + 1)
+                        .attr("href");
+                String imgUrl = null;
 
-                String imgUrl = document.select("li")
-                        .select("div.thumb")
-                        .eq(b)
-                        .select("img")
-                        .attr("src");
-
-                String baseDetailUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/";
-                detailUrl = baseDetailUrl + detailUrl;
-
-                String baseImgUrl = "https://www.hkmakslo.edu.hk";
-                imgUrl = baseImgUrl + imgUrl;
-
-                SecondParseItems.add(new SecondParseItem(imgUrl, titleLatestNews, latestNewsTime, detailUrl));
-                Log.d("Latest News items",   ". ImageUrl:" + imgUrl + ". Title: " + titleLatestNews + ". Time: " + latestNewsTime + ". Detail Url: " + detailUrl);
+                SecondParseItems.add(new SecondParseItem(imgUrl, titleLatestNews, latestNewsDate, detailUrl));
+                Log.d("Latest News items",   ". Title: " + titleLatestNews + ". Time: " + latestNewsDate + ". Detail Url: " + detailUrl);
             }
         } catch (IOException e) {
             e.printStackTrace();

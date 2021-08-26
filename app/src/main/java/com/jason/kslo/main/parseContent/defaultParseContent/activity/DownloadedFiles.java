@@ -1,4 +1,4 @@
-package com.jason.kslo.parseContent.defaultParseContent.activity;
+package com.jason.kslo.main.parseContent.defaultParseContent.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
