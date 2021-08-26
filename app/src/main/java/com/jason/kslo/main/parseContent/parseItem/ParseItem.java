@@ -5,7 +5,7 @@ public class ParseItem {
     private String title;
     private String detailUrl;
     private String count;
-    private String file;
+    private String fileUrl;
     private String fileName;
     private String date;
     private String size;
@@ -30,7 +30,7 @@ public class ParseItem {
     }
 
     public ParseItem(String fileUrl, String fileName) {
-        this.file = fileUrl;
+        this.fileUrl = fileUrl;
         this.fileName = fileName;
     }
 
@@ -66,12 +66,12 @@ public class ParseItem {
         this.count = count;
     }
 
-    public String getFile() {
-        return file;
+    public String getFileUrl() {
+        return fileUrl;
     }
     @SuppressWarnings("unused")
-    public void setFile(String file) {
-        this.file = file;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
     public String getFileName() {

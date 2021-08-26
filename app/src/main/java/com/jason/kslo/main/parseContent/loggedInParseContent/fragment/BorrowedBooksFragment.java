@@ -13,16 +13,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.fragment.app.Fragment;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
+import com.jason.kslo.main.parseContent.loggedInParseContent.activity.LoginActivity;
 import com.jason.kslo.main.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForBooks;
 import com.jason.kslo.main.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
 import org.jsoup.Connection;
@@ -44,7 +45,6 @@ public class BorrowedBooksFragment extends Fragment {
     String Username, originalPw, finalUsername;
     SharedPreferences pref;
     SwipeRefreshLayout swipeRefreshLayout;
-    TextView intranetPageText;
     int size;
     static Map<String, String> cookies;
 
@@ -53,24 +53,41 @@ public class BorrowedBooksFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_borrowed_books, container, false);
 
-        Content content = new Content();
-        content.execute();
-
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-
-            swipeRefreshLayout.setColorSchemeColors(
-                    requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
-                    requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
-                    requireActivity().getResources().getColor(android.R.color.holo_green_dark),
-                    requireActivity().getResources().getColor(android.R.color.holo_red_dark)
-            );
 
 
+        pref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
-            Content con = new Content();
-            con.execute();
-        });
+        originalPw = pref.getString("Password","");
+        Username = pref.getString("Username","");
+        finalUsername = Username.replaceAll("s","");
 
+        Button loginButton = view.findViewById(R.id.LoginButton);
+        if (!Username.isEmpty()&&!finalUsername.isEmpty()) {
+            loginButton.setVisibility(View.GONE);
+
+            Content content = new Content();
+            content.execute();
+
+            swipeRefreshLayout.setOnRefreshListener(() -> {
+
+                swipeRefreshLayout.setColorSchemeColors(
+                        requireActivity().getResources().getColor(android.R.color.holo_blue_dark),
+                        requireActivity().getResources().getColor(android.R.color.holo_orange_dark),
+                        requireActivity().getResources().getColor(android.R.color.holo_green_dark),
+                        requireActivity().getResources().getColor(android.R.color.holo_red_dark)
+                );
+
+
+                Content con = new Content();
+                con.execute();
+            });
+        } else {
+            loginButton.setOnClickListener(view -> {
+                Intent intent = new Intent(requireContext(), LoginActivity.class);
+                startActivity(intent);
+            });
+            loginButton.setVisibility(View.VISIBLE);
+        }
         return view;
     }
     private boolean isNetworkAvailable() {
@@ -101,17 +118,8 @@ public class BorrowedBooksFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            intranetPageText = view.findViewById(R.id.IntranetPageText);
-            intranetPageText.setText(getString(R.string.GoTo) + getString(R.string.Intranet));
-
             swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
             swipeRefreshLayout.setRefreshing(true);
-
-            pref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-
-            originalPw = pref.getString("Password","");
-            Username = pref.getString("Username","");
-            finalUsername = Username.replaceAll("s","");
 
             borrowedBooksRecyclerView = view.findViewById(R.id.BorrowedBooksRecyclerView);
             borrowedBooksRecyclerView.setHasFixedSize(true);

@@ -2,4 +2,5 @@
 <resources>
     <color name="white">#DEFFFFFF</color>
     <color name="imageFront">#23FFFFFF</color>
+    <color name="background">#000000</color>
 </resources>

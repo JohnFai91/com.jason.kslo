@@ -8,13 +8,10 @@
     <string name="Thanks">多謝使用！</string>
     <string name="Description">一個青年人悶左既產品</string>
     <string name="changelog">程式改變</string>
-    <string name="View_Pdf">觀看 Pdf</string>
     <string name="Usages">只供個人用途</string>
     <string name="School_Cal">校歷表</string>
     <string name="Featured_Notice">最新通告</string>
     <string name="Half_Day_Schedule">半日時間表</string>
-    <string name="next">下一個</string>
-    <string name="previous">上一個</string>
     <string name="selectLanguage">選擇語言</string>
     <string name="Settings">設定</string>
     <string name="SourceCode">原始碼</string>
@@ -22,12 +19,6 @@
     <string name="DarkTheme">深色主題</string>
     <string name="SystemDefault">系統設定</string>
     <string name="SelectTheme">選擇背景</string>
-    <string name="ShowHomework">展示功課</string>
-    <string name="GetStarted">開始</string>
-    <string name="ViewPdfDesc">觀看下線pdf以及上網觀看由學校網站下載的通告</string>
-    <string name="Customise">個人化</string>
-    <string name="CustomiseDesc">設定主題和語言</string>
-    <string name="ReplayIntro">重播介紹</string>
     <string name="android_auto_update_dialog_title">發現新版本</string>
     <string name="android_auto_update_notify_ticker">發現新版本，點擊更新</string>
     <string name="android_auto_update_dialog_btn_download">立即下載</string>
@@ -39,19 +30,11 @@
     <string name="CheckForUpdate">檢查版本</string>
     <string name="Go">去！</string>
     <string name="AllowPermission">請允許下一版的權限以作日後自動更新</string>
-    <string name="Page1">第一版</string>
-    <string name="Page2">第二版</string>
-    <string name="Page3">第三版</string>
-    <string name="Page4">第四版</string>
     <string name="Album">相簿</string>
     <string name="openVideo">開啟影片</string>
     <string name="Downloading">下載中。。。</string>
-    <string name="Page5">第五版</string>
-    <string name="NewFeatures">新功能</string>
     <string name="Intranet">內聯網</string>
     <string name="BorrowedBooks">已借圖書</string>
-    <string name="version">版本</string>
-    <string name="Improvements">改善</string>
     <string name="changelogDescLv.1.0.1_alpha">
         *Leo 加入*
     </string>
@@ -222,6 +205,17 @@
         "改善「程式改變」"
     </string>
 
+    <string name="changelogDescLv_1_1_6">
+        "加入分享程式\n"
+    </string>
+    <string name="changelogDescRv_1_1_6">
+        "改變連結迎合新系統\n"
+        "更新原始 pdfs\n"
+        "移除班級\n"
+        "暫時移除內聯及相簿"
+
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha 狀態"
     </string>
@@ -266,19 +260,14 @@
         "下線支持"
     </string>
     <string name="changelogDescRFuture">
+        "更新用戶介面\n"
         "支持大畫面\n"
         "更多儀表板動作(標示完成，改變次序。。。)"
     </string>
 
     <string name="Future">將來</string>
     <string name="UpdatedSuccessfully">成功更新</string>
-    <string name="ChangeAmountDisplayed">改變顯示數量</string>
     <string name="Cancel">取消</string>
-    <string name="Min">最少:</string>
-    <string name="Max">最多:</string>
-    <string name="Recommended">建議:</string>
-    <string name="NumbersMayAffectSpeed">數字可影響速度</string>
-    <string name="inputNumbers">輸入數字</string>
     <string name="HelloWelcomeBack">你好！歡迎回來！</string>
     <string name="SigninToContinue">登入以繼續</string>
     <string name="Username">用戶名稱</string>
@@ -309,62 +298,35 @@
     <string name="Version">版本</string>
     <string name="Writer">作者</string>
     <string name="RenewBook">續借</string>
-    <string name="End">到達底部了！</string>
     <string name="File">文件</string>
     <string name="DownloadAgainQuery">再次下載？</string>
     <string name="DownloadedMsg">你已經下載了「 %1$s 」，要再下載嗎？</string>
     <string name="Open">開啟</string>
     <string name="Download">下載</string>
     <string name="tapToViewMore">點擊觀看更多</string>
-    <string name="Books">本書</string>
     <string name="ReturnTo">返回 %1$s</string>
-    <string name="ReadMail">標籤內聯郵件已讀</string>
-    <string name="ReadMailContent">連接伺服器你已讀內聯郵件</string>
     <string name="DownloadQueryDesc">你會被問再次下載你已下載的文件</string>
     <string name="GoTo">轉去</string>
     <string name="CheckInternet">請連接網絡以更新資料</string>
-    <string name="WelcomeMessage">祝你有一個很好的體驗！</string>
-    <string name="AssignedBySystem">(由系統/老師發佈)</string>
     <string name="Delete">刪除</string>
-    <string name="Move">移動</string>
-    <string name="IntranetError">出現錯誤了，請重新加載。</string>
-    <string name="IntranetError2">無法登入系統! 請檢查登入帳號是否重復使用 。</string>
-    <string name="IntranetError3">超出時限! 系統自動登出！</string>
-    <string name="IntranetError1">無法登入系統! 請檢查登入用戶帳號或密碼是否正确！</string>
-    <string name="Favourite">喜愛</string>
     <string name="MovedTo">已經搬去了 %1$s</string>
     <string name="RecyclingBin">回收箱</string>
     <string name="Undo">退回</string>
     <string name="ConfirmDelete">你即將刪除「</string>
     <string name="Irreversible">」, 這個動作不能被逆轉，你肯定嗎？</string>
-    <string name="DeletedSuccessfully">成功刪除！</string>
-    <string name="MoveTo">搬去</string>
-    <string name="IntranetMail">內聯郵件</string>
-    <string name="ConfirmMove">你即將移動 「</string>
-    <string name="ConfirmQuery">，你肯定嗎？</string>
-    <string name="To">」去</string>
-    <string name="Inbox">收件箱</string>
-    <string name="ActionDone">動作完成，</string>
-    <string name="PleaseReload">請重新加載。</string>
     <string name="Share">分享</string>
-    <string name="Class">班別</string>
-    <string name="Homework">功課</string>
     <string name="Confirm">確定</string>
-    <string name="Today">今日</string>
     <string name="DownloadedFiles">已下載文件</string>
-    <string name="Search">搜索</string>
-    <string name="FinishedSearching">完成搜索，搜索更多？</string>
-    <string name="Yes">是</string>
-    <string name="SearchComplete">搜索完成</string>
     <string name="JoinDevelopment">參與開發</string>
     <string name="Website">網頁</string>
     <string name="Date_sample">09</string>
     <string name="Now">現在</string>
-    <string name="Next">下一個</string>
-    <string name="Previous">上一個</string>
     <string name="AddToHomeScreen">加到桌面</string>
     <string name="Calendar">年曆</string>
     <string name="Notice">通告</string>
     <string name="Schedule">時間表</string>
     <string name="PleasePressAddAutomatically">請按「自動增加」</string>
+    <string name="ShareApp">分享程式</string>
+    <string name="CheckThisOut">試試這個！</string>
+    <string name="LatestNews">最新消息</string>
 </resources>

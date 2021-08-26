@@ -2,6 +2,7 @@ package com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class ParseAdapterForLatestNews extends RecyclerView.Adapter<ParseAdapter
             SecondParseItem parseItem = parseItems.get(position);
 
             Intent intent = new Intent(MainActivity.getContextOfApplication(), DetailedLatestNewsActivity.class);
+            intent.putExtra("date", parseItem.getDesc());
             intent.putExtra("title",parseItem.getTitle());
             intent.putExtra("detailUrl",parseItem.getDetailUrl());
             intent.putExtra("imgUrl",parseItem.getImgURL());

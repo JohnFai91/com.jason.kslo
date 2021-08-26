@@ -131,11 +131,6 @@
                 android:theme="@style/AppTheme.Actionbar">
         </activity>
         <activity
-                android:name=".main.parseContent.loggedInParseContent.activity.DetailedIntranetActivity"
-                android:configChanges="keyboardHidden|orientation|screenSize"
-                android:theme="@style/AppTheme.Actionbar">
-        </activity>
-        <activity
                 android:name=".changelog.ChangelogActivity"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:screenOrientation="user"
@@ -167,7 +162,7 @@
                 android:initOrder="101"/>
 
         <activity
-                android:name=".parseContent.defaultParseContent.activity.DownloadedFiles"
+                android:name=".main.parseContent.defaultParseContent.activity.DownloadedFiles"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:theme="@style/AppTheme.Actionbar">
             <intent-filter>

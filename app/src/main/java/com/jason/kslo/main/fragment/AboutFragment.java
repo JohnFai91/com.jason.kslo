@@ -19,7 +19,7 @@ import com.jason.kslo.R;
 import com.jason.kslo.autoUpdate.AppUtils;
 import com.jason.kslo.autoUpdate.UpdateChecker;
 import com.jason.kslo.changelog.ChangelogActivity;
-import com.jason.kslo.parseContent.defaultParseContent.activity.DownloadedFiles;
+import com.jason.kslo.main.parseContent.defaultParseContent.activity.DownloadedFiles;
 import com.jason.kslo.main.activity.SettingsActivity;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
@@ -40,7 +40,7 @@ public class AboutFragment extends Fragment {
     String locale,theme,versionVar;
     TextView version,Locale,ThemeText,desc;
     Button ChangeLogButton,SchoolCal,FeaturedNotice,HalfDaySchedule,Settings,CheckForUpdate,SourceCode,CrashApp,downloadedFiles,
-    JoinDevelopment, website;
+    JoinDevelopment, Website, ShareApp;
     ImageView schoolIcon;
 
     @Nullable
@@ -69,7 +69,8 @@ public class AboutFragment extends Fragment {
             schoolIcon = view.findViewById(R.id.School_Logo);
             downloadedFiles = view.findViewById(R.id.showDownloadedFiles);
             JoinDevelopment = view.findViewById(R.id.button_JoinDevelopment);
-            website = view.findViewById(R.id.button_myWebsite);
+            Website = view.findViewById(R.id.button_myWebsite);
+            ShareApp = view.findViewById(R.id.shareApp);
 
             Content content = new Content();
             content.run();
@@ -98,22 +99,11 @@ public class AboutFragment extends Fragment {
                    randomCode.append(alphabetArr[randomInt] + randomInt);
             }
 
-            Picasso.get().load("https://opengraph.githubassets.com/" + randomCode
-                    + "/johnfai91/com.jason.kslo").memoryPolicy(MemoryPolicy.NO_STORE,MemoryPolicy.NO_CACHE).into(schoolIcon, new Callback() {
-                @Override
-                public void onSuccess() {
-
-                    schoolIcon.setOnClickListener(view -> {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/JohnFai91/com.jason.kslo"));
-                        startActivity(browserIntent);
-                    });
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    Picasso.get().load(R.drawable.school_logo).into(schoolIcon);
-                }
+            schoolIcon.setOnClickListener(view -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/JohnFai91/com.jason.kslo"));
+                startActivity(intent);
             });
+            Picasso.get().load(R.drawable.school_logo).into(schoolIcon);
 
             version.setText(versionVar);
             Locale.setText(locale);
@@ -173,10 +163,20 @@ public class AboutFragment extends Fragment {
                 startActivity(i);
             });
 
-            website.setOnClickListener(view -> {
+            Website.setOnClickListener(view -> {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse("https://johnfai91.github.io/com.jason.kslo/"));
                 startActivity(i);
+            });
+
+            ShareApp.setOnClickListener(view -> {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "com.jason.kslo");
+                String shareMessage= getString(R.string.CheckThisOut) + "\n";
+                shareMessage = shareMessage + "https://github.com/JohnFai91/KSLO_Installer/releases/download/latest/latest.apk";
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(shareIntent, "choose one"));
             });
         }
     }

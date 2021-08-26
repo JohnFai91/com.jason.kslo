@@ -25,21 +25,17 @@ import com.jason.kslo.main.activity.SettingsActivity;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
 import com.jason.kslo.main.pdfView.download.PdfViewSchedule;
 import com.jason.kslo.main.parseContent.defaultParseContent.activity.Detailed_Gallery;
-import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.IntranetFragment;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public class DownloadView extends AppCompatActivity {
 
     // Progress Dialog
     ProgressDialog pDialog;
-    final int progress_bar_type = 0;
+    final int percentage_progress_bar_type = 0;
     final int horizontal_progress_bar_type = 1;
     String file_url, origin, fileName;
     File file;
@@ -62,9 +58,14 @@ public class DownloadView extends AppCompatActivity {
 
         // File url to download
         file_url = getIntent().getStringExtra("fileUrl");
+        if (file_url != null) {
+            if (file_url.startsWith("http://")) {
+                file_url = file_url.replace("http://", "https://");
+            }
+        }
 
         fileName = getIntent().getStringExtra("title");
-        Log.d("origin", "origin: " + origin);
+        Log.d("origin", "origin: " + origin + " fileUrl: " + file_url);
         if (origin.equals("detailedWebsite")) {
             fileName = "gallery_" + fileName + file_url.substring(file_url.lastIndexOf("/") + 1);
             fileName = fileName.replace("...","");
@@ -147,7 +148,7 @@ public class DownloadView extends AppCompatActivity {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        if (id == progress_bar_type) {
+        if (id == percentage_progress_bar_type) {
             pDialog = new ProgressDialog(this);
             pDialog.setMessage(getString(R.string.Downloading));
             pDialog.setIndeterminate(false);
@@ -182,7 +183,7 @@ public class DownloadView extends AppCompatActivity {
             if (download.equals("true")) {
                 if (origin.equals("DetailedFile")||(origin.equals("UpdateNotice")||(origin.equals("UpdateSchedule"))
                         ||(origin.equals("detailedWebsite")))) {
-                    showDialog(progress_bar_type);
+                    showDialog(percentage_progress_bar_type);
                 } else {
                     showDialog(horizontal_progress_bar_type);
                 }
@@ -197,24 +198,6 @@ public class DownloadView extends AppCompatActivity {
         if (TextUtils.equals(download, "true")) {
             int count;
             if (fileName.contains(".pdf")||fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".png")) {
-                if (origin.equals("detailedIntranetFile")) {
-                    try {
-//Open a URL Stream
-                        Connection.Response resultImageResponse;
-                        Map<String, String> cookies = IntranetFragment.getCookies();
-                        resultImageResponse = Jsoup.connect(getIntent().getStringExtra("fileUrl"))
-                                .cookies(cookies)
-                                .ignoreContentType(true)
-                                .execute();
-                        // output here
-                        FileOutputStream out = (new FileOutputStream(getApplicationContext().getCacheDir() + "/" + fileName));
-                        out.write(resultImageResponse.bodyAsBytes());
-                        out.close();
-
-                    } catch (Exception e) {
-                        Log.e("Error: ", e.getMessage());
-                    }
-                } else {
                     try {
                         URL url = new URL(f_url[0]);
                         URLConnection connection = url.openConnection();
@@ -257,26 +240,6 @@ public class DownloadView extends AppCompatActivity {
                         Log.e("Error: ", e.getMessage());
                     }
                 }
-            } else {
-                try {
-//Open a URL Stream
-                    Connection.Response resultImageResponse;
-                    Map<String, String> cookies = IntranetFragment.getCookies();
-
-                    resultImageResponse = Jsoup.connect(getIntent().getStringExtra("fileUrl"))
-                            .cookies(cookies)
-                            .ignoreContentType(true)
-                            .execute();
-                    String fileName = getIntent().getStringExtra("title");
-                    // output here
-                    FileOutputStream out = (new FileOutputStream(getApplicationContext().getCacheDir()
-                            + "/" + fileName));
-                    out.write(resultImageResponse.bodyAsBytes());
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
             return null;
         }
@@ -300,7 +263,7 @@ public class DownloadView extends AppCompatActivity {
             if (download.equals("true")) {
                 if (origin.equals("DetailedFile") || origin.equals("UpdateNotice")||origin.equals("UpdateSchedule")||
                 origin.equals("detailedWebsite")) {
-                    dismissDialog(progress_bar_type);
+                    dismissDialog(percentage_progress_bar_type);
                 } else {
                     dismissDialog(horizontal_progress_bar_type);
                 }
@@ -310,8 +273,6 @@ public class DownloadView extends AppCompatActivity {
 
                         SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
                         sharedPreferences.edit().putString("CurrentPdf",fileName).apply();
-                        sharedPreferences.edit().putString("CurrentPdfClass",
-                                getIntent().getStringExtra("Class")).apply();
                         sharedPreferences.edit().putInt("CurrentPdfCode",
                                 getIntent().getIntExtra("fileCode",1)).apply();
                         sharedPreferences.edit().putInt("PdfDefaultPage",
@@ -323,8 +284,6 @@ public class DownloadView extends AppCompatActivity {
 
                         SharedPreferences sharedPreferences = getSharedPreferences("MyPref",MODE_PRIVATE);
                         sharedPreferences.edit().putString("CurrentSchedulePdf",fileName).apply();
-                        sharedPreferences.edit().putString("CurrentSchedulePdfClass",
-                                getIntent().getStringExtra("Class")).apply();
                         sharedPreferences.edit().putInt("CurrentSchedulePdfCode",
                                 getIntent().getIntExtra("fileCode",1)).apply();
                         sharedPreferences.edit().putInt("PdfScheduleDefaultPage",
@@ -358,7 +317,7 @@ public class DownloadView extends AppCompatActivity {
 
                     if (download.equals("true")) {
                         if (origin.equals("DetailedFile")) {
-                            dismissDialog(progress_bar_type);
+                            dismissDialog(percentage_progress_bar_type);
                         } else {
                             dismissDialog(horizontal_progress_bar_type);
                         }

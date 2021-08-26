@@ -9,15 +9,12 @@
     <string name="Thanks">Thanks for downloading!</string>
     <string name="Description">A product of a bored teenager in Covid-19~"\n</string>
     <string name="changelog">"Changelog"</string>
-    <string name="View_Pdf">"View Pdf"</string>
     <string name="Usages">"Only for personal usages"\n</string>
     <string name="School_Cal">"School Calendar"</string>
     <string name="Featured_Notice">"Featured Notice"</string>
     <string name="Half_Day_Schedule">"Half Day Schedule"</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
     <string name="selectLanguage">Select language</string>
     <string name="LightTheme">Light Theme</string>
     <string name="DarkTheme">Dark Theme</string>
@@ -30,13 +27,6 @@
     <string name="English" translatable="false">English(en)</string>
     <string name="SelectTheme">Select theme</string>
     <string name="ic_drop" translatable="false">drop</string>
-    <string name="ShowHomework">Show Homework</string>
-    <string name="GetStarted">Get Started</string>
-    <string name="ViewPdfDesc">"View offline pdf and online pdf"
-    </string>
-    <string name="Customise">Customise</string>
-    <string name="CustomiseDesc">Customize your own theme and language</string>
-    <string name="ReplayIntro">Replay Introduction</string>
     <string name="schoolLogo" translatable="false">SchoolLogo</string>
 
     <string name="android_auto_update_dialog_title">Found new version</string>
@@ -55,19 +45,11 @@
     <string name="CheckForUpdate">Check for update</string>
     <string name="Go">Go!</string>
     <string name="AllowPermission">Please allow the permission on the next page for future auto updates.</string>
-    <string name="Page1">Page 1</string>
-    <string name="Page2">Page 2</string>
-    <string name="Page3">Page 3</string>
-    <string name="Page4">Page 4</string>
     <string name="Album">Album</string>
     <string name="openVideo">Open Video</string>
     <string name="Downloading">Downloading…</string>
-    <string name="Page5">Page 5</string>
     <string name="Intranet">Intranet</string>
     <string name="BorrowedBooks">Borrowed books</string>
-    <string name="version">Version</string>
-    <string name="NewFeatures">New Features</string>
-    <string name="Improvements">Improvements</string>
 
     <string name="changelogDescLv.1.0.1_alpha">
         *Leo joined*
@@ -243,6 +225,17 @@
         "Improve \"Changelog\""
     </string>
 
+    <string name="changelogDescLv_1_1_6">
+        "Add sharing app\n\n"
+    </string>
+    <string name="changelogDescRv_1_1_6">
+        "Change links to accommodate new system\n\n"
+        "Update default pdfs\n\n"
+        "Remove separate classes\n\n"
+        "Temporarily remove intranet and gallery"
+
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State"
     </string>
@@ -282,25 +275,17 @@
 
     <string name="changelogDescLFuture">
         "Notifications\n\n"
-        "Offline support\n\n"
-        "Search\n"
+        "Offline support"
     </string>
     <string name="changelogDescRFuture">
+        "Update UI\n\n"
         "Support larger screens\n\n"
-        "Show downloaded files\n\n"
-        "More \"Intranet\" details (mail size, receiver…)\n\n"
         "More \"Dashboard\" actions (mark done, change sequence…)"
     </string>
 
     <string name="Future">Future</string>
     <string name="UpdatedSuccessfully">Updated successfully</string>
-    <string name="ChangeAmountDisplayed">Change amount displayed</string>
     <string name="Cancel">Cancel</string>
-    <string name="Min">Min:</string>
-    <string name="Max">Max:</string>
-    <string name="Recommended">Recommended:</string>
-    <string name="NumbersMayAffectSpeed">Numbers may affect speed</string>
-    <string name="inputNumbers">Input numbers</string>
     <string name="HelloWelcomeBack">Hello! Welcome back!</string>
     <string name="SigninToContinue">Sign in to continue</string>
     <string name="Username">Username</string>
@@ -343,7 +328,6 @@
     <string name="Writer">Writer</string>
     <string name="WriterSample" translatable="false">中川右介,楊裴文</string>
     <string name="RenewBook">Renew Book</string>
-    <string name="End">You have reached the end!</string>
     <string name="File">File</string>
     <string name="DownloadAgainQuery">Download Again?</string>
     <string name="DownloadedMsg">" You have already downloaded \" %1$s \", download again?"</string>
@@ -353,60 +337,34 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="tapToViewMore">Tap to view more</string>
-    <string name="Books">Books</string>
     <string name="ReturnTo">Return to %1$s</string>
-    <string name="ReadMail">Read mail</string>
-    <string name="ReadMailContent">Tell the server that you have read the intranet mail</string>
     <string name="DownloadQueryDesc">When you have downloaded a file already, you will be prompted to download again
     </string>
     <string name="GoTo">Go to</string>
     <string name="CheckInternet">Please connect to the Internet for updated contents</string>
     <string name="DateExample" translatable="false">1/1/2021 08:10-08:15</string>
     <string name="HwExample" translatable="false">Eng SRE EX1</string>
-    <string name="WelcomeMessage">Have a nice experience!</string>
-    <string name="AssignedBySystem">(Assigned by system/teacher)</string>
     <string name="Delete">Delete</string>
-    <string name="Move">Move</string>
-    <string name="IntranetError">An error occurred, please reload the Intranet.</string>
-    <string name="IntranetError2">Unable to login, please check if you have repeatedly logged in.</string>
-    <string name="IntranetError3">Time out! please reload intranet!</string>
-    <string name="IntranetError1">Unable to login, please check your username and password!</string>
-    <string name="Favourite">Favourite</string>
     <string name="MovedTo">Moved to %1$s</string>
     <string name="RecyclingBin">Recycling bin</string>
     <string name="Undo">Undo</string>
     <string name="ConfirmDelete">You are about to delete \"</string>
     <string name="Irreversible">\", this action cannot be reversed, are you sure?</string>
-    <string name="DeletedSuccessfully">Deleted successfully!</string>
-    <string name="MoveTo">Move to</string>
-    <string name="IntranetMail">Intranet Mail</string>
-    <string name="ConfirmMove">You are about to move \"</string>
-    <string name="ConfirmQuery">, are you sure?</string>
-    <string name="To">\"To</string>
-    <string name="Inbox">Inbox</string>
-    <string name="ActionDone">Action done,</string>
-    <string name="PleaseReload">Please reload.</string>
     <string name="Share">Share</string>
-    <string name="Class">Class</string>
-    <string name="Homework">Homework</string>
     <string name="Confirm">Confirm</string>
-    <string name="Today">Today</string>
     <string name="DownloadedFiles">Downloaded Files</string>
     <string name="SizeSample" translatable="false">1 kb</string>
-    <string name="Search">Search</string>
-    <string name="FinishedSearching">Finished searching, search for more results?</string>
-    <string name="Yes">Yes</string>
-    <string name="SearchComplete">Search complete</string>
     <string name="JoinDevelopment">Join development</string>
     <string name="Website">Website</string>
     <string name="Date_sample">09</string>
     <string name="Now">Now</string>
-    <string name="Next">Next</string>
-    <string name="Previous">Previous</string>
     <string name="AddToHomeScreen">Add To Home Screen</string>
     <string name="Calendar">Calendar</string>
     <string name="Notice">Notice</string>
     <string name="Schedule">Schedule</string>
     <string name="PleasePressAddAutomatically">Please press \"Add Automatically\"</string>
+    <string name="ShareApp">Share App</string>
+    <string name="CheckThisOut">Check this out!</string>
+    <string name="LatestNews">Latest News</string>
 
 </resources>

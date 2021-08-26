@@ -74,7 +74,7 @@ public class PdfViewSchedule extends AppCompatActivity {
 
             if (currentPdf.isEmpty()) {
 
-                pdfView.fromAsset("3C_Schedule_(Half Day).pdf")
+                pdfView.fromAsset("schedule.pdf")
                         .enableSwipe(true)
                         .enableAnnotationRendering(false)
                         .scrollHandle(new DefaultScrollHandle(PdfViewSchedule.this))
@@ -110,43 +110,23 @@ public class PdfViewSchedule extends AppCompatActivity {
     }
     private void parseJson(String result) {
         try {
-            int version = sharedPreferences.getInt("CurrentSchedulePdfCode",0), fileCode = 0, defaultPage = 0;
-            String fileName = null,fileUrl = null;
+            int version = sharedPreferences.getInt("CurrentSchedulePdfCode",0), fileCode, defaultPage;
+            String fileName,fileUrl;
 
             JSONObject obj = new JSONObject(result);
-            if (sharedPreferences.getString("Class", "3C").equals("3C")) {
-                fileCode = obj.getInt(PdfConstants.File_VERSION_CODE);
-                fileName = obj.getString(PdfConstants.File_Name);
-                fileUrl = obj.getString(PdfConstants.File_DOWNLOAD_URL);
-                defaultPage = obj.getInt(PdfConstants.Default_Page);
-            } else if (sharedPreferences.getString("Class", "3C").equals("2D")) {
-                fileCode = obj.getInt(PdfConstants.File_VERSION_CODE_2D);
-                fileName = obj.getString(PdfConstants.File_Name_2D);
-                fileUrl = obj.getString(PdfConstants.File_DOWNLOAD_URL_2D);
-                defaultPage = obj.getInt(PdfConstants.Default_Page_2D);
-            }
+            fileCode = obj.getInt(PdfConstants.File_VERSION_CODE);
+            fileName = obj.getString(PdfConstants.File_Name);
+            fileUrl = obj.getString(PdfConstants.File_DOWNLOAD_URL);
+            defaultPage = obj.getInt(PdfConstants.Default_Page);
 
             Log.d(PdfConstants.TAG, "result: " + result +
                     " fileCode: " + fileCode + " fileName: " + fileName + " fileUrl : " + fileUrl);
 
-            String selectedClass = sharedPreferences.getString("Class", "3C");
-            String pdfClass = sharedPreferences.getString("CurrentSchedulePdfClass","3C");
             if (fileCode > version) {
-                startDownload(fileCode, defaultPage, fileName, fileUrl, selectedClass);
-            } else if(pdfClass.equals("3C")) {
-                if (!selectedClass.equals("3C")) {
-                    startDownload(fileCode,defaultPage,fileName,fileUrl, selectedClass);
+                    startDownload(fileCode, defaultPage, fileName, fileUrl);
                 } else {
                     checkDefaultPage(defaultPage);
                 }
-
-            } else if (pdfClass.equals("2D")){
-                if (!selectedClass.equals("2D")) {
-                    startDownload(fileCode,defaultPage,fileName, fileUrl, selectedClass);
-                } else {
-                    checkDefaultPage(defaultPage);
-                }
-            }
 
         } catch (JSONException e) {
             Log.e(PdfConstants.TAG, "parse json error: " + e);
@@ -187,15 +167,13 @@ public class PdfViewSchedule extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    void startDownload(int fileCode, int defaultPage, String fileName, String fileUrl, String selectedClass) {
+    void startDownload(int fileCode, int defaultPage, String fileName, String fileUrl) {
 
         Intent intent = new Intent(PdfViewSchedule.this, DownloadView.class);
         intent.putExtra("title", fileName);
         intent.putExtra("fileUrl", fileUrl);
-        intent.putExtra("PdfClass", selectedClass);
         intent.putExtra("fileCode", fileCode);
         intent.putExtra("defaultPage", defaultPage);
-        intent.putExtra("Class", selectedClass);
 
         intent.putExtra("origin", "UpdateSchedule");
 

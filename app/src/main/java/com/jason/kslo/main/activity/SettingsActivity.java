@@ -43,39 +43,6 @@ public class SettingsActivity extends AppCompatActivity {
         spinner = findViewById(R.id.SelectThemeSpinner);
         pref = getApplicationContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         Theme = pref.getString("theme","");
-        String selectedClass = pref.getString("Class","3C");
-
-        Spinner classesSpinner = findViewById(R.id.SettingsChooseClass);
-        String[] classes = {
-                getString(R.string.Class) + " (" + selectedClass + ")","2D", "3C"
-        };
-        ArrayAdapter<? extends String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, classes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classesSpinner.setAdapter(adapter);
-
-        classesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-             @Override
-             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                 switch (position) {
-                     case 1:
-                         pref.edit().putString("Class","2D").apply();
-                         finish();
-                         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                         break;
-                     case 2:
-                         pref.edit().putString("Class","3C").apply();
-                         finish();
-                         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-                         break;
-                 }
-             }
-
-             @Override
-             public void onNothingSelected(AdapterView<?> adapterView) {
-
-             }
-         });
-
             downloadAgainQuery = findViewById(R.id.downloadQuerySwitcher);
 
         change2Eng =  findViewById(R.id.English);

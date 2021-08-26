@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.BorrowedBooksFragment;
-import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.IntranetFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -56,7 +55,7 @@ public class detailedBooksActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("title"));
 
         url = getIntent().getStringExtra("detailUrl");
-        cookies = IntranetFragment.getCookies();
+        cookies = BorrowedBooksFragment.getCookies();
 
         BkImg = findViewById(R.id.BookDetailedImage);
 
