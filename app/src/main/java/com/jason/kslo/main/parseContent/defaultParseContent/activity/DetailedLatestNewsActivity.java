@@ -83,10 +83,6 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
         protected void onPreExecute() {
             latestNewsRecyclerFile = findViewById(R.id.recyclerViewDetailLatestNewsFile);
 
-            latestNewsRecyclerFile.getRecycledViewPool().clear();
-
-            latestNewsRecyclerFile.setHasFixedSize(true);
-
             LinearLayoutManager layoutHorizontalManager
                     = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
             latestNewsRecyclerFile.setLayoutManager(layoutHorizontalManager);
@@ -166,12 +162,29 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
     }
     private void parseDetailedFile() {
         try {
-            JSONObject obj =  new JSONObject(fullDoc);
+            JSONObject obj = new JSONObject(fullDoc);
             JSONObject fileObj = obj.getJSONObject("Attachments");
-            JSONArray fileJa = fileObj.getJSONArray("Attachment");
+            JSONObject finalFileObj;
 
-            for (int i = 0; i < fileJa.length(); i++) {
-                JSONObject finalFileObj = new JSONObject(fileJa.get(i).toString());
+            if (fileObj.get("Attachment") instanceof JSONArray) {
+
+                JSONArray fileJa = fileObj.getJSONArray("Attachment");
+
+                for (int i = 0; i < fileJa.length(); i++) {
+                    finalFileObj = new JSONObject(fileJa.get(i).toString());
+
+                    String fileUrl = finalFileObj.getString("FileURL");
+
+                    fileName = finalFileObj.getString("FileName");
+                    if (fileUrl.startsWith("/wp-content/uploads/")) {
+                        fileUrl = "https://www.hkmakslo.edu.hk" + fileUrl;
+                    }
+                    parseItem.add(new ParseItem(fileUrl, fileName));
+                    Log.d("Latest News File", "Name: " + fileName + " Url: " + fileUrl + " size:" + fileJa.length());
+                }
+            } else {
+
+                finalFileObj = fileObj.getJSONObject("Attachment");
 
                 String fileUrl = finalFileObj.getString("FileURL");
 
@@ -179,14 +192,11 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
                 if (fileUrl.startsWith("/wp-content/uploads/")) {
                     fileUrl = "https://www.hkmakslo.edu.hk" + fileUrl;
                 }
-                if (fileName.isEmpty()) {
-                    fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-                }
+
                 parseItem.add(new ParseItem(fileUrl, fileName));
                 Log.d("Latest News File", "Name: " + fileName + " Url: " + fileUrl);
-
             }
-        } catch (Exception exception) {
+        } catch(Exception exception){
             exception.printStackTrace();
         }
     }

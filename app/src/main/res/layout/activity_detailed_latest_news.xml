@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20sp">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:scrollbars="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20sp">
 
-                    <TextView
-                            android:id="@+id/LatestNewsDetailedTextTitle"
-                            android:layout_marginTop="20sp"
-                            android:layout_marginHorizontal="15dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="25sp"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginEnd="12dp"
-                            android:textIsSelectable="true"/>
-                    <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                        <TextView
-                                android:layout_marginHorizontal="15sp"
-                                android:layout_marginBottom="10dp"
-                                android:textSize="15sp"
-                                android:textColor="@android:color/holo_blue_light"
-                                android:id="@+id/latestNewsDetailedDate"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:textAlignment="gravity"
-                                android:gravity="end"
-                                android:textIsSelectable="true"/>
-                        <TextView
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginHorizontal="15dp"
-                                android:id="@+id/LatestNewsDetailedSender"
-                                android:textSize="15sp"
-                                android:textColor="@color/blue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textIsSelectable="true" tools:ignore="RelativeOverlap"/>
-                    </RelativeLayout>
-
-                    <TextView
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginHorizontal="15dp"
-                            android:id="@+id/LatestNewsDetailedText"
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textIsSelectable="true"/>
-                <ProgressBar
-                        android:visibility="gone"
-                        android:id="@+id/detailedLatestNewsProgressBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                <Button
-                        android:visibility="gone"
-                        android:id="@+id/openVideo"
-                        android:text="@string/openVideo"
-                        android:paddingHorizontal="20sp"
-                        android:layout_marginHorizontal="12sp"
-                        android:background="@drawable/default_button_background"
+                <TextView
+                        android:id="@+id/LatestNewsDetailedTextTitle"
+                        android:layout_marginTop="20sp"
+                        android:layout_marginHorizontal="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_open"
-                />
+                        android:layout_gravity="top"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:textIsSelectable="true"/>
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <TextView
+                            android:layout_marginHorizontal="15sp"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="15sp"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:id="@+id/latestNewsDetailedDate"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="gravity"
+                            android:gravity="end"
+                            android:textIsSelectable="true"/>
+                    <TextView
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:id="@+id/LatestNewsDetailedSender"
+                            android:textSize="15sp"
+                            android:textColor="@color/blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textIsSelectable="true" tools:ignore="RelativeOverlap"/>
+                </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:paddingHorizontal="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:id="@+id/recyclerViewDetailLatestNewsFile"
+                <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:id="@+id/LatestNewsDetailedText"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textIsSelectable="true"/>
+            <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/detailedLatestNewsProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:visibility="gone"
+                    android:id="@+id/openVideo"
+                    android:text="@string/openVideo"
+                    android:paddingHorizontal="20sp"
+                    android:layout_marginHorizontal="12sp"
+                    android:background="@drawable/default_button_background"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:fastScrollEnabled="true"
-                    app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
-                    app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
-                    app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
-                    app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
-        </LinearLayout>
-</ScrollView>
+                    android:drawableEnd="@drawable/ic_open"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:paddingHorizontal="10dp"
+                android:id="@+id/recyclerViewDetailLatestNewsFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
