@@ -17,9 +17,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForLatestNews;
 import com.jason.kslo.main.parseContent.parseItem.SecondParseItem;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,35 +127,37 @@ public class LatestNewsFragment extends Fragment {
         }
     }
     private  void parseLatestNews(){
+        try{
         //parse Latest News
-        try {
-            Document document = Jsoup.connect("https://www.hkmakslo.edu.hk/").get();
+        String latestNews = Jsoup.connect("https://www.hkmakslo.edu.hk/wp-admin/admin-ajax.php?action=eclass_latest_news_api&num_of_record=&_ajax_nonce=cc7f9fc600")
+                .ignoreContentType(true)
+                .execute()
+                .body();
 
-            Elements latestNewsData = document.select("div#latestNews.col-xs-12");
-            Elements FinalLatestNewsData = latestNewsData.select("h2");
+            JSONObject obj = new JSONObject(latestNews).getJSONObject("Announcements");
+            JSONArray jaAnnouncement = obj.getJSONArray("Announcement");
+            for (int i = 0; i < jaAnnouncement.length(); i++) {
+                JSONObject finalJaAnnouncement = new JSONObject(jaAnnouncement.get(i).toString());
 
-            LatestNewsSize = FinalLatestNewsData.size();
-            for (b = 0; b < LatestNewsSize; b++) {
+                String detailUrl = "https://www.hkmakslo.edu.hk/latest-new/?id=" + finalJaAnnouncement.getString("AnnouncementID");
 
-                String latestNewsDate = latestNewsData
-                        .select("span.newsDate")
-                        .eq(b)
-                        .text();
+                String titleLatestNews = finalJaAnnouncement.getString("Title");
 
-                String titleLatestNews = FinalLatestNewsData
-                        .eq(b)
-                        .text();
+                String latestNewsDate = finalJaAnnouncement.getString("AnnouncementDate");
 
-                String detailUrl = latestNewsData
-                        .select("a")
-                        .eq(b + 1)
-                        .attr("href");
-                String imgUrl = null;
+                String sender = finalJaAnnouncement.getString("PosterNameCH") +
+                        " " + finalJaAnnouncement.getString("PosterNameEN");
 
-                SecondParseItems.add(new SecondParseItem(imgUrl, titleLatestNews, latestNewsDate, detailUrl));
-                Log.d("Latest News items",   ". Title: " + titleLatestNews + ". Time: " + latestNewsDate + ". Detail Url: " + detailUrl);
+                String desc = finalJaAnnouncement.toString();
+
+            SecondParseItems.add(new SecondParseItem(sender, titleLatestNews, latestNewsDate, desc, detailUrl));
+            Log.d("Latest News items",   ". Title: " + titleLatestNews + ". Time: " + latestNewsDate
+                    + ". Detail Url: " + detailUrl + ". Sender: " + sender);
+
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

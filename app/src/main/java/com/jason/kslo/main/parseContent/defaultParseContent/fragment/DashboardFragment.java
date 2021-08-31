@@ -31,18 +31,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static com.jason.kslo.main.activity.MainActivity.parseLm;
+
 public class DashboardFragment extends Fragment {
     View v;
     int size;
     File file;
     ICalReader reader;
-    ParseAdapterForDashboard parseAdapterForDashboard;
+    static ParseAdapterForDashboard parseAdapterForDashboard;
     final static ArrayList<DashboardParseItem> ParseItems = new ArrayList<>();
     final ArrayList<Date> dates = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     SharedPreferences sharedPreferences;
     static String icsPositionStr;
-    static int icsPosition;
+    static int icsPosition, originalNo;
+    static DateFormat df;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +58,6 @@ public class DashboardFragment extends Fragment {
     }
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
-        DateFormat df;
         RecyclerView recyclerView;
         @Override
         protected void onPreExecute() {
@@ -98,9 +100,10 @@ public class DashboardFragment extends Fragment {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+            originalNo = 0;
             try {
                 while ((ical = reader.readNext()) != null) {
-
+                        originalNo = originalNo + 1;
                     for (VEvent event : ical.getEvents()) {
                         DateStart dateStart = event.getDateStart();
                         DateEnd dateEnd = event.getDateEnd();
@@ -175,6 +178,7 @@ public class DashboardFragment extends Fragment {
                 if (reader != null) {
                     reader.close();
                 }
+                parseLm(true);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -222,6 +226,21 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
+
+    public static void addInItems(String date, String bookName, String content, String fullDesc) {
+            try {
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date finalDate = sdf.parse(date);
+                if (finalDate != null) {
+                    date = df.format(finalDate);
+                }
+                date = date.replace("00:00","23:59");
+                ParseItems.add(new DashboardParseItem(date, content, fullDesc, null));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     private void getDateNearest(List<Date> dates, Date targetDate){
         int position = 0;
         for (Date date : dates) {
@@ -232,6 +251,13 @@ public class DashboardFragment extends Fragment {
             }
             position = position + 1;
         }
+    }
+    public static ArrayList<DashboardParseItem> getParseItems() {
+        return ParseItems;
+    }
+
+    public static int getOriginalNo() {
+        return originalNo;
     }
 
     public static String getIcsPositionStr() {

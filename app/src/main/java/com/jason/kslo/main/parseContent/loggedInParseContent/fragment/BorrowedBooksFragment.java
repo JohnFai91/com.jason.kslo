@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,23 +25,22 @@ import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.parseContent.loggedInParseContent.activity.LoginActivity;
 import com.jason.kslo.main.parseContent.loggedInParseContent.parseAdapter.ParseAdapterForBooks;
 import com.jason.kslo.main.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.jason.kslo.main.activity.MainActivity.getSecondLoginParseItems;
+import static com.jason.kslo.main.activity.MainActivity.parseLm;
+
 public class BorrowedBooksFragment extends Fragment {
 
-    ParseAdapterForBooks parseAdapterForBooks;
-    final ArrayList<SecondLoginParseItem> secondLoginParseItems = new ArrayList<>();
-    final String LmUrl = "https://lm.hkmakslo.edu.hk/PrivatePages/_book_table.aspx?";
-    int  BookSize;
+    static ParseAdapterForBooks parseAdapterForBooks;
+    static ArrayList<SecondLoginParseItem> secondLoginParseItems;
+    static int  BookSize;
     RecyclerView borrowedBooksRecyclerView;
-    View view;
-    String Username, originalPw, finalUsername;
+    @SuppressLint("StaticFieldLeak")
+    static View view;
+    static String Username, originalPw, finalUsername;
     SharedPreferences pref;
     SwipeRefreshLayout swipeRefreshLayout;
     int size;
@@ -53,8 +51,7 @@ public class BorrowedBooksFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_borrowed_books, container, false);
 
-
-
+        secondLoginParseItems = getSecondLoginParseItems();
         pref = requireActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
         originalPw = pref.getString("Password","");
@@ -67,7 +64,7 @@ public class BorrowedBooksFragment extends Fragment {
 
             Content content = new Content();
             content.execute();
-
+            swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
             swipeRefreshLayout.setOnRefreshListener(() -> {
 
                 swipeRefreshLayout.setColorSchemeColors(
@@ -76,7 +73,6 @@ public class BorrowedBooksFragment extends Fragment {
                         requireActivity().getResources().getColor(android.R.color.holo_green_dark),
                         requireActivity().getResources().getColor(android.R.color.holo_red_dark)
                 );
-
 
                 Content con = new Content();
                 con.execute();
@@ -90,21 +86,21 @@ public class BorrowedBooksFragment extends Fragment {
         }
         return view;
     }
-    private boolean isNetworkAvailable() {
+    private static boolean isNetworkAvailable() {
         ConnectivityManager manager =
-                (ConnectivityManager) requireActivity()
+                (ConnectivityManager) view.getContext()
                         .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         // Network is present and connected
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    public void checkInternet() {
+    public static void checkInternet() {
 
         if (!isNetworkAvailable()) {
-            Snackbar.make(MainActivity.getView(), getString(R.string.CheckInternet), Snackbar.LENGTH_LONG)
-                    .setAction(getString(R.string.Go), view ->
-                            startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS)))
+            Snackbar.make(MainActivity.getView(), view.getContext().getString(R.string.CheckInternet), Snackbar.LENGTH_LONG)
+                    .setAction(view.getContext().getString(R.string.Go), view ->
+                            view.getContext().startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS)))
                     .setBackgroundTint(MainActivity.getPrimary())
                     .show();
         }
@@ -112,23 +108,24 @@ public class BorrowedBooksFragment extends Fragment {
 
     @SuppressLint("StaticFieldLeak")
     @SuppressWarnings("deprecation")
-    private class Content extends AsyncTask<Void, Void, Void> {
+    private static class Content extends AsyncTask<Void, Void, Void> {
         @SuppressLint("SetTextI18n")
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
+            SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
             swipeRefreshLayout.setRefreshing(true);
 
-            borrowedBooksRecyclerView = view.findViewById(R.id.BorrowedBooksRecyclerView);
+            RecyclerView borrowedBooksRecyclerView = view.findViewById(R.id.BorrowedBooksRecyclerView);
             borrowedBooksRecyclerView.setHasFixedSize(true);
 
             LinearLayoutManager layoutVerticalManager
-                    = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    = new LinearLayoutManager(borrowedBooksRecyclerView.getContext(),
+                    LinearLayoutManager.VERTICAL, false);
             borrowedBooksRecyclerView.setLayoutManager(layoutVerticalManager);
 
-            parseAdapterForBooks = new ParseAdapterForBooks(secondLoginParseItems, getContext());
+            parseAdapterForBooks = new ParseAdapterForBooks(secondLoginParseItems, borrowedBooksRecyclerView.getContext());
             borrowedBooksRecyclerView.setAdapter(parseAdapterForBooks);
 
             secondLoginParseItems.clear();
@@ -138,7 +135,7 @@ public class BorrowedBooksFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            parseLm();
+            parseLm(false);
             return null;
         }
 
@@ -147,78 +144,9 @@ public class BorrowedBooksFragment extends Fragment {
             super.onPostExecute(unused);
 
             parseAdapterForBooks.notifyDataSetChanged();
-
+            SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.BorrowedBooksSwipeRefresh);
             swipeRefreshLayout.setRefreshing(false);
 
-        }
-    }
-
-    private void parseLm(){
-        try{
-            Connection.Response loginForm = Jsoup.connect("https://lm.hkmakslo.edu.hk/Handlers/UserLogin.ashx?&sno=" +
-                    finalUsername + "&pass=" + originalPw)
-                    .method(Connection.Method.GET)
-                    .execute();
-
-            cookies = loginForm.cookies();
-
-            Document doc = Jsoup.connect(LmUrl)
-                    .cookies(cookies)
-                    .get();
-
-            Log.d("Parse Lm", "Cookies: " + loginForm.cookies());
-
-            Elements bk = doc.select("a");
-
-            BookSize = bk.size();
-            Log.d("ParseLM", "Size: " + BookSize);
-
-            for (int i = 0; i < BookSize; i++) {
-
-                String bkTitle = bk
-                        .eq(i)
-                        .text();
-
-                String bkImg = doc
-                        .select("img.book-cover-tbumb")
-                        .eq(i)
-                        .attr("src");
-
-                bkImg = bkImg.replace("..","");
-                bkImg = "https://lm.hkmakslo.edu.hk" + bkImg;
-
-                String bkBorrowedDate = doc
-                        .select("td.borrowed-date")
-                        .eq(i)
-                        .text();
-
-                String bkReturnDate = doc
-                        .select("td.return-date")
-                        .eq(i)
-                        .text();
-
-                String countReturn = doc.select("span.due")
-                        .eq(i)
-                        .text();
-
-                String detailUrl = doc
-                        .select("span.row")
-                        .select("a.book-name")
-                        .eq(i)
-                        .attr("href");
-                String baseDetailUrl = "https://lm.hkmakslo.edu.hk/Pages/";
-                detailUrl = baseDetailUrl + detailUrl;
-
-                countReturn = countReturn.replace("天後到期",getString(R.string.DaysToDueDate));
-                bkReturnDate = bkReturnDate + " (" +countReturn + ")";
-
-                secondLoginParseItems.add(new SecondLoginParseItem(bkTitle,bkImg,bkBorrowedDate,bkReturnDate,detailUrl,loginForm.cookies()));
-                Log.d("Parse Lm", "Bk: " + " title: " + bkTitle + " imgUrl: " + bkImg +
-                        " borrowed date: " + bkBorrowedDate + " return date: " + bkReturnDate);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     public static Map<String, String> getCookies() {

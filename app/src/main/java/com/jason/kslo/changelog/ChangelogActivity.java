@@ -222,17 +222,27 @@ import java.util.ArrayList;
 
                 } else if (i == 16) {
 
-                    separatorVisibility = "Visible";
-                    parseItems.add(new ChangelogParseItem(getString(R.string.changelogDescStableDescL),
-                            getString(R.string.changelogDescStableDescR),
-                            getString(R.string.changelogDescStable),separatorVisibility));
-
                     separatorVisibility = "Gone";
                     version = "1.1.6\n" +
                             "(26/8/2021)\n" +
                             "(Code update)";
                     descL = getString(R.string.changelogDescLv_1_1_6);
                     descR = getString(R.string.changelogDescRv_1_1_6);
+
+                }
+                else if (i == 17) {
+
+                    separatorVisibility = "Visible";
+                    parseItems.add(new ChangelogParseItem(getString(R.string.changelogDescStableDescL),
+                            getString(R.string.changelogDescStableDescR),
+                            getString(R.string.changelogDescStable),separatorVisibility));
+
+                    separatorVisibility = "Gone";
+                    version = "1.1.7\n" +
+                            "(31/8/2021)\n" +
+                            "(Code update)";
+                    descL = getString(R.string.changelogDescLv_1_1_7);
+                    descR = getString(R.string.changelogDescRv_1_1_7);
 
                 }
                 //TODO Update new version

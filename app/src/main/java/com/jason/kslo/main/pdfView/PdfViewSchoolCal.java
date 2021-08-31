@@ -69,21 +69,10 @@ public class PdfViewSchoolCal extends AppCompatActivity {
             return true;
         }
         if (item.getItemId() == R.id.menu_action_bar_share) {
-            AssetManager am = getAssets();
-            try {
-                inputStream = am.open("SchoolCal.pdf");
-            byte[] buffer = new byte[inputStream.available()];
-
-            File targetFile = new File(getCacheDir() + "/" + "SchoolCal.pdf");
-            OutputStream outStream = new FileOutputStream(targetFile);
-            outStream.write(buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
             Uri path;
             path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider",
-                    new File(getCacheDir() + "/" + "SchoolCal.pdf"));
+                    new File(getCacheDir() + "/" + "SchoolCal.pdf-pdfview.pdf"));
             Intent intent = ShareCompat.IntentBuilder.from(this)
                     .setType("application/pdf")
                     .setStream(path)

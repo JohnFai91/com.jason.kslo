@@ -17,16 +17,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
+                        android:textColor="@color/colorPrimary"
                         android:layout_margin="12dp"/>
 
                 <TextView
+                        android:id="@+id/LatestNewsDate"
                         android:layout_below="@id/latestNewsTitle"
                         android:textSize="12sp"
-                        android:id="@+id/LatestNewsDate"
                         android:gravity="bottom"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:id="@+id/LatestNewsSender"
+                        android:layout_below="@id/latestNewsTitle"
+                        android:textSize="12sp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:layout_marginStart="12dp"
                         android:layout_marginEnd="12dp"

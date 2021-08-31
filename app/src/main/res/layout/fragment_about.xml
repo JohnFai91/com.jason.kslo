@@ -20,14 +20,6 @@
                     android:src="@drawable/school_logo"
                     android:contentDescription="@string/schoolLogo"
                     android:layout_marginHorizontal="20dp"/>
-            <View
-                android:background="@color/imageFront"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_alignStart="@id/School_Logo"
-                android:layout_alignEnd="@id/School_Logo"
-                android:layout_alignTop="@id/School_Logo"
-                android:layout_alignBottom="@id/School_Logo"/>
         </RelativeLayout>
 
             <Button

@@ -45,10 +45,8 @@
     <string name="CheckForUpdate">Check for update</string>
     <string name="Go">Go!</string>
     <string name="AllowPermission">Please allow the permission on the next page for future auto updates.</string>
-    <string name="Album">Album</string>
     <string name="openVideo">Open Video</string>
     <string name="Downloading">Downloading…</string>
-    <string name="Intranet">Intranet</string>
     <string name="BorrowedBooks">Borrowed books</string>
 
     <string name="changelogDescLv.1.0.1_alpha">
@@ -226,13 +224,22 @@
     </string>
 
     <string name="changelogDescLv_1_1_6">
-        "Add sharing app\n\n"
+        "Add sharing app"
     </string>
     <string name="changelogDescRv_1_1_6">
         "Change links to accommodate new system\n\n"
         "Update default pdfs\n\n"
         "Remove separate classes\n\n"
         "Temporarily remove intranet and gallery"
+
+    </string>
+
+    <string name="changelogDescLv_1_1_7">
+        "Add books' return date in \"Dashboard\""
+    </string>
+    <string name="changelogDescRv_1_1_7">
+        "Resolve calendar can't be shared\n\n"
+        "Update \"Latest News\" to new website"
 
     </string>
 
@@ -336,8 +343,6 @@
     <!-- Strings related to login -->
     <!-- Strings used for fragments for navigation -->
 
-    <string name="tapToViewMore">Tap to view more</string>
-    <string name="ReturnTo">Return to %1$s</string>
     <string name="DownloadQueryDesc">When you have downloaded a file already, you will be prompted to download again
     </string>
     <string name="GoTo">Go to</string>
@@ -366,5 +371,7 @@
     <string name="ShareApp">Share App</string>
     <string name="CheckThisOut">Check this out!</string>
     <string name="LatestNews">Latest News</string>
+    <string name="BookExpiry">" expires on %1$s"</string>
+    <string name="ReturnBkIn">Please return in %1$s</string>
 
 </resources>

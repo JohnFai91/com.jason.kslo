@@ -30,10 +30,8 @@
     <string name="CheckForUpdate">檢查版本</string>
     <string name="Go">去！</string>
     <string name="AllowPermission">請允許下一版的權限以作日後自動更新</string>
-    <string name="Album">相簿</string>
     <string name="openVideo">開啟影片</string>
     <string name="Downloading">下載中。。。</string>
-    <string name="Intranet">內聯網</string>
     <string name="BorrowedBooks">已借圖書</string>
     <string name="changelogDescLv.1.0.1_alpha">
         *Leo 加入*
@@ -216,6 +214,15 @@
 
     </string>
 
+    <string name="changelogDescLv_1_1_7">
+        "「儀表板」加入書本歸還提示"
+    </string>
+    <string name="changelogDescRv_1_1_7">
+        "改變「最新消息」連結迎合新系統\n"
+        "解決月曆不能分享問題"
+
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha 狀態"
     </string>
@@ -303,8 +310,6 @@
     <string name="DownloadedMsg">你已經下載了「 %1$s 」，要再下載嗎？</string>
     <string name="Open">開啟</string>
     <string name="Download">下載</string>
-    <string name="tapToViewMore">點擊觀看更多</string>
-    <string name="ReturnTo">返回 %1$s</string>
     <string name="DownloadQueryDesc">你會被問再次下載你已下載的文件</string>
     <string name="GoTo">轉去</string>
     <string name="CheckInternet">請連接網絡以更新資料</string>
@@ -329,4 +334,6 @@
     <string name="ShareApp">分享程式</string>
     <string name="CheckThisOut">試試這個！</string>
     <string name="LatestNews">最新消息</string>
+    <string name="BookExpiry">" 將在%1$s到期"</string>
+    <string name="ReturnBkIn">請在%1$s前歸還</string>
 </resources>

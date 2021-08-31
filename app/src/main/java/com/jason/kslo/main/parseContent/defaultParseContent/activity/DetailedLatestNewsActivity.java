@@ -20,14 +20,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDetailedFile;
 import com.jason.kslo.main.parseContent.parseItem.ParseItem;
-import com.jason.kslo.R;
-import org.jsoup.Jsoup;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.jason.kslo.App.updateLanguage;
@@ -36,8 +36,8 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
     private ParseAdapterForDetailedFile fileAdapter;
     private final ArrayList<ParseItem> parseItem = new ArrayList<>();
 
-    String title, text, fileName, date;
-    TextView textView, titleTextView, dateTextView;
+    String title, text, fileName, date, fullDoc;
+    TextView textView, titleTextView, dateTextView, senderTextView;
     String bulletPoints, video, fileUrl;
     Document doc;
     Button openVideo;
@@ -58,6 +58,18 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(getIntent().getStringExtra("title"));
+
+        fullDoc = getIntent().getStringExtra("desc");
+
+
+        textView = findViewById(R.id.LatestNewsDetailedText);
+        titleTextView = findViewById(R.id.LatestNewsDetailedTextTitle);
+        dateTextView = findViewById(R.id.latestNewsDetailedDate);
+        senderTextView = findViewById(R.id.LatestNewsDetailedSender);
+
+        titleTextView.setText(getIntent().getStringExtra("title"));
+        dateTextView.setText(getIntent().getStringExtra("date"));
+        senderTextView.setText(getIntent().getStringExtra("sender"));
 
         Content content = new Content();
         content.execute();
@@ -83,10 +95,6 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
             fileAdapter = new ParseAdapterForDetailedFile(parseItem, getApplicationContext());
             latestNewsRecyclerFile.setAdapter(fileAdapter);
 
-            textView = findViewById(R.id.LatestNewsDetailedText);
-            titleTextView = findViewById(R.id.LatestNewsDetailedTextTitle);
-            dateTextView = findViewById(R.id.latestNewsDetailedDate);
-
             openVideo = findViewById(R.id.openVideo);
 
             video = getIntent().getStringExtra("video");
@@ -102,7 +110,7 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             parseDetailedLatestNews(getIntent().getStringExtra("detailUrl"));
-            parseDetailedFile(getIntent().getStringExtra("detailUrl"));
+            parseDetailedFile();
 
             return null;
         }
@@ -112,17 +120,9 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
 
-            if (text.contains("<a href=\"")) {
-                text = text.replace(text.substring(text.indexOf("<a href=\"")), "");
-            }
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 textView.setText(Html.fromHtml(text,0));
             }
-
-            titleTextView.setText(getIntent().getStringExtra("title"));
-            dateTextView.setText(getIntent().getStringExtra("date"));
-
                 if (TextUtils.isEmpty(video)){
                     openVideo.setVisibility(View.GONE);
                 }
@@ -158,35 +158,24 @@ public class DetailedLatestNewsActivity extends AppCompatActivity {
     }
     private void parseDetailedLatestNews(String url) {
         try {
-            doc = Jsoup.connect(url).get();
-            Elements elements = doc.select("div.newsItem");
-
-                text = elements
-                        .html();
-
-                video = elements
-                        .select("iframe")
-                        .attr("src");
-
-        } catch (IOException e) {
+            JSONObject obj =  new JSONObject(fullDoc);
+            text = obj.getString("Description");
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-    private void parseDetailedFile(String fileUrl) {
+    private void parseDetailedFile() {
         try {
-            Document document = Jsoup.connect(fileUrl).get();
-            Elements fileElement = document.select("div.newsItem");
-            Elements finalFile = fileElement.select("a");
-            int finalFileSize = finalFile.size();
+            JSONObject obj =  new JSONObject(fullDoc);
+            JSONObject fileObj = obj.getJSONObject("Attachments");
+            JSONArray fileJa = fileObj.getJSONArray("Attachment");
 
-            for (int i = 0; i < finalFileSize; i++) {
-                fileUrl = finalFile
-                        .eq(i)
-                        .attr("href");
+            for (int i = 0; i < fileJa.length(); i++) {
+                JSONObject finalFileObj = new JSONObject(fileJa.get(i).toString());
 
-                fileName = finalFile
-                        .eq(i)
-                        .text();
+                String fileUrl = finalFileObj.getString("FileURL");
+
+                fileName = finalFileObj.getString("FileName");
                 if (fileUrl.startsWith("/wp-content/uploads/")) {
                     fileUrl = "https://www.hkmakslo.edu.hk" + fileUrl;
                 }
