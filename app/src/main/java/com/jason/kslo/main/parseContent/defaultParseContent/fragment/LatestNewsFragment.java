@@ -119,17 +119,24 @@ public class LatestNewsFragment extends Fragment {
 
             pullToRefresh.setRefreshing(false);
         }
-
-        @SuppressWarnings({"deprecation", "EmptyMethod"})
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
     }
     private  void parseLatestNews(){
         try{
         //parse Latest News
-        String latestNews = Jsoup.connect("https://www.hkmakslo.edu.hk/wp-admin/admin-ajax.php?action=eclass_latest_news_api&num_of_record=&_ajax_nonce=cc7f9fc600")
+        String doc = Jsoup.connect("https://www.hkmakslo.edu.hk/latest-new/").get().toString();
+        String ajax_nonceStr = doc.substring(doc.indexOf("/* <![CDATA[ */\n" +
+                "var ECLASS_LATEST_NEWS_API = ")).replace("/* <![CDATA[ */\n" +
+                "var ECLASS_LATEST_NEWS_API = ","").replace(doc.substring(doc.indexOf(";\n" +
+                "/* ]]> */")), "");
+        String ajax_nonce = ajax_nonceStr.substring(ajax_nonceStr.indexOf(",\"_ajax_nonce\":\""));
+        ajax_nonce = ajax_nonce.replace(",\"_ajax_nonce\":\"","");
+        ajax_nonce = ajax_nonce.replace(ajax_nonce.substring(ajax_nonce.indexOf("\",\"page_url\":\"")),"");
+        ajax_nonce = ajax_nonce.replace("\",\"page_url\":\"","");
+
+            Log.d("Testing", "parseLatestNews: " + ajax_nonce);
+
+        String latestNews = Jsoup.connect("https://www.hkmakslo.edu.hk/wp-admin/admin-ajax.php?action=eclass_latest_news_api&num_of_record=&_ajax_nonce=" +
+                        "action=eclass_latest_news_api&num_of_record=&_ajax_nonce=" + ajax_nonce)
                 .ignoreContentType(true)
                 .execute()
                 .body();
