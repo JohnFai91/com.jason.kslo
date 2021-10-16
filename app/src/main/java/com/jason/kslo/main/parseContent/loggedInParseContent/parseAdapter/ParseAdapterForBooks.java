@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.parseContent.loggedInParseContent.activity.detailedBooksActivity;
-import com.jason.kslo.main.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
 import com.jason.kslo.R;
+import com.jason.kslo.main.parseContent.loggedInParseContent.parseItem.LoginParseItem;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -23,12 +23,12 @@ import java.util.ArrayList;
 
 public class ParseAdapterForBooks extends RecyclerView.Adapter<ParseAdapterForBooks.ViewHolder> {
 
-    private static ArrayList<SecondLoginParseItem> parseItems = null;
+    private static ArrayList<LoginParseItem> parseItems = null;
     CardView cardView;
-    SecondLoginParseItem parseItem;
+    LoginParseItem parseItem;
 
     @SuppressWarnings("unused")
-    public ParseAdapterForBooks(ArrayList<SecondLoginParseItem> parseItems, Context context) {
+    public ParseAdapterForBooks(ArrayList<LoginParseItem> parseItems, Context context) {
         ParseAdapterForBooks.parseItems = parseItems;
     }
 
@@ -38,7 +38,6 @@ public class ParseAdapterForBooks extends RecyclerView.Adapter<ParseAdapterForBo
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.parse_item_for_books,parent,false);
 
         cardView = view.findViewById(R.id.horizontalBooksCardView);
-        cardView.setCardElevation(0);
         return new ViewHolder(view);
     }
 
@@ -79,7 +78,7 @@ public class ParseAdapterForBooks extends RecyclerView.Adapter<ParseAdapterForBo
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            SecondLoginParseItem parseItem = parseItems.get(position);
+            LoginParseItem parseItem = parseItems.get(position);
 
             Intent intent = new Intent(MainActivity.getContextOfApplication(), detailedBooksActivity.class);
             intent.putExtra("title",parseItem.getTitle());

@@ -2,8 +2,10 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp">
 
             <androidx.cardview.widget.CardView
                     android:layout_centerHorizontal="true"
@@ -12,46 +14,28 @@
                     android:layout_marginBottom="10dp"
                     style="@style/CardView.Light"
                     app:cardCornerRadius="8dp">
-
-                <ImageView
-                        android:id="@+id/ImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="#88888888"
-                        android:contentDescription="@string/Image"/>
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/image_gradient"
+                        android:background="@drawable/image_gradient"
                         android:layout_gravity="bottom"
                         android:contentDescription="@string/ImageGradient"/>
 
-
-                <TextView
-                        android:id="@+id/imageCount"
-                        android:layout_marginTop="10dp"
-                        android:textAlignment="gravity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:textColor="@color/white"
-                        android:gravity="end"
-                        android:background="@color/colorPrimary"
-                        android:layout_marginEnd="10dp"/>
-                <TextView
-                        android:id="@+id/imageViewDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/white"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginBottom="12dp"/>
-
-
-            </androidx.cardview.widget.CardView>
-
+        <ImageView
+                android:id="@+id/GalleryImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/Image"/>
+        <TextView
+                android:id="@+id/imageViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"/>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

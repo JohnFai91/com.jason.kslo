@@ -1,0 +1,74 @@
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/schoolWebsiteRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+        <TextView
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/SchoolWebsiteTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LatestNews"
+                android:textSize="20sp"
+                android:textColor="@color/blue"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/LatestNewsRecycler"
+                    android:layout_below="@id/SchoolWebsiteTitle"
+                    android:layout_above="@id/GalleryTitle"
+                    android:paddingHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:fastScrollEnabled="true"
+                    app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                    app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                    app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                    app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
+
+            <ProgressBar
+                    android:id="@+id/LatestNewsProgressBar"
+                    android:layout_alignTop="@id/SchoolWebsiteTitle"
+                    android:layout_toEndOf="@id/SchoolWebsiteTitle"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+
+        <TextView
+                android:id="@+id/GalleryTitle"
+                android:layout_above="@id/GalleryRecyclerView"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Gallery"
+                android:textSize="20sp"
+                android:textColor="@color/blue"/>
+
+        <ProgressBar
+                android:id="@+id/GalleryProgressBar"
+                android:layout_alignTop="@id/GalleryTitle"
+                android:layout_toEndOf="@id/GalleryTitle"
+                android:layout_width="25dp"
+                android:layout_height="25dp"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/GalleryRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:fastScrollEnabled="true"
+                app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollVerticalTrackDrawable="@drawable/line_drawable" android:layout_marginBottom="-2dp"
+                android:layout_alignParentEnd="true" android:layout_marginEnd="0dp"/>
+
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -17,6 +17,7 @@ import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAd
 import com.jason.kslo.main.parseContent.parseItem.SecondParseItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,18 +49,11 @@ public class DetailedImageActivity extends AppCompatActivity {
         adapter = new ParseAdapterForDetailedWebsite(parseItems, this);
         recyclerView.setAdapter(adapter);
 
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    protected void onResume() {
-
         Content content = new Content();
         content.execute();
-        super.onResume();
+
     }
 
-    @SuppressWarnings("deprecation")
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
         ProgressBar progressBar;
@@ -67,18 +61,17 @@ public class DetailedImageActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            parseItems.clear();
             progressBar = findViewById(R.id.detailedImageProgress);
             progressBar.setVisibility(View.VISIBLE);
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
             parseDetailedImages(getIntent().getStringExtra("detailUrl"));
             return null;
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
@@ -97,45 +90,25 @@ public class DetailedImageActivity extends AppCompatActivity {
     private void parseDetailedImages(String url){
         try {
 
-            String albumId = url.split("\\?")[1].replaceAll(".*album_id=([^&]+).*", "$1");
-            Log.d("Album", "AlbumId: " + albumId);
-
-            int totalPages, ImgCount = Integer.parseInt(getIntent().getStringExtra("imgCount"));
-            totalPages = ImgCount / 16;
-            if (ImgCount % 16 != 0) {
-                totalPages = totalPages + 1;
-            }
-
-            for (int page = 1; page < totalPages + 1; page++) {
-
-
             Document document = Jsoup
-                    .connect("https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/album.php?album_id=" +
-                            albumId +"&page=" + page + "&ajax=1")
+                    .connect(url)
                     .get();
+            Log.d("Testing", "parseDetailedImages: " + document);
 
-            int liSize = document.select("li").select("a").size();
+            Elements items = document.select("ul.list").select("li.item").select("a.link");
+            int aSize = items.size();
 
-                for (int i = 0; i < liSize; i++) {
-                    String imgUrl = document.select("li")
-                            .select("a")
-                            .select("img")
-                            .eq(i)
+                for (int i = 0; i < aSize; i++) {
+                    Elements finalItem = items.eq(i);
+                    String imgUrl = finalItem.select("div.photo_img")
+                            .select("img.image")
                             .attr("src");
 
-                    String detailImgUrl = document.select("li")
-                            .select("a")
-                            .eq(i)
+                    String detailImgUrl = finalItem
                             .attr("href");
 
-                    imgUrl = "https://www.hkmakslo.edu.hk/it-school/php/webcms/public/mainpage/" + imgUrl;
-                    detailImgUrl = "https://www.hkmakslo.edu.hk" + detailImgUrl;
-
                     parseItems.add(new SecondParseItem(imgUrl, detailImgUrl));
-                    Log.d(". detailImg ", ". total pages: " + totalPages + ". img: " + imgUrl +
-                            " detailed img: " + detailImgUrl);
                 }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

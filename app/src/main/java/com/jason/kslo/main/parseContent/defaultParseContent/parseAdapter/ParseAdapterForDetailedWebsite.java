@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class ParseAdapterForDetailedWebsite extends RecyclerView.Adapter<ParseAdapterForDetailedWebsite.ViewHolder> {
 
     private static ArrayList<SecondParseItem> parseItems = null;
+    static SecondParseItem parseItem;
 
     @SuppressWarnings("unused")
     public ParseAdapterForDetailedWebsite(ArrayList<SecondParseItem> parseItems, Context context) {
@@ -37,7 +38,7 @@ public class ParseAdapterForDetailedWebsite extends RecyclerView.Adapter<ParseAd
 
     @Override
     public void onBindViewHolder(@NonNull ParseAdapterForDetailedWebsite.ViewHolder holder, int position) {
-        SecondParseItem parseItem = parseItems.get(position);
+        parseItem = parseItems.get(position);
 
                 Picasso.get().load(parseItem.getImgURL())
                         .memoryPolicy(MemoryPolicy.NO_STORE,MemoryPolicy.NO_CACHE)
@@ -64,8 +65,9 @@ public class ParseAdapterForDetailedWebsite extends RecyclerView.Adapter<ParseAd
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), DownloadView.class);
             intent.putExtra("origin","detailedWebsite");
-            intent.putExtra("fileUrl", parseItems.get(getAdapterPosition()).getDetailUrl());
-            intent.putExtra("title", DetailedImageActivity.title);
+            intent.putExtra("fileUrl", parseItem.getDetailUrl());
+            intent.putExtra("title",  "Gallery " + parseItem.getTitle() + " " +
+                    parseItem.getDetailUrl().substring(parseItem.getDetailUrl().lastIndexOf("/") + 1));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             view.getContext().startActivity(intent);
         }

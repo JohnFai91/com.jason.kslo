@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.text.TextUtils;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.jason.kslo.changelog.ChangelogActivity;
+import com.jason.kslo.main.parseContent.loggedInParseContent.activity.LoginActivity;
 
 import java.io.File;
 import java.util.Locale;

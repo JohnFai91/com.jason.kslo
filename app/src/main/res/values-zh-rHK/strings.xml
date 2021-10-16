@@ -223,6 +223,16 @@
 
     </string>
 
+    <string name="changelogDescLv_1_1_8">
+        "「學校網站」加入「相簿」\n"
+        "加入新內聯"
+    </string>
+    <string name="changelogDescRv_1_1_8">
+        "轉換「進度卡片」\n"
+        "停止底部訪問滑動\n"
+        "檢查用戶名稱及密碼"
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha 狀態"
     </string>
@@ -336,4 +346,11 @@
     <string name="LatestNews">最新消息</string>
     <string name="BookExpiry">" 將在%1$s到期"</string>
     <string name="ReturnBkIn">請在%1$s前歸還</string>
+    <string name="OldPassword">舊密碼 (舊內聯密碼)</string>
+    <string name="eClassPassword">eClass 密碼</string>
+    <string name="BorrowedBooksNumber">已借圖書 (%1$s)</string>
+    <string name="Intranet">內聯網</string>
+    <string name="Gallery">相簿</string>
+    <string name="LoginError">無法登入,請檢查你的用戶名稱及密碼</string>
+    <string name="ReachedBottom">到底了！</string>
 </resources>

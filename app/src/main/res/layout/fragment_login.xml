@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/BorrowedBooksSwipeRefresh"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/IntranetTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/Intranet"
+                android:textSize="20sp"
+                android:textColor="@color/blue"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/IntranetRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/IntranetTitle"
+                android:layout_above="@id/BorrowedBooksFragmentTitle"
+                app:fastScrollEnabled="true"
+                app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+                app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+                app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"/>
+
+        <TextView
+                android:id="@+id/IntranetTouchedBottom"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:text="@string/ReachedBottom"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@id/IntranetRecyclerView"/>
+
+        <TextView
+                android:id="@+id/intranet_error_msg"
+                android:layout_alignTop="@id/IntranetTitle"
+                android:layout_toEndOf="@id/IntranetTitle"
+                android:visibility="gone"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <ProgressBar
+                android:id="@+id/IntranetProgressBar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@id/IntranetTitle"
+                android:layout_alignTop="@id/IntranetTitle"/>
+        <TextView
+                android:id="@+id/BorrowedBooksFragmentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/BorrowedBooksRecyclerView"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="@string/BorrowedBooks"
+                android:textSize="20sp"
+                android:textColor="@color/blue"/>
+
+        <TextView
+                android:id="@+id/books_error_msg"
+                android:layout_toEndOf="@id/BorrowedBooksFragmentTitle"
+                android:visibility="gone"
+                android:text="@string/LoginError"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ProgressBar
+                android:id="@+id/BorrowedBooksProgressBar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:layout_alignTop="@id/BorrowedBooksFragmentTitle"
+                android:layout_toEndOf="@id/BorrowedBooksFragmentTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/BorrowedBooksRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:id="@+id/LoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="30dp"
+                android:background="@drawable/button_background"
+                android:text="@string/Login"
+                android:visibility="gone"/>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

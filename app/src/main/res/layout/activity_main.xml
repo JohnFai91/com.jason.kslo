@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.jason.kslo.main.activity.MainActivity"
-        android:orientation="vertical">
+        tools:context="com.jason.kslo.main.activity.MainActivity">
+
+        <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/activityMainViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/bottom_nav_main"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_main"
-                android:layout_width="270dp"
-                android:layout_marginBottom="20sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
                 app:menu="@menu/bottom_nav"
-                app:labelVisibilityMode="selected"
-                app:itemHorizontalTranslationEnabled="true"
-                android:background="@drawable/bottom_nav_background"
-                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
-
-    <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/activityMainViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                app:labelVisibilityMode="unlabeled"
+                app:itemHorizontalTranslationEnabled="true"/>
+</RelativeLayout>

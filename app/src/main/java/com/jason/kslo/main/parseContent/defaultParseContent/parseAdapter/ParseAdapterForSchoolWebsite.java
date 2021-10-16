@@ -1,31 +1,31 @@
 package com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.jason.kslo.R;
 import com.jason.kslo.main.activity.MainActivity;
 import com.jason.kslo.main.parseContent.defaultParseContent.activity.DetailedImageActivity;
-import com.jason.kslo.main.parseContent.parseItem.ParseItem;
-import com.jason.kslo.R;
-import com.squareup.picasso.MemoryPolicy;
+import com.jason.kslo.main.parseContent.parseItem.ThirdParseItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ParseAdapterForSchoolWebsite extends RecyclerView.Adapter<ParseAdapterForSchoolWebsite.ViewHolder> {
 
-    private static ArrayList<ParseItem> parseItems = null;
+    private static ArrayList<ThirdParseItem> parseItems = null;
+    static ThirdParseItem parseItem;
+    Activity activity;
 
-    @SuppressWarnings("unused")
-    public ParseAdapterForSchoolWebsite(ArrayList<ParseItem> parseItems, Context context) {
+    public ParseAdapterForSchoolWebsite(ArrayList<ThirdParseItem> parseItems, Activity activity) {
         ParseAdapterForSchoolWebsite.parseItems = parseItems;
+        this.activity = activity;
     }
 
     @NonNull
@@ -37,13 +37,12 @@ public class ParseAdapterForSchoolWebsite extends RecyclerView.Adapter<ParseAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-     ParseItem parseItem = parseItems.get(position);
+     parseItem = parseItems.get(position);
      holder.textView.setText(parseItem.getTitle());
-     holder.countTextView.setText(parseItem.getCount());
 
-     Picasso.get().load(parseItem.getImgURL())
-             .memoryPolicy(MemoryPolicy.NO_CACHE,MemoryPolicy.NO_STORE)
-             .into(holder.imageView);
+         Picasso.get().load(parseItem.getImgUrl())
+                 .resize(300,200)
+                 .into(holder.imageView);
 
     }
 
@@ -54,12 +53,10 @@ public class ParseAdapterForSchoolWebsite extends RecyclerView.Adapter<ParseAdap
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final ImageView imageView;
         final TextView textView;
-        final TextView countTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            countTextView = itemView.findViewById(R.id.imageCount);
-            imageView = itemView.findViewById(R.id.ImageView);
+            imageView = itemView.findViewById(R.id.GalleryImageView);
             textView = itemView.findViewById(R.id.imageViewDescription);
             itemView.setOnClickListener(this);
         }
@@ -67,13 +64,12 @@ public class ParseAdapterForSchoolWebsite extends RecyclerView.Adapter<ParseAdap
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            ParseItem parseItem = parseItems.get(position);
+            ThirdParseItem parseItem = parseItems.get(position);
 
             Intent intent = new Intent(MainActivity.getContextOfApplication(), DetailedImageActivity.class);
             intent.putExtra("title",parseItem.getTitle());
-            intent.putExtra("image",parseItem.getImgURL());
-            intent.putExtra("detailUrl",parseItem.getDetailUrl());
-            intent.putExtra("imgCount",parseItem.getCount());
+            intent.putExtra("image",parseItem.getImgUrl());
+            intent.putExtra("detailUrl",parseItem.getUrl());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             MainActivity.getContextOfApplication().startActivity(intent);
         }

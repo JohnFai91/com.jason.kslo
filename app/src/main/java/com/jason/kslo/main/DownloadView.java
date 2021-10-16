@@ -22,13 +22,16 @@ import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 import com.jason.kslo.BuildConfig;
 import com.jason.kslo.R;
 import com.jason.kslo.main.activity.SettingsActivity;
+import com.jason.kslo.main.parseContent.defaultParseContent.activity.Detailed_Gallery;
 import com.jason.kslo.main.pdfView.download.PdfViewFeaturedNotice;
 import com.jason.kslo.main.pdfView.download.PdfViewSchedule;
-import com.jason.kslo.main.parseContent.defaultParseContent.activity.Detailed_Gallery;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public class DownloadView extends AppCompatActivity {
@@ -40,14 +43,15 @@ public class DownloadView extends AppCompatActivity {
     String file_url, origin, fileName;
     File file;
     String download, fileType;
+    static String progressBarId;
     @Override
-    @SuppressWarnings("ConstantConditions")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_pdf_view);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
@@ -65,11 +69,8 @@ public class DownloadView extends AppCompatActivity {
         }
 
         fileName = getIntent().getStringExtra("title");
-        Log.d("origin", "origin: " + origin + " fileUrl: " + file_url);
-        if (origin.equals("detailedWebsite")) {
-            fileName = "gallery_" + fileName + file_url.substring(file_url.lastIndexOf("/") + 1);
-            fileName = fileName.replace("...","");
-        }
+        Log.d("DownloadView", "origin: " + origin + " fileUrl: " + file_url);
+
         file = new File(getCacheDir() + "/" + fileName);
 
         switch (origin) {
@@ -149,6 +150,7 @@ public class DownloadView extends AppCompatActivity {
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == percentage_progress_bar_type) {
+            progressBarId = "percentage_progress_bar_type";
             pDialog = new ProgressDialog(this);
             pDialog.setMessage(getString(R.string.Downloading));
             pDialog.setIndeterminate(false);
@@ -158,6 +160,7 @@ public class DownloadView extends AppCompatActivity {
             pDialog.show();
             return pDialog;
         } else if (id == horizontal_progress_bar_type) {
+            progressBarId = "horizontal_progress_bar_type";
             pDialog = new ProgressDialog(this);
             pDialog.setMessage(getString(R.string.Downloading));
             pDialog.setIndeterminate(false);
@@ -181,8 +184,7 @@ public class DownloadView extends AppCompatActivity {
             super.onPreExecute();
 
             if (download.equals("true")) {
-                if (origin.equals("DetailedFile")||(origin.equals("UpdateNotice")||(origin.equals("UpdateSchedule"))
-                        ||(origin.equals("detailedWebsite")))) {
+                if ((origin.equals("UpdateNotice")||(origin.equals("UpdateSchedule"))||(origin.equals("detailedWebsite")))) {
                     showDialog(percentage_progress_bar_type);
                 } else {
                     showDialog(horizontal_progress_bar_type);
@@ -193,18 +195,31 @@ public class DownloadView extends AppCompatActivity {
         /**
          * Downloading file in background thread
          */
-        @Override
+        @Override@SuppressWarnings (value="unchecked")
         protected String doInBackground(String... f_url) {
         if (TextUtils.equals(download, "true")) {
             int count;
-            if (fileName.contains(".pdf")||fileName.contains(".jpg") || fileName.contains(".jpeg") || fileName.contains(".png")) {
+                if (origin.equals("detailedIntranetFile")) {
+                    //Open a URL Stream
+                    Connection.Response resultImageResponse;
+                    try {
+                        resultImageResponse = Jsoup.connect(file_url).cookies((Map<String, String>) getIntent().getSerializableExtra("cookies"))
+                                .ignoreContentType(true).execute();
+
+    // output here
+                    FileOutputStream out = (new FileOutputStream(file));
+                    out.write(resultImageResponse.bodyAsBytes());
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+
                     try {
                         URL url = new URL(f_url[0]);
                         URLConnection connection = url.openConnection();
                         connection.connect();
 
-                        // this will be useful so that you can show a typical 0-100%
-                        // progress bar
                         int lengthOfFile = connection.getContentLength();
 
                         // download the file
@@ -221,8 +236,6 @@ public class DownloadView extends AppCompatActivity {
 
                         while ((count = input.read(data)) != -1) {
                             total += count;
-                            // publishing the progress....
-                            // After this onProgressUpdate will be called
                             publishProgress("" + (int) ((total * 100) / lengthOfFile));
 
                             // writing data to file
@@ -258,11 +271,9 @@ public class DownloadView extends AppCompatActivity {
          **/
         @Override
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog after the file was downloaded
 
             if (download.equals("true")) {
-                if (origin.equals("DetailedFile") || origin.equals("UpdateNotice")||origin.equals("UpdateSchedule")||
-                origin.equals("detailedWebsite")) {
+                if (progressBarId.equals("percentage_progress_bar_type")) {
                     dismissDialog(percentage_progress_bar_type);
                 } else {
                     dismissDialog(horizontal_progress_bar_type);
@@ -316,7 +327,7 @@ public class DownloadView extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                     if (download.equals("true")) {
-                        if (origin.equals("DetailedFile")) {
+                        if (progressBarId.equals("percentage_progress_bar_type")) {
                             dismissDialog(percentage_progress_bar_type);
                         } else {
                             dismissDialog(horizontal_progress_bar_type);
@@ -330,7 +341,7 @@ public class DownloadView extends AppCompatActivity {
                         fileType = "application/msword";
                         intent.setDataAndType(data, "application/msword");
                     } else if (fileName.contains(".ppt") || fileName.contains(".pptx")) {
-                        // Powerpoint file
+                        // PowerPoint file
                         fileType = "application/vnd.ms-powerpoint";
                         intent.setDataAndType(data, "application/vnd.ms-powerpoint");
                     } else if (fileName.contains(".xls") || fileName.contains(".xlsx")) {
@@ -405,5 +416,13 @@ public class DownloadView extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (fileName.contains("Gallery")) {
+            file.delete();
+        }
     }
 }

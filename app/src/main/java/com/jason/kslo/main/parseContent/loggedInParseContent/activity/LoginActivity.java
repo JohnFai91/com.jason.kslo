@@ -2,10 +2,8 @@ package com.jason.kslo.main.parseContent.loggedInParseContent.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +19,8 @@ import static com.jason.kslo.App.updateLanguage;
 public class LoginActivity extends AppCompatActivity {
 
     Button login;
-    TextInputEditText username, password;
-    String Username, Password;
+    TextInputEditText username, password, eClassPassword;
+    String UsernameStr, PasswordStr, eClassPasswordStr;
 
     @Override
     @SuppressWarnings("ConstantConditions")
@@ -50,13 +48,15 @@ public class LoginActivity extends AppCompatActivity {
             username = findViewById(R.id.username);
             password = findViewById(R.id.password);
             login = findViewById(R.id.loginButton);
+            eClassPassword = findViewById(R.id.eClass_password);
 
             username.setText(pref.getString("Username",""));
             password.setText(pref.getString("Password",""));
+            eClassPassword.setText(pref.getString("eClassPassword",""));
 
             username.requestFocus();
 
-            password.setOnKeyListener((view, i, keyEvent) -> {
+            eClassPassword.setOnKeyListener((view, i, keyEvent) -> {
                 if (i == KeyEvent.KEYCODE_ENTER) {
                     login.performClick();
                 }
@@ -65,13 +65,14 @@ public class LoginActivity extends AppCompatActivity {
 
             login.setOnClickListener(view -> {
 
-                Username = Objects.requireNonNull(username.getText()).toString();
-                Password = Objects.requireNonNull(password.getText()).toString();
-                Log.d("Login", "Username: " + Username + " Password: " + Password);
+                UsernameStr = Objects.requireNonNull(username.getText()).toString();
+                PasswordStr = Objects.requireNonNull(password.getText()).toString();
+                eClassPasswordStr = Objects.requireNonNull(eClassPassword.getText()).toString();
 
-                pref.edit().putString("Username", Username).apply();
-                pref.edit().putString("Password",Password).apply();
-
+                pref.edit().putString("Username", UsernameStr).apply();
+                pref.edit().putString("Password", PasswordStr).apply();
+                pref.edit().putString("eClassPassword", eClassPasswordStr).apply();
+                
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 finish();
                 startActivity(intent);

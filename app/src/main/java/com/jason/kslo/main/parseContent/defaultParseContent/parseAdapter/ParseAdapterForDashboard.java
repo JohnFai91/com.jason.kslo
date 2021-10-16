@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.defaultParseContent.fragment.DashboardFragment;
-import com.jason.kslo.main.parseContent.parseItem.DashboardParseItem;
+import com.jason.kslo.main.parseContent.parseItem.ThirdParseItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,11 +24,11 @@ import java.util.Locale;
 
 public class ParseAdapterForDashboard extends RecyclerView.Adapter<ParseAdapterForDashboard.ViewHolder> {
 
-    private static ArrayList<DashboardParseItem> parseItems;
-    static DashboardParseItem parseItem;
+    private static ArrayList<ThirdParseItem> parseItems;
+    static ThirdParseItem parseItem;
 
     @SuppressWarnings("unused")
-    public ParseAdapterForDashboard(ArrayList<DashboardParseItem> parseItems, Context context) {
+    public ParseAdapterForDashboard(ArrayList<ThirdParseItem> parseItems, Context context) {
         ParseAdapterForDashboard.parseItems = parseItems;
     }
 

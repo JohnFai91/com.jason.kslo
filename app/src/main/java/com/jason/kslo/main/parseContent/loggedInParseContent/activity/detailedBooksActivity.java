@@ -15,7 +15,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.jason.kslo.R;
-import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.BorrowedBooksFragment;
+import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.LoginFragment;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -55,7 +55,7 @@ public class detailedBooksActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("title"));
 
         url = getIntent().getStringExtra("detailUrl");
-        cookies = BorrowedBooksFragment.getCookies();
+        cookies = LoginFragment.getCookies();
 
         BkImg = findViewById(R.id.BookDetailedImage);
 
@@ -85,7 +85,7 @@ public class detailedBooksActivity extends AppCompatActivity {
                 String jsonBody = "{\"sno\":\"201801323\",\"acno\":\"C014185\"}";
                 document = Jsoup.connect("https://lm.hkmakslo.edu.hk/Services/BookService.asmx/RenewBook")
                                                     .method(Connection.Method.POST)
-                                                    .cookies(BorrowedBooksFragment.getCookies())
+                                                    .cookies(LoginFragment.getCookies())
                                                     .header("Content-Type", "application/json")
                                                     .header("Accept", "application/json")
                                                     .followRedirects(true)

@@ -1,6 +1,7 @@
 package com.jason.kslo.main.parseContent.defaultParseContent.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,26 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForLatestNews;
+import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForSchoolWebsite;
 import com.jason.kslo.main.parseContent.parseItem.SecondParseItem;
+import com.jason.kslo.main.parseContent.parseItem.ThirdParseItem;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.jason.kslo.App.updateLanguage;
 
-public class LatestNewsFragment extends Fragment {
+public class SchoolWebsiteFragment extends Fragment {
     ParseAdapterForLatestNews parseAdapterForLatestNews;
     final ArrayList<SecondParseItem> SecondParseItems = new ArrayList<>();
 
     View view;
     int b = 0;
     int LatestNewsSize = 0;
-    ProgressBar progressBar;
+    ProgressBar LatestNewsProgressBar, GalleryProgressBar;
     SwipeRefreshLayout pullToRefresh;
+
+    RecyclerView GalleryRecyclerView;
+    SwipeRefreshLayout swipeRefreshLayout;
+    final ArrayList<ThirdParseItem> parseItems = new ArrayList<>();
+    ParseAdapterForSchoolWebsite parseAdapterForSchoolWebsite;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,11 +53,10 @@ public class LatestNewsFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @SuppressWarnings("deprecation")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_latest_news, container, false);
+        view = inflater.inflate(R.layout.fragment_school_website, container, false);
 
 
         pullToRefresh = view.findViewById(R.id.schoolWebsiteRefresh);
@@ -64,63 +73,68 @@ public class LatestNewsFragment extends Fragment {
                 requireActivity().getResources().getColor(android.R.color.holo_red_dark)
         );
 
+        RecyclerView latestNewsRecyclerView = view.findViewById(R.id.LatestNewsRecycler);
+
+        latestNewsRecyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutVerticalManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        latestNewsRecyclerView.setLayoutManager(layoutVerticalManager);
+
+        parseAdapterForLatestNews = new ParseAdapterForLatestNews(SecondParseItems, getContext());
+        latestNewsRecyclerView.setAdapter(parseAdapterForLatestNews);
+
+        LatestNewsProgressBar = view.findViewById(R.id.LatestNewsProgressBar);
+        GalleryProgressBar = view.findViewById(R.id.GalleryProgressBar);
+
+        GalleryRecyclerView = view.findViewById(R.id.GalleryRecyclerView);
+
+        parseAdapterForSchoolWebsite = new ParseAdapterForSchoolWebsite(parseItems, requireActivity());
+        GalleryRecyclerView.setAdapter(parseAdapterForSchoolWebsite);
+
+        LinearLayoutManager layoutHorizontalManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        GalleryRecyclerView.setLayoutManager(layoutHorizontalManager);
+
         Content content = new Content();
         content.execute();
 
         return view;
     }
-    @SuppressWarnings("deprecation")
     @SuppressLint("StaticFieldLeak")
     private class Content extends AsyncTask<Void,Void,Void> {
 
-            @SuppressWarnings("deprecation")
             @Override
         protected void onPreExecute() {
+                super.onPreExecute();
+
                 pullToRefresh.setRefreshing(true);
-
-                progressBar = view.findViewById(R.id.progress);
-                progressBar.setVisibility(View.VISIBLE);
-
-                RecyclerView latestNewsRecyclerView = view.findViewById(R.id.LatestNewsRecycler);
-
-                latestNewsRecyclerView.setHasFixedSize(true);
-
-                LinearLayoutManager layoutVerticalManager
-                        = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                latestNewsRecyclerView.setLayoutManager(layoutVerticalManager);
-
-                parseAdapterForLatestNews = new ParseAdapterForLatestNews(SecondParseItems, getContext());
-                latestNewsRecyclerView.setAdapter(parseAdapterForLatestNews);
-
-            super.onPreExecute();
-
+                LatestNewsProgressBar.setVisibility(View.VISIBLE);
+                GalleryProgressBar.setVisibility(View.VISIBLE);
         }
 
-
-        @SuppressWarnings("deprecation")
         @Override
         protected Void doInBackground(Void... voids) {
-
-
-            SecondParseItems.clear();
             parseLatestNews();
+            parseImages();
 
             return null;
         }
 
-        @SuppressWarnings("deprecation")
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
             parseAdapterForLatestNews.notifyDataSetChanged();
+            parseAdapterForSchoolWebsite.notifyDataSetChanged();
 
-            progressBar.setVisibility(View.GONE);
-
+            LatestNewsProgressBar.setVisibility(View.GONE);
+            GalleryProgressBar.setVisibility(View.GONE);
             pullToRefresh.setRefreshing(false);
         }
     }
     private  void parseLatestNews(){
+        SecondParseItems.clear();
         try{
         //parse Latest News
         String doc = Jsoup.connect("https://www.hkmakslo.edu.hk/latest-new/").get().toString();
@@ -132,8 +146,6 @@ public class LatestNewsFragment extends Fragment {
         ajax_nonce = ajax_nonce.replace(",\"_ajax_nonce\":\"","");
         ajax_nonce = ajax_nonce.replace(ajax_nonce.substring(ajax_nonce.indexOf("\",\"page_url\":\"")),"");
         ajax_nonce = ajax_nonce.replace("\",\"page_url\":\"","");
-
-            Log.d("Testing", "parseLatestNews: " + ajax_nonce);
 
         String latestNews = Jsoup.connect("https://www.hkmakslo.edu.hk/wp-admin/admin-ajax.php?action=eclass_latest_news_api&num_of_record=&_ajax_nonce=" +
                         "action=eclass_latest_news_api&num_of_record=&_ajax_nonce=" + ajax_nonce)
@@ -161,10 +173,42 @@ public class LatestNewsFragment extends Fragment {
             Log.d("Latest News items",   ". Title: " + titleLatestNews + ". Time: " + latestNewsDate
                     + ". Detail Url: " + detailUrl + ". Sender: " + sender);
 
+                requireActivity().runOnUiThread(() -> parseAdapterForLatestNews.notifyDataSetChanged());
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public void parseImages() {
+        parseItems.clear();
+        try {
+            Document doc = Jsoup.connect("https://www.hkmakslo.edu.hk/school-life_c/gallery/").get();
+
+            Elements data = doc.select("div.huge-it-list.album-list").select("ul.list").select("li.item");
+            int size = data.size();
+            for (int i = 0; i < size; i++) {
+                Elements imgDoc = data.eq(i);
+
+                String title = imgDoc
+                        .select("p.album_title")
+                        .text();
+
+                String detailUrl = imgDoc
+                        .select("a.itemLink")
+                        .attr("href");
+
+                String imgUrl = imgDoc
+                        .select("img.image")
+                        .attr("src");
+                imgUrl = imgUrl.replace(".jpg","-300x200.jpg");
+
+                parseItems.add(new ThirdParseItem(imgUrl, title, detailUrl));
+                Log.d("School Website items", "img:" + imgUrl + ". title: " + title + ". Detail Url: " + detailUrl);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

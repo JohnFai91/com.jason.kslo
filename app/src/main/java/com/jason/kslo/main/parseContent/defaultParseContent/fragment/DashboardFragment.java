@@ -18,7 +18,7 @@ import biweekly.io.text.ICalReader;
 import biweekly.property.*;
 import com.jason.kslo.R;
 import com.jason.kslo.main.parseContent.defaultParseContent.parseAdapter.ParseAdapterForDashboard;
-import com.jason.kslo.main.parseContent.parseItem.DashboardParseItem;
+import com.jason.kslo.main.parseContent.parseItem.ThirdParseItem;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
@@ -31,15 +31,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.jason.kslo.main.activity.MainActivity.parseLm;
-
 public class DashboardFragment extends Fragment {
     View v;
     int size;
     File file;
     ICalReader reader;
     static ParseAdapterForDashboard parseAdapterForDashboard;
-    final static ArrayList<DashboardParseItem> ParseItems = new ArrayList<>();
+    final static ArrayList<ThirdParseItem> ParseItems = new ArrayList<>();
     final ArrayList<Date> dates = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     SharedPreferences sharedPreferences;
@@ -160,7 +158,7 @@ public class DashboardFragment extends Fragment {
 
                             if (dateStartStr.equals(dateEndStr)) {
                                 if (summaryStr != null) {
-                                    ParseItems.add(new DashboardParseItem(dateStartStr, summaryStr, desc, urlStr));
+                                    ParseItems.add(new ThirdParseItem(dateStartStr, summaryStr, desc, urlStr));
                                     Log.d("Dashboard", "ParseIcs: " + dateStartStr + summaryStr + " Url: " + urlStr +
                                             " desc: " + desc);
                                 }
@@ -168,17 +166,17 @@ public class DashboardFragment extends Fragment {
                                 if (finalDateStart.equals(finalDateEnd)) {
                                     dateEndStr = dateEndStr.replace(finalDateEnd,"");
                                 }
-                                ParseItems.add(new DashboardParseItem(dateStartStr + "-" + dateEndStr, summaryStr, desc, urlStr));
+                                ParseItems.add(new ThirdParseItem(dateStartStr + "-" + dateEndStr, summaryStr, desc, urlStr));
                                 Log.d("Dashboard", "ParseIcs: " + dateStartStr + "-" + dateEndStr + summaryStr + " Url: " +
                                         urlStr + " desc: " + desc);
                             }
+                            requireActivity().runOnUiThread(() -> parseAdapterForDashboard.notifyDataSetChanged());
                         }
                     }
                 }
                 if (reader != null) {
                     reader.close();
                 }
-                parseLm(true);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -226,21 +224,6 @@ public class DashboardFragment extends Fragment {
             }
         }
     }
-
-    public static void addInItems(String date, String bookName, String content, String fullDesc) {
-            try {
-            @SuppressLint("SimpleDateFormat")
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date finalDate = sdf.parse(date);
-                if (finalDate != null) {
-                    date = df.format(finalDate);
-                }
-                date = date.replace("00:00","23:59");
-                ParseItems.add(new DashboardParseItem(date, content, fullDesc, null));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
     private void getDateNearest(List<Date> dates, Date targetDate){
         int position = 0;
         for (Date date : dates) {
@@ -252,7 +235,7 @@ public class DashboardFragment extends Fragment {
             position = position + 1;
         }
     }
-    public static ArrayList<DashboardParseItem> getParseItems() {
+    public static ArrayList<ThirdParseItem> getParseItems() {
         return ParseItems;
     }
 
