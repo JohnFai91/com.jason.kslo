@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "com.jason.kslo"
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 30
-        versionCode 17
-        versionName '1.1.7'
+        versionCode 18
+        versionName '1.1.8'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
