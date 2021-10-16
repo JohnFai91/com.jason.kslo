@@ -11,11 +11,14 @@ public class LoginParseItem {
     private String sender;
     private Map<String,String> cookies;
     private String content;
-    private String filePresent;
-    private String read;
+    private Boolean filePresent;
+    private Boolean read;
     private String size;
+    private  String borrowedDate;
+    private String returnDate;
+    private String bkDetailUrl;
 
-    public LoginParseItem(String title, String sender, String date, String detailUrl, String filePresent, String read, String size) {
+    public LoginParseItem(String title, String sender, String date, String detailUrl, Boolean filePresent, Boolean read, String size) {
         this.title = title;
         this.sender = sender;
         this. date = date;
@@ -25,8 +28,20 @@ public class LoginParseItem {
         this.size = size;
     }
 
-    public LoginParseItem(String content) {
-        this.content = content;
+    public LoginParseItem(String fileName, String fileUrl, Map<String, String> cookies) {
+        this.fileName = fileName;
+        this.detailUrl = fileUrl;
+        this.cookies = cookies;
+    }
+
+    public LoginParseItem(String bkTitle, String bkImg, String bkBorrowedDate, String bkReturnDate,
+                                String detailUrl, Map<String,String> cookies) {
+        this.title = bkTitle;
+        this.detailUrl = bkImg;
+        this.borrowedDate = bkBorrowedDate;
+        this.returnDate = bkReturnDate;
+        this.bkDetailUrl = detailUrl;
+        this.cookies = cookies;
     }
 
 
@@ -96,19 +111,19 @@ public class LoginParseItem {
         this.content = content;
     }
 
-    public String getFilePresent() {
+    public Boolean getFilePresent() {
         return filePresent;
     }
     @SuppressWarnings("unused")
-    public void setFilePresent(String filePresent) {
+    public void setFilePresent(Boolean filePresent) {
         this.filePresent = filePresent;
     }
 
-    public String getRead() {
+    public Boolean getRead() {
         return read;
     }
     @SuppressWarnings("unused")
-    public void setRead(String read) {
+    public void setRead(Boolean read) {
         this.read = read;
     }
 
@@ -118,5 +133,29 @@ public class LoginParseItem {
     @SuppressWarnings("unused")
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getBorrowedDate() {
+        return borrowedDate;
+    }
+    @SuppressWarnings("unused")
+    public void setBorrowedDate(String borrowedDate) {
+        this.borrowedDate = borrowedDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+    @SuppressWarnings("unused")
+    public void setReturnDate(String returnDate) {
+        this.size = returnDate;
+    }
+
+    public String getBkDetailUrl() {
+        return bkDetailUrl;
+    }
+    @SuppressWarnings("unused")
+    public void setBkDetailUrl(String bkDetailUrl) {
+        this.bkDetailUrl = bkDetailUrl;
     }
 }

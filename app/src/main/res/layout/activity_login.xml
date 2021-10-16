@@ -64,7 +64,21 @@
                                 android:id="@+id/password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/Password"
+                                android:hint="@string/OldPassword"
+                                android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginHorizontal="10dp"
+                            app:passwordToggleEnabled="true"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/eClass_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/eClassPassword"
                                 android:inputType="textPassword"/>
                     </com.google.android.material.textfield.TextInputLayout>
 

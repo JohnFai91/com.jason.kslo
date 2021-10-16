@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/IntranetDetailedFileCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:id="@+id/openFile"
+            android:paddingVertical="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:paddingHorizontal="20sp"
+            android:layout_marginHorizontal="12sp"
+            android:background="@drawable/default_button_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_open"
+            android:layout_marginBottom="20dp"
+            android:textAllCaps="false"/>
+</RelativeLayout>

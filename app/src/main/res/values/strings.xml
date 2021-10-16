@@ -243,6 +243,17 @@
 
     </string>
 
+    <string name="changelogDescLv_1_1_8">
+        "Add \"Gallery\" in \"School Website\"\n\n"
+        "Add new Intranet"
+    </string>
+    <string name="changelogDescRv_1_1_8">
+        "Change progressBar type\n\n"
+        "Disable bottom nav swiping\n\n"
+        "Check passwords"
+
+    </string>
+
     <string name="changelogDescAlpha">
         "Alpha State"
     </string>
@@ -373,5 +384,12 @@
     <string name="LatestNews">Latest News</string>
     <string name="BookExpiry">" expires on %1$s"</string>
     <string name="ReturnBkIn">Please return in %1$s</string>
+    <string name="OldPassword">Old Password (old Intranet password)</string>
+    <string name="eClassPassword">eClass Password</string>
+    <string name="BorrowedBooksNumber">Borrowed Books (%1$s)</string>
+    <string name="Intranet">Intranet</string>
+    <string name="Gallery">Gallery</string>
+    <string name="LoginError">Login error, please check to see if your username and password are correct.</string>
+    <string name="ReachedBottom">Reached Bottom!</string>
 
 </resources>

@@ -232,17 +232,27 @@ import java.util.ArrayList;
                 }
                 else if (i == 17) {
 
-                    separatorVisibility = "Visible";
-                    parseItems.add(new ChangelogParseItem(getString(R.string.changelogDescStableDescL),
-                            getString(R.string.changelogDescStableDescR),
-                            getString(R.string.changelogDescStable),separatorVisibility));
-
                     separatorVisibility = "Gone";
                     version = "1.1.7\n" +
                             "(31/8/2021)\n" +
                             "(Code update)";
                     descL = getString(R.string.changelogDescLv_1_1_7);
                     descR = getString(R.string.changelogDescRv_1_1_7);
+
+                }
+                else if (i == 18) {
+
+                    separatorVisibility = "Visible";
+                    parseItems.add(new ChangelogParseItem(getString(R.string.changelogDescStableDescL),
+                            getString(R.string.changelogDescStableDescR),
+                            getString(R.string.changelogDescStable),separatorVisibility));
+
+                    separatorVisibility = "Gone";
+                    version = "1.1.8\n" +
+                            "(16/10/2021)\n" +
+                            "(UI update)";
+                    descL = getString(R.string.changelogDescLv_1_1_8);
+                    descR = getString(R.string.changelogDescRv_1_1_8);
 
                 }
                 //TODO Update new version

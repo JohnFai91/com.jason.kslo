@@ -1,17 +1,24 @@
 package com.jason.kslo.main.parseContent.parseItem;
 
-public class DashboardParseItem {
+public class ThirdParseItem {
     private String title;
     private String date;
     private String desc;
     private String url;
+    private String imgUrl;
 
-    public DashboardParseItem(String date, String title){
+    public ThirdParseItem(String date, String title){
         this.title = title;
         this.date = date;
     }
 
-    public DashboardParseItem(String date, String title, String desc, String url) {
+    public ThirdParseItem(String imgUrl, String title, String url) {
+        this.title = title;
+        this.url = url;
+        this.imgUrl = imgUrl;
+    }
+
+    public ThirdParseItem(String date, String title, String desc, String url) {
         this.title = title;
         this.date = date;
         this.desc = desc;
@@ -48,5 +55,13 @@ public class DashboardParseItem {
     @SuppressWarnings("unused")
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

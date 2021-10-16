@@ -2,10 +2,8 @@ package com.jason.kslo.main.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
@@ -22,16 +20,9 @@ import com.jason.kslo.autoUpdate.UpdateChecker;
 import com.jason.kslo.main.dialog.InstallUnknownAppsDialog;
 import com.jason.kslo.main.fragment.AboutFragment;
 import com.jason.kslo.main.parseContent.defaultParseContent.fragment.DashboardFragment;
-import com.jason.kslo.main.parseContent.defaultParseContent.fragment.LatestNewsFragment;
-import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.BorrowedBooksFragment;
-import com.jason.kslo.main.parseContent.loggedInParseContent.parseItem.SecondLoginParseItem;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import com.jason.kslo.main.parseContent.defaultParseContent.fragment.SchoolWebsiteFragment;
+import com.jason.kslo.main.parseContent.loggedInParseContent.fragment.LoginFragment;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 import static com.jason.kslo.App.updateLanguage;
@@ -49,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem prevMenuItem;
     public static int NewMsgSize = 0;
     static Boolean checkMsg;
-    static ArrayList<SecondLoginParseItem> secondLoginParseItems = new ArrayList<>();
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -65,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.activityMainViewPager);
         setupViewPager(viewPager);
+        viewPager.setUserInputEnabled(false);
         bottomNavigationView = findViewById(R.id.bottom_nav_main);
 
         bottomNavigationView.setSelectedItemId(R.id.nav_dashboard);
@@ -86,19 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
 
-            return false;
+            return true;
         });
 
         badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.nav_login);
         badgeDrawable.setBadgeTextColor(getResources().getColor(R.color.white));
         badgeDrawable.setVisible(false);
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                bottomNavigationView.getMenu().getItem(position).setChecked(true);
-            }
-        });
         Content content = new Content();
         content.run();
     }
@@ -159,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
                 default:
-                    return new LatestNewsFragment();
+                    return new SchoolWebsiteFragment();
                 case 1:
                     return new DashboardFragment();
                 case 2:
-                    return new BorrowedBooksFragment();
+                    return new LoginFragment();
                 case 3:
                     return new AboutFragment();
             }
@@ -206,94 +190,5 @@ public class MainActivity extends AppCompatActivity {
                 UpdateChecker.checkForDialog(this);
             }
         }
-    }
-
-    public static void parseLm(Boolean addToDashboard){
-        String originalPw, Username, finalUsername;
-        Map<String,String> cookies;
-        int BookSize;
-        try{
-            SharedPreferences pref = MainActivity.getContextOfApplication()
-                    .getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-
-            originalPw = pref.getString("Password","");
-            Username = pref.getString("Username","");
-            finalUsername = Username.replaceAll("s","");
-            Connection.Response loginForm = Jsoup.connect("https://lm.hkmakslo.edu.hk/Handlers/UserLogin.ashx?&sno=" +
-                            finalUsername + "&pass=" + originalPw)
-                    .method(Connection.Method.GET)
-                    .execute();
-
-            cookies = loginForm.cookies();
-
-            Document doc = Jsoup.connect("https://lm.hkmakslo.edu.hk/PrivatePages/_book_table.aspx?")
-                    .cookies(cookies)
-                    .get();
-
-            Log.d("Parse Lm", "Cookies: " + loginForm.cookies());
-
-            Elements bk = doc.select("a");
-
-            BookSize = bk.size();
-            Log.d("ParseLM", "Size: " + BookSize);
-
-            for (int i = 0; i < BookSize; i++) {
-
-                String bkTitle = bk
-                        .eq(i)
-                        .text();
-
-                String bkImg = doc
-                        .select("img.book-cover-tbumb")
-                        .eq(i)
-                        .attr("src");
-
-                bkImg = bkImg.replace("..","");
-                bkImg = "https://lm.hkmakslo.edu.hk" + bkImg;
-
-                String bkBorrowedDate = doc
-                        .select("td.borrowed-date")
-                        .eq(i)
-                        .text();
-
-                String bkReturnDate = doc
-                        .select("td.return-date")
-                        .eq(i)
-                        .text();
-
-                String countReturn = doc.select("span.due")
-                        .eq(i)
-                        .text();
-
-                String detailUrl = doc
-                        .select("span.row")
-                        .select("a.book-name")
-                        .eq(i)
-                        .attr("href");
-                String baseDetailUrl = "https://lm.hkmakslo.edu.hk/Pages/";
-                detailUrl = baseDetailUrl + detailUrl;
-
-                countReturn = countReturn.replace("天後到期",view.getContext().getString(R.string.DaysToDueDate));
-
-                if (addToDashboard) {
-                    DashboardFragment.addInItems(bkReturnDate, bkTitle, bkTitle +
-                                    view.getContext().getString(R.string.BookExpiry, bkReturnDate),
-                            view.getContext().getString(R.string.ReturnBkIn, countReturn));
-                } else {
-
-                    bkReturnDate = bkReturnDate + " (" + countReturn + ")";
-                    secondLoginParseItems.add(new SecondLoginParseItem(bkTitle, bkImg, bkBorrowedDate, bkReturnDate, detailUrl, loginForm.cookies()));
-                    Log.d("Parse Lm", "Bk: " + " title: " + bkTitle + " imgUrl: " + bkImg +
-                            " borrowed date: " + bkBorrowedDate + " return date: " + bkReturnDate);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static ArrayList<SecondLoginParseItem> getSecondLoginParseItems() {
-        return secondLoginParseItems;
     }
 }

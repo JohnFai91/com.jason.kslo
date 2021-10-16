@@ -20,7 +20,7 @@
                         android:text="@string/Dashboard"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                        android:padding="5dp"
+                        android:paddingHorizontal="10dp"
                         android:id="@+id/DashboardFragmentRecyclerView"
                         android:layout_below="@id/DashboardFragmentTitle"
                         android:layout_width="match_parent"
