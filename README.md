@@ -11,10 +11,10 @@ Type       | Info
 Total Downloads|[![](https://img.shields.io/github/downloads/johnfai91/com.jason.kslo/total?logo=GitHub/total.svg)](https://github.com/JohnFai91/com.jason.kslo)
 Language| [![](https://shields.io/github/languages/top/johnfai91/com.jason.kslo?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/search?l=java)
 Contributors|[![](https://contrib.rocks/image?repo=johnfai91/com.jason.kslo)](https://img.shields.io/github/contributors/johnfai91/com.jason.kslo)
-Commit| [![](https://img.shields.io/github/commit-activity/w/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo) [![](https://img.shields.io/github/commit-activity/m/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo)
+Commit| [![](https://img.shields.io/github/commit-activity/w/johnfai91/com.jason.kslo)](https://github.com/JohnFai91/com.jason.kslo)
 
 ### Track the progress
-[Click here](https://github.com/JohnFai91/com.jason.kslo/projects/5)
+[Click here](https://github.com/users/JohnFai91/projects/3)
 
 ## Users
 ### Install
@@ -30,7 +30,6 @@ If you are a developer and would like to help, please [create a new pull request
 Branch          |Build Status  | Security Check Status | Last Commit
 ------------    | ------------ |         ------------- | ---------- |
 Master          |[![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/Build/master?logo=GitHub&label=Build)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/android_build.yml?query=branch%3Amaster) | [![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/CodeQL/master?logo=GitHub&label=CodeQL)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/codeql-analysis.yml?query=branch%3Adev) | [![](https://shields.io/github/last-commit/johnfai91/com.jason.kslo/master?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo)
-Dev             |[![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/Build/dev?logo=GitHub&label=Build)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/android_build.yml?query=branch%3Amaster) | [![](https://img.shields.io/github/workflow/status/johnfai91/com.jason.kslo/CodeQL/dev?logo=GitHub&label=CodeQL)](https://github.com/JohnFai91/com.jason.kslo/actions/workflows/codeql-analysis.yml?query=branch%3Adev)| [![](https://shields.io/github/last-commit/johnfai91/com.jason.kslo/dev?logo=GitHub)](https://github.com/JohnFai91/com.jason.kslo/tree/dev)
 
 ## Note
 I am not responsible for any damage done by this app, please use it for your own means.
